@@ -14,8 +14,12 @@ const router = new Router(on => {
 
   on('/', async () => <UserFormPage />);
 
-  on('/player/:steamID', async (req) => {
-    return <PlayerPage steamID={req.params.steamID} />;
+  on('/player/:username/:steamID', async (req) => {
+    return (
+      <PlayerPage username={req.params.username}
+        steamID={req.params.steamID}
+      />
+    );
   });
 
   on('error', (state, error) => state.statusCode === 404 ?

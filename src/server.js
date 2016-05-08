@@ -18,6 +18,7 @@ import assets from './assets';
 import { port } from './config';
 import Config from './config.json';
 import fetch from './core/fetch';
+import Scraper from './actions/scraper';
 
 const server = global.server = express();
 
@@ -62,6 +63,22 @@ server.get('/api/steam', async (req, res) => {
   } else {
     res.json(data);
   }
+});
+
+server.get('/api/screenshots', async (req, res) => {
+  const username = req.query.user;
+  if (typeof username !== 'string' || username.length < 1) {
+    res.status(400).
+        json({ error: 'Must provide Steam user name in user param' });
+    return;
+  }
+  const scraper = new Scraper(username);
+  const html = await scraper.getPage();
+  scraper.getScreenshots(html).then((screenshots) => {
+    res.json(screenshots);
+  }).fail((err) => {
+    res.status(400).json({ error: err });
+  });
 });
 
 //

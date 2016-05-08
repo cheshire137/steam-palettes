@@ -65,11 +65,6 @@ class PlayerSummary extends Component {
                   <span>{this.state.player.personaname}</span>
                 )}
               </h3>
-              <a className={s.profileLink} href={this.state.player.profileurl}
-                target="_blank"
-              >
-                View profile
-              </a>
               {typeof this.state.player.timecreated === 'number' ? (
                 <span className={s.createdWrapper}>
                   Member since

@@ -39,7 +39,8 @@ class UserFormPage extends Component {
       message: undefined,
     });
     Location.push({
-      ...(parsePath('/player/' + steamID)),
+      ...(parsePath('/player/' + encodeURIComponent(this.state.name) + '/' +
+                    steamID)),
     });
   }
 

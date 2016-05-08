@@ -5,11 +5,13 @@
 }
 
 .card {
-  border: 1px solid $border-color;
+  min-width: 350px;
+  border: 1px solid #0D0C0B;
   padding: 15px;
   border-radius: $border-radius;
   display: table;
   width: 100%;
+  background-color: #574E4F;
 }
 
 .avatarContainer,
@@ -28,10 +30,12 @@
 
 .avatar {
   width: 64px;
+  border: 1px solid #0D0C0B;
+  border-radius: $border-radius;
 }
 
 .name {
-  color: $text-color;
+  color: #CCC3C8;
   margin: 0;
 }
 
@@ -48,12 +52,12 @@
   }
 }
 
-.profileLink {
-  display: block;
+.createdWrapper, .logoffWrapper {
+  font-size: 13px;
+  color: #CCC3C8;
 }
 
 .createdWrapper {
-  color: $header-color;
 }
 
 .created, .logoff {
@@ -66,9 +70,7 @@
 
 }
 
-.logoffWrapper {
-  color: $header-color;
-
+.createdWrapper + .logoffWrapper {
   &:before {
     content: "\a0\b7\a0";
   }
