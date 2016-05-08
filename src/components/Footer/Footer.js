@@ -8,7 +8,9 @@ class Footer extends Component {
   render() {
     return (
       <footer className={s.footer}>
-        &copy; 2016 Sarah Vessels
+        <div className={s.innerContainer}>
+          &copy; 2016 Sarah Vessels
+        </div>
       </footer>
     );
   }

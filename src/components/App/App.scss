@@ -42,13 +42,10 @@ body, .container {
   flex-direction: column;
 }
 
-.container {
-  max-width: $max-content-width;
+.main {
   margin-left: auto;
   margin-right: auto;
-}
-
-.main {
+  max-width: $max-content-width;
   flex: 1 0 auto;
 }
 
@@ -164,5 +161,89 @@ textarea {
   h2,
   h3 {
     page-break-after: avoid;
+  }
+}
+
+input[type="text"], input[type="search"], button {
+  background-color: $input-bg;
+  color: $input-text-color;
+}
+
+input[type="text"],
+input[type="search"],
+select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  background-image: none;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+  &:focus {
+    border-color: #F5EFEF;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);
+  }
+}
+
+select {
+  height: 34px;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  -webkit-transition: background-color ease-in-out .15s;
+  -o-transition: background-color ease-in-out .15s;
+  transition: background-color ease-in-out .15s;
+
+  &:focus, &:hover {
+    background-color: #7C7177;
+  }
+
+  &:disabled {
+    color: #777;
+    background-color: #f1f1f1;
+
+    &:focus, &:hover {
+      color: #777;
+      background-color: #f1f1f1;
+      border-color: #ccc;
+    }
   }
 }

@@ -1,0 +1,26 @@
+.label {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+input[type="text"].textField {
+  width: 20em;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+input[type="text"].textField,
+.button {
+  font-size: 18px;
+}
+
+.title {
+  margin: 0 0 10px;
+}
+
+.form {
+  margin: 0 auto;
+  text-align: center;
+}

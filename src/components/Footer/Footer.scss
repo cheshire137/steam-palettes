@@ -2,6 +2,14 @@
 
 .footer {
   display: block;
-  padding-bottom: 40px;
   margin-top: 40px;
+  color: #8B8086;
+  font-size: 12px;
+  background-color: #0D0C0B;
+}
+
+.innerContainer {
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: 40px 0;
 }
