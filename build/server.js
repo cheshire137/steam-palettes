@@ -57,7 +57,7 @@ module.exports =
   
   'use strict';
   
-  var _this2 = this;
+  var _this = this;
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
@@ -83,15 +83,19 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(46);
+  var _componentsHtml = __webpack_require__(41);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(48);
+  var _assets = __webpack_require__(43);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _config = __webpack_require__(47);
+  var _config = __webpack_require__(42);
+  
+  var _configJson = __webpack_require__(44);
+  
+  var _configJson2 = _interopRequireDefault(_configJson);
   
   var server = global.server = (0, _express2['default'])();
   
@@ -100,12 +104,84 @@ module.exports =
   // -----------------------------------------------------------------------------
   server.use(_express2['default']['static'](_path2['default'].join(__dirname, 'public')));
   
+  server.all('*', function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', _configJson2['default'][("development")].clientUri);
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    next();
+  });
+  
+  server.get('/api/steam', function callee$0$0(req, res) {
+    var url, isXml, key, joiner, response, data;
+    return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
+      while (1) switch (context$1$0.prev = context$1$0.next) {
+        case 0:
+          url = req.query.path;
+          isXml = false;
+  
+          for (key in req.query) {
+            if (key !== 'path') {
+              joiner = url.indexOf('?') > -1 ? '&' : '?';
+  
+              url = url + joiner + key + '=' + encodeURIComponent(req.query[key]);
+            }
+            if (key === 'xml') {
+              isXml = true;
+            }
+          }
+          if (isXml) {
+            url = 'http://steamcommunity.com' + url;
+          } else {
+            url = 'http://api.steampowered.com' + url + (url.indexOf('?') > -1 ? '&' : '?') + 'key=' + process.env.STEAM_API_KEY;
+          }
+          context$1$0.next = 6;
+          return regeneratorRuntime.awrap(fetch(url));
+  
+        case 6:
+          response = context$1$0.sent;
+  
+          if (!isXml) {
+            context$1$0.next = 13;
+            break;
+          }
+  
+          context$1$0.next = 10;
+          return regeneratorRuntime.awrap(response.text());
+  
+        case 10:
+          context$1$0.t0 = context$1$0.sent;
+          context$1$0.next = 16;
+          break;
+  
+        case 13:
+          context$1$0.next = 15;
+          return regeneratorRuntime.awrap(response.json());
+  
+        case 15:
+          context$1$0.t0 = context$1$0.sent;
+  
+        case 16:
+          data = context$1$0.t0;
+  
+          if (isXml) {
+            res.set('Content-Type', 'text/xml');
+          }
+          res.send(data);
+  
+        case 19:
+        case 'end':
+          return context$1$0.stop();
+      }
+    }, null, _this);
+  });
+  
   //
   // Register server-side rendering middleware
   // -----------------------------------------------------------------------------
   server.get('*', function callee$0$0(req, res, next) {
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
-      var _this = this;
+      var _this2 = this;
   
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -148,7 +224,7 @@ module.exports =
                 case 'end':
                   return context$2$0.stop();
               }
-            }, null, _this);
+            }, null, _this2);
           })());
   
         case 3:
@@ -165,7 +241,7 @@ module.exports =
         case 'end':
           return context$1$0.stop();
       }
-    }, null, _this2, [[0, 5]]);
+    }, null, _this, [[0, 5]]);
   });
   
   //
@@ -232,15 +308,15 @@ module.exports =
   
   var _componentsApp2 = _interopRequireDefault(_componentsApp);
   
-  var _componentsNotFoundPage = __webpack_require__(40);
+  var _componentsNotFoundPage = __webpack_require__(32);
   
   var _componentsNotFoundPage2 = _interopRequireDefault(_componentsNotFoundPage);
   
-  var _componentsErrorPage = __webpack_require__(43);
+  var _componentsErrorPage = __webpack_require__(35);
   
   var _componentsErrorPage2 = _interopRequireDefault(_componentsErrorPage);
   
-  var _componentsUserForm = __webpack_require__(49);
+  var _componentsUserForm = __webpack_require__(38);
   
   var _componentsUserForm2 = _interopRequireDefault(_componentsUserForm);
   
@@ -1171,7 +1247,7 @@ module.exports =
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _Footer = __webpack_require__(37);
+  var _Footer = __webpack_require__(29);
   
   var _Footer2 = _interopRequireDefault(_Footer);
   
@@ -1931,15 +2007,7 @@ module.exports =
   module.exports = require("history/lib/useQueries");
 
 /***/ },
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -1962,7 +2030,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FooterScss = __webpack_require__(38);
+  var _FooterScss = __webpack_require__(30);
   
   var _FooterScss2 = _interopRequireDefault(_FooterScss);
   
@@ -2003,11 +2071,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 38 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(39);
+      var content = __webpack_require__(31);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2035,7 +2103,7 @@ module.exports =
     
 
 /***/ },
-/* 39 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2052,7 +2120,7 @@ module.exports =
   };
 
 /***/ },
-/* 40 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2084,7 +2152,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _NotFoundPageScss = __webpack_require__(41);
+  var _NotFoundPageScss = __webpack_require__(33);
   
   var _NotFoundPageScss2 = _interopRequireDefault(_NotFoundPageScss);
   
@@ -2145,11 +2213,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 41 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(42);
+      var content = __webpack_require__(34);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2177,7 +2245,7 @@ module.exports =
     
 
 /***/ },
-/* 42 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2191,7 +2259,7 @@ module.exports =
 
 
 /***/ },
-/* 43 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2223,7 +2291,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ErrorPageScss = __webpack_require__(44);
+  var _ErrorPageScss = __webpack_require__(36);
   
   var _ErrorPageScss2 = _interopRequireDefault(_ErrorPageScss);
   
@@ -2283,11 +2351,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 44 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(45);
+      var content = __webpack_require__(37);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2315,7 +2383,7 @@ module.exports =
     
 
 /***/ },
-/* 45 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2329,144 +2397,7 @@ module.exports =
 
 
 /***/ },
-/* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _config = __webpack_require__(47);
-  
-  var Html = (function (_Component) {
-    _inherits(Html, _Component);
-  
-    function Html() {
-      _classCallCheck(this, Html);
-  
-      _get(Object.getPrototypeOf(Html.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Html, [{
-      key: 'trackingCode',
-      value: function trackingCode() {
-        return { __html: '(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=' + 'function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;' + 'e=o.createElement(i);r=o.getElementsByTagName(i)[0];' + 'e.src=\'https://www.google-analytics.com/analytics.js\';' + 'r.parentNode.insertBefore(e,r)}(window,document,\'script\',\'ga\'));' + ('ga(\'create\',\'' + _config.googleAnalyticsId + '\',\'auto\');ga(\'send\',\'pageview\');')
-        };
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'html',
-          { className: 'no-js', lang: '' },
-          _react2['default'].createElement(
-            'head',
-            null,
-            _react2['default'].createElement('meta', { charSet: 'utf-8' }),
-            _react2['default'].createElement('meta', { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' }),
-            _react2['default'].createElement(
-              'title',
-              null,
-              this.props.title
-            ),
-            _react2['default'].createElement('meta', { name: 'description', content: this.props.description }),
-            _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
-            _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
-            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo', rel: 'stylesheet', type: 'text/css' }),
-            _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
-          ),
-          _react2['default'].createElement(
-            'body',
-            null,
-            _react2['default'].createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: this.props.body } }),
-            _react2['default'].createElement('script', { src: this.props.entry }),
-            _react2['default'].createElement('script', { dangerouslySetInnerHTML: this.trackingCode() })
-          )
-        );
-      }
-    }], [{
-      key: 'propTypes',
-      value: {
-        title: _react.PropTypes.string,
-        description: _react.PropTypes.string,
-        css: _react.PropTypes.string,
-        body: _react.PropTypes.string.isRequired,
-        entry: _react.PropTypes.string.isRequired
-      },
-      enumerable: true
-    }, {
-      key: 'defaultProps',
-      value: {
-        title: '',
-        description: ''
-      },
-      enumerable: true
-    }]);
-  
-    return Html;
-  })(_react.Component);
-  
-  exports['default'] = Html;
-  module.exports = exports['default'];
-
-/***/ },
-/* 47 */
-/***/ function(module, exports) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  var port = process.env.PORT || 5000;
-  exports.port = port;
-  var host = process.env.WEBSITE_HOSTNAME || 'localhost:' + port;
-  exports.host = host;
-  var googleAnalyticsId = 'UA-XXXXX-X';
-  exports.googleAnalyticsId = googleAnalyticsId;
-
-/***/ },
-/* 48 */
-/***/ function(module, exports) {
-
-  module.exports = require("./assets");
-
-/***/ },
-/* 49 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2489,7 +2420,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _UserFormScss = __webpack_require__(50);
+  var _UserFormScss = __webpack_require__(39);
   
   var _UserFormScss2 = _interopRequireDefault(_UserFormScss);
   
@@ -2575,11 +2506,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 50 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(51);
+      var content = __webpack_require__(40);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2607,7 +2538,7 @@ module.exports =
     
 
 /***/ },
-/* 51 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2624,6 +2555,154 @@ module.exports =
   	"button": "UserForm_button_kBN",
   	"title": "UserForm_title_3Xu",
   	"form": "UserForm_form_3Ui"
+  };
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _config = __webpack_require__(42);
+  
+  var Html = (function (_Component) {
+    _inherits(Html, _Component);
+  
+    function Html() {
+      _classCallCheck(this, Html);
+  
+      _get(Object.getPrototypeOf(Html.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Html, [{
+      key: 'trackingCode',
+      value: function trackingCode() {
+        return { __html: '(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=' + 'function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;' + 'e=o.createElement(i);r=o.getElementsByTagName(i)[0];' + 'e.src=\'https://www.google-analytics.com/analytics.js\';' + 'r.parentNode.insertBefore(e,r)}(window,document,\'script\',\'ga\'));' + ('ga(\'create\',\'' + _config.googleAnalyticsId + '\',\'auto\');ga(\'send\',\'pageview\');')
+        };
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'html',
+          { className: 'no-js', lang: '' },
+          _react2['default'].createElement(
+            'head',
+            null,
+            _react2['default'].createElement('meta', { charSet: 'utf-8' }),
+            _react2['default'].createElement('meta', { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' }),
+            _react2['default'].createElement(
+              'title',
+              null,
+              this.props.title
+            ),
+            _react2['default'].createElement('meta', { name: 'description', content: this.props.description }),
+            _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
+            _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
+            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo', rel: 'stylesheet', type: 'text/css' }),
+            _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
+          ),
+          _react2['default'].createElement(
+            'body',
+            null,
+            _react2['default'].createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: this.props.body } }),
+            _react2['default'].createElement('script', { src: this.props.entry }),
+            _react2['default'].createElement('script', { dangerouslySetInnerHTML: this.trackingCode() })
+          )
+        );
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        title: _react.PropTypes.string,
+        description: _react.PropTypes.string,
+        css: _react.PropTypes.string,
+        body: _react.PropTypes.string.isRequired,
+        entry: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }, {
+      key: 'defaultProps',
+      value: {
+        title: '',
+        description: ''
+      },
+      enumerable: true
+    }]);
+  
+    return Html;
+  })(_react.Component);
+  
+  exports['default'] = Html;
+  module.exports = exports['default'];
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  var port = process.env.PORT || 5000;
+  exports.port = port;
+  var host = process.env.WEBSITE_HOSTNAME || 'localhost:' + port;
+  exports.host = host;
+  var googleAnalyticsId = 'UA-XXXXX-X';
+  exports.googleAnalyticsId = googleAnalyticsId;
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+  module.exports = require("./assets");
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+  module.exports = {
+  	"development": {
+  		"serverUri": "http://localhost:5000",
+  		"clientUri": "http://localhost:3000"
+  	}
   };
 
 /***/ }

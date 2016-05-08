@@ -16,6 +16,7 @@ import Router from './routes';
 import Html from './components/Html';
 import assets from './assets';
 import { port } from './config';
+import Config from './config.json';
 
 const server = global.server = express();
 
@@ -23,6 +24,42 @@ const server = global.server = express();
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
 server.use(express.static(path.join(__dirname, 'public')));
+
+server.all('*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin',
+             Config[process.env.NODE_ENV].clientUri);
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  next();
+});
+
+server.get('/api/steam', async (req, res) => {
+  let url = req.query.path;
+  let isXml = false;
+  for (const key in req.query) {
+    if (key !== 'path') {
+      const joiner = url.indexOf('?') > -1 ? '&' : '?';
+      url = url + joiner + key + '=' + encodeURIComponent(req.query[key]);
+    }
+    if (key === 'xml') {
+      isXml = true;
+    }
+  }
+  if (isXml) {
+    url = 'http://steamcommunity.com' + url;
+  } else {
+    url = 'http://api.steampowered.com' + url +
+          (url.indexOf('?') > -1 ? '&' : '?') + 'key=' +
+          process.env.STEAM_API_KEY;
+  }
+  const response = await fetch(url);
+  const data = isXml ? await response.text() : await response.json();
+  if (isXml) {
+    res.set('Content-Type', 'text/xml');
+  }
+  res.send(data);
+});
 
 //
 // Register server-side rendering middleware

@@ -2,10 +2,9 @@ import fetch from '../core/fetch';
 import Config from '../config.json';
 
 class Steam {
-  static async makeRequest(path, optionalOptions) {
-    const options = optionalOptions || {};
+  static async makeRequest(path, options) {
     const url = Config[process.env.NODE_ENV].serverUri + path;
-    const response = await fetch(url, options);
+    const response = await fetch(url, options || {});
     const json = await response.json();
     if (response.ok) {
       return json;
