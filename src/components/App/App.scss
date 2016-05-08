@@ -7,18 +7,45 @@
   box-sizing: border-box;
 }
 
+a, a:link, a:visited, a:active {
+  color: $link-color;
+  text-decoration: none;
+  -webkit-transition: color ease-in-out .15s;
+  -o-transition: color ease-in-out .15s;
+  transition: color ease-in-out .15s;
+}
+
+a:hover, a:focus {
+  color: $hover-link-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $header-color;
+  font-weight: 400;
+}
+
 html {
-  color: #222;
-  font-weight: 100;
+  font-weight: 400;
   font-size: 1em; /* ~16px; */
   font-family: $font-family-base;
   line-height: 1.375; /* ~22px */
+}
+
+body {
+  background-color: $body-bg;
+  color: $text-color;
 }
 
 body, .container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.container {
+  max-width: $max-content-width;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main {

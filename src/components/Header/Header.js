@@ -8,9 +8,11 @@ class Header extends Component {
   render() {
     return (
       <header className={s.header}>
-        <a className={s.brand} href="/" onClick={Link.handleClick}>
-          Steam Palettes
-        </a>
+        <h1 className={s.title}>
+          <a className={s.brand} href="/" onClick={Link.handleClick}>
+            Steam Palettes
+          </a>
+        </h1>
       </header>
     );
   }
