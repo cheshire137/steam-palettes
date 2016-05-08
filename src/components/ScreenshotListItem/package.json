@@ -1,0 +1,6 @@
+{
+  "name": "ScreenshotListItem",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ScreenshotListItem.js"
+}

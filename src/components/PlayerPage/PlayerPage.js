@@ -3,6 +3,7 @@ import s from './PlayerPage.scss';
 import withStyles from '../../decorators/withStyles';
 import PlayerSummary from '../PlayerSummary/PlayerSummary';
 import Steam from '../../api/steam';
+import ScreenshotsList from '../ScreenshotsList/ScreenshotsList';
 
 const title = 'Steam User';
 
@@ -19,7 +20,7 @@ class PlayerPage extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = { screenshots: undefined };
   }
 
   componentWillMount() {
@@ -32,8 +33,9 @@ class PlayerPage extends Component {
           catch(this.onScreenshotsLoadError.bind(this));
   }
 
-  onScreenshotsLoaded(data) {
-    console.log('screenshots', data);
+  onScreenshotsLoaded(screenshots) {
+    console.log('screenshots', screenshots);
+    this.setState({ screenshots });
   }
 
   onScreenshotsLoadError(response) {
@@ -46,6 +48,13 @@ class PlayerPage extends Component {
         <PlayerSummary key={this.props.steamID}
           steamID={this.props.steamID}
         />
+        {typeof this.state.screenshots === 'object' ? (
+          <ScreenshotsList screenshots={this.state.screenshots} />
+        ) : (
+          <p className={s.message}>
+            Loading screenshots...
+          </p>
+        )}
       </div>
     );
   }

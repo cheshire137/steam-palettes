@@ -4,7 +4,8 @@ import Config from '../config.json';
 class Steam {
   static async getScreenshots(username) {
     const data = await this.makeRequest('/api/screenshots?user=' +
-                                        encodeURIComponent(username));
+                                        encodeURIComponent(username) +
+                                        '&format=json');
     return data;
   }
 

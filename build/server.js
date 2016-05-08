@@ -2728,7 +2728,7 @@ module.exports =
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/screenshots?user=' + encodeURIComponent(username)));
+              return regeneratorRuntime.awrap(this.makeRequest('/api/screenshots?user=' + encodeURIComponent(username) + '&format=json'));
   
             case 2:
               data = context$2$0.sent;
@@ -3118,6 +3118,10 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
+  var _ScreenshotsListScreenshotsList = __webpack_require__(58);
+  
+  var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
+  
   var title = 'Steam User';
   
   var PlayerPage = (function (_Component) {
@@ -3142,7 +3146,7 @@ module.exports =
       _classCallCheck(this, _PlayerPage);
   
       _get(Object.getPrototypeOf(_PlayerPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
+      this.state = { screenshots: undefined };
     }
   
     _createClass(PlayerPage, [{
@@ -3157,8 +3161,9 @@ module.exports =
       }
     }, {
       key: 'onScreenshotsLoaded',
-      value: function onScreenshotsLoaded(data) {
-        console.log('screenshots', data);
+      value: function onScreenshotsLoaded(screenshots) {
+        console.log('screenshots', screenshots);
+        this.setState({ screenshots: screenshots });
       }
     }, {
       key: 'onScreenshotsLoadError',
@@ -3173,7 +3178,12 @@ module.exports =
           { className: _PlayerPageScss2['default'].container },
           _react2['default'].createElement(_PlayerSummaryPlayerSummary2['default'], { key: this.props.steamID,
             steamID: this.props.steamID
-          })
+          }),
+          typeof this.state.screenshots === 'object' ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots }) : _react2['default'].createElement(
+            'p',
+            { className: _PlayerPageScss2['default'].message },
+            'Loading screenshots...'
+          )
         );
       }
     }]);
@@ -3683,6 +3693,251 @@ module.exports =
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _ScreenshotsListScss = __webpack_require__(59);
+  
+  var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(61);
+  
+  var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
+  
+  var ScreenshotsList = (function (_Component) {
+    _inherits(ScreenshotsList, _Component);
+  
+    _createClass(ScreenshotsList, null, [{
+      key: 'propTypes',
+      value: {
+        screenshots: _react.PropTypes.array.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function ScreenshotsList(props, context) {
+      _classCallCheck(this, _ScreenshotsList);
+  
+      _get(Object.getPrototypeOf(_ScreenshotsList.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(ScreenshotsList, [{
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'ul',
+          { className: _ScreenshotsListScss2['default'].screenshots },
+          this.props.screenshots.map(function (screenshot) {
+            return _react2['default'].createElement(_ScreenshotListItemScreenshotListItem2['default'], _extends({ key: screenshot.url }, screenshot));
+          })
+        );
+      }
+    }]);
+  
+    var _ScreenshotsList = ScreenshotsList;
+    ScreenshotsList = (0, _decoratorsWithStyles2['default'])(_ScreenshotsListScss2['default'])(ScreenshotsList) || ScreenshotsList;
+    return ScreenshotsList;
+  })(_react.Component);
+  
+  exports['default'] = ScreenshotsList;
+  module.exports = exports['default'];
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(60);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotsList.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotsList.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  margin-left: 0;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,iBAAiB;EACjB,eAAe;CAChB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  margin-left: 0;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"screenshots": "ScreenshotsList_screenshots_7e4"
+  };
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _ScreenshotListItemScss = __webpack_require__(62);
+  
+  var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var ScreenshotListItem = (function (_Component) {
+    _inherits(ScreenshotListItem, _Component);
+  
+    _createClass(ScreenshotListItem, null, [{
+      key: 'propTypes',
+      value: {
+        url: _react.PropTypes.string.isRequired,
+        title: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function ScreenshotListItem(props, context) {
+      _classCallCheck(this, _ScreenshotListItem);
+  
+      _get(Object.getPrototypeOf(_ScreenshotListItem.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(ScreenshotListItem, [{
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'li',
+          { className: _ScreenshotListItemScss2['default'].screenshot },
+          this.props.url,
+          ' / ',
+          this.props.title
+        );
+      }
+    }]);
+  
+    var _ScreenshotListItem = ScreenshotListItem;
+    ScreenshotListItem = (0, _decoratorsWithStyles2['default'])(_ScreenshotListItemScss2['default'])(ScreenshotListItem) || ScreenshotListItem;
+    return ScreenshotListItem;
+  })(_react.Component);
+  
+  exports['default'] = ScreenshotListItem;
+  module.exports = exports['default'];
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(63);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotListItem.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotListItem.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotListItem_screenshot_3nm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotListItem/ScreenshotListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC","file":"ScreenshotListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshot {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"screenshot": "ScreenshotListItem_screenshot_3nm"
+  };
 
 /***/ }
 /******/ ]);
