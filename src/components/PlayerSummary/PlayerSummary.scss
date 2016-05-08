@@ -1,0 +1,79 @@
+@import '../variables.scss';
+
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid $border-color;
+  padding: 15px;
+  border-radius: $border-radius;
+  display: table;
+  width: 100%;
+}
+
+.avatarContainer,
+.main {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.avatarContainer {
+  width: 64px;
+  padding-right: 15px;
+}
+
+.main {
+}
+
+.avatar {
+  width: 64px;
+}
+
+.name {
+  color: $text-color;
+  margin: 0;
+}
+
+.screenName {
+  opacity: 0.75;
+  font-size: 14px;
+
+  &:before {
+    content: "\a0(";
+  }
+
+  &:after {
+    content: ")";
+  }
+}
+
+.profileLink {
+  display: block;
+}
+
+.createdWrapper {
+  color: $header-color;
+}
+
+.created, .logoff {
+  &:before {
+    content: "\a0";
+  }
+}
+
+.created {
+
+}
+
+.logoffWrapper {
+  color: $header-color;
+
+  &:before {
+    content: "\a0\b7\a0";
+  }
+}
+
+.logoff {
+
+}
