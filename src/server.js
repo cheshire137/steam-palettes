@@ -17,6 +17,7 @@ import Html from './components/Html';
 import assets from './assets';
 import { port } from './config';
 import Config from './config.json';
+import fetch from './core/fetch';
 
 const server = global.server = express();
 
@@ -57,8 +58,10 @@ server.get('/api/steam', async (req, res) => {
   const data = isXml ? await response.text() : await response.json();
   if (isXml) {
     res.set('Content-Type', 'text/xml');
+    res.send(data);
+  } else {
+    res.json(data);
   }
-  res.send(data);
 });
 
 //

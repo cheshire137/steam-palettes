@@ -4,6 +4,10 @@ This is the successor to [steamy-screenshots](https://github.com/cheshire137/ste
 
 ## How to Run
 
+    cp src/env.sh.example src/env.sh
+
+Get a [Steam Web API key](http://steamcommunity.com/dev/apikey) and add it to src/env.sh.
+
     npm install
     npm start
 

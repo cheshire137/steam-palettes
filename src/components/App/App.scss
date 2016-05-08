@@ -188,6 +188,11 @@ select {
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 
+  &:disabled {
+    color: #ccc;
+    background-color: #7C7177;
+  }
+
   &:focus {
     border-color: #F5EFEF;
     outline: 0;
@@ -237,13 +242,12 @@ button {
   }
 
   &:disabled {
-    color: #777;
-    background-color: #f1f1f1;
+    color: #ccc;
+    background-color: #7C7177;
 
     &:focus, &:hover {
-      color: #777;
-      background-color: #f1f1f1;
-      border-color: #ccc;
+      color: #ccc;
+      background-color: #7C7177;
     }
   }
 }
