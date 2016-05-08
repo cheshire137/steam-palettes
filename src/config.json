@@ -1,0 +1,6 @@
+{
+  "development": {
+    "serverUri": "http://localhost:5000",
+    "clientUri": "http://localhost:3000"
+  }
+}
