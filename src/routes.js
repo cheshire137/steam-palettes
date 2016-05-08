@@ -3,7 +3,8 @@ import Router from 'react-routing/src/Router';
 import App from './components/App';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
-import UserForm from './components/UserForm';
+import UserFormPage from './components/UserFormPage';
+import PlayerPage from './components/PlayerPage';
 
 const router = new Router(on => {
   on('*', async (state, next) => {
@@ -11,7 +12,11 @@ const router = new Router(on => {
     return component && <App context={state.context}>{component}</App>;
   });
 
-  on('/', async () => <UserForm />);
+  on('/', async () => <UserFormPage />);
+
+  on('/player/:steamID', async (req) => {
+    return <PlayerPage steamID={req.params.steamID} />;
+  });
 
   on('error', (state, error) => state.statusCode === 404 ?
     <App context={state.context} error={error}><NotFoundPage /></App> :

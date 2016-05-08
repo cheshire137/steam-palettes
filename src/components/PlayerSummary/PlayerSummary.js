@@ -21,7 +21,6 @@ class PlayerSummary extends Component {
   }
 
   onPlayerSummaryLoaded(player) {
-    console.log(player);
     this.setState({ player });
   }
 

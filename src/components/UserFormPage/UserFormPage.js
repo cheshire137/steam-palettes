@@ -1,21 +1,27 @@
 import React, { Component, PropTypes } from 'react';
-import s from './UserForm.scss';
+import s from './UserFormPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Steam from '../../api/steam';
 import cx from 'classnames';
-import PlayerSummary from '../PlayerSummary/PlayerSummary';
+import Location from '../../core/Location';
+import parsePath from 'history/lib/parsePath';
 
 const title = 'Find a Steam User';
 
 @withStyles(s)
-class UserForm extends Component {
+class UserFormPage extends Component {
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { name: undefined, disabled: false, error: false };
+    this.state = {
+      name: undefined,
+      disabled: false,
+      error: false,
+      message: 'The Steam profile must be public.',
+    };
   }
 
   componentWillMount() {
@@ -30,8 +36,10 @@ class UserForm extends Component {
     this.setState({
       disabled: false,
       error: false,
-      steamID,
       message: undefined,
+    });
+    Location.push({
+      ...(parsePath('/player/' + steamID)),
     });
   }
 
@@ -85,15 +93,10 @@ class UserForm extends Component {
             {this.state.message}
           </p>
         </form>
-        {typeof this.state.steamID === 'undefined' ? '' : (
-          <PlayerSummary key={this.state.steamID}
-            steamID={this.state.steamID}
-          />
-        )}
       </div>
     );
   }
 
 }
 
-export default UserForm;
+export default UserFormPage;
