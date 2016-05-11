@@ -439,15 +439,19 @@ module.exports =
     });
   
     on('/player/:username/:steamID/:screenshotID', function callee$1$0(req) {
+      var username, steamID, screenshotID, key;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
-            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { username: req.params.username,
-              steamID: req.params.steamID,
-              screenshotID: req.params.screenshotID
+            username = req.params.username;
+            steamID = req.params.steamID;
+            screenshotID = req.params.screenshotID;
+            key = username + '-' + steamID + '-' + screenshotID;
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { username: username, steamID: steamID,
+              screenshotID: screenshotID, key: key
             }));
   
-          case 1:
+          case 5:
           case 'end':
             return context$2$0.stop();
         }
@@ -3074,12 +3078,12 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        _apiSteam2['default'].getScreenshots(this.props.username).then(this.onScreenshotsLoaded.bind(this, this.props.username))['catch'](this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshots(this.props.username).then(this.onScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
       }
     }, {
       key: 'onScreenshotsLoaded',
-      value: function onScreenshotsLoaded(username, screenshots) {
-        this.setState({ screenshots: screenshots, screenshotsUsername: username });
+      value: function onScreenshotsLoaded(screenshots) {
+        this.setState({ screenshots: screenshots });
       }
     }, {
       key: 'onScreenshotsLoadError',
@@ -3089,9 +3093,7 @@ module.exports =
     }, {
       key: 'render',
       value: function render() {
-        var screenshotsKey = 'screenshots-' + this.props.username;
-        var friendsKey = 'friends-' + this.props.steamID;
-        var screenshotsLoaded = this.state.screenshotsUsername === this.props.username && typeof this.state.screenshots === 'object';
+        var screenshotsLoaded = typeof this.state.screenshots === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _PlayerPageScss2['default'].container },
@@ -3107,8 +3109,7 @@ module.exports =
               }),
               screenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
                 steamID: this.props.steamID,
-                username: this.props.username,
-                key: screenshotsKey
+                username: this.props.username
               }) : _react2['default'].createElement(
                 'p',
                 { className: _PlayerPageScss2['default'].message },
@@ -3118,9 +3119,7 @@ module.exports =
             _react2['default'].createElement(
               'div',
               { className: _PlayerPageScss2['default'].right },
-              _react2['default'].createElement(_FriendsListFriendsList2['default'], { steamID: this.props.steamID,
-                key: friendsKey
-              })
+              _react2['default'].createElement(_FriendsListFriendsList2['default'], { steamID: this.props.steamID })
             )
           )
         );
@@ -3588,7 +3587,7 @@ module.exports =
       key: 'propTypes',
       value: {
         url: _react.PropTypes.string.isRequired,
-        title: _react.PropTypes.string.isRequired,
+        title: _react.PropTypes.string,
         steamID: _react.PropTypes.string.isRequired,
         username: _react.PropTypes.string.isRequired
       },

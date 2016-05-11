@@ -14,10 +14,13 @@ const router = new Router(on => {
   });
 
   on('/player/:username/:steamID/:screenshotID', async (req) => {
+    const username = req.params.username;
+    const steamID = req.params.steamID;
+    const screenshotID = req.params.screenshotID;
+    const key = username + '-' + steamID + '-' + screenshotID;
     return (
-      <ScreenshotPage username={req.params.username}
-        steamID={req.params.steamID}
-        screenshotID={req.params.screenshotID}
+      <ScreenshotPage username={username} steamID={steamID}
+        screenshotID={screenshotID} key={key}
       />
     );
   });

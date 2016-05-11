@@ -29,12 +29,12 @@ class PlayerPage extends Component {
 
   componentDidMount() {
     Steam.getScreenshots(this.props.username).
-          then(this.onScreenshotsLoaded.bind(this, this.props.username)).
+          then(this.onScreenshotsLoaded.bind(this)).
           catch(this.onScreenshotsLoadError.bind(this));
   }
 
-  onScreenshotsLoaded(username, screenshots) {
-    this.setState({ screenshots, screenshotsUsername: username });
+  onScreenshotsLoaded(screenshots) {
+    this.setState({ screenshots });
   }
 
   onScreenshotsLoadError(response) {
@@ -42,11 +42,7 @@ class PlayerPage extends Component {
   }
 
   render() {
-    const screenshotsKey = 'screenshots-' + this.props.username;
-    const friendsKey = 'friends-' + this.props.steamID;
-    const screenshotsLoaded =
-        this.state.screenshotsUsername === this.props.username &&
-        typeof this.state.screenshots === 'object';
+    const screenshotsLoaded = typeof this.state.screenshots === 'object';
     return (
       <div className={s.container}>
         <Header title={this.state.title} />
@@ -59,7 +55,6 @@ class PlayerPage extends Component {
               <ScreenshotsList screenshots={this.state.screenshots}
                 steamID={this.props.steamID}
                 username={this.props.username}
-                key={screenshotsKey}
               />
             ) : (
               <p className={s.message}>
@@ -68,9 +63,7 @@ class PlayerPage extends Component {
             )}
           </div>
           <div className={s.right}>
-            <FriendsList steamID={this.props.steamID}
-              key={friendsKey}
-            />
+            <FriendsList steamID={this.props.steamID} />
           </div>
         </div>
       </div>

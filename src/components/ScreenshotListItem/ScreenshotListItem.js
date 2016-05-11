@@ -7,7 +7,7 @@ import Link from '../Link';
 class ScreenshotListItem extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     steamID: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
   };
