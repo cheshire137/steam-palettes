@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import s from './ScreenshotPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Steam from '../../api/steam';
-import Link from '../Link';
 import Header from '../Header';
 
 @withStyles(s)

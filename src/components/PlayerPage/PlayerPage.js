@@ -4,8 +4,7 @@ import withStyles from '../../decorators/withStyles';
 import PlayerSummary from '../PlayerSummary/PlayerSummary';
 import Steam from '../../api/steam';
 import ScreenshotsList from '../ScreenshotsList/ScreenshotsList';
-
-const title = 'Steam User';
+import Header from '../Header';
 
 @withStyles(s)
 class PlayerPage extends Component {
@@ -20,11 +19,11 @@ class PlayerPage extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { screenshots: undefined };
+    this.state = { screenshots: undefined, title: props.username };
   }
 
   componentWillMount() {
-    this.context.onSetTitle(title);
+    this.context.onSetTitle(this.state.title);
   }
 
   componentDidMount() {
@@ -45,6 +44,7 @@ class PlayerPage extends Component {
   render() {
     return (
       <div className={s.container}>
+        <Header title={this.state.title} />
         <PlayerSummary key={this.props.steamID}
           steamID={this.props.steamID}
         />

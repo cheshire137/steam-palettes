@@ -5,6 +5,7 @@ import Steam from '../../api/steam';
 import cx from 'classnames';
 import Location from '../../core/Location';
 import parsePath from 'history/lib/parsePath';
+import Header from '../Header';
 
 const title = 'Find a Steam User';
 
@@ -73,6 +74,7 @@ class UserFormPage extends Component {
     const messageClass = this.state.error ? s.error : s.success;
     return (
       <div className={s.container}>
+        <Header />
         <form className={s.form} onSubmit={this.handleSubmit.bind(this)}>
           <h1 className={s.title}>{title}</h1>
           <label className={s.label}

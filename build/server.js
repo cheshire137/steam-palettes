@@ -1812,15 +1812,19 @@ module.exports =
                 this.props.previousTitle
               )
             ) : '',
-            hasTitle && hasBackLink && hasNamedBackLink ? _react2['default'].createElement(
-              'span',
-              { className: _HeaderScss2['default'].separator },
-              '/'
-            ) : '',
             hasTitle ? _react2['default'].createElement(
               'span',
-              { className: _HeaderScss2['default'].subtitle },
-              this.props.title
+              { className: _HeaderScss2['default'].subtitleWrapper },
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].separator },
+                '/'
+              ),
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].subtitle },
+                this.props.title
+              )
             ) : ''
           )
         );
@@ -2611,6 +2615,10 @@ module.exports =
   
   var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
   
+  var _Header = __webpack_require__(18);
+  
+  var _Header2 = _interopRequireDefault(_Header);
+  
   var title = 'Find a Steam User';
   
   var UserFormPage = (function (_Component) {
@@ -2688,6 +2696,7 @@ module.exports =
         return _react2['default'].createElement(
           'div',
           { className: _UserFormPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], null),
           _react2['default'].createElement(
             'form',
             { className: _UserFormPageScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
@@ -3246,7 +3255,9 @@ module.exports =
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
-  var title = 'Steam User';
+  var _Header = __webpack_require__(18);
+  
+  var _Header2 = _interopRequireDefault(_Header);
   
   var PlayerPage = (function (_Component) {
     _inherits(PlayerPage, _Component);
@@ -3270,13 +3281,13 @@ module.exports =
       _classCallCheck(this, _PlayerPage);
   
       _get(Object.getPrototypeOf(_PlayerPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = { screenshots: undefined };
+      this.state = { screenshots: undefined, title: props.username };
     }
   
     _createClass(PlayerPage, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
-        this.context.onSetTitle(title);
+        this.context.onSetTitle(this.state.title);
       }
     }, {
       key: 'componentDidMount',
@@ -3300,6 +3311,7 @@ module.exports =
         return _react2['default'].createElement(
           'div',
           { className: _PlayerPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], { title: this.state.title }),
           _react2['default'].createElement(_PlayerSummaryPlayerSummary2['default'], { key: this.props.steamID,
             steamID: this.props.steamID
           }),
@@ -3909,10 +3921,6 @@ module.exports =
   var _apiSteam = __webpack_require__(41);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var _Link = __webpack_require__(22);
-  
-  var _Link2 = _interopRequireDefault(_Link);
   
   var _Header = __webpack_require__(18);
   

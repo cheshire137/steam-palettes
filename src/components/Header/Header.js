@@ -38,12 +38,12 @@ class Header extends Component {
               </a>
             </span>
           ) : ''}
-          {hasTitle && hasBackLink && hasNamedBackLink ? (
-            <span className={s.separator}>/</span>
-          ) : ''}
           {hasTitle ? (
-            <span className={s.subtitle}>
-              {this.props.title}
+            <span className={s.subtitleWrapper}>
+              <span className={s.separator}>/</span>
+              <span className={s.subtitle}>
+                {this.props.title}
+              </span>
             </span>
           ) : ''}
         </h1>
