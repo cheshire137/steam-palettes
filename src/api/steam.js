@@ -9,6 +9,16 @@ class Steam {
     return data;
   }
 
+  static async getScreenshot(screenshotID) {
+    const screenshot =
+        await this.makeRequest('/api/screenshot?id=' + screenshotID +
+                               '&format=json');
+    if (screenshot.date) {
+      screenshot.date = new Date(screenshot.date);
+    }
+    return screenshot;
+  }
+
   // https://wiki.teamfortress.com/wiki/WebAPI/ResolveVanityURL
   static async getSteamId(username) {
     const data = await this.

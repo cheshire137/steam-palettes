@@ -49,7 +49,10 @@ class PlayerPage extends Component {
           steamID={this.props.steamID}
         />
         {typeof this.state.screenshots === 'object' ? (
-          <ScreenshotsList screenshots={this.state.screenshots} />
+          <ScreenshotsList screenshots={this.state.screenshots}
+            steamID={this.props.steamID}
+            username={this.props.username}
+          />
         ) : (
           <p className={s.message}>
             Loading screenshots...

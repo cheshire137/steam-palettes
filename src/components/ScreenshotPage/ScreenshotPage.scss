@@ -1,0 +1,64 @@
+@import '../variables.scss';
+
+.container {
+
+}
+
+.details {
+
+}
+
+.screenshotLink {
+  display: block;
+  margin: 0 0 20px;
+}
+
+.screenshot {
+
+}
+
+.description {
+  margin: 0 0 20px;
+}
+
+.metadata {
+  margin: 0 0 20px;
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}
+
+.authorLink {
+  display: block;
+}
+
+.message {
+
+}
+
+@media (min-width: 768px) {
+  .metadata {
+    dt {
+      float: left;
+      width: 6em;
+      overflow: hidden;
+      clear: left;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &:after {
+        content: ":";
+      }
+    }
+
+    dd {
+      margin-left: 7em;
+    }
+  }
+}

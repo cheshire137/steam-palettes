@@ -2,7 +2,7 @@ import fetch from '../core/fetch';
 import jsdom from 'jsdom';
 import Promise from 'bluebird';
 
-class Scraper {
+class ScreenshotsScraper {
   constructor(username) {
     this.username = username;
   }
@@ -38,7 +38,7 @@ class Scraper {
   getScreenshotFromLink(link) {
     const href = link.getAttribute('href');
     const descEl = link.querySelector('.imgWallHoverDescription');
-    let title = '';
+    let title = undefined;
     if (descEl) {
       const ellipsis = descEl.querySelector('.ellipsis');
       if (ellipsis) {
@@ -52,4 +52,4 @@ class Scraper {
   }
 }
 
-export default Scraper;
+export default ScreenshotsScraper;

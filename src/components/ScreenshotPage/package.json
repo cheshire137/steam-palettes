@@ -1,0 +1,6 @@
+{
+  "name": "ScreenshotPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ScreenshotPage.js"
+}

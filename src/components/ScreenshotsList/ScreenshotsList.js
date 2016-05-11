@@ -7,6 +7,8 @@ import ScreenshotListItem from '../ScreenshotListItem/ScreenshotListItem';
 class ScreenshotsList extends Component {
   static propTypes = {
     screenshots: PropTypes.array.isRequired,
+    steamID: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
   };
 
   constructor(props, context) {
@@ -17,9 +19,15 @@ class ScreenshotsList extends Component {
   render() {
     return (
       <ul className={s.screenshots}>
+        <li className={s.intro}>
+          Choose a screenshot:
+        </li>
         {this.props.screenshots.map((screenshot) => {
           return (
-            <ScreenshotListItem key={screenshot.url} {...screenshot} />
+            <ScreenshotListItem key={screenshot.url} {...screenshot}
+              steamID={this.props.steamID}
+              username={this.props.username}
+            />
           );
         })}
       </ul>

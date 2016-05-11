@@ -13,3 +13,10 @@
 .brand {
   text-decoration: none;
 }
+
+.separator {
+  &:before,
+  &:after {
+    content: "\a0";
+  }
+}

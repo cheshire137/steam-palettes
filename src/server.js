@@ -18,7 +18,8 @@ import assets from './assets';
 import { port } from './config';
 import Config from './config.json';
 import fetch from './core/fetch';
-import Scraper from './actions/scraper';
+import ScreenshotsScraper from './actions/screenshotsScraper';
+import ScreenshotScraper from './actions/screenshotScraper';
 
 const server = global.server = express();
 
@@ -65,6 +66,22 @@ server.get('/api/steam', async (req, res) => {
   }
 });
 
+server.get('/api/screenshot', async (req, res) => {
+  const screenshotID = req.query.id;
+  if (typeof screenshotID !== 'string' || screenshotID.length < 1) {
+    res.status(400).
+        json({ error: 'Must provide Steam screenshot ID in id param' });
+    return;
+  }
+  const scraper = new ScreenshotScraper(screenshotID);
+  const html = await scraper.getPage();
+  scraper.getScreenshot(html).then((screenshot) => {
+    res.json(screenshot);
+  }).fail((err) => {
+    res.status(400).json({ error: err });
+  });
+});
+
 server.get('/api/screenshots', async (req, res) => {
   const username = req.query.user;
   if (typeof username !== 'string' || username.length < 1) {
@@ -72,7 +89,7 @@ server.get('/api/screenshots', async (req, res) => {
         json({ error: 'Must provide Steam user name in user param' });
     return;
   }
-  const scraper = new Scraper(username);
+  const scraper = new ScreenshotsScraper(username);
   const html = await scraper.getPage();
   scraper.getScreenshots(html).then((screenshots) => {
     res.json(screenshots);
