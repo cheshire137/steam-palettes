@@ -17,10 +17,14 @@ class ScreenshotsList extends Component {
   }
 
   render() {
+    let message = 'Choose a screenshot:';
+    if (this.props.screenshots.length < 1) {
+      message = 'This user does not have any screenshots.';
+    }
     return (
       <ul className={s.screenshots}>
         <li className={s.intro}>
-          Choose a screenshot:
+          {message}
         </li>
         {this.props.screenshots.map((screenshot) => {
           return (

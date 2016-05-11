@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import s from './UserFormPage.scss';
+import s from './PlayerLookupPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Steam from '../../api/steam';
 import cx from 'classnames';
@@ -10,7 +10,7 @@ import Header from '../Header';
 const title = 'Find a Steam User';
 
 @withStyles(s)
-class UserFormPage extends Component {
+class PlayerLookupPage extends Component {
   static contextTypes = {
     onSetTitle: PropTypes.func.isRequired,
   };
@@ -102,4 +102,4 @@ class UserFormPage extends Component {
 
 }
 
-export default UserFormPage;
+export default PlayerLookupPage;

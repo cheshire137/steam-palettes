@@ -402,9 +402,9 @@ module.exports =
   
   var _componentsErrorPage2 = _interopRequireDefault(_componentsErrorPage);
   
-  var _componentsUserFormPage = __webpack_require__(38);
+  var _componentsPlayerLookupPage = __webpack_require__(68);
   
-  var _componentsUserFormPage2 = _interopRequireDefault(_componentsUserFormPage);
+  var _componentsPlayerLookupPage2 = _interopRequireDefault(_componentsPlayerLookupPage);
   
   var _componentsPlayerPage = __webpack_require__(47);
   
@@ -473,7 +473,7 @@ module.exports =
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
-            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsUserFormPage2['default'], null));
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsPlayerLookupPage2['default'], null));
   
           case 1:
           case 'end':
@@ -2566,241 +2566,9 @@ module.exports =
 
 
 /***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _UserFormPageScss = __webpack_require__(39);
-  
-  var _UserFormPageScss2 = _interopRequireDefault(_UserFormPageScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _apiSteam = __webpack_require__(41);
-  
-  var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var _classnames = __webpack_require__(46);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  var _coreLocation = __webpack_require__(24);
-  
-  var _coreLocation2 = _interopRequireDefault(_coreLocation);
-  
-  var _historyLibParsePath = __webpack_require__(23);
-  
-  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
-  
-  var _Header = __webpack_require__(18);
-  
-  var _Header2 = _interopRequireDefault(_Header);
-  
-  var title = 'Find a Steam User';
-  
-  var UserFormPage = (function (_Component) {
-    _inherits(UserFormPage, _Component);
-  
-    _createClass(UserFormPage, null, [{
-      key: 'contextTypes',
-      value: {
-        onSetTitle: _react.PropTypes.func.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function UserFormPage(props, context) {
-      _classCallCheck(this, _UserFormPage);
-  
-      _get(Object.getPrototypeOf(_UserFormPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {
-        name: undefined,
-        disabled: false,
-        error: false,
-        message: 'The Steam profile must be public.'
-      };
-    }
-  
-    _createClass(UserFormPage, [{
-      key: 'componentWillMount',
-      value: function componentWillMount() {
-        this.context.onSetTitle(title);
-      }
-    }, {
-      key: 'onNameChange',
-      value: function onNameChange(event) {
-        this.setState({ name: event.target.value });
-      }
-    }, {
-      key: 'onSteamIDLoaded',
-      value: function onSteamIDLoaded(steamID) {
-        this.setState({
-          disabled: false,
-          error: false,
-          message: undefined
-        });
-        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
-      }
-    }, {
-      key: 'onSteamIDLoadError',
-      value: function onSteamIDLoadError(response) {
-        console.error('failed to load Steam ID', response);
-        this.setState({
-          disabled: false,
-          error: true,
-          message: 'There was an error looking up your Steam ID. :('
-        });
-      }
-    }, {
-      key: 'handleSubmit',
-      value: function handleSubmit(event) {
-        event.preventDefault();
-        this.setState({
-          disabled: true,
-          message: 'Looking up Steam ID...',
-          error: false
-        });
-        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var messageStyle = {};
-        if (typeof this.state.message !== 'string') {
-          messageStyle.display = 'none';
-        }
-        var messageClass = this.state.error ? _UserFormPageScss2['default'].error : _UserFormPageScss2['default'].success;
-        return _react2['default'].createElement(
-          'div',
-          { className: _UserFormPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], null),
-          _react2['default'].createElement(
-            'form',
-            { className: _UserFormPageScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
-            _react2['default'].createElement(
-              'h1',
-              { className: _UserFormPageScss2['default'].title },
-              title
-            ),
-            _react2['default'].createElement(
-              'label',
-              { className: _UserFormPageScss2['default'].label,
-                htmlFor: 'user-name'
-              },
-              'Steam user name:'
-            ),
-            _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _UserFormPageScss2['default'].textField,
-              id: 'user-name',
-              placeholder: 'e.g., cheshire137',
-              onChange: this.onNameChange.bind(this),
-              value: this.state.name,
-              disabled: this.state.disabled
-            }),
-            _react2['default'].createElement(
-              'button',
-              { type: 'submit', disabled: this.state.disabled,
-                className: _UserFormPageScss2['default'].button
-              },
-              'Search'
-            ),
-            _react2['default'].createElement(
-              'p',
-              { className: (0, _classnames2['default'])(_UserFormPageScss2['default'].message, messageClass), style: messageStyle },
-              this.state.message
-            )
-          )
-        );
-      }
-    }]);
-  
-    var _UserFormPage = UserFormPage;
-    UserFormPage = (0, _decoratorsWithStyles2['default'])(_UserFormPageScss2['default'])(UserFormPage) || UserFormPage;
-    return UserFormPage;
-  })(_react.Component);
-  
-  exports['default'] = UserFormPage;
-  module.exports = exports['default'];
-
-/***/ },
-/* 39 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(40);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./UserFormPage.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./UserFormPage.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.UserFormPage_label_2Oa {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].UserFormPage_textField_2il {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].UserFormPage_textField_2il, .UserFormPage_button_1Ck {\n  font-size: 18px;\n}\n\n.UserFormPage_title_2oc {\n  margin: 0 0 10px;\n}\n\n.UserFormPage_form_2Qu {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.UserFormPage_message_wOW {\n}\n\n.UserFormPage_message_wOW.UserFormPage_success_79d {\n  color: #A5A781;\n}\n\n.UserFormPage_message_wOW.UserFormPage_error_3Dn {\n  color: #A78E81;\n}\n\n.UserFormPage_container_1t- {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/UserFormPage/UserFormPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"UserFormPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"label": "UserFormPage_label_2Oa",
-  	"textField": "UserFormPage_textField_2il",
-  	"button": "UserFormPage_button_1Ck",
-  	"title": "UserFormPage_title_2oc",
-  	"form": "UserFormPage_form_2Qu",
-  	"message": "UserFormPage_message_wOW",
-  	"success": "UserFormPage_success_79d",
-  	"error": "UserFormPage_error_3Dn",
-  	"container": "UserFormPage_container_1t-"
-  };
-
-/***/ },
+/* 38 */,
+/* 39 */,
+/* 40 */,
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -3663,13 +3431,17 @@ module.exports =
       value: function render() {
         var _this = this;
   
+        var message = 'Choose a screenshot:';
+        if (this.props.screenshots.length < 1) {
+          message = 'This user does not have any screenshots.';
+        }
         return _react2['default'].createElement(
           'ul',
           { className: _ScreenshotsListScss2['default'].screenshots },
           _react2['default'].createElement(
             'li',
             { className: _ScreenshotsListScss2['default'].intro },
-            'Choose a screenshot:'
+            message
           ),
           this.props.screenshots.map(function (screenshot) {
             return _react2['default'].createElement(_ScreenshotListItemScreenshotListItem2['default'], _extends({ key: screenshot.url }, screenshot, {
@@ -4543,6 +4315,241 @@ module.exports =
   
   exports['default'] = ScreenshotScraper;
   module.exports = exports['default'];
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _PlayerLookupPageScss = __webpack_require__(69);
+  
+  var _PlayerLookupPageScss2 = _interopRequireDefault(_PlayerLookupPageScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _apiSteam = __webpack_require__(41);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var _classnames = __webpack_require__(46);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _coreLocation = __webpack_require__(24);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
+  var _historyLibParsePath = __webpack_require__(23);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _Header = __webpack_require__(18);
+  
+  var _Header2 = _interopRequireDefault(_Header);
+  
+  var title = 'Find a Steam User';
+  
+  var PlayerLookupPage = (function (_Component) {
+    _inherits(PlayerLookupPage, _Component);
+  
+    _createClass(PlayerLookupPage, null, [{
+      key: 'contextTypes',
+      value: {
+        onSetTitle: _react.PropTypes.func.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function PlayerLookupPage(props, context) {
+      _classCallCheck(this, _PlayerLookupPage);
+  
+      _get(Object.getPrototypeOf(_PlayerLookupPage.prototype), 'constructor', this).call(this, props, context);
+      this.state = {
+        name: undefined,
+        disabled: false,
+        error: false,
+        message: 'The Steam profile must be public.'
+      };
+    }
+  
+    _createClass(PlayerLookupPage, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        this.context.onSetTitle(title);
+      }
+    }, {
+      key: 'onNameChange',
+      value: function onNameChange(event) {
+        this.setState({ name: event.target.value });
+      }
+    }, {
+      key: 'onSteamIDLoaded',
+      value: function onSteamIDLoaded(steamID) {
+        this.setState({
+          disabled: false,
+          error: false,
+          message: undefined
+        });
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
+      }
+    }, {
+      key: 'onSteamIDLoadError',
+      value: function onSteamIDLoadError(response) {
+        console.error('failed to load Steam ID', response);
+        this.setState({
+          disabled: false,
+          error: true,
+          message: 'There was an error looking up your Steam ID. :('
+        });
+      }
+    }, {
+      key: 'handleSubmit',
+      value: function handleSubmit(event) {
+        event.preventDefault();
+        this.setState({
+          disabled: true,
+          message: 'Looking up Steam ID...',
+          error: false
+        });
+        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var messageStyle = {};
+        if (typeof this.state.message !== 'string') {
+          messageStyle.display = 'none';
+        }
+        var messageClass = this.state.error ? _PlayerLookupPageScss2['default'].error : _PlayerLookupPageScss2['default'].success;
+        return _react2['default'].createElement(
+          'div',
+          { className: _PlayerLookupPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], null),
+          _react2['default'].createElement(
+            'form',
+            { className: _PlayerLookupPageScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
+            _react2['default'].createElement(
+              'h1',
+              { className: _PlayerLookupPageScss2['default'].title },
+              title
+            ),
+            _react2['default'].createElement(
+              'label',
+              { className: _PlayerLookupPageScss2['default'].label,
+                htmlFor: 'user-name'
+              },
+              'Steam user name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _PlayerLookupPageScss2['default'].textField,
+              id: 'user-name',
+              placeholder: 'e.g., cheshire137',
+              onChange: this.onNameChange.bind(this),
+              value: this.state.name,
+              disabled: this.state.disabled
+            }),
+            _react2['default'].createElement(
+              'button',
+              { type: 'submit', disabled: this.state.disabled,
+                className: _PlayerLookupPageScss2['default'].button
+              },
+              'Search'
+            ),
+            _react2['default'].createElement(
+              'p',
+              { className: (0, _classnames2['default'])(_PlayerLookupPageScss2['default'].message, messageClass), style: messageStyle },
+              this.state.message
+            )
+          )
+        );
+      }
+    }]);
+  
+    var _PlayerLookupPage = PlayerLookupPage;
+    PlayerLookupPage = (0, _decoratorsWithStyles2['default'])(_PlayerLookupPageScss2['default'])(PlayerLookupPage) || PlayerLookupPage;
+    return PlayerLookupPage;
+  })(_react.Component);
+  
+  exports['default'] = PlayerLookupPage;
+  module.exports = exports['default'];
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(70);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 70 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"label": "PlayerLookupPage_label_R4M",
+  	"textField": "PlayerLookupPage_textField_3sr",
+  	"button": "PlayerLookupPage_button_la3",
+  	"title": "PlayerLookupPage_title_1LY",
+  	"form": "PlayerLookupPage_form_1Od",
+  	"message": "PlayerLookupPage_message_2jv",
+  	"success": "PlayerLookupPage_success_1hv",
+  	"error": "PlayerLookupPage_error_1P-",
+  	"container": "PlayerLookupPage_container_zPm"
+  };
 
 /***/ }
 /******/ ]);

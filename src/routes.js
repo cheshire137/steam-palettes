@@ -3,7 +3,7 @@ import Router from 'react-routing/src/Router';
 import App from './components/App';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
-import UserFormPage from './components/UserFormPage';
+import PlayerLookupPage from './components/PlayerLookupPage';
 import PlayerPage from './components/PlayerPage';
 import ScreenshotPage from './components/ScreenshotPage';
 
@@ -30,7 +30,7 @@ const router = new Router(on => {
     );
   });
 
-  on('/', async () => <UserFormPage />);
+  on('/', async () => <PlayerLookupPage />);
 
   on('error', (state, error) => state.statusCode === 404 ?
     <App context={state.context} error={error}><NotFoundPage /></App> :
