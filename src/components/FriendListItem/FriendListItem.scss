@@ -1,0 +1,22 @@
+@import '../variables.scss';
+
+.friend {
+  + .friend {
+    margin-top: 5px;
+  }
+}
+
+.avatar {
+  display: inline-block;
+  width: 24px;
+  margin-right: 5px;
+}
+
+.link {
+  display: block;
+}
+
+.name {
+  line-height: 24px;
+  display: inline-block;
+}

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import s from './PlayerPage.scss';
 import withStyles from '../../decorators/withStyles';
 import PlayerSummary from '../PlayerSummary/PlayerSummary';
+import FriendsList from '../FriendsList/FriendsList';
 import Steam from '../../api/steam';
 import ScreenshotsList from '../ScreenshotsList/ScreenshotsList';
 import Header from '../Header';
@@ -28,13 +29,12 @@ class PlayerPage extends Component {
 
   componentDidMount() {
     Steam.getScreenshots(this.props.username).
-          then(this.onScreenshotsLoaded.bind(this)).
+          then(this.onScreenshotsLoaded.bind(this, this.props.username)).
           catch(this.onScreenshotsLoadError.bind(this));
   }
 
-  onScreenshotsLoaded(screenshots) {
-    console.log('screenshots', screenshots);
-    this.setState({ screenshots });
+  onScreenshotsLoaded(username, screenshots) {
+    this.setState({ screenshots, screenshotsUsername: username });
   }
 
   onScreenshotsLoadError(response) {
@@ -42,22 +42,37 @@ class PlayerPage extends Component {
   }
 
   render() {
+    const screenshotsKey = 'screenshots-' + this.props.username;
+    const friendsKey = 'friends-' + this.props.steamID;
+    const screenshotsLoaded =
+        this.state.screenshotsUsername === this.props.username &&
+        typeof this.state.screenshots === 'object';
     return (
       <div className={s.container}>
         <Header title={this.state.title} />
-        <PlayerSummary key={this.props.steamID}
-          steamID={this.props.steamID}
-        />
-        {typeof this.state.screenshots === 'object' ? (
-          <ScreenshotsList screenshots={this.state.screenshots}
-            steamID={this.props.steamID}
-            username={this.props.username}
-          />
-        ) : (
-          <p className={s.message}>
-            Loading screenshots...
-          </p>
-        )}
+        <div className={s.row}>
+          <div className={s.left}>
+            <PlayerSummary key={this.props.steamID}
+              steamID={this.props.steamID}
+            />
+            {screenshotsLoaded ? (
+              <ScreenshotsList screenshots={this.state.screenshots}
+                steamID={this.props.steamID}
+                username={this.props.username}
+                key={screenshotsKey}
+              />
+            ) : (
+              <p className={s.message}>
+                Loading screenshots...
+              </p>
+            )}
+          </div>
+          <div className={s.right}>
+            <FriendsList steamID={this.props.steamID}
+              key={friendsKey}
+            />
+          </div>
+        </div>
       </div>
     );
   }

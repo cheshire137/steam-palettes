@@ -23,10 +23,11 @@ const router = new Router(on => {
   });
 
   on('/player/:username/:steamID', async (req) => {
+    const username = req.params.username;
+    const steamID = req.params.steamID;
+    const key = username + '-' + steamID;
     return (
-      <PlayerPage username={req.params.username}
-        steamID={req.params.steamID}
-      />
+      <PlayerPage username={username} steamID={steamID} key={key} />
     );
   });
 

@@ -1,0 +1,12 @@
+@import '../variables.scss';
+
+.friends {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.header {
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: $header-color;
+}

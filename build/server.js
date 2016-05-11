@@ -455,14 +455,16 @@ module.exports =
     });
   
     on('/player/:username/:steamID', function callee$1$0(req) {
+      var username, steamID, key;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
-            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsPlayerPage2['default'], { username: req.params.username,
-              steamID: req.params.steamID
-            }));
+            username = req.params.username;
+            steamID = req.params.steamID;
+            key = username + '-' + steamID;
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsPlayerPage2['default'], { username: username, steamID: steamID, key: key }));
   
-          case 1:
+          case 4:
           case 'end':
             return context$2$0.stop();
         }
@@ -2771,27 +2773,35 @@ module.exports =
     }, {
       key: 'getFriends',
       value: function getFriends(steamId) {
-        var data;
+        var data, friendIDs, friends;
         return regeneratorRuntime.async(function getFriends$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.get('/api/steam?format=json' + '&path=/ISteamUser/GetFriendList/v0001/' + '&steamid=' + steamId + '&relationship=friend'));
+              return regeneratorRuntime.awrap(this.makeRequest('/api/steam?format=json' + '&path=/ISteamUser/GetFriendList/v0001/' + '&steamid=' + steamId + '&relationship=friend'));
   
             case 2:
               data = context$2$0.sent;
   
               if (!data.friendslist) {
-                context$2$0.next = 5;
+                context$2$0.next = 9;
                 break;
               }
   
-              return context$2$0.abrupt('return', data);
+              friendIDs = data.friendslist.friends.map(function (f) {
+                return f.steamid;
+              });
+              context$2$0.next = 7;
+              return regeneratorRuntime.awrap(this.getPlayerSummaries(friendIDs));
   
-            case 5:
+            case 7:
+              friends = context$2$0.sent;
+              return context$2$0.abrupt('return', friends);
+  
+            case 9:
               throw new Error('Failed to get friends for ' + steamId + '; may not be a public profile.');
   
-            case 6:
+            case 10:
             case 'end':
               return context$2$0.stop();
           }
@@ -3015,6 +3025,10 @@ module.exports =
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
+  var _FriendsListFriendsList = __webpack_require__(71);
+  
+  var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
+  
   var _apiSteam = __webpack_require__(41);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
@@ -3060,13 +3074,12 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        _apiSteam2['default'].getScreenshots(this.props.username).then(this.onScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshots(this.props.username).then(this.onScreenshotsLoaded.bind(this, this.props.username))['catch'](this.onScreenshotsLoadError.bind(this));
       }
     }, {
       key: 'onScreenshotsLoaded',
-      value: function onScreenshotsLoaded(screenshots) {
-        console.log('screenshots', screenshots);
-        this.setState({ screenshots: screenshots });
+      value: function onScreenshotsLoaded(username, screenshots) {
+        this.setState({ screenshots: screenshots, screenshotsUsername: username });
       }
     }, {
       key: 'onScreenshotsLoadError',
@@ -3076,20 +3089,39 @@ module.exports =
     }, {
       key: 'render',
       value: function render() {
+        var screenshotsKey = 'screenshots-' + this.props.username;
+        var friendsKey = 'friends-' + this.props.steamID;
+        var screenshotsLoaded = this.state.screenshotsUsername === this.props.username && typeof this.state.screenshots === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _PlayerPageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], { title: this.state.title }),
-          _react2['default'].createElement(_PlayerSummaryPlayerSummary2['default'], { key: this.props.steamID,
-            steamID: this.props.steamID
-          }),
-          typeof this.state.screenshots === 'object' ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
-            steamID: this.props.steamID,
-            username: this.props.username
-          }) : _react2['default'].createElement(
-            'p',
-            { className: _PlayerPageScss2['default'].message },
-            'Loading screenshots...'
+          _react2['default'].createElement(
+            'div',
+            { className: _PlayerPageScss2['default'].row },
+            _react2['default'].createElement(
+              'div',
+              { className: _PlayerPageScss2['default'].left },
+              _react2['default'].createElement(_PlayerSummaryPlayerSummary2['default'], { key: this.props.steamID,
+                steamID: this.props.steamID
+              }),
+              screenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
+                steamID: this.props.steamID,
+                username: this.props.username,
+                key: screenshotsKey
+              }) : _react2['default'].createElement(
+                'p',
+                { className: _PlayerPageScss2['default'].message },
+                'Loading screenshots...'
+              )
+            ),
+            _react2['default'].createElement(
+              'div',
+              { className: _PlayerPageScss2['default'].right },
+              _react2['default'].createElement(_FriendsListFriendsList2['default'], { steamID: this.props.steamID,
+                key: friendsKey
+              })
+            )
           )
         );
       }
@@ -3144,11 +3176,14 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"container": "PlayerPage_container_3D2"
+  	"container": "PlayerPage_container_3D2",
+  	"row": "PlayerPage_row_wss",
+  	"left": "PlayerPage_left_13w",
+  	"right": "PlayerPage_right_twR"
   };
 
 /***/ },
@@ -4549,6 +4584,325 @@ module.exports =
   	"success": "PlayerLookupPage_success_1hv",
   	"error": "PlayerLookupPage_error_1P-",
   	"container": "PlayerLookupPage_container_zPm"
+  };
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _FriendsListScss = __webpack_require__(72);
+  
+  var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _apiSteam = __webpack_require__(41);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var _FriendListItemFriendListItem = __webpack_require__(74);
+  
+  var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
+  
+  var FriendsList = (function (_Component) {
+    _inherits(FriendsList, _Component);
+  
+    _createClass(FriendsList, null, [{
+      key: 'propTypes',
+      value: {
+        steamID: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function FriendsList(props, context) {
+      _classCallCheck(this, _FriendsList);
+  
+      _get(Object.getPrototypeOf(_FriendsList.prototype), 'constructor', this).call(this, props, context);
+      this.state = { friends: undefined };
+    }
+  
+    _createClass(FriendsList, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        _apiSteam2['default'].getFriends(this.props.steamID).then(this.onFriendsLoaded.bind(this))['catch'](this.onFriendsLoadError.bind(this));
+      }
+    }, {
+      key: 'onFriendsLoaded',
+      value: function onFriendsLoaded(friends) {
+        this.setState({ friends: friends });
+      }
+    }, {
+      key: 'onFriendsLoadError',
+      value: function onFriendsLoadError(response) {
+        console.error('failed to load friends list', response);
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this = this;
+  
+        var friendsLoaded = typeof this.state.friends === 'object';
+        var publicFriends = [];
+        if (friendsLoaded) {
+          publicFriends = this.state.friends.filter(function (friend) {
+            return friend.communityvisibilitystate === 3;
+          });
+        }
+        return _react2['default'].createElement(
+          'div',
+          { className: _FriendsListScss2['default'].container },
+          friendsLoaded ? _react2['default'].createElement(
+            'ul',
+            { className: _FriendsListScss2['default'].friends },
+            _react2['default'].createElement(
+              'li',
+              { className: _FriendsListScss2['default'].header },
+              'Friends'
+            ),
+            publicFriends.map(function (friend) {
+              var key = _this.props.steamID + '-' + friend.steamid;
+              return _react2['default'].createElement(_FriendListItemFriendListItem2['default'], _extends({ key: key }, friend));
+            })
+          ) : _react2['default'].createElement(
+            'p',
+            { className: _FriendsListScss2['default'].message },
+            'Loading friends...'
+          )
+        );
+      }
+    }]);
+  
+    var _FriendsList = FriendsList;
+    FriendsList = (0, _decoratorsWithStyles2['default'])(_FriendsListScss2['default'])(FriendsList) || FriendsList;
+    return FriendsList;
+  })(_react.Component);
+  
+  exports['default'] = FriendsList;
+  module.exports = exports['default'];
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(73);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #8B8086;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"friends": "FriendsList_friends_9Ov",
+  	"header": "FriendsList_header_2m2"
+  };
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _FriendListItemScss = __webpack_require__(75);
+  
+  var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Link = __webpack_require__(22);
+  
+  var _Link2 = _interopRequireDefault(_Link);
+  
+  var FriendListItem = (function (_Component) {
+    _inherits(FriendListItem, _Component);
+  
+    _createClass(FriendListItem, null, [{
+      key: 'propTypes',
+      value: {
+        avatar: _react.PropTypes.string,
+        avatarfull: _react.PropTypes.string,
+        avatarmedium: _react.PropTypes.string.isRequired,
+        lastlogoff: _react.PropTypes.number,
+        loccityid: _react.PropTypes.number,
+        loccountrycode: _react.PropTypes.string,
+        locstatecode: _react.PropTypes.string,
+        personaname: _react.PropTypes.string,
+        personastate: _react.PropTypes.number,
+        personastateflags: _react.PropTypes.number,
+        primaryclanid: _react.PropTypes.string,
+        profilestate: _react.PropTypes.number,
+        profileurl: _react.PropTypes.string.isRequired,
+        realname: _react.PropTypes.string,
+        steamid: _react.PropTypes.string.isRequired,
+        timecreated: _react.PropTypes.number
+      },
+      enumerable: true
+    }]);
+  
+    function FriendListItem(props, context) {
+      _classCallCheck(this, _FriendListItem);
+  
+      _get(Object.getPrototypeOf(_FriendListItem.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(FriendListItem, [{
+      key: 'render',
+      value: function render() {
+        var url = '/player/' + this.props.personaname + '/' + this.props.steamid;
+        return _react2['default'].createElement(
+          'li',
+          { className: _FriendListItemScss2['default'].friend },
+          _react2['default'].createElement(
+            'a',
+            { href: url, className: _FriendListItemScss2['default'].link, onClick: _Link2['default'].handleClick },
+            _react2['default'].createElement('img', { src: this.props.avatar, className: _FriendListItemScss2['default'].avatar,
+              alt: this.props.steamid
+            }),
+            _react2['default'].createElement(
+              'span',
+              { className: _FriendListItemScss2['default'].name },
+              this.props.personaname
+            )
+          )
+        );
+      }
+    }]);
+  
+    var _FriendListItem = FriendListItem;
+    FriendListItem = (0, _decoratorsWithStyles2['default'])(_FriendListItemScss2['default'])(FriendListItem) || FriendListItem;
+    return FriendListItem;
+  })(_react.Component);
+  
+  exports['default'] = FriendListItem;
+  module.exports = exports['default'];
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(76);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACF/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"friend": "FriendListItem_friend_2Y7",
+  	"avatar": "FriendListItem_avatar_3B5",
+  	"link": "FriendListItem_link_3AZ",
+  	"name": "FriendListItem_name_3KN"
   };
 
 /***/ }

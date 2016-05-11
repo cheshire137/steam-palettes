@@ -78,12 +78,15 @@ class Steam {
   }
 
   static async getFriends(steamId) {
-    const data = await this.get('/api/steam?format=json' +
-                                '&path=/ISteamUser/GetFriendList/v0001/' +
-                                '&steamid=' + steamId +
-                                '&relationship=friend');
+    const data = await this.
+        makeRequest('/api/steam?format=json' +
+                    '&path=/ISteamUser/GetFriendList/v0001/' +
+                    '&steamid=' + steamId +
+                    '&relationship=friend');
     if (data.friendslist) {
-      return data;
+      const friendIDs = data.friendslist.friends.map((f) => f.steamid);
+      const friends = await this.getPlayerSummaries(friendIDs);
+      return friends;
     }
     throw new Error('Failed to get friends for ' + steamId +
                     '; may not be a public profile.');

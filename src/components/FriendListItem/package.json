@@ -1,0 +1,6 @@
+{
+  "name": "FriendListItem",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FriendListItem.js"
+}

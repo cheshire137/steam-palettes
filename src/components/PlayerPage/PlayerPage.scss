@@ -3,3 +3,21 @@
 .container {
 
 }
+
+.row {
+  display: table;
+  width: 100%;
+}
+
+.left, .right {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.left {
+  min-width: 500px;
+}
+
+.right {
+  min-width: 250px;
+}
