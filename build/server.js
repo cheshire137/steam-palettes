@@ -83,33 +83,33 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(68);
+  var _componentsHtml = __webpack_require__(70);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(69);
+  var _assets = __webpack_require__(71);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _config = __webpack_require__(34);
+  var _config = __webpack_require__(35);
   
-  var _configJson = __webpack_require__(35);
+  var _configJson = __webpack_require__(36);
   
   var _configJson2 = _interopRequireDefault(_configJson);
   
-  var _coreFetch = __webpack_require__(32);
+  var _coreFetch = __webpack_require__(33);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(70);
+  var _actionsScreenshotsScraper = __webpack_require__(72);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(73);
+  var _actionsScreenshotScraper = __webpack_require__(75);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(74);
+  var _actionsImageAnalyzer = __webpack_require__(76);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
@@ -441,11 +441,11 @@ module.exports =
   
   var _componentsPlayerLookupPage2 = _interopRequireDefault(_componentsPlayerLookupPage);
   
-  var _componentsPlayerPage = __webpack_require__(47);
+  var _componentsPlayerPage = __webpack_require__(48);
   
   var _componentsPlayerPage2 = _interopRequireDefault(_componentsPlayerPage);
   
-  var _componentsScreenshotPage = __webpack_require__(65);
+  var _componentsScreenshotPage = __webpack_require__(66);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -2275,19 +2275,19 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _classnames = __webpack_require__(36);
+  var _classnames = __webpack_require__(37);
   
   var _classnames2 = _interopRequireDefault(_classnames);
   
-  var _coreLocation = __webpack_require__(37);
+  var _coreLocation = __webpack_require__(38);
   
   var _coreLocation2 = _interopRequireDefault(_coreLocation);
   
-  var _historyLibParsePath = __webpack_require__(42);
+  var _historyLibParsePath = __webpack_require__(43);
   
   var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
   
-  var _Header = __webpack_require__(43);
+  var _Header = __webpack_require__(44);
   
   var _Header2 = _interopRequireDefault(_Header);
   
@@ -2492,7 +2492,7 @@ module.exports =
   
   function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
   
-  var _api = __webpack_require__(75);
+  var _api = __webpack_require__(32);
   
   var _api2 = _interopRequireDefault(_api);
   
@@ -2513,7 +2513,7 @@ module.exports =
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/screenshots?user=' + encodeURIComponent(username) + '&format=json'));
+              return regeneratorRuntime.awrap(this.get('/api/screenshots?user=' + encodeURIComponent(username) + '&format=json'));
   
             case 2:
               data = context$2$0.sent;
@@ -2533,7 +2533,7 @@ module.exports =
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/screenshot?id=' + screenshotID + '&format=json'));
+              return regeneratorRuntime.awrap(this.get('/api/screenshot?id=' + screenshotID + '&format=json'));
   
             case 2:
               screenshot = context$2$0.sent;
@@ -2559,7 +2559,7 @@ module.exports =
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/steam?format=json' + '&path=/ISteamUser/ResolveVanityURL/v0001/' + '&vanityurl=' + encodeURIComponent(username)));
+              return regeneratorRuntime.awrap(this.get('/api/steam?format=json' + '&path=/ISteamUser/ResolveVanityURL/v0001/' + '&vanityurl=' + encodeURIComponent(username)));
   
             case 2:
               data = context$2$0.sent;
@@ -2648,7 +2648,7 @@ module.exports =
               }
   
               context$2$0.next = 9;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/steam?format=json' + '&path=/ISteamUser/GetPlayerSummaries/v0002/' + '&steamids=' + batches[i].join(',')));
+              return regeneratorRuntime.awrap(this.get('/api/steam?format=json' + '&path=/ISteamUser/GetPlayerSummaries/v0002/' + '&steamids=' + batches[i].join(',')));
   
             case 9:
               result = context$2$0.sent;
@@ -2684,7 +2684,7 @@ module.exports =
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/steam?format=json' + '&path=/ISteamUser/GetFriendList/v0001/' + '&steamid=' + steamId + '&relationship=friend'));
+              return regeneratorRuntime.awrap(this.get('/api/steam?format=json' + '&path=/ISteamUser/GetFriendList/v0001/' + '&steamid=' + steamId + '&relationship=friend'));
   
             case 2:
               data = context$2$0.sent;
@@ -2727,6 +2727,142 @@ module.exports =
 /* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _coreFetch = __webpack_require__(33);
+  
+  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  
+  var _configJson = __webpack_require__(36);
+  
+  var _configJson2 = _interopRequireDefault(_configJson);
+  
+  var Api = (function () {
+    function Api() {
+      _classCallCheck(this, Api);
+    }
+  
+    _createClass(Api, null, [{
+      key: 'get',
+      value: function get(path, opts) {
+        var options, response;
+        return regeneratorRuntime.async(function get$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              options = opts || {};
+  
+              options.method = 'GET';
+              context$2$0.next = 4;
+              return regeneratorRuntime.awrap(this.makeRequest(path, options));
+  
+            case 4:
+              response = context$2$0.sent;
+              return context$2$0.abrupt('return', response);
+  
+            case 6:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }, {
+      key: 'makeRequest',
+      value: function makeRequest(path, options) {
+        var url, response, isJSON, json, text;
+        return regeneratorRuntime.async(function makeRequest$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              url = _configJson2['default'][("development")].serverUri + path;
+              context$2$0.next = 3;
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url, options || {}));
+  
+            case 3:
+              response = context$2$0.sent;
+              isJSON = path.indexOf('format=json') > -1;
+  
+              if (!isJSON) {
+                context$2$0.next = 19;
+                break;
+              }
+  
+              context$2$0.next = 8;
+              return regeneratorRuntime.awrap(response.json());
+  
+            case 8:
+              json = context$2$0.sent;
+  
+              if (!response.ok) {
+                context$2$0.next = 11;
+                break;
+              }
+  
+              return context$2$0.abrupt('return', json);
+  
+            case 11:
+              if (!json.hasOwnProperty('error')) {
+                context$2$0.next = 17;
+                break;
+              }
+  
+              if (!(typeof json.error === 'string')) {
+                context$2$0.next = 16;
+                break;
+              }
+  
+              throw new Error(json.error);
+  
+            case 16:
+              throw new Error(JSON.stringify(json.error));
+  
+            case 17:
+              context$2$0.next = 24;
+              break;
+  
+            case 19:
+              context$2$0.next = 21;
+              return regeneratorRuntime.awrap(response.text());
+  
+            case 21:
+              text = context$2$0.sent;
+  
+              if (!response.ok) {
+                context$2$0.next = 24;
+                break;
+              }
+  
+              return context$2$0.abrupt('return', text);
+  
+            case 24:
+              throw new Error(response.statusText);
+  
+            case 25:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }]);
+  
+    return Api;
+  })();
+  
+  exports['default'] = Api;
+  module.exports = exports['default'];
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
   /**
    * React Starter Kit (https://www.reactstarterkit.com/)
    *
@@ -2744,11 +2880,11 @@ module.exports =
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _nodeFetch = __webpack_require__(33);
+  var _nodeFetch = __webpack_require__(34);
   
   var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
   
-  var _config = __webpack_require__(34);
+  var _config = __webpack_require__(35);
   
   function localUrl(url) {
     if (url.startsWith('//')) {
@@ -2772,13 +2908,13 @@ module.exports =
   exports.Response = _nodeFetch.Response;
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
   module.exports = require("node-fetch");
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports) {
 
   /**
@@ -2803,7 +2939,7 @@ module.exports =
   exports.googleAnalyticsId = googleAnalyticsId;
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports) {
 
   module.exports = {
@@ -2814,13 +2950,13 @@ module.exports =
   };
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
   module.exports = require("classnames");
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2840,17 +2976,17 @@ module.exports =
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _fbjsLibExecutionEnvironment = __webpack_require__(38);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(39);
   
-  var _historyLibCreateBrowserHistory = __webpack_require__(39);
+  var _historyLibCreateBrowserHistory = __webpack_require__(40);
   
   var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
   
-  var _historyLibCreateMemoryHistory = __webpack_require__(40);
+  var _historyLibCreateMemoryHistory = __webpack_require__(41);
   
   var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
   
-  var _historyLibUseQueries = __webpack_require__(41);
+  var _historyLibUseQueries = __webpack_require__(42);
   
   var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
   
@@ -2860,37 +2996,37 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports) {
 
   module.exports = require("fbjs/lib/ExecutionEnvironment");
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createBrowserHistory");
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createMemoryHistory");
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/useQueries");
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/parsePath");
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2913,7 +3049,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _HeaderScss = __webpack_require__(44);
+  var _HeaderScss = __webpack_require__(45);
   
   var _HeaderScss2 = _interopRequireDefault(_HeaderScss);
   
@@ -2921,7 +3057,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(46);
+  var _Link = __webpack_require__(47);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -3010,11 +3146,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(45);
+      var content = __webpack_require__(46);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3042,7 +3178,7 @@ module.exports =
     
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3061,7 +3197,7 @@ module.exports =
   };
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -3099,11 +3235,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _historyLibParsePath = __webpack_require__(42);
+  var _historyLibParsePath = __webpack_require__(43);
   
   var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
   
-  var _coreLocation = __webpack_require__(37);
+  var _coreLocation = __webpack_require__(38);
   
   var _coreLocation2 = _interopRequireDefault(_coreLocation);
   
@@ -3189,7 +3325,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3212,7 +3348,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerPageScss = __webpack_require__(48);
+  var _PlayerPageScss = __webpack_require__(49);
   
   var _PlayerPageScss2 = _interopRequireDefault(_PlayerPageScss);
   
@@ -3220,11 +3356,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _PlayerSummaryPlayerSummary = __webpack_require__(50);
+  var _PlayerSummaryPlayerSummary = __webpack_require__(51);
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
-  var _FriendsListFriendsList = __webpack_require__(53);
+  var _FriendsListFriendsList = __webpack_require__(54);
   
   var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
   
@@ -3232,11 +3368,11 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(59);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(60);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
-  var _Header = __webpack_require__(43);
+  var _Header = __webpack_require__(44);
   
   var _Header2 = _interopRequireDefault(_Header);
   
@@ -3330,11 +3466,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(49);
+      var content = __webpack_require__(50);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3362,7 +3498,7 @@ module.exports =
     
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3381,7 +3517,7 @@ module.exports =
   };
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3404,7 +3540,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerSummaryScss = __webpack_require__(51);
+  var _PlayerSummaryScss = __webpack_require__(52);
   
   var _PlayerSummaryScss2 = _interopRequireDefault(_PlayerSummaryScss);
   
@@ -3540,11 +3676,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(52);
+      var content = __webpack_require__(53);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3572,7 +3708,7 @@ module.exports =
     
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3598,7 +3734,7 @@ module.exports =
   };
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3623,7 +3759,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendsListScss = __webpack_require__(54);
+  var _FriendsListScss = __webpack_require__(55);
   
   var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
   
@@ -3635,7 +3771,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _FriendListItemFriendListItem = __webpack_require__(56);
+  var _FriendListItemFriendListItem = __webpack_require__(57);
   
   var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
   
@@ -3717,11 +3853,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(55);
+      var content = __webpack_require__(56);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3749,7 +3885,7 @@ module.exports =
     
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3766,7 +3902,7 @@ module.exports =
   };
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3789,7 +3925,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendListItemScss = __webpack_require__(57);
+  var _FriendListItemScss = __webpack_require__(58);
   
   var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
   
@@ -3797,7 +3933,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(46);
+  var _Link = __webpack_require__(47);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -3866,11 +4002,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(58);
+      var content = __webpack_require__(59);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3898,7 +4034,7 @@ module.exports =
     
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3917,7 +4053,7 @@ module.exports =
   };
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3942,7 +4078,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotsListScss = __webpack_require__(60);
+  var _ScreenshotsListScss = __webpack_require__(61);
   
   var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
   
@@ -3950,7 +4086,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _ScreenshotListItemScreenshotListItem = __webpack_require__(62);
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(63);
   
   var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
   
@@ -4010,11 +4146,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(61);
+      var content = __webpack_require__(62);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4042,7 +4178,7 @@ module.exports =
     
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4059,7 +4195,7 @@ module.exports =
   };
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4082,7 +4218,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotListItemScss = __webpack_require__(63);
+  var _ScreenshotListItemScss = __webpack_require__(64);
   
   var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
   
@@ -4090,7 +4226,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(46);
+  var _Link = __webpack_require__(47);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -4159,11 +4295,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(64);
+      var content = __webpack_require__(65);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4191,7 +4327,7 @@ module.exports =
     
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4207,7 +4343,7 @@ module.exports =
   };
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4230,7 +4366,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(66);
+  var _ScreenshotPageScss = __webpack_require__(67);
   
   var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
@@ -4242,9 +4378,17 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _Header = __webpack_require__(43);
+  var _Header = __webpack_require__(44);
   
   var _Header2 = _interopRequireDefault(_Header);
+  
+  var _apiColors = __webpack_require__(69);
+  
+  var _apiColors2 = _interopRequireDefault(_apiColors);
+  
+  var _Palette = __webpack_require__(79);
+  
+  var _Palette2 = _interopRequireDefault(_Palette);
   
   var ScreenshotPage = (function (_Component) {
     _inherits(ScreenshotPage, _Component);
@@ -4271,7 +4415,8 @@ module.exports =
       _get(Object.getPrototypeOf(_ScreenshotPage.prototype), 'constructor', this).call(this, props, context);
       this.state = {
         screenshot: undefined,
-        title: 'Screenshot ' + props.screenshotID
+        title: 'Screenshot ' + props.screenshotID,
+        colors: undefined
       };
     }
   
@@ -4288,16 +4433,36 @@ module.exports =
     }, {
       key: 'onScreenshotLoaded',
       value: function onScreenshotLoaded(screenshot) {
-        var newState = { screenshot: screenshot };
-        if (typeof screenshot.description === 'string' && screenshot.description.length > 0) {
-          newState.title = screenshot.description;
-        }
-        this.setState(newState);
+        var _this = this;
+  
+        this.setState({ screenshot: screenshot }, function () {
+          _this.updateTitle();
+        });
+        _apiColors2['default'].getColors(screenshot.mediumUrl).then(this.onColorsLoaded.bind(this))['catch'](this.onColorsLoadError.bind(this));
       }
     }, {
       key: 'onScreenshotLoadError',
       value: function onScreenshotLoadError(response) {
         console.error('failed to load Steam screenshot', response);
+      }
+    }, {
+      key: 'onColorsLoaded',
+      value: function onColorsLoaded(colors) {
+        console.log('colors', colors);
+        this.setState({ colors: colors });
+      }
+    }, {
+      key: 'onColorsLoadError',
+      value: function onColorsLoadError(response) {
+        console.error('failed to load colors from image', response);
+      }
+    }, {
+      key: 'updateTitle',
+      value: function updateTitle() {
+        var description = this.state.screenshot.description;
+        if (typeof description === 'string' && description.length > 0) {
+          this.setState({ title: description });
+        }
       }
     }, {
       key: 'render',
@@ -4310,6 +4475,7 @@ module.exports =
         }
         var backTitle = this.props.username;
         var backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+        var areColorsLoaded = typeof this.state.colors === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _ScreenshotPageScss2['default'].container },
@@ -4330,49 +4496,58 @@ module.exports =
               })
             ),
             _react2['default'].createElement(
-              'dl',
-              { className: _ScreenshotPageScss2['default'].metadata },
-              _react2['default'].createElement(
-                'dt',
-                null,
-                'Date'
+              'div',
+              { className: _ScreenshotPageScss2['default'].info },
+              areColorsLoaded ? _react2['default'].createElement(_Palette2['default'], this.state.colors) : _react2['default'].createElement(
+                'p',
+                { className: _ScreenshotPageScss2['default'].colorsMessage },
+                'Loading colors...'
               ),
               _react2['default'].createElement(
-                'dd',
-                null,
-                date
+                'dl',
+                { className: _ScreenshotPageScss2['default'].metadata },
+                _react2['default'].createElement(
+                  'dt',
+                  null,
+                  'Date'
+                ),
+                _react2['default'].createElement(
+                  'dd',
+                  null,
+                  date
+                ),
+                _react2['default'].createElement(
+                  'dt',
+                  null,
+                  'Dimensions'
+                ),
+                _react2['default'].createElement(
+                  'dd',
+                  null,
+                  this.state.screenshot.width,
+                  ' × ',
+                  this.state.screenshot.height
+                ),
+                _react2['default'].createElement(
+                  'dt',
+                  null,
+                  'File Size'
+                ),
+                _react2['default'].createElement(
+                  'dd',
+                  null,
+                  this.state.screenshot.fileSize
+                )
               ),
               _react2['default'].createElement(
-                'dt',
-                null,
-                'Dimensions'
-              ),
-              _react2['default'].createElement(
-                'dd',
-                null,
-                this.state.screenshot.width,
-                ' × ',
-                this.state.screenshot.height
-              ),
-              _react2['default'].createElement(
-                'dt',
-                null,
-                'File Size'
-              ),
-              _react2['default'].createElement(
-                'dd',
-                null,
-                this.state.screenshot.fileSize
+                'a',
+                { className: _ScreenshotPageScss2['default'].authorLink, href: this.state.screenshot.userUrl,
+                  target: '_blank'
+                },
+                'View ',
+                this.props.username,
+                '\'s profile'
               )
-            ),
-            _react2['default'].createElement(
-              'a',
-              { className: _ScreenshotPageScss2['default'].authorLink, href: this.state.screenshot.userUrl,
-                target: '_blank'
-              },
-              'View ',
-              this.props.username,
-              '\'s profile'
             )
           ) : _react2['default'].createElement(
             'p',
@@ -4392,11 +4567,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(67);
+      var content = __webpack_require__(68);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4424,7 +4599,7 @@ module.exports =
     
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4432,22 +4607,85 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  display: block;\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 700;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  display: block;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;;CAEC;;AAED;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;;CAEC;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;CASlB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;CAChB;;AAED;;CAEC;;AAED;EAEI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;CAEJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n\n}\n\n.screenshotLink {\n  display: block;\n  margin: 0 0 20px;\n}\n\n.screenshot {\n\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.metadata {\n  margin: 0 0 20px;\n\n  dt {\n    font-weight: 700;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink {\n  display: block;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_screenshotLink_3rs, .ScreenshotPage_info_UVa {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_info_UVa {\n  padding-left: 40px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n  color: #8B8086;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 700;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  display: block;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CAStB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;CAChB;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.screenshotLink, .info {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.info {\n  padding-left: 40px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n  color: $header-color;\n\n  dt {\n    font-weight: 700;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink {\n  display: block;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "ScreenshotPage_container_1ix",
   	"details": "ScreenshotPage_details_2bS",
   	"screenshotLink": "ScreenshotPage_screenshotLink_3rs",
+  	"info": "ScreenshotPage_info_UVa",
   	"screenshot": "ScreenshotPage_screenshot_1Ek",
   	"description": "ScreenshotPage_description_3-p",
+  	"colorsMessage": "ScreenshotPage_colorsMessage_2MN",
   	"metadata": "ScreenshotPage_metadata_1CM",
   	"authorLink": "ScreenshotPage_authorLink_2ME",
   	"message": "ScreenshotPage_message_1kw"
   };
 
 /***/ },
-/* 68 */
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _api = __webpack_require__(32);
+  
+  var _api2 = _interopRequireDefault(_api);
+  
+  var Colors = (function (_Api) {
+    _inherits(Colors, _Api);
+  
+    function Colors() {
+      _classCallCheck(this, Colors);
+  
+      _get(Object.getPrototypeOf(Colors.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Colors, null, [{
+      key: 'getColors',
+      value: function getColors(imageUrl) {
+        var data;
+        return regeneratorRuntime.async(function getColors$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              context$2$0.next = 2;
+              return regeneratorRuntime.awrap(this.makeRequest('/api/colors?url=' + encodeURIComponent(imageUrl) + '&format=json'));
+  
+            case 2:
+              data = context$2$0.sent;
+              return context$2$0.abrupt('return', data);
+  
+            case 4:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }]);
+  
+    return Colors;
+  })(_api2['default']);
+  
+  exports['default'] = Colors;
+  module.exports = exports['default'];
+
+/***/ },
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -4479,7 +4717,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _config = __webpack_require__(34);
+  var _config = __webpack_require__(35);
   
   var Html = (function (_Component) {
     _inherits(Html, _Component);
@@ -4553,13 +4791,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4574,15 +4812,15 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(32);
+  var _coreFetch = __webpack_require__(33);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(71);
+  var _jsdom = __webpack_require__(73);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(72);
+  var _bluebird = __webpack_require__(74);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -4668,19 +4906,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 73 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 72 */
+/* 74 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 73 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4695,15 +4933,15 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(32);
+  var _coreFetch = __webpack_require__(33);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(71);
+  var _jsdom = __webpack_require__(73);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(72);
+  var _bluebird = __webpack_require__(74);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -4865,7 +5103,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4880,9 +5118,17 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(72);
+  var _bluebird = __webpack_require__(74);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  var _http = __webpack_require__(77);
+  
+  var _http2 = _interopRequireDefault(_http);
+  
+  var _canvas = __webpack_require__(78);
+  
+  var _canvas2 = _interopRequireDefault(_canvas);
   
   // Converted from
   // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
@@ -4899,23 +5145,29 @@ module.exports =
   
     _createClass(ImageAnalyzer, [{
       key: 'getColors',
-      value: function getColors(image) {
+      value: function getColors(imageUrl) {
         var _this = this;
   
         return new _bluebird2['default'](function (resolve) {
-          var img = new Image();
-          img.src = image;
-          img.onload = function () {
-            var cvs = document.createElement('canvas');
-            cvs.width = img.width;
-            cvs.height = img.height;
-            var ctx = cvs.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            _this.bgcolor = _this.findEdgeColor(cvs, ctx);
-            return _this.findTextColors(cvs, ctx, function () {
-              resolve(_this.bgcolor, _this.primaryColor, _this.secondaryColor, _this.detailColor);
+          _http2['default'].get(imageUrl, function (res) {
+            var data = new Buffer(parseInt(res.headers['content-length'], 10));
+            var pos = 0;
+            res.on('data', function (chunk) {
+              chunk.copy(data, pos);
+              pos += chunk.length;
             });
-          };
+            res.on('end', function () {
+              var img = new _canvas2['default'].Image();
+              img.src = data;
+              var cvs = new _canvas2['default'](img.width, img.height);
+              var ctx = cvs.getContext('2d');
+              ctx.drawImage(img, 0, 0, img.width, img.height);
+              _this.bgcolor = _this.findEdgeColor(cvs, ctx);
+              return _this.findTextColors(cvs, ctx, function () {
+                resolve(_this.bgcolor, _this.primaryColor, _this.secondaryColor, _this.detailColor);
+              });
+            });
+          });
         });
       }
     }, {
@@ -4923,7 +5175,7 @@ module.exports =
       value: function findEdgeColor(cvs, ctx) {
         var leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
         var colorCount = {};
-        for (var pixel = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; pixel = 0 <= _ref ? ++_i : --_i) {
+        for (var pixel = 0, _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; pixel = 0 <= _ref ? ++_i : --_i) {
           var red = leftEdgeColors.data[pixel * 4];
           var green = leftEdgeColors.data[pixel * 4 + 1];
           var blue = leftEdgeColors.data[pixel * 4 + 2];
@@ -4947,8 +5199,8 @@ module.exports =
         });
         var proposedEdgeColor = sortedColorCount[0];
         if (this.isBlackOrWhite(proposedEdgeColor[0])) {
-          for (var _j2 = 0, _len = sortedColorCount.length; _j2 < _len; _j2++) {
-            var nextProposedEdgeColor = sortedColorCount[_j2];
+          for (var _j = 0, _len = sortedColorCount.length; _j < _len; _j++) {
+            var nextProposedEdgeColor = sortedColorCount[_j];
             if (nextProposedEdgeColor[1] / proposedEdgeColor[1] > 0.3) {
               if (!this.isBlackOrWhite(nextProposedEdgeColor[0])) {
                 proposedEdgeColor = nextProposedEdgeColor;
@@ -4965,8 +5217,8 @@ module.exports =
         var colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
         var findDarkTextColor = !this.isDarkColor(this.bgcolor);
         var colorCount = {};
-        for (var row = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; row = 0 <= _ref ? ++_i : --_i) {
-          for (var column = _j = 0, _ref1 = cvs.width; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; column = 0 <= _ref1 ? ++_j : --_j) {
+        for (var row = 0, _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; row = 0 <= _ref ? ++_i : --_i) {
+          for (var column = 0, _j = 0, _ref1 = cvs.width; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; column = 0 <= _ref1 ? ++_j : --_j) {
             var red = colors.data[row * (cvs.width * 4) + column * 4];
             var green = colors.data[row * (cvs.width * 4) + column * 4 + 1];
             var blue = colors.data[row * (cvs.width * 4) + column * 4 + 2];
@@ -5103,7 +5355,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 75 */
+/* 77 */
+/***/ function(module, exports) {
+
+  module.exports = require("http");
+
+/***/ },
+/* 78 */
+/***/ function(module, exports) {
+
+  module.exports = require("canvas");
+
+/***/ },
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5114,106 +5378,157 @@ module.exports =
   
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
   
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(32);
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
   
-  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  var _react = __webpack_require__(4);
   
-  var _configJson = __webpack_require__(35);
+  var _react2 = _interopRequireDefault(_react);
   
-  var _configJson2 = _interopRequireDefault(_configJson);
+  var _PaletteScss = __webpack_require__(80);
   
-  var Api = (function () {
-    function Api() {
-      _classCallCheck(this, Api);
+  var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var Palette = (function (_Component) {
+    _inherits(Palette, _Component);
+  
+    _createClass(Palette, null, [{
+      key: 'propTypes',
+      value: {
+        bg: _react.PropTypes.string,
+        primary: _react.PropTypes.string,
+        secondary: _react.PropTypes.string,
+        detail: _react.PropTypes.string
+      },
+      enumerable: true
+    }]);
+  
+    function Palette(props, context) {
+      _classCallCheck(this, _Palette);
+  
+      _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
     }
   
-    _createClass(Api, null, [{
-      key: 'makeRequest',
-      value: function makeRequest(path, options) {
-        var url, response, isJSON, json, text;
-        return regeneratorRuntime.async(function makeRequest$(context$2$0) {
-          while (1) switch (context$2$0.prev = context$2$0.next) {
-            case 0:
-              url = _configJson2['default'][("development")].serverUri + path;
-              context$2$0.next = 3;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url, options || {}));
-  
-            case 3:
-              response = context$2$0.sent;
-              isJSON = path.indexOf('format=json') > -1;
-  
-              if (!isJSON) {
-                context$2$0.next = 19;
-                break;
-              }
-  
-              context$2$0.next = 8;
-              return regeneratorRuntime.awrap(response.json());
-  
-            case 8:
-              json = context$2$0.sent;
-  
-              if (!response.ok) {
-                context$2$0.next = 11;
-                break;
-              }
-  
-              return context$2$0.abrupt('return', json);
-  
-            case 11:
-              if (!json.hasOwnProperty('error')) {
-                context$2$0.next = 17;
-                break;
-              }
-  
-              if (!(typeof json.error === 'string')) {
-                context$2$0.next = 16;
-                break;
-              }
-  
-              throw new Error(json.error);
-  
-            case 16:
-              throw new Error(JSON.stringify(json.error));
-  
-            case 17:
-              context$2$0.next = 24;
-              break;
-  
-            case 19:
-              context$2$0.next = 21;
-              return regeneratorRuntime.awrap(response.text());
-  
-            case 21:
-              text = context$2$0.sent;
-  
-              if (!response.ok) {
-                context$2$0.next = 24;
-                break;
-              }
-  
-              return context$2$0.abrupt('return', text);
-  
-            case 24:
-              throw new Error(response.statusText);
-  
-            case 25:
-            case 'end':
-              return context$2$0.stop();
-          }
-        }, null, this);
+    _createClass(Palette, [{
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'div',
+          { className: _PaletteScss2['default'].container },
+          _react2['default'].createElement(
+            'dl',
+            { className: _PaletteScss2['default'].colors },
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Background'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.bg
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Primary'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.primary
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Secondary'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.secondary
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Detail'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.detail
+            )
+          )
+        );
       }
     }]);
   
-    return Api;
-  })();
+    var _Palette = Palette;
+    Palette = (0, _decoratorsWithStyles2['default'])(_PaletteScss2['default'])(Palette) || Palette;
+    return Palette;
+  })(_react.Component);
   
-  exports['default'] = Api;
+  exports['default'] = Palette;
   module.exports = exports['default'];
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(81);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  margin: 0;\n  color: #8B8086;\n}\n\n.Palette_colors_jGR dt {\n  font-weight: 700;\n}\n\n.Palette_colors_jGR dd {\n  margin-left: 0;\n}\n\n@media (min-width: 768px) {\n  .Palette_colors_jGR dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .Palette_colors_jGR dt:after {\n    content: \":\";\n  }\n  .Palette_colors_jGR dd {\n    margin-left: 7em;\n  }\n  .Palette_colors_jGR:before, .Palette_colors_jGR:after {\n    display: table;\n    content: \"\";\n  }\n  .Palette_colors_jGR:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,oBAAoB;CACrB;;AAED;EACE,UAAU;EACV,eAAqB;CAStB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  margin: 0;\n  color: $header-color;\n\n  dt {\n    font-weight: 700;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n@media (min-width: 768px) {\n  .colors {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "Palette_container_1Ha",
+  	"colors": "Palette_colors_jGR"
+  };
 
 /***/ }
 /******/ ]);

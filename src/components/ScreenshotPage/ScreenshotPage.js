@@ -3,6 +3,8 @@ import s from './ScreenshotPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Steam from '../../api/steam';
 import Header from '../Header';
+import Colors from '../../api/colors';
+import Palette from '../Palette';
 
 @withStyles(s)
 class ScreenshotPage extends Component {
@@ -21,6 +23,7 @@ class ScreenshotPage extends Component {
     this.state = {
       screenshot: undefined,
       title: 'Screenshot ' + props.screenshotID,
+      colors: undefined,
     };
   }
 
@@ -35,15 +38,32 @@ class ScreenshotPage extends Component {
   }
 
   onScreenshotLoaded(screenshot) {
-    const newState = { screenshot };
-    if (typeof screenshot.description === 'string' && screenshot.description.length > 0) {
-      newState.title = screenshot.description;
-    }
-    this.setState(newState);
+    this.setState({ screenshot }, () => {
+      this.updateTitle();
+    });
+    Colors.getColors(screenshot.mediumUrl).
+           then(this.onColorsLoaded.bind(this)).
+           catch(this.onColorsLoadError.bind(this));
   }
 
   onScreenshotLoadError(response) {
     console.error('failed to load Steam screenshot', response);
+  }
+
+  onColorsLoaded(colors) {
+    console.log('colors', colors);
+    this.setState({ colors });
+  }
+
+  onColorsLoadError(response) {
+    console.error('failed to load colors from image', response);
+  }
+
+  updateTitle() {
+    const description = this.state.screenshot.description;
+    if (typeof description === 'string' && description.length > 0) {
+      this.setState({ title: description });
+    }
   }
 
   render() {
@@ -55,6 +75,7 @@ class ScreenshotPage extends Component {
     }
     const backTitle = this.props.username;
     const backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+    const areColorsLoaded = typeof this.state.colors === 'object';
     return (
       <div className={s.container}>
         <Header title={this.state.title} previousUrl={backUrl}
@@ -70,21 +91,28 @@ class ScreenshotPage extends Component {
                 className={s.screenshot}
               />
             </a>
-            <dl className={s.metadata}>
-              <dt>Date</dt>
-              <dd>{date}</dd>
-              <dt>Dimensions</dt>
-              <dd>
-                {this.state.screenshot.width} &times; {this.state.screenshot.height}
-              </dd>
-              <dt>File Size</dt>
-              <dd>{this.state.screenshot.fileSize}</dd>
-            </dl>
-            <a className={s.authorLink} href={this.state.screenshot.userUrl}
-              target="_blank"
-            >
-              View {this.props.username}'s profile
-            </a>
+            <div className={s.info}>
+              {areColorsLoaded ? (
+                <Palette {...this.state.colors} />
+              ) : (
+                <p className={s.colorsMessage}>Loading colors...</p>
+              )}
+              <dl className={s.metadata}>
+                <dt>Date</dt>
+                <dd>{date}</dd>
+                <dt>Dimensions</dt>
+                <dd>
+                  {this.state.screenshot.width} &times; {this.state.screenshot.height}
+                </dd>
+                <dt>File Size</dt>
+                <dd>{this.state.screenshot.fileSize}</dd>
+              </dl>
+              <a className={s.authorLink} href={this.state.screenshot.userUrl}
+                target="_blank"
+              >
+                View {this.props.username}'s profile
+              </a>
+            </div>
           </div>
         ) : (
           <p className={s.message}>Loading screenshot...</p>

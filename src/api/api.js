@@ -2,6 +2,13 @@ import fetch from '../core/fetch';
 import Config from '../config.json';
 
 class Api {
+  static async get(path, opts) {
+    const options = opts || {};
+    options.method = 'GET';
+    const response = await this.makeRequest(path, options);
+    return response;
+  }
+
   static async makeRequest(path, options) {
     const url = Config[process.env.NODE_ENV].serverUri + path;
     const response = await fetch(url, options || {});

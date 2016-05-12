@@ -8,6 +8,7 @@ This is the successor to [steamy-screenshots](https://github.com/cheshire137/ste
 
 Get a [Steam Web API key](http://steamcommunity.com/dev/apikey) and add it to src/env.sh.
 
+    brew install cairo
     npm install
     npm start
 

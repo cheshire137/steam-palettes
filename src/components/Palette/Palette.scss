@@ -1,43 +1,11 @@
 @import '../variables.scss';
 
 .container {
-
-}
-
-.details {
-  display: table;
-  width: 100%;
-}
-
-.screenshotLink, .info {
-  display: table-cell;
-  vertical-align: top;
-}
-
-.screenshotLink {
-  margin: 0 0 20px;
-}
-
-.screenshot {
-  max-width: 100%;
-  display: block;
-}
-
-.description {
-  margin: 0 0 20px;
-}
-
-.info {
-  padding-left: 40px;
-}
-
-.colorsMessage {
   margin-bottom: 20px;
 }
 
-.metadata {
-  margin: 0 0 20px;
-  white-space: nowrap;
+.colors {
+  margin: 0;
   color: $header-color;
 
   dt {
@@ -49,16 +17,8 @@
   }
 }
 
-.authorLink {
-  display: block;
-}
-
-.message {
-
-}
-
 @media (min-width: 768px) {
-  .metadata {
+  .colors {
     &:before, &:after {
       display: table;
       content: "";

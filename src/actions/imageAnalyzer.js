@@ -1,4 +1,6 @@
 import Promise from 'bluebird';
+import http from 'http';
+import Canvas from 'canvas';
 
 // Converted from
 // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
@@ -10,29 +12,35 @@ class ImageAnalyzer {
     this.detailColor = null;
   }
 
-  getColors(image) {
+  getColors(imageUrl) {
     return new Promise((resolve) => {
-      const img = new Image();
-      img.src = image;
-      img.onload = () => {
-        const cvs = document.createElement('canvas');
-        cvs.width = img.width;
-        cvs.height = img.height;
-        const ctx = cvs.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        this.bgcolor = this.findEdgeColor(cvs, ctx);
-        return this.findTextColors(cvs, ctx, () => {
-          resolve(this.bgcolor, this.primaryColor, this.secondaryColor,
-                  this.detailColor);
+      http.get(imageUrl, (res) => {
+        const data = new Buffer(parseInt(res.headers['content-length'], 10));
+        let pos = 0;
+        res.on('data', (chunk) => {
+          chunk.copy(data, pos);
+          pos += chunk.length;
         });
-      };
+        res.on('end', () => {
+          const img = new Canvas.Image;
+          img.src = data;
+          const cvs = new Canvas(img.width, img.height);
+          const ctx = cvs.getContext('2d');
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          this.bgcolor = this.findEdgeColor(cvs, ctx);
+          return this.findTextColors(cvs, ctx, () => {
+            resolve(this.bgcolor, this.primaryColor, this.secondaryColor,
+                    this.detailColor);
+          });
+        });
+      });
     });
   }
 
   findEdgeColor(cvs, ctx) {
     const leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
     const colorCount = {};
-    for (let pixel = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; pixel = 0 <= _ref ? ++_i : --_i) {
+    for (let pixel = 0, _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; pixel = 0 <= _ref ? ++_i : --_i) {
       const red = leftEdgeColors.data[pixel * 4];
       const green = leftEdgeColors.data[pixel * 4 + 1];
       const blue = leftEdgeColors.data[pixel * 4 + 2];
@@ -73,8 +81,8 @@ class ImageAnalyzer {
     const colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
     const findDarkTextColor = !this.isDarkColor(this.bgcolor);
     const colorCount = {};
-    for (let row = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; row = 0 <= _ref ? ++_i : --_i) {
-      for (let column = _j = 0, _ref1 = cvs.width; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; column = 0 <= _ref1 ? ++_j : --_j) {
+    for (let row = 0, _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; row = 0 <= _ref ? ++_i : --_i) {
+      for (let column = 0, _j = 0, _ref1 = cvs.width; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; column = 0 <= _ref1 ? ++_j : --_j) {
         const red = colors.data[(row * (cvs.width * 4)) + (column * 4)];
         const green = colors.data[((row * (cvs.width * 4)) + (column * 4)) + 1];
         const blue = colors.data[((row * (cvs.width * 4)) + (column * 4)) + 2];

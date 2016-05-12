@@ -2,16 +2,15 @@ import Api from './api';
 
 class Steam extends Api {
   static async getScreenshots(username) {
-    const data = await this.makeRequest('/api/screenshots?user=' +
-                                        encodeURIComponent(username) +
-                                        '&format=json');
+    const data = await this.get('/api/screenshots?user=' +
+                                encodeURIComponent(username) +
+                                '&format=json');
     return data;
   }
 
   static async getScreenshot(screenshotID) {
     const screenshot =
-        await this.makeRequest('/api/screenshot?id=' + screenshotID +
-                               '&format=json');
+        await this.get('/api/screenshot?id=' + screenshotID + '&format=json');
     if (screenshot.date) {
       screenshot.date = new Date(screenshot.date);
     }
@@ -20,10 +19,9 @@ class Steam extends Api {
 
   // https://wiki.teamfortress.com/wiki/WebAPI/ResolveVanityURL
   static async getSteamId(username) {
-    const data = await this.
-        makeRequest('/api/steam?format=json' +
-                    '&path=/ISteamUser/ResolveVanityURL/v0001/' +
-                    '&vanityurl=' + encodeURIComponent(username));
+    const data = await this.get('/api/steam?format=json' +
+                                '&path=/ISteamUser/ResolveVanityURL/v0001/' +
+                                '&vanityurl=' + encodeURIComponent(username));
     if (data.response.steamid) {
       return data.response.steamid;
     }
@@ -60,10 +58,10 @@ class Steam extends Api {
     }
     let summaries = [];
     for (let i = 0; i < batches.length; i++) {
-      const result =
-          await this.makeRequest('/api/steam?format=json' +
-                                 '&path=/ISteamUser/GetPlayerSummaries/v0002/' +
-                                 '&steamids=' + batches[i].join(','));
+      const result = await this.
+          get('/api/steam?format=json' +
+              '&path=/ISteamUser/GetPlayerSummaries/v0002/' +
+              '&steamids=' + batches[i].join(','));
       if (result.response) {
         summaries = summaries.concat(result.response.players || []);
       }
@@ -77,11 +75,10 @@ class Steam extends Api {
   }
 
   static async getFriends(steamId) {
-    const data = await this.
-        makeRequest('/api/steam?format=json' +
-                    '&path=/ISteamUser/GetFriendList/v0001/' +
-                    '&steamid=' + steamId +
-                    '&relationship=friend');
+    const data = await this.get('/api/steam?format=json' +
+                                '&path=/ISteamUser/GetFriendList/v0001/' +
+                                '&steamid=' + steamId +
+                                '&relationship=friend');
     if (data.friendslist) {
       const friendIDs = data.friendslist.friends.map((f) => f.steamid);
       const friends = await this.getPlayerSummaries(friendIDs);
