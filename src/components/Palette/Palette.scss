@@ -5,22 +5,11 @@
 }
 
 .colors {
-  margin: 0;
-  border-bottom: 1px solid $border-color;
-  padding-bottom: 20px;
+  list-style: none;
+  padding-left: 0;
 
-  dt {
-    font-weight: 400;
-    line-height: 26px;
-  }
-
-  dd {
-    margin-left: 0;
-  }
-
-  dt + dd + dt,
-  dt + dd + dt + dd {
-    margin-top: 5px;
+  li {
+    display: inline;
   }
 }
 
@@ -29,35 +18,4 @@
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.05em;
-}
-
-@media (min-width: 768px) {
-  .colors {
-    &:before, &:after {
-      display: table;
-      content: "";
-    }
-
-    &:after {
-      clear: both;
-    }
-
-    dt {
-      float: left;
-      width: 6em;
-      overflow: hidden;
-      clear: left;
-      text-align: right;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      &:after {
-        content: ":";
-      }
-    }
-
-    dd {
-      margin-left: 7em;
-    }
-  }
 }

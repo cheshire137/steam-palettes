@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import s from './Palette.scss';
 import withStyles from '../../decorators/withStyles';
-import Swatch from '../Swatch';
+import ColorVariations from '../ColorVariations';
 
 @withStyles(s)
 class Palette extends Component {
@@ -20,25 +20,21 @@ class Palette extends Component {
   render() {
     return (
       <div className={s.container}>
-        <h3 className={s.title}>Palette</h3>
-        <dl className={s.colors}>
-          <dt>Background</dt>
-          <dd>
-            <Swatch hexColor={this.props.bg} />
-          </dd>
-          <dt>Primary</dt>
-          <dd>
-            <Swatch hexColor={this.props.primary} />
-          </dd>
-          <dt>Secondary</dt>
-          <dd>
-            <Swatch hexColor={this.props.secondary} />
-          </dd>
-          <dt>Detail</dt>
-          <dd>
-            <Swatch hexColor={this.props.detail} />
-          </dd>
-        </dl>
+        <h3 className={s.title}>Colors</h3>
+        <ul className={s.colors}>
+          <li>
+            <ColorVariations hexColor={this.props.bg} />
+          </li>
+          <li>
+            <ColorVariations hexColor={this.props.primary} />
+          </li>
+          <li>
+            <ColorVariations hexColor={this.props.secondary} />
+          </li>
+          <li>
+            <ColorVariations hexColor={this.props.detail} />
+          </li>
+        </ul>
       </div>
     );
   }

@@ -4622,7 +4622,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_screenshotLink_3rs, .ScreenshotPage_info_UVa {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_info_UVa {\n  padding-left: 40px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadataTitle_3d8 {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 400;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o {\n  display: block;\n  text-align: center;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid #574E4F;\n}\n\n.ScreenshotPage_fullSizeLink_26o {\n  margin-top: 5px;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;CASrB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,kBAAkB;EAClB,8BAAoC;CACrC;;AAED;EACE,gBAAgB;CACjB;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.screenshotLink, .info {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.info {\n  padding-left: 40px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadataTitle {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n\n  dt {\n    font-weight: 400;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink, .fullSizeLink {\n  display: block;\n  text-align: center;\n}\n\n.authorLink {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid $border-color;\n}\n\n.fullSizeLink {\n  margin-top: 5px;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_screenshotLink_3rs, .ScreenshotPage_info_UVa {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_info_UVa {\n  padding-left: 40px;\n  max-width: 450px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadataTitle_3d8 {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 400;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o {\n  display: block;\n  text-align: center;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid #574E4F;\n}\n\n.ScreenshotPage_fullSizeLink_26o {\n  margin-top: 5px;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;CASrB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,kBAAkB;EAClB,8BAAoC;CACrC;;AAED;EACE,gBAAgB;CACjB;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.screenshotLink, .info {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.info {\n  padding-left: 40px;\n  max-width: 450px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadataTitle {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n\n  dt {\n    font-weight: 400;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink, .fullSizeLink {\n  display: block;\n  text-align: center;\n}\n\n.authorLink {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid $border-color;\n}\n\n.fullSizeLink {\n  margin-top: 5px;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4733,9 +4733,9 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Swatch = __webpack_require__(83);
+  var _ColorVariations = __webpack_require__(89);
   
-  var _Swatch2 = _interopRequireDefault(_Swatch);
+  var _ColorVariations2 = _interopRequireDefault(_ColorVariations);
   
   var Palette = (function (_Component) {
     _inherits(Palette, _Component);
@@ -4767,50 +4767,30 @@ module.exports =
           _react2['default'].createElement(
             'h3',
             { className: _PaletteScss2['default'].title },
-            'Palette'
+            'Colors'
           ),
           _react2['default'].createElement(
-            'dl',
+            'ul',
             { className: _PaletteScss2['default'].colors },
             _react2['default'].createElement(
-              'dt',
+              'li',
               null,
-              'Background'
+              _react2['default'].createElement(_ColorVariations2['default'], { hexColor: this.props.bg })
             ),
             _react2['default'].createElement(
-              'dd',
+              'li',
               null,
-              _react2['default'].createElement(_Swatch2['default'], { hexColor: this.props.bg })
+              _react2['default'].createElement(_ColorVariations2['default'], { hexColor: this.props.primary })
             ),
             _react2['default'].createElement(
-              'dt',
+              'li',
               null,
-              'Primary'
+              _react2['default'].createElement(_ColorVariations2['default'], { hexColor: this.props.secondary })
             ),
             _react2['default'].createElement(
-              'dd',
+              'li',
               null,
-              _react2['default'].createElement(_Swatch2['default'], { hexColor: this.props.primary })
-            ),
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Secondary'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              _react2['default'].createElement(_Swatch2['default'], { hexColor: this.props.secondary })
-            ),
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Detail'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              _react2['default'].createElement(_Swatch2['default'], { hexColor: this.props.detail })
+              _react2['default'].createElement(_ColorVariations2['default'], { hexColor: this.props.detail })
             )
           )
         );
@@ -4866,7 +4846,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  margin: 0;\n  border-bottom: 1px solid #574E4F;\n  padding-bottom: 20px;\n}\n\n.Palette_colors_jGR dt {\n  font-weight: 400;\n  line-height: 26px;\n}\n\n.Palette_colors_jGR dd {\n  margin-left: 0;\n}\n\n.Palette_colors_jGR dt + dd + dt, .Palette_colors_jGR dt + dd + dt + dd {\n  margin-top: 5px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n@media (min-width: 768px) {\n  .Palette_colors_jGR dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .Palette_colors_jGR dt:after {\n    content: \":\";\n  }\n  .Palette_colors_jGR dd {\n    margin-left: 7em;\n  }\n  .Palette_colors_jGR:before, .Palette_colors_jGR:after {\n    display: table;\n    content: \"\";\n  }\n  .Palette_colors_jGR:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,UAAU;EACV,iCAAuC;EACvC,qBAAqB;CAetB;;AAbC;EACE,iBAAiB;EACjB,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  margin: 0;\n  border-bottom: 1px solid $border-color;\n  padding-bottom: 20px;\n\n  dt {\n    font-weight: 400;\n    line-height: 26px;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n\n  dt + dd + dt,\n  dt + dd + dt + dd {\n    margin-top: 5px;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n@media (min-width: 768px) {\n  .colors {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li {\n  display: inline;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAKjB;;AAHC;EACE,gBAAgB;CACjB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -5699,12 +5679,303 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n}\n\n.Swatch_name_3UP {\n  font-family: 'Ocr A Extended','Courier New',monospace;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,WAAW;EACX,mBAAmB;EACnB,gBAAgB;CACjB;;AAED;EACE,sDAA6B;CAC9B","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n}\n\n.name {\n  font-family: $monospace-font;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.Swatch_name_3UP {\n  font-family: 'Ocr A Extended','Courier New',monospace;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,YAAY;CACb;;AAED;EACE,sDAA6B;CAC9B","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.name {\n  font-family: $monospace-font;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "Swatch_container_2L5",
   	"name": "Swatch_name_3UP"
+  };
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _SwatchesScss = __webpack_require__(87);
+  
+  var _SwatchesScss2 = _interopRequireDefault(_SwatchesScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Swatch = __webpack_require__(83);
+  
+  var _Swatch2 = _interopRequireDefault(_Swatch);
+  
+  var Swatches = (function (_Component) {
+    _inherits(Swatches, _Component);
+  
+    _createClass(Swatches, null, [{
+      key: 'propTypes',
+      value: {
+        hexColors: _react.PropTypes.array.isRequired,
+        name: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function Swatches(props, context) {
+      _classCallCheck(this, _Swatches);
+  
+      _get(Object.getPrototypeOf(_Swatches.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(Swatches, [{
+      key: 'render',
+      value: function render() {
+        var _this = this;
+  
+        return _react2['default'].createElement(
+          'ul',
+          { className: _SwatchesScss2['default'].list },
+          this.props.hexColors.map(function (hex) {
+            var key = _this.props.name + '-' + hex;
+            return _react2['default'].createElement(
+              'li',
+              { key: key, className: _SwatchesScss2['default'].listItem },
+              _react2['default'].createElement(_Swatch2['default'], { hexColor: hex })
+            );
+          })
+        );
+      }
+    }]);
+  
+    var _Swatches = Swatches;
+    Swatches = (0, _decoratorsWithStyles2['default'])(_SwatchesScss2['default'])(Swatches) || Swatches;
+    return Swatches;
+  })(_react.Component);
+  
+  exports['default'] = Swatches;
+  module.exports = exports['default'];
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(88);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatches.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatches.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatches_list_2ev {\n  list-style: none;\n  padding-left: 0;\n  display: inline;\n}\n\n.Swatches_listItem_3Rm {\n  margin: 0;\n  display: inline;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatches/Swatches.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,iBAAiB;EACjB,gBAAgB;EAChB,gBAAgB;CACjB;;AAED;EACE,UAAU;EACV,gBAAgB;CACjB","file":"Swatches.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.list {\n  list-style: none;\n  padding-left: 0;\n  display: inline;\n}\n\n.listItem {\n  margin: 0;\n  display: inline;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"list": "Swatches_list_2ev",
+  	"listItem": "Swatches_listItem_3Rm"
+  };
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _ColorVariationsScss = __webpack_require__(90);
+  
+  var _ColorVariationsScss2 = _interopRequireDefault(_ColorVariationsScss);
+  
+  var _classnames = __webpack_require__(37);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _tinycolor2 = __webpack_require__(82);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var _Swatches = __webpack_require__(86);
+  
+  var _Swatches2 = _interopRequireDefault(_Swatches);
+  
+  var ColorVariations = (function (_Component) {
+    _inherits(ColorVariations, _Component);
+  
+    _createClass(ColorVariations, null, [{
+      key: 'propTypes',
+      value: {
+        hexColor: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function ColorVariations(props, context) {
+      _classCallCheck(this, _ColorVariations);
+  
+      _get(Object.getPrototypeOf(_ColorVariations.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(ColorVariations, [{
+      key: 'uniq',
+      value: function uniq(arr) {
+        var set = new Set(arr);
+        return Array.from(set);
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var color = (0, _tinycolor22['default'])(this.props.hexColor);
+        var hexer = function hexer(c) {
+          return c.toHexString();
+        };
+        var analogous = this.uniq(color.analogous().map(hexer));
+        var monochromatic = this.uniq(color.monochromatic().map(hexer));
+        var splitcomplement = this.uniq(color.splitcomplement().map(hexer));
+        return _react2['default'].createElement(
+          'div',
+          { className: _ColorVariationsScss2['default'].container },
+          _react2['default'].createElement(
+            'div',
+            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].analogous, _ColorVariationsScss2['default'].wrapper) },
+            _react2['default'].createElement(_Swatches2['default'], { name: 'analogous', hexColors: analogous })
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].monochromatic, _ColorVariationsScss2['default'].wrapper) },
+            _react2['default'].createElement(_Swatches2['default'], { name: 'monochromatic', hexColors: monochromatic })
+          ),
+          _react2['default'].createElement(
+            'div',
+            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].splitcomplement, _ColorVariationsScss2['default'].wrapper) },
+            _react2['default'].createElement(_Swatches2['default'], { name: 'splitcomplement', hexColors: splitcomplement })
+          )
+        );
+      }
+    }]);
+  
+    var _ColorVariations = ColorVariations;
+    ColorVariations = (0, _decoratorsWithStyles2['default'])(_ColorVariationsScss2['default'])(ColorVariations) || ColorVariations;
+    return ColorVariations;
+  })(_react.Component);
+  
+  exports['default'] = ColorVariations;
+  module.exports = exports['default'];
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(91);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ColorVariations.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ColorVariations.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ColorVariations_container_3lT {\n  display: inline;\n}\n\n.ColorVariations_wrapper_o-5 {\n  display: inline;\n}\n\n.ColorVariations_analogous_2WW {\n\n}\n\n.ColorVariations_monochromatic_63o {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ColorVariations/ColorVariations.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,gBAAgB;CACjB;;AAED;EACE,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC","file":"ColorVariations.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline;\n}\n\n.wrapper {\n  display: inline;\n}\n\n.analogous {\n\n}\n\n.monochromatic {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "ColorVariations_container_3lT",
+  	"wrapper": "ColorVariations_wrapper_o-5",
+  	"analogous": "ColorVariations_analogous_2WW",
+  	"monochromatic": "ColorVariations_monochromatic_63o"
   };
 
 /***/ }
