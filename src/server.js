@@ -20,6 +20,7 @@ import Config from './config.json';
 import fetch from './core/fetch';
 import ScreenshotsScraper from './actions/screenshotsScraper';
 import ScreenshotScraper from './actions/screenshotScraper';
+import ImageAnalyzer from './actions/imageAnalyzer';
 
 const server = global.server = express();
 
@@ -77,8 +78,8 @@ server.get('/api/screenshot', async (req, res) => {
   const html = await scraper.getPage();
   scraper.getScreenshot(html).then((screenshot) => {
     res.json(screenshot);
-  }).fail((err) => {
-    res.status(400).json({ error: err });
+  }).fail((error) => {
+    res.status(400).json({ error });
   });
 });
 
@@ -93,8 +94,23 @@ server.get('/api/screenshots', async (req, res) => {
   const html = await scraper.getPage();
   scraper.getScreenshots(html).then((screenshots) => {
     res.json(screenshots);
-  }).fail((err) => {
-    res.status(400).json({ error: err });
+  }).fail((error) => {
+    res.status(400).json({ error });
+  });
+});
+
+server.get('/api/colors', async (req, res) => {
+  const imageUrl = req.query.url;
+  if (typeof imageUrl !== 'string' || imageUrl.length < 1) {
+    res.status(400).
+        json({ error: 'Must provide image URL in url param' });
+    return;
+  }
+  const analyzer = new ImageAnalyzer();
+  analyzer.getColors(imageUrl).then((bg, primary, secondary, detail) => {
+    res.json({ bg, primary, secondary, detail });
+  }).fail((error) => {
+    res.status(400).json({ error });
   });
 });
 
