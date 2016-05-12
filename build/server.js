@@ -109,6 +109,10 @@ module.exports =
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
+  var _actionsImageAnalyzer = __webpack_require__(74);
+  
+  var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
+  
   var server = global.server = (0, _express2['default'])();
   
   //
@@ -215,8 +219,8 @@ module.exports =
   
           scraper.getScreenshot(html).then(function (screenshot) {
             res.json(screenshot);
-          }).fail(function (err) {
-            res.status(400).json({ error: err });
+          }).fail(function (error) {
+            res.status(400).json({ error: error });
           });
   
         case 9:
@@ -251,11 +255,42 @@ module.exports =
   
           scraper.getScreenshots(html).then(function (screenshots) {
             res.json(screenshots);
-          }).fail(function (err) {
-            res.status(400).json({ error: err });
+          }).fail(function (error) {
+            res.status(400).json({ error: error });
           });
   
         case 9:
+        case 'end':
+          return context$1$0.stop();
+      }
+    }, null, _this);
+  });
+  
+  server.get('/api/colors', function callee$0$0(req, res) {
+    var imageUrl, analyzer;
+    return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
+      while (1) switch (context$1$0.prev = context$1$0.next) {
+        case 0:
+          imageUrl = req.query.url;
+  
+          if (!(typeof imageUrl !== 'string' || imageUrl.length < 1)) {
+            context$1$0.next = 4;
+            break;
+          }
+  
+          res.status(400).json({ error: 'Must provide image URL in url param' });
+          return context$1$0.abrupt('return');
+  
+        case 4:
+          analyzer = new _actionsImageAnalyzer2['default']();
+  
+          analyzer.getColors(imageUrl).then(function (bg, primary, secondary, detail) {
+            res.json({ bg: bg, primary: primary, secondary: secondary, detail: detail });
+          }).fail(function (error) {
+            res.status(400).json({ error: error });
+          });
+  
+        case 6:
         case 'end':
           return context$1$0.stop();
       }
@@ -2449,21 +2484,25 @@ module.exports =
   
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
   
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(32);
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
   
-  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  var _api = __webpack_require__(75);
   
-  var _configJson = __webpack_require__(35);
+  var _api2 = _interopRequireDefault(_api);
   
-  var _configJson2 = _interopRequireDefault(_configJson);
+  var Steam = (function (_Api) {
+    _inherits(Steam, _Api);
   
-  var Steam = (function () {
     function Steam() {
       _classCallCheck(this, Steam);
+  
+      _get(Object.getPrototypeOf(Steam.prototype), 'constructor', this).apply(this, arguments);
     }
   
     _createClass(Steam, null, [{
@@ -2674,86 +2713,10 @@ module.exports =
           }
         }, null, this);
       }
-    }, {
-      key: 'makeRequest',
-      value: function makeRequest(path, options) {
-        var url, response, isJSON, json, text;
-        return regeneratorRuntime.async(function makeRequest$(context$2$0) {
-          while (1) switch (context$2$0.prev = context$2$0.next) {
-            case 0:
-              url = _configJson2['default'][("development")].serverUri + path;
-              context$2$0.next = 3;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url, options || {}));
-  
-            case 3:
-              response = context$2$0.sent;
-              isJSON = path.indexOf('format=json') > -1;
-  
-              if (!isJSON) {
-                context$2$0.next = 19;
-                break;
-              }
-  
-              context$2$0.next = 8;
-              return regeneratorRuntime.awrap(response.json());
-  
-            case 8:
-              json = context$2$0.sent;
-  
-              if (!response.ok) {
-                context$2$0.next = 11;
-                break;
-              }
-  
-              return context$2$0.abrupt('return', json);
-  
-            case 11:
-              if (!json.hasOwnProperty('error')) {
-                context$2$0.next = 17;
-                break;
-              }
-  
-              if (!(typeof json.error === 'string')) {
-                context$2$0.next = 16;
-                break;
-              }
-  
-              throw new Error(json.error);
-  
-            case 16:
-              throw new Error(JSON.stringify(json.error));
-  
-            case 17:
-              context$2$0.next = 24;
-              break;
-  
-            case 19:
-              context$2$0.next = 21;
-              return regeneratorRuntime.awrap(response.text());
-  
-            case 21:
-              text = context$2$0.sent;
-  
-              if (!response.ok) {
-                context$2$0.next = 24;
-                break;
-              }
-  
-              return context$2$0.abrupt('return', text);
-  
-            case 24:
-              throw new Error(response.statusText);
-  
-            case 25:
-            case 'end':
-              return context$2$0.stop();
-          }
-        }, null, this);
-      }
     }]);
   
     return Steam;
-  })();
+  })(_api2['default']);
   
   exports['default'] = Steam;
   module.exports = exports['default'];
@@ -4899,6 +4862,357 @@ module.exports =
   })();
   
   exports['default'] = ScreenshotScraper;
+  module.exports = exports['default'];
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _bluebird = __webpack_require__(72);
+  
+  var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  // Converted from
+  // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
+  
+  var ImageAnalyzer = (function () {
+    function ImageAnalyzer() {
+      _classCallCheck(this, ImageAnalyzer);
+  
+      this.bgcolor = null;
+      this.primaryColor = null;
+      this.secondaryColor = null;
+      this.detailColor = null;
+    }
+  
+    _createClass(ImageAnalyzer, [{
+      key: 'getColors',
+      value: function getColors(image) {
+        var _this = this;
+  
+        return new _bluebird2['default'](function (resolve) {
+          var img = new Image();
+          img.src = image;
+          img.onload = function () {
+            var cvs = document.createElement('canvas');
+            cvs.width = img.width;
+            cvs.height = img.height;
+            var ctx = cvs.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            _this.bgcolor = _this.findEdgeColor(cvs, ctx);
+            return _this.findTextColors(cvs, ctx, function () {
+              resolve(_this.bgcolor, _this.primaryColor, _this.secondaryColor, _this.detailColor);
+            });
+          };
+        });
+      }
+    }, {
+      key: 'findEdgeColor',
+      value: function findEdgeColor(cvs, ctx) {
+        var leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
+        var colorCount = {};
+        for (var pixel = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; pixel = 0 <= _ref ? ++_i : --_i) {
+          var red = leftEdgeColors.data[pixel * 4];
+          var green = leftEdgeColors.data[pixel * 4 + 1];
+          var blue = leftEdgeColors.data[pixel * 4 + 2];
+          var index = red + ',' + green + ',' + blue;
+          if (!colorCount[index]) {
+            colorCount[index] = 0;
+          }
+          colorCount[index]++;
+        }
+        var sortedColorCount = [];
+        for (var color in colorCount) {
+          if (colorCount.hasOwnProperty(color)) {
+            var count = colorCount[color];
+            if (count > 2) {
+              sortedColorCount.push([color, count]);
+            }
+          }
+        }
+        sortedColorCount.sort(function (a, b) {
+          return b[1] - a[1];
+        });
+        var proposedEdgeColor = sortedColorCount[0];
+        if (this.isBlackOrWhite(proposedEdgeColor[0])) {
+          for (var _j2 = 0, _len = sortedColorCount.length; _j2 < _len; _j2++) {
+            var nextProposedEdgeColor = sortedColorCount[_j2];
+            if (nextProposedEdgeColor[1] / proposedEdgeColor[1] > 0.3) {
+              if (!this.isBlackOrWhite(nextProposedEdgeColor[0])) {
+                proposedEdgeColor = nextProposedEdgeColor;
+                break;
+              }
+            }
+          }
+        }
+        return proposedEdgeColor[0];
+      }
+    }, {
+      key: 'findTextColors',
+      value: function findTextColors(cvs, ctx, cb) {
+        var colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
+        var findDarkTextColor = !this.isDarkColor(this.bgcolor);
+        var colorCount = {};
+        for (var row = _i = 0, _ref = cvs.height; 0 <= _ref ? _i < _ref : _i > _ref; row = 0 <= _ref ? ++_i : --_i) {
+          for (var column = _j = 0, _ref1 = cvs.width; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; column = 0 <= _ref1 ? ++_j : --_j) {
+            var red = colors.data[row * (cvs.width * 4) + column * 4];
+            var green = colors.data[row * (cvs.width * 4) + column * 4 + 1];
+            var blue = colors.data[row * (cvs.width * 4) + column * 4 + 2];
+            var index = red + ',' + green + ',' + blue;
+            if (!colorCount[index]) {
+              colorCount[index] = 0;
+            }
+            colorCount[index]++;
+          }
+        }
+        var possibleColorsSorted = [];
+        for (var color in colorCount) {
+          if (colorCount.hasOwnProperty(color)) {
+            var count = colorCount[color];
+            var curDark = this.isDarkColor(color);
+            if (curDark === findDarkTextColor) {
+              possibleColorsSorted.push([color, count]);
+            }
+          }
+        }
+        possibleColorsSorted.sort(function (a, b) {
+          return b[1] - a[1];
+        });
+        for (var _k = 0, _len = possibleColorsSorted.length; _k < _len; _k++) {
+          var color = possibleColorsSorted[_k];
+          if (!this.primaryColor) {
+            if (this.isContrastingColor(color[0], this.bgcolor)) {
+              this.primaryColor = color[0];
+            }
+          } else if (!this.secondaryColor) {
+            if (!this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
+              continue;
+            }
+            this.secondaryColor = color[0];
+          } else if (!this.detailColor) {
+            if (!this.isDistinct(this.secondaryColor, color[0]) || !this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
+              continue;
+            }
+            this.detailColor = color[0];
+            break;
+          }
+        }
+        var defaultColor = findDarkTextColor ? '0,0,0' : '255,255,255';
+        if (!this.primaryColor) {
+          this.primaryColor = defaultColor;
+        }
+        if (!this.secondaryColor) {
+          this.secondaryColor = defaultColor;
+        }
+        if (!this.detailColor) {
+          this.detailColor = defaultColor;
+        }
+        return cb();
+      }
+    }, {
+      key: 'isBlackOrWhite',
+      value: function isBlackOrWhite(color) {
+        var splitted = color.split(',');
+        var red = splitted[0];
+        var green = splitted[1];
+        var blue = splitted[2];
+        var thresholdWhite = 255 * 0.91;
+        var thresholdBlack = 255 * 0.09;
+        if (red > thresholdWhite && green > thresholdWhite && blue > thresholdWhite) {
+          return true;
+        }
+        if (red < thresholdBlack && green < thresholdBlack && blue < thresholdBlack) {
+          return true;
+        }
+        return false;
+      }
+    }, {
+      key: 'isDarkColor',
+      value: function isDarkColor(color) {
+        if (color) {
+          var splitted = color.split(',');
+          var red = splitted[0] / 255;
+          var green = splitted[1] / 255;
+          var blue = splitted[2] / 255;
+          var lum = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+          return lum < 0.5;
+        }
+        return false;
+      }
+    }, {
+      key: 'isContrastingColor',
+      value: function isContrastingColor(color1, color2) {
+        var splitted1 = color1.split(',');
+        var red1 = splitted1[0] / 255;
+        var green1 = splitted1[1] / 255;
+        var blue1 = splitted1[2] / 255;
+        var lum1 = 0.2126 * red1 + 0.7152 * green1 + 0.0722 * blue1;
+        var splitted2 = color2.split(',');
+        var red2 = splitted2[0] / 255;
+        var green2 = splitted2[1] / 255;
+        var blue2 = splitted2[2] / 255;
+        var lum2 = 0.2126 * red2 + 0.7152 * green2 + 0.0722 * blue2;
+        var contrast = 0;
+        if (lum1 > lum2) {
+          contrast = (lum1 + 0.05) / (lum2 + 0.05);
+        } else {
+          contrast = (lum2 + 0.05) / (lum1 + 0.05);
+        }
+        return contrast > 1.6;
+      }
+    }, {
+      key: 'isDistinct',
+      value: function isDistinct(color1, color2) {
+        var splitted1 = color1.split(',');
+        var red1 = splitted1[0] / 255;
+        var green1 = splitted1[1] / 255;
+        var blue1 = splitted1[2] / 255;
+        var splitted2 = color2.split(',');
+        var red2 = splitted2[0] / 255;
+        var green2 = splitted2[1] / 255;
+        var blue2 = splitted2[2] / 255;
+        var threshold = 0.25;
+        if (Math.abs(red1 - red2) > threshold || Math.abs(green1 - green2) > threshold || Math.abs(blue1 - blue2) > threshold) {
+          if (Math.abs(red1 - green1) < 0.03 && Math.abs(red1 - blue1) < 0.03) {
+            if (Math.abs(red2 - green2) < 0.03 && Math.abs(red2 - blue2) < 0.03) {
+              return false;
+            }
+          }
+          return true;
+        }
+        return false;
+      }
+    }]);
+  
+    return ImageAnalyzer;
+  })();
+  
+  exports['default'] = ImageAnalyzer;
+  module.exports = exports['default'];
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _coreFetch = __webpack_require__(32);
+  
+  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  
+  var _configJson = __webpack_require__(35);
+  
+  var _configJson2 = _interopRequireDefault(_configJson);
+  
+  var Api = (function () {
+    function Api() {
+      _classCallCheck(this, Api);
+    }
+  
+    _createClass(Api, null, [{
+      key: 'makeRequest',
+      value: function makeRequest(path, options) {
+        var url, response, isJSON, json, text;
+        return regeneratorRuntime.async(function makeRequest$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              url = _configJson2['default'][("development")].serverUri + path;
+              context$2$0.next = 3;
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url, options || {}));
+  
+            case 3:
+              response = context$2$0.sent;
+              isJSON = path.indexOf('format=json') > -1;
+  
+              if (!isJSON) {
+                context$2$0.next = 19;
+                break;
+              }
+  
+              context$2$0.next = 8;
+              return regeneratorRuntime.awrap(response.json());
+  
+            case 8:
+              json = context$2$0.sent;
+  
+              if (!response.ok) {
+                context$2$0.next = 11;
+                break;
+              }
+  
+              return context$2$0.abrupt('return', json);
+  
+            case 11:
+              if (!json.hasOwnProperty('error')) {
+                context$2$0.next = 17;
+                break;
+              }
+  
+              if (!(typeof json.error === 'string')) {
+                context$2$0.next = 16;
+                break;
+              }
+  
+              throw new Error(json.error);
+  
+            case 16:
+              throw new Error(JSON.stringify(json.error));
+  
+            case 17:
+              context$2$0.next = 24;
+              break;
+  
+            case 19:
+              context$2$0.next = 21;
+              return regeneratorRuntime.awrap(response.text());
+  
+            case 21:
+              text = context$2$0.sent;
+  
+              if (!response.ok) {
+                context$2$0.next = 24;
+                break;
+              }
+  
+              return context$2$0.abrupt('return', text);
+  
+            case 24:
+              throw new Error(response.statusText);
+  
+            case 25:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }]);
+  
+    return Api;
+  })();
+  
+  exports['default'] = Api;
   module.exports = exports['default'];
 
 /***/ }

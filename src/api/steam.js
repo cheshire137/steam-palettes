@@ -1,7 +1,6 @@
-import fetch from '../core/fetch';
-import Config from '../config.json';
+import Api from './api';
 
-class Steam {
+class Steam extends Api {
   static async getScreenshots(username) {
     const data = await this.makeRequest('/api/screenshots?user=' +
                                         encodeURIComponent(username) +
@@ -90,31 +89,6 @@ class Steam {
     }
     throw new Error('Failed to get friends for ' + steamId +
                     '; may not be a public profile.');
-  }
-
-  static async makeRequest(path, options) {
-    const url = Config[process.env.NODE_ENV].serverUri + path;
-    const response = await fetch(url, options || {});
-    const isJSON = path.indexOf('format=json') > -1;
-    if (isJSON) {
-      const json = await response.json();
-      if (response.ok) {
-        return json;
-      }
-      if (json.hasOwnProperty('error')) {
-        if (typeof json.error === 'string') {
-          throw new Error(json.error);
-        } else {
-          throw new Error(JSON.stringify(json.error));
-        }
-      }
-    } else {
-      const text = await response.text();
-      if (response.ok) {
-        return text;
-      }
-    }
-    throw new Error(response.statusText);
   }
 }
 
