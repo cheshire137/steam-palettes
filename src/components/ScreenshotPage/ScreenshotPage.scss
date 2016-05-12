@@ -61,12 +61,12 @@
   }
 }
 
-.authorLink, .fullSizeLink {
+.authorLink, .fullSizeLink, .detailsUrl {
   margin-top: 20px;
   display: inline-block;
 }
 
-.fullSizeLink {
+.fullSizeLink, .detailsUrl {
   &:after {
     color: $text-color;
     content: "\a0\b7\a0";

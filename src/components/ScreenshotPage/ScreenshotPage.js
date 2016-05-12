@@ -91,6 +91,11 @@ class ScreenshotPage extends Component {
                   className={s.screenshot}
                 />
               </a>
+              <a href={this.state.screenshot.url} target="_blank"
+                className={s.detailsUrl}
+              >
+                View details
+              </a>
               <a href={this.state.screenshot.fullSizeUrl} target="_blank"
                 className={s.fullSizeLink}
               >

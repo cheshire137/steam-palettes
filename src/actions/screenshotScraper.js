@@ -5,13 +5,12 @@ import Promise from 'bluebird';
 class ScreenshotScraper {
   constructor(id) {
     this.id = id;
+    this.url = 'http://steamcommunity.com/sharedfiles/filedetails/?id=' +
+               this.id;
   }
 
   async getPage() {
-    const url = 'http://steamcommunity.com/sharedfiles/filedetails/?id=' +
-                this.id;
-    console.log(url);
-    const response = await fetch(url);
+    const response = await fetch(this.url);
     const data = await response.text();
     return data;
   }
@@ -27,7 +26,7 @@ class ScreenshotScraper {
 
   scrapeDom(resolve, reject, err, window) {
     const link = window.document.querySelector('.actualmediactn a');
-    const screenshot = {};
+    const screenshot = { url: this.url };
     if (link) {
       screenshot.fullSizeUrl = link.getAttribute('href');
       const image = link.querySelector('img');
