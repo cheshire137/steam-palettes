@@ -82,15 +82,27 @@ class ScreenshotPage extends Component {
         />
         {isScreenshotLoaded ? (
           <div className={s.details}>
-            <a href={this.state.screenshot.fullSizeUrl} target="_blank"
-              className={s.screenshotLink}
-            >
-              <img src={this.state.screenshot.mediumUrl}
-                alt={alt}
-                className={s.screenshot}
-              />
-            </a>
-            <div className={s.info}>
+            <div className={s.left}>
+              <a href={this.state.screenshot.fullSizeUrl} target="_blank"
+                className={s.screenshotLink}
+              >
+                <img src={this.state.screenshot.mediumUrl}
+                  alt={alt}
+                  className={s.screenshot}
+                />
+              </a>
+              <a href={this.state.screenshot.fullSizeUrl} target="_blank"
+                className={s.fullSizeLink}
+              >
+                View full size
+              </a>
+              <a className={s.authorLink} href={this.state.screenshot.userUrl}
+                target="_blank"
+              >
+                View {this.props.username}'s profile
+              </a>
+            </div>
+            <div className={s.right}>
               {areColorsLoaded ? (
                 <Palette {...this.state.colors} />
               ) : (
@@ -107,16 +119,6 @@ class ScreenshotPage extends Component {
                 <dt>File Size</dt>
                 <dd>{this.state.screenshot.fileSize}</dd>
               </dl>
-              <a className={s.authorLink} href={this.state.screenshot.userUrl}
-                target="_blank"
-              >
-                View {this.props.username}'s profile
-              </a>
-              <a href={this.state.screenshot.fullSizeUrl} target="_blank"
-                className={s.fullSizeLink}
-              >
-                View full size
-              </a>
             </div>
           </div>
         ) : (

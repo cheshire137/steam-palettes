@@ -9,9 +9,13 @@
   width: 100%;
 }
 
-.screenshotLink, .info {
+.left, .right {
   display: table-cell;
   vertical-align: top;
+}
+
+.left {
+  text-align: center;
 }
 
 .screenshotLink {
@@ -28,9 +32,9 @@
   margin: 0 0 20px;
 }
 
-.info {
+.right {
   padding-left: 40px;
-  max-width: 450px;
+  max-width: 600px;
 }
 
 .colorsMessage {
@@ -58,18 +62,18 @@
 }
 
 .authorLink, .fullSizeLink {
-  display: block;
-  text-align: center;
-}
-
-.authorLink {
   margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid $border-color;
+  display: inline-block;
 }
 
 .fullSizeLink {
-  margin-top: 5px;
+  &:after {
+    color: $text-color;
+    content: "\a0\b7\a0";
+  }
+}
+
+.authorLink {
 }
 
 .message {
