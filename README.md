@@ -2,6 +2,8 @@
 
 This is the successor to [steamy-screenshots](https://github.com/cheshire137/steamy-screenshots), built as a React web app.
 
+![Screenshots list](https://raw.githubusercontent.com/cheshire137/steam-palettes/master/steam-palettes-screenshot-list.png)
+
 ## How to Run
 
     cp src/env.sh.example src/env.sh
