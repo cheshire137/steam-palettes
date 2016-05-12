@@ -11,10 +11,16 @@
 
   dt {
     font-weight: 400;
+    line-height: 26px;
   }
 
   dd {
     margin-left: 0;
+  }
+
+  dt + dd + dt,
+  dt + dd + dt + dd {
+    margin-top: 5px;
   }
 }
 
