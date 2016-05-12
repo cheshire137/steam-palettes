@@ -83,11 +83,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(73);
+  var _componentsHtml = __webpack_require__(77);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(74);
+  var _assets = __webpack_require__(78);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -101,15 +101,15 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(75);
+  var _actionsScreenshotsScraper = __webpack_require__(79);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(78);
+  var _actionsScreenshotScraper = __webpack_require__(82);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(79);
+  var _actionsImageAnalyzer = __webpack_require__(83);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
@@ -2946,6 +2946,10 @@ module.exports =
   	"development": {
   		"serverUri": "http://localhost:5000",
   		"clientUri": "http://localhost:3000"
+  	},
+  	"production": {
+  		"serverUri": "https://steam-palettes.herokuapp.com",
+  		"clientUri": "https://steam-palettes.herokuapp.com"
   	}
   };
 
@@ -4725,11 +4729,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Swatch = __webpack_require__(83);
+  var _Swatch = __webpack_require__(73);
   
   var _Swatch2 = _interopRequireDefault(_Swatch);
   
-  var _tinycolor2 = __webpack_require__(82);
+  var _tinycolor2 = __webpack_require__(76);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
@@ -4891,6 +4895,143 @@ module.exports =
 /* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _SwatchScss = __webpack_require__(74);
+  
+  var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _tinycolor2 = __webpack_require__(76);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var Swatch = (function (_Component) {
+    _inherits(Swatch, _Component);
+  
+    _createClass(Swatch, null, [{
+      key: 'propTypes',
+      value: {
+        hexColor: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function Swatch(props, context) {
+      _classCallCheck(this, _Swatch);
+  
+      _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(Swatch, [{
+      key: 'render',
+      value: function render() {
+        var swatchStyle = { backgroundColor: this.props.hexColor };
+        var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
+        var nameStyle = {
+          color: isDark ? '#efefef' : '#000'
+        };
+        return _react2['default'].createElement(
+          'div',
+          { className: _SwatchScss2['default'].container, style: swatchStyle },
+          _react2['default'].createElement(
+            'span',
+            { className: _SwatchScss2['default'].name, style: nameStyle },
+            this.props.hexColor
+          )
+        );
+      }
+    }]);
+  
+    var _Swatch = Swatch;
+    Swatch = (0, _decoratorsWithStyles2['default'])(_SwatchScss2['default'])(Swatch) || Swatch;
+    return Swatch;
+  })(_react.Component);
+  
+  exports['default'] = Swatch;
+  module.exports = exports['default'];
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(75);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.Swatch_name_3UP {\n  font-family: 'Ocr A Extended','Courier New',monospace;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,YAAY;CACb;;AAED;EACE,sDAA6B;CAC9B","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.name {\n  font-family: $monospace-font;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "Swatch_container_2L5",
+  	"name": "Swatch_name_3UP"
+  };
+
+/***/ },
+/* 76 */
+/***/ function(module, exports) {
+
+  module.exports = require("tinycolor2");
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
   /**
    * React Starter Kit (https://www.reactstarterkit.com/)
    *
@@ -4994,13 +5135,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 74 */
+/* 78 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 75 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5019,11 +5160,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(76);
+  var _jsdom = __webpack_require__(80);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(77);
+  var _bluebird = __webpack_require__(81);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -5109,19 +5250,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 76 */
+/* 80 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 77 */
+/* 81 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 78 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5140,11 +5281,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(76);
+  var _jsdom = __webpack_require__(80);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(77);
+  var _bluebird = __webpack_require__(81);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -5304,7 +5445,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 79 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5319,19 +5460,19 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(77);
+  var _bluebird = __webpack_require__(81);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
-  var _http = __webpack_require__(80);
+  var _http = __webpack_require__(84);
   
   var _http2 = _interopRequireDefault(_http);
   
-  var _canvas = __webpack_require__(81);
+  var _canvas = __webpack_require__(85);
   
   var _canvas2 = _interopRequireDefault(_canvas);
   
-  var _tinycolor2 = __webpack_require__(82);
+  var _tinycolor2 = __webpack_require__(76);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
@@ -5579,153 +5720,16 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 80 */
+/* 84 */
 /***/ function(module, exports) {
 
   module.exports = require("http");
 
 /***/ },
-/* 81 */
+/* 85 */
 /***/ function(module, exports) {
 
   module.exports = require("canvas");
-
-/***/ },
-/* 82 */
-/***/ function(module, exports) {
-
-  module.exports = require("tinycolor2");
-
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _SwatchScss = __webpack_require__(84);
-  
-  var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _tinycolor2 = __webpack_require__(82);
-  
-  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
-  
-  var Swatch = (function (_Component) {
-    _inherits(Swatch, _Component);
-  
-    _createClass(Swatch, null, [{
-      key: 'propTypes',
-      value: {
-        hexColor: _react.PropTypes.string.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function Swatch(props, context) {
-      _classCallCheck(this, _Swatch);
-  
-      _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
-    }
-  
-    _createClass(Swatch, [{
-      key: 'render',
-      value: function render() {
-        var swatchStyle = { backgroundColor: this.props.hexColor };
-        var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
-        var nameStyle = {
-          color: isDark ? '#efefef' : '#000'
-        };
-        return _react2['default'].createElement(
-          'div',
-          { className: _SwatchScss2['default'].container, style: swatchStyle },
-          _react2['default'].createElement(
-            'span',
-            { className: _SwatchScss2['default'].name, style: nameStyle },
-            this.props.hexColor
-          )
-        );
-      }
-    }]);
-  
-    var _Swatch = Swatch;
-    Swatch = (0, _decoratorsWithStyles2['default'])(_SwatchScss2['default'])(Swatch) || Swatch;
-    return Swatch;
-  })(_react.Component);
-  
-  exports['default'] = Swatch;
-  module.exports = exports['default'];
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(85);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.Swatch_name_3UP {\n  font-family: 'Ocr A Extended','Courier New',monospace;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,WAAW;EACX,mBAAmB;EACnB,gBAAgB;EAChB,YAAY;CACb;;AAED;EACE,sDAA6B;CAC9B","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: 5em;\n  text-align: center;\n  font-size: 15px;\n  margin: 2px;\n}\n\n.name {\n  font-family: $monospace-font;\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "Swatch_container_2L5",
-  	"name": "Swatch_name_3UP"
-  };
 
 /***/ }
 /******/ ]);
