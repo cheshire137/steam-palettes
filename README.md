@@ -23,6 +23,7 @@ Visit [localhost:3000](http://localhost:3000/) to view the app. The server runs 
 1. `heroku buildpacks:add heroku/nodejs`
 1. `./deploy.sh`
 1. `heroku ps:scale web=1`
+1. `heroku config:set STEAM_API_KEY="your Steam Web API Key"`
 
 ## Thanks
 
