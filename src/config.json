@@ -2,5 +2,9 @@
   "development": {
     "serverUri": "http://localhost:5000",
     "clientUri": "http://localhost:3000"
+  },
+  "production": {
+    "serverUri": "https://steam-palettes.herokuapp.com",
+    "clientUri": "https://steam-palettes.herokuapp.com"
   }
 }
