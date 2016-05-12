@@ -23,8 +23,8 @@ class ScreenshotsList extends Component {
     }
     return (
       <ul className={s.screenshots}>
-        <li className={s.intro}>
-          {message}
+        <li>
+          <h3 className={s.intro}>{message}</h3>
         </li>
         {this.props.screenshots.map((screenshot) => {
           return (

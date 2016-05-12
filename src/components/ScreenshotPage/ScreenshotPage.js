@@ -51,7 +51,6 @@ class ScreenshotPage extends Component {
   }
 
   onColorsLoaded(colors) {
-    console.log('colors', colors);
     this.setState({ colors });
   }
 
@@ -97,6 +96,7 @@ class ScreenshotPage extends Component {
               ) : (
                 <p className={s.colorsMessage}>Loading colors...</p>
               )}
+              <h3 className={s.metadataTitle}>Metadata</h3>
               <dl className={s.metadata}>
                 <dt>Date</dt>
                 <dd>{date}</dd>
@@ -111,6 +111,11 @@ class ScreenshotPage extends Component {
                 target="_blank"
               >
                 View {this.props.username}'s profile
+              </a>
+              <a href={this.state.screenshot.fullSizeUrl} target="_blank"
+                className={s.fullSizeLink}
+              >
+                View full size
               </a>
             </div>
           </div>

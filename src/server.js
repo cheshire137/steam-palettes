@@ -107,8 +107,8 @@ server.get('/api/colors', async (req, res) => {
     return;
   }
   const analyzer = new ImageAnalyzer();
-  analyzer.getColors(imageUrl).then((bg, primary, secondary, detail) => {
-    res.json({ bg, primary, secondary, detail });
+  analyzer.getColors(imageUrl).then((colors) => {
+    res.json(colors);
   }).fail((error) => {
     res.status(400).json({ error });
   });

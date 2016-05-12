@@ -19,6 +19,7 @@ class Palette extends Component {
   render() {
     return (
       <div className={s.container}>
+        <h3 className={s.title}>Palette</h3>
         <dl className={s.colors}>
           <dt>Background</dt>
           <dd>

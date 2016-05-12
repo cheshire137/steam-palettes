@@ -83,11 +83,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(70);
+  var _componentsHtml = __webpack_require__(73);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(71);
+  var _assets = __webpack_require__(74);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -101,15 +101,15 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(72);
+  var _actionsScreenshotsScraper = __webpack_require__(75);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(75);
+  var _actionsScreenshotScraper = __webpack_require__(78);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(76);
+  var _actionsImageAnalyzer = __webpack_require__(79);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
@@ -284,8 +284,8 @@ module.exports =
         case 4:
           analyzer = new _actionsImageAnalyzer2['default']();
   
-          analyzer.getColors(imageUrl).then(function (bg, primary, secondary, detail) {
-            res.json({ bg: bg, primary: primary, secondary: secondary, detail: detail });
+          analyzer.getColors(imageUrl).then(function (colors) {
+            res.json(colors);
           }).fail(function (error) {
             res.status(400).json({ error: error });
           });
@@ -1534,7 +1534,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio, canvas, progress, video {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden], template {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active, a:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb, strong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton, input, optgroup, select, textarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton, select {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled], html input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd, th {\n  padding: 0;\n}  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: #fff;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: #8B8086;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: #8B8086;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: 'Arimo','Segoe UI','HelveticaNeue-Light',sans-serif;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: #222314;\r\n  color: #F5EFEF;\r\n}\r\n\r\nbody, .App_container_3x2 {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  min-height: 100vh;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n\r\n.App_main_11s {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: 1000px;\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1 0 auto;\r\n      -ms-flex: 1 0 auto;\r\n          flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio, canvas, iframe, img, svg, video {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.App_browserupgrade_1t4 {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *, *:before, *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    -webkit-box-shadow: none !important;\r\n            box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a, a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after, a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre, blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr, img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p, h2, h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2, h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: #8B8086;\r\n  color: #fff;\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], select {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s\r\n}\r\n\r\ninput[type=\"text\"]:disabled, input[type=\"search\"]:disabled, select:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\ninput[type=\"text\"]:focus, input[type=\"search\"]:focus, select:focus {\n  border-color: #F5EFEF;\n  outline: 0;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s\r\n}\r\n\r\nbutton:focus, button:hover {\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled:focus, button:disabled:hover {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n", "", {"version":3,"sources":["/./node_modules/normalize.css/normalize.css","/./src/components/variables.scss","/./src/components/App/App.scss"],"names":[],"mappings":"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","file":"App.scss","sourcesContent":["/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden],\ntemplate {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active,\na:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb,\nstrong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton,\nhtml input[type=\"button\"], /* 1 */\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd,\nth {\n  padding: 0;\n}\n","$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../../../node_modules/normalize.css/normalize.css';\r\n@import '../variables.scss';\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: $link-color;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: $hover-link-color;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: $header-color;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: $font-family-base;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: $body-bg;\r\n  color: $text-color;\r\n}\r\n\r\nbody, .container {\r\n  display: flex;\r\n  min-height: 100vh;\r\n  flex-direction: column;\r\n}\r\n\r\n.main {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: $max-content-width;\r\n  flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio,\r\ncanvas,\r\niframe,\r\nimg,\r\nsvg,\r\nvideo {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.browserupgrade {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *,\r\n  *:before,\r\n  *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a,\r\n  a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after,\r\n  a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre,\r\n  blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr,\r\n  img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p,\r\n  h2,\r\n  h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2,\r\n  h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: $input-bg;\r\n  color: $input-text-color;\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"search\"],\r\nselect {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:focus {\r\n    border-color: #F5EFEF;\r\n    outline: 0;\r\n    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n  }\r\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s;\r\n\r\n  &:focus, &:hover {\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n\r\n    &:focus, &:hover {\r\n      color: #ccc;\r\n      background-color: #7C7177;\r\n    }\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio, canvas, progress, video {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden], template {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active, a:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb, strong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton, input, optgroup, select, textarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton, select {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled], html input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd, th {\n  padding: 0;\n}  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: #fff;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: #8B8086;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: #9E969B;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: 'Arimo','Segoe UI','HelveticaNeue-Light',sans-serif;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: #222314;\r\n  color: #8B8086;\r\n}\r\n\r\nbody, .App_container_3x2 {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  min-height: 100vh;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n\r\n.App_main_11s {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: 1000px;\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1 0 auto;\r\n      -ms-flex: 1 0 auto;\r\n          flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio, canvas, iframe, img, svg, video {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.App_browserupgrade_1t4 {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *, *:before, *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    -webkit-box-shadow: none !important;\r\n            box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a, a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after, a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre, blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr, img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p, h2, h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2, h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: #8B8086;\r\n  color: #fff;\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], select {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s\r\n}\r\n\r\ninput[type=\"text\"]:disabled, input[type=\"search\"]:disabled, select:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\ninput[type=\"text\"]:focus, input[type=\"search\"]:focus, select:focus {\n  border-color: #F5EFEF;\n  outline: 0;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s\r\n}\r\n\r\nbutton:focus, button:hover {\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled:focus, button:disabled:hover {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n", "", {"version":3,"sources":["/./node_modules/normalize.css/normalize.css","/./src/components/variables.scss","/./src/components/App/App.scss"],"names":[],"mappings":"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","file":"App.scss","sourcesContent":["/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden],\ntemplate {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active,\na:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb,\nstrong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton,\nhtml input[type=\"button\"], /* 1 */\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd,\nth {\n  padding: 0;\n}\n","$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../../../node_modules/normalize.css/normalize.css';\r\n@import '../variables.scss';\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: $link-color;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: $hover-link-color;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: $header-color;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: $font-family-base;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: $body-bg;\r\n  color: $text-color;\r\n}\r\n\r\nbody, .container {\r\n  display: flex;\r\n  min-height: 100vh;\r\n  flex-direction: column;\r\n}\r\n\r\n.main {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: $max-content-width;\r\n  flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio,\r\ncanvas,\r\niframe,\r\nimg,\r\nsvg,\r\nvideo {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.browserupgrade {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *,\r\n  *:before,\r\n  *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a,\r\n  a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after,\r\n  a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre,\r\n  blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr,\r\n  img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p,\r\n  h2,\r\n  h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2,\r\n  h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: $input-bg;\r\n  color: $input-text-color;\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"search\"],\r\nselect {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:focus {\r\n    border-color: #F5EFEF;\r\n    outline: 0;\r\n    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n  }\r\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s;\r\n\r\n  &:focus, &:hover {\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n\r\n    &:focus, &:hover {\r\n      color: #ccc;\r\n      background-color: #7C7177;\r\n    }\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -1873,7 +1873,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2457,7 +2457,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3186,7 +3186,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3506,7 +3506,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3716,7 +3716,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSummary_container_5SQ {\n  margin-top: 20px;\n}\n\n.PlayerSummary_card_2HH {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: 2px;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.PlayerSummary_avatarContainer_2bw, .PlayerSummary_main_3sg {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.PlayerSummary_avatarContainer_2bw {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.PlayerSummary_main_3sg {\n}\n\n.PlayerSummary_avatar_2ei {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: 2px;\n}\n\n.PlayerSummary_name_1bM {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.PlayerSummary_screenName_1Sz {\n  opacity: 0.75;\n  font-size: 14px\n}\n\n.PlayerSummary_screenName_1Sz:before {\n  content: \"\\A0(\";\n}\n\n.PlayerSummary_screenName_1Sz:after {\n  content: \")\";\n}\n\n.PlayerSummary_createdWrapper_go2, .PlayerSummary_logoffWrapper_3fO {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.PlayerSummary_createdWrapper_go2 {\n}\n\n.PlayerSummary_created_36z, .PlayerSummary_logoff_1zP {\n}\n\n.PlayerSummary_created_36z:before, .PlayerSummary_logoff_1zP:before {\n  content: \"\\A0\";\n}\n\n.PlayerSummary_created_36z {\n\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO {\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.PlayerSummary_logoff_1zP {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSummary/PlayerSummary.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,0BAA0B;EAC1B,cAAc;EACd,mBAA8B;EAC9B,eAAe;EACf,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB;EACnB,0BAA0B;CAC3B;;AAED;EAEE,oBAAoB;EACpB,uBAAuB;CACxB;;AAED;EACE,YAAY;EACZ,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,YAAY;EACZ,0BAA0B;EAC1B,mBAA8B;CAC/B;;AAED;EACE,eAAe;EACf,UAAU;CACX;;AAED;EACE,cAAc;EACd,eAAgB;CASjB;;AAPC;EACE,gBAAgB;CACjB;;AAED;EACE,aAAa;CACd;;AAGH;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;CACC;;AAED;CAIC;;AAHC;EACE,eAAe;CAChB;;AAGH;;CAEC;;AAED;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAGH;;CAEC","file":"PlayerSummary.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-top: 20px;\n}\n\n.card {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: $border-radius;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.avatarContainer,\n.main {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.avatarContainer {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.main {\n}\n\n.avatar {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: $border-radius;\n}\n\n.name {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.screenName {\n  opacity: 0.75;\n  font-size: 14px;\n\n  &:before {\n    content: \"\\a0(\";\n  }\n\n  &:after {\n    content: \")\";\n  }\n}\n\n.createdWrapper, .logoffWrapper {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.createdWrapper {\n}\n\n.created, .logoff {\n  &:before {\n    content: \"\\a0\";\n  }\n}\n\n.created {\n\n}\n\n.createdWrapper + .logoffWrapper {\n  &:before {\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.logoff {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSummary_container_5SQ {\n  margin-top: 20px;\n}\n\n.PlayerSummary_card_2HH {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: 2px;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.PlayerSummary_avatarContainer_2bw, .PlayerSummary_main_3sg {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.PlayerSummary_avatarContainer_2bw {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.PlayerSummary_main_3sg {\n}\n\n.PlayerSummary_avatar_2ei {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: 2px;\n}\n\n.PlayerSummary_name_1bM {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.PlayerSummary_screenName_1Sz {\n  opacity: 0.75;\n  font-size: 14px\n}\n\n.PlayerSummary_screenName_1Sz:before {\n  content: \"\\A0(\";\n}\n\n.PlayerSummary_screenName_1Sz:after {\n  content: \")\";\n}\n\n.PlayerSummary_createdWrapper_go2, .PlayerSummary_logoffWrapper_3fO {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.PlayerSummary_createdWrapper_go2 {\n}\n\n.PlayerSummary_created_36z, .PlayerSummary_logoff_1zP {\n}\n\n.PlayerSummary_created_36z:before, .PlayerSummary_logoff_1zP:before {\n  content: \"\\A0\";\n}\n\n.PlayerSummary_created_36z {\n\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO {\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.PlayerSummary_logoff_1zP {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSummary/PlayerSummary.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,0BAA0B;EAC1B,cAAc;EACd,mBAA8B;EAC9B,eAAe;EACf,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB;EACnB,0BAA0B;CAC3B;;AAED;EAEE,oBAAoB;EACpB,uBAAuB;CACxB;;AAED;EACE,YAAY;EACZ,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,YAAY;EACZ,0BAA0B;EAC1B,mBAA8B;CAC/B;;AAED;EACE,eAAe;EACf,UAAU;CACX;;AAED;EACE,cAAc;EACd,eAAgB;CASjB;;AAPC;EACE,gBAAgB;CACjB;;AAED;EACE,aAAa;CACd;;AAGH;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;CACC;;AAED;CAIC;;AAHC;EACE,eAAe;CAChB;;AAGH;;CAEC;;AAED;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAGH;;CAEC","file":"PlayerSummary.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-top: 20px;\n}\n\n.card {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: $border-radius;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.avatarContainer,\n.main {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.avatarContainer {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.main {\n}\n\n.avatar {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: $border-radius;\n}\n\n.name {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.screenName {\n  opacity: 0.75;\n  font-size: 14px;\n\n  &:before {\n    content: \"\\a0(\";\n  }\n\n  &:after {\n    content: \")\";\n  }\n}\n\n.createdWrapper, .logoffWrapper {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.createdWrapper {\n}\n\n.created, .logoff {\n  &:before {\n    content: \"\\a0\";\n  }\n}\n\n.created {\n\n}\n\n.createdWrapper + .logoffWrapper {\n  &:before {\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.logoff {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3893,7 +3893,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #8B8086;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4042,7 +4042,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACF/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACF/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4124,8 +4124,12 @@ module.exports =
           { className: _ScreenshotsListScss2['default'].screenshots },
           _react2['default'].createElement(
             'li',
-            { className: _ScreenshotsListScss2['default'].intro },
-            message
+            null,
+            _react2['default'].createElement(
+              'h3',
+              { className: _ScreenshotsListScss2['default'].intro },
+              message
+            )
           ),
           this.props.screenshots.map(function (screenshot) {
             return _react2['default'].createElement(_ScreenshotListItemScreenshotListItem2['default'], _extends({ key: screenshot.url }, screenshot, {
@@ -4186,7 +4190,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  margin-left: 0;\n}\n\n.ScreenshotsList_intro_3mD {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: #8B8086;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,iBAAiB;EACjB,eAAe;CAChB;;AAED;EACE,oBAAoB;EACpB,iBAAiB;EACjB,eAAqB;CACtB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  margin-left: 0;\n}\n\n.intro {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  margin-left: 0;\n}\n\n.ScreenshotsList_intro_3mD {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,iBAAiB;EACjB,eAAe;CAChB;;AAED;EACE,oBAAoB;EACpB,iBAAiB;EACjB,eAAqB;CACtB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  margin-left: 0;\n}\n\n.intro {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4335,7 +4339,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotListItem_screenshot_3nm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotListItem/ScreenshotListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC","file":"ScreenshotListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshot {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotListItem_screenshot_3nm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotListItem/ScreenshotListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC","file":"ScreenshotListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.screenshot {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4386,7 +4390,7 @@ module.exports =
   
   var _apiColors2 = _interopRequireDefault(_apiColors);
   
-  var _Palette = __webpack_require__(79);
+  var _Palette = __webpack_require__(70);
   
   var _Palette2 = _interopRequireDefault(_Palette);
   
@@ -4448,7 +4452,6 @@ module.exports =
     }, {
       key: 'onColorsLoaded',
       value: function onColorsLoaded(colors) {
-        console.log('colors', colors);
         this.setState({ colors: colors });
       }
     }, {
@@ -4504,6 +4507,11 @@ module.exports =
                 'Loading colors...'
               ),
               _react2['default'].createElement(
+                'h3',
+                { className: _ScreenshotPageScss2['default'].metadataTitle },
+                'Metadata'
+              ),
+              _react2['default'].createElement(
                 'dl',
                 { className: _ScreenshotPageScss2['default'].metadata },
                 _react2['default'].createElement(
@@ -4547,6 +4555,13 @@ module.exports =
                 'View ',
                 this.props.username,
                 '\'s profile'
+              ),
+              _react2['default'].createElement(
+                'a',
+                { href: this.state.screenshot.fullSizeUrl, target: '_blank',
+                  className: _ScreenshotPageScss2['default'].fullSizeLink
+                },
+                'View full size'
               )
             )
           ) : _react2['default'].createElement(
@@ -4607,7 +4622,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_screenshotLink_3rs, .ScreenshotPage_info_UVa {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_info_UVa {\n  padding-left: 40px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n  color: #8B8086;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 700;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  display: block;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CAStB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;CAChB;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.screenshotLink, .info {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.info {\n  padding-left: 40px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n  color: $header-color;\n\n  dt {\n    font-weight: 700;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink {\n  display: block;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_screenshotLink_3rs, .ScreenshotPage_info_UVa {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_info_UVa {\n  padding-left: 40px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadataTitle_3d8 {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 400;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o {\n  display: block;\n  text-align: center;\n}\n\n.ScreenshotPage_authorLink_2ME {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid #574E4F;\n}\n\n.ScreenshotPage_fullSizeLink_26o {\n  margin-top: 5px;\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;CASrB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,kBAAkB;EAClB,8BAAoC;CACrC;;AAED;EACE,gBAAgB;CACjB;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.screenshotLink, .info {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.info {\n  padding-left: 40px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadataTitle {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n\n  dt {\n    font-weight: 400;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink, .fullSizeLink {\n  display: block;\n  text-align: center;\n}\n\n.authorLink {\n  margin-top: 20px;\n  padding-top: 20px;\n  border-top: 1px solid $border-color;\n}\n\n.fullSizeLink {\n  margin-top: 5px;\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4618,8 +4633,10 @@ module.exports =
   	"screenshot": "ScreenshotPage_screenshot_1Ek",
   	"description": "ScreenshotPage_description_3-p",
   	"colorsMessage": "ScreenshotPage_colorsMessage_2MN",
+  	"metadataTitle": "ScreenshotPage_metadataTitle_3d8",
   	"metadata": "ScreenshotPage_metadata_1CM",
   	"authorLink": "ScreenshotPage_authorLink_2ME",
+  	"fullSizeLink": "ScreenshotPage_fullSizeLink_26o",
   	"message": "ScreenshotPage_message_1kw"
   };
 
@@ -4688,6 +4705,176 @@ module.exports =
 /* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _PaletteScss = __webpack_require__(71);
+  
+  var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var Palette = (function (_Component) {
+    _inherits(Palette, _Component);
+  
+    _createClass(Palette, null, [{
+      key: 'propTypes',
+      value: {
+        bg: _react.PropTypes.string,
+        primary: _react.PropTypes.string,
+        secondary: _react.PropTypes.string,
+        detail: _react.PropTypes.string
+      },
+      enumerable: true
+    }]);
+  
+    function Palette(props, context) {
+      _classCallCheck(this, _Palette);
+  
+      _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(Palette, [{
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'div',
+          { className: _PaletteScss2['default'].container },
+          _react2['default'].createElement(
+            'h3',
+            { className: _PaletteScss2['default'].title },
+            'Palette'
+          ),
+          _react2['default'].createElement(
+            'dl',
+            { className: _PaletteScss2['default'].colors },
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Background'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.bg
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Primary'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.primary
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Secondary'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.secondary
+            ),
+            _react2['default'].createElement(
+              'dt',
+              null,
+              'Detail'
+            ),
+            _react2['default'].createElement(
+              'dd',
+              null,
+              this.props.detail
+            )
+          )
+        );
+      }
+    }]);
+  
+    var _Palette = Palette;
+    Palette = (0, _decoratorsWithStyles2['default'])(_PaletteScss2['default'])(Palette) || Palette;
+    return Palette;
+  })(_react.Component);
+  
+  exports['default'] = Palette;
+  module.exports = exports['default'];
+
+/***/ },
+/* 71 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(72);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 72 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  margin: 0;\n  border-bottom: 1px solid #574E4F;\n  padding-bottom: 20px;\n}\n\n.Palette_colors_jGR dt {\n  font-weight: 400;\n}\n\n.Palette_colors_jGR dd {\n  margin-left: 0;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n@media (min-width: 768px) {\n  .Palette_colors_jGR dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .Palette_colors_jGR dt:after {\n    content: \":\";\n  }\n  .Palette_colors_jGR dd {\n    margin-left: 7em;\n  }\n  .Palette_colors_jGR:before, .Palette_colors_jGR:after {\n    display: table;\n    content: \"\";\n  }\n  .Palette_colors_jGR:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,oBAAoB;CACrB;;AAED;EACE,UAAU;EACV,iCAAuC;EACvC,qBAAqB;CAStB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  margin: 0;\n  border-bottom: 1px solid $border-color;\n  padding-bottom: 20px;\n\n  dt {\n    font-weight: 400;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n@media (min-width: 768px) {\n  .colors {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "Palette_container_1Ha",
+  	"colors": "Palette_colors_jGR",
+  	"title": "Palette_title_2zJ"
+  };
+
+/***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
   /**
    * React Starter Kit (https://www.reactstarterkit.com/)
    *
@@ -4753,7 +4940,7 @@ module.exports =
             _react2['default'].createElement('meta', { name: 'description', content: this.props.description }),
             _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
             _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
-            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo', rel: 'stylesheet', type: 'text/css' }),
+            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo:400,700', rel: 'stylesheet', type: 'text/css' }),
             _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
           ),
           _react2['default'].createElement(
@@ -4791,13 +4978,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 74 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 72 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4816,11 +5003,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(73);
+  var _jsdom = __webpack_require__(76);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(74);
+  var _bluebird = __webpack_require__(77);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -4906,19 +5093,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 73 */
+/* 76 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 74 */
+/* 77 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 75 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4937,11 +5124,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(73);
+  var _jsdom = __webpack_require__(76);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(74);
+  var _bluebird = __webpack_require__(77);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -5103,7 +5290,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 76 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5118,17 +5305,21 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(74);
+  var _bluebird = __webpack_require__(77);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
-  var _http = __webpack_require__(77);
+  var _http = __webpack_require__(80);
   
   var _http2 = _interopRequireDefault(_http);
   
-  var _canvas = __webpack_require__(78);
+  var _canvas = __webpack_require__(81);
   
   var _canvas2 = _interopRequireDefault(_canvas);
+  
+  var _tinycolor2 = __webpack_require__(82);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
   // Converted from
   // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
@@ -5149,26 +5340,30 @@ module.exports =
         var _this = this;
   
         return new _bluebird2['default'](function (resolve) {
-          _http2['default'].get(imageUrl, function (res) {
-            var data = new Buffer(parseInt(res.headers['content-length'], 10));
-            var pos = 0;
-            res.on('data', function (chunk) {
-              chunk.copy(data, pos);
-              pos += chunk.length;
-            });
-            res.on('end', function () {
-              var img = new _canvas2['default'].Image();
-              img.src = data;
-              var cvs = new _canvas2['default'](img.width, img.height);
-              var ctx = cvs.getContext('2d');
-              ctx.drawImage(img, 0, 0, img.width, img.height);
-              _this.bgcolor = _this.findEdgeColor(cvs, ctx);
-              return _this.findTextColors(cvs, ctx, function () {
-                resolve(_this.bgcolor, _this.primaryColor, _this.secondaryColor, _this.detailColor);
-              });
-            });
-          });
+          _http2['default'].get(imageUrl, _this.handleGet.bind(_this, resolve));
         });
+      }
+    }, {
+      key: 'handleGet',
+      value: function handleGet(resolve, res) {
+        var data = new Buffer(parseInt(res.headers['content-length'], 10));
+        var pos = 0;
+        res.on('data', function (chunk) {
+          chunk.copy(data, pos);
+          pos += chunk.length;
+        });
+        res.on('end', this.onImageLoaded.bind(this, resolve, data));
+      }
+    }, {
+      key: 'onImageLoaded',
+      value: function onImageLoaded(resolve, data) {
+        var img = new _canvas2['default'].Image();
+        img.src = data;
+        var cvs = new _canvas2['default'](img.width, img.height);
+        var ctx = cvs.getContext('2d');
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        this.bgcolor = this.findEdgeColor(cvs, ctx);
+        this.findTextColors(cvs, ctx, resolve);
       }
     }, {
       key: 'findEdgeColor',
@@ -5213,7 +5408,7 @@ module.exports =
       }
     }, {
       key: 'findTextColors',
-      value: function findTextColors(cvs, ctx, cb) {
+      value: function findTextColors(cvs, ctx, resolve) {
         var colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
         var findDarkTextColor = !this.isDarkColor(this.bgcolor);
         var colorCount = {};
@@ -5271,7 +5466,12 @@ module.exports =
         if (!this.detailColor) {
           this.detailColor = defaultColor;
         }
-        return cb();
+        resolve({
+          bg: (0, _tinycolor22['default'])('rgb(' + this.bgcolor + ')').toHexString(),
+          primary: (0, _tinycolor22['default'])('rgb(' + this.primaryColor + ')').toHexString(),
+          secondary: (0, _tinycolor22['default'])('rgb(' + this.secondaryColor + ')').toHexString(),
+          detail: (0, _tinycolor22['default'])('rgb(' + this.detailColor + ')').toHexString()
+        });
       }
     }, {
       key: 'isBlackOrWhite',
@@ -5355,180 +5555,22 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 77 */
+/* 80 */
 /***/ function(module, exports) {
 
   module.exports = require("http");
 
 /***/ },
-/* 78 */
+/* 81 */
 /***/ function(module, exports) {
 
   module.exports = require("canvas");
 
 /***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
+/* 82 */
+/***/ function(module, exports) {
 
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _PaletteScss = __webpack_require__(80);
-  
-  var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var Palette = (function (_Component) {
-    _inherits(Palette, _Component);
-  
-    _createClass(Palette, null, [{
-      key: 'propTypes',
-      value: {
-        bg: _react.PropTypes.string,
-        primary: _react.PropTypes.string,
-        secondary: _react.PropTypes.string,
-        detail: _react.PropTypes.string
-      },
-      enumerable: true
-    }]);
-  
-    function Palette(props, context) {
-      _classCallCheck(this, _Palette);
-  
-      _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
-    }
-  
-    _createClass(Palette, [{
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'div',
-          { className: _PaletteScss2['default'].container },
-          _react2['default'].createElement(
-            'dl',
-            { className: _PaletteScss2['default'].colors },
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Background'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              this.props.bg
-            ),
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Primary'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              this.props.primary
-            ),
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Secondary'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              this.props.secondary
-            ),
-            _react2['default'].createElement(
-              'dt',
-              null,
-              'Detail'
-            ),
-            _react2['default'].createElement(
-              'dd',
-              null,
-              this.props.detail
-            )
-          )
-        );
-      }
-    }]);
-  
-    var _Palette = Palette;
-    Palette = (0, _decoratorsWithStyles2['default'])(_PaletteScss2['default'])(Palette) || Palette;
-    return Palette;
-  })(_react.Component);
-  
-  exports['default'] = Palette;
-  module.exports = exports['default'];
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(81);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  margin: 0;\n  color: #8B8086;\n}\n\n.Palette_colors_jGR dt {\n  font-weight: 700;\n}\n\n.Palette_colors_jGR dd {\n  margin-left: 0;\n}\n\n@media (min-width: 768px) {\n  .Palette_colors_jGR dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .Palette_colors_jGR dt:after {\n    content: \":\";\n  }\n  .Palette_colors_jGR dd {\n    margin-left: 7em;\n  }\n  .Palette_colors_jGR:before, .Palette_colors_jGR:after {\n    display: table;\n    content: \"\";\n  }\n  .Palette_colors_jGR:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,oBAAoB;CACrB;;AAED;EACE,UAAU;EACV,eAAqB;CAStB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  margin: 0;\n  color: $header-color;\n\n  dt {\n    font-weight: 700;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n@media (min-width: 768px) {\n  .colors {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "Palette_container_1Ha",
-  	"colors": "Palette_colors_jGR"
-  };
+  module.exports = require("tinycolor2");
 
 /***/ }
 /******/ ]);

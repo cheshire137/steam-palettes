@@ -21,6 +21,7 @@
 .screenshot {
   max-width: 100%;
   display: block;
+  border: 1px solid #000;
 }
 
 .description {
@@ -35,13 +36,19 @@
   margin-bottom: 20px;
 }
 
+.metadataTitle {
+  margin: 0 0 5px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
 .metadata {
   margin: 0 0 20px;
   white-space: nowrap;
-  color: $header-color;
 
   dt {
-    font-weight: 700;
+    font-weight: 400;
   }
 
   dd {
@@ -49,8 +56,19 @@
   }
 }
 
-.authorLink {
+.authorLink, .fullSizeLink {
   display: block;
+  text-align: center;
+}
+
+.authorLink {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid $border-color;
+}
+
+.fullSizeLink {
+  margin-top: 5px;
 }
 
 .message {

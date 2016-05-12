@@ -6,15 +6,23 @@
 
 .colors {
   margin: 0;
-  color: $header-color;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 20px;
 
   dt {
-    font-weight: 700;
+    font-weight: 400;
   }
 
   dd {
     margin-left: 0;
   }
+}
+
+.title {
+  margin: 0 0 5px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.05em;
 }
 
 @media (min-width: 768px) {
