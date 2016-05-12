@@ -5401,6 +5401,21 @@ module.exports =
         this.findTextColors(cvs, ctx, resolve);
       }
     }, {
+      key: 'getAboveThreshold',
+      value: function getAboveThreshold(hash, valueThreshold) {
+        var results = [];
+        for (var key in hash) {
+          if (hash.hasOwnProperty(key)) {
+            var value = hash[key];
+            if (value > valueThreshold) {
+              console.log(key + ': ' + value);
+              results.push([key, value]);
+            }
+          }
+        }
+        return results;
+      }
+    }, {
       key: 'findEdgeColor',
       value: function findEdgeColor(cvs, ctx) {
         var leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
@@ -5415,14 +5430,9 @@ module.exports =
           }
           colorCount[index]++;
         }
-        var sortedColorCount = [];
-        for (var color in colorCount) {
-          if (colorCount.hasOwnProperty(color)) {
-            var count = colorCount[color];
-            if (count > 2) {
-              sortedColorCount.push([color, count]);
-            }
-          }
+        var sortedColorCount = this.getAboveThreshold(colorCount, 2);
+        if (sortedColorCount.length < 1) {
+          sortedColorCount = this.getAboveThreshold(colorCount, 1);
         }
         sortedColorCount.sort(function (a, b) {
           return b[1] - a[1];

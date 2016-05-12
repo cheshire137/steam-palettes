@@ -39,6 +39,20 @@ class ImageAnalyzer {
     this.findTextColors(cvs, ctx, resolve);
   }
 
+  getAboveThreshold(hash, valueThreshold) {
+    const results = [];
+    for (const key in hash) {
+      if (hash.hasOwnProperty(key)) {
+        const value = hash[key];
+        if (value > valueThreshold) {
+          console.log(key + ': ' + value);
+          results.push([key, value]);
+        }
+      }
+    }
+    return results;
+  }
+
   findEdgeColor(cvs, ctx) {
     const leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
     const colorCount = {};
@@ -54,14 +68,9 @@ class ImageAnalyzer {
       }
       colorCount[index]++;
     }
-    const sortedColorCount = [];
-    for (const color in colorCount) {
-      if (colorCount.hasOwnProperty(color)) {
-        const count = colorCount[color];
-        if (count > 2) {
-          sortedColorCount.push([color, count]);
-        }
-      }
+    let sortedColorCount = this.getAboveThreshold(colorCount, 2);
+    if (sortedColorCount.length < 1) {
+      sortedColorCount = this.getAboveThreshold(colorCount, 1);
     }
     sortedColorCount.sort((a, b) => {
       return b[1] - a[1];
