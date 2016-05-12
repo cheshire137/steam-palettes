@@ -20,7 +20,6 @@ class Palette extends Component {
   render() {
     return (
       <div className={s.container}>
-        <h3 className={s.title}>Colors</h3>
         <ul className={s.colors}>
           <li>
             <ColorVariations hexColor={this.props.bg} />

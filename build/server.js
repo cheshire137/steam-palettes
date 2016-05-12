@@ -4765,11 +4765,6 @@ module.exports =
           'div',
           { className: _PaletteScss2['default'].container },
           _react2['default'].createElement(
-            'h3',
-            { className: _PaletteScss2['default'].title },
-            'Colors'
-          ),
-          _react2['default'].createElement(
             'ul',
             { className: _PaletteScss2['default'].colors },
             _react2['default'].createElement(
@@ -5863,6 +5858,10 @@ module.exports =
   
   var _Swatches2 = _interopRequireDefault(_Swatches);
   
+  var _Swatch = __webpack_require__(83);
+  
+  var _Swatch2 = _interopRequireDefault(_Swatch);
+  
   var ColorVariations = (function (_Component) {
     _inherits(ColorVariations, _Component);
   
@@ -5895,8 +5894,7 @@ module.exports =
           return c.toHexString();
         };
         var analogous = this.uniq(color.analogous().map(hexer));
-        var monochromatic = this.uniq(color.monochromatic().map(hexer));
-        var splitcomplement = this.uniq(color.splitcomplement().map(hexer));
+        var complement = color.complement().toHexString();
         return _react2['default'].createElement(
           'div',
           { className: _ColorVariationsScss2['default'].container },
@@ -5907,13 +5905,8 @@ module.exports =
           ),
           _react2['default'].createElement(
             'div',
-            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].monochromatic, _ColorVariationsScss2['default'].wrapper) },
-            _react2['default'].createElement(_Swatches2['default'], { name: 'monochromatic', hexColors: monochromatic })
-          ),
-          _react2['default'].createElement(
-            'div',
-            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].splitcomplement, _ColorVariationsScss2['default'].wrapper) },
-            _react2['default'].createElement(_Swatches2['default'], { name: 'splitcomplement', hexColors: splitcomplement })
+            { className: (0, _classnames2['default'])(_ColorVariationsScss2['default'].complement, _ColorVariationsScss2['default'].wrapper) },
+            _react2['default'].createElement(_Swatch2['default'], { hexColor: complement })
           )
         );
       }
