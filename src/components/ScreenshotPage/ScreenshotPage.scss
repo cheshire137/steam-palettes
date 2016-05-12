@@ -41,23 +41,20 @@
   margin-bottom: 20px;
 }
 
-.metadataTitle {
-  margin: 0 0 5px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 0.05em;
-}
-
 .metadata {
-  margin: 0 0 20px;
+  margin: 5px 0 0;
   white-space: nowrap;
+  padding-left: 0;
+  list-style: none;
 
-  dt {
-    font-weight: 400;
-  }
+  li {
+    display: inline-block;
 
-  dd {
-    margin-left: 0;
+    + li {
+      &:before {
+        content: "\a0\b7\a0";
+      }
+    }
   }
 }
 
@@ -78,35 +75,4 @@
 
 .message {
 
-}
-
-@media (min-width: 768px) {
-  .metadata {
-    &:before, &:after {
-      display: table;
-      content: "";
-    }
-
-    &:after {
-      clear: both;
-    }
-
-    dt {
-      float: left;
-      width: 6em;
-      overflow: hidden;
-      clear: left;
-      text-align: right;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      &:after {
-        content: ":";
-      }
-    }
-
-    dd {
-      margin-left: 7em;
-    }
-  }
 }

@@ -72,9 +72,7 @@ class ImageAnalyzer {
     if (sortedColorCount.length < 1) {
       sortedColorCount = this.getAboveThreshold(colorCount, 1);
     }
-    sortedColorCount.sort((a, b) => {
-      return b[1] - a[1];
-    });
+    sortedColorCount.sort((a, b) => b[1] - a[1]);
     let proposedEdgeColor = sortedColorCount[0];
     if (this.isBlackOrWhite(proposedEdgeColor[0])) {
       for (let _j = 0, _len = sortedColorCount.length; _j < _len; _j++) {

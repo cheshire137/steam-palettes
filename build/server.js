@@ -4523,6 +4523,27 @@ module.exports =
                 'View ',
                 this.props.username,
                 '\'s profile'
+              ),
+              _react2['default'].createElement(
+                'ul',
+                { className: _ScreenshotPageScss2['default'].metadata },
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  date
+                ),
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  this.state.screenshot.width,
+                  ' × ',
+                  this.state.screenshot.height
+                ),
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  this.state.screenshot.fileSize
+                )
               )
             ),
             _react2['default'].createElement(
@@ -4532,47 +4553,6 @@ module.exports =
                 'p',
                 { className: _ScreenshotPageScss2['default'].colorsMessage },
                 'Loading colors...'
-              ),
-              _react2['default'].createElement(
-                'h3',
-                { className: _ScreenshotPageScss2['default'].metadataTitle },
-                'Metadata'
-              ),
-              _react2['default'].createElement(
-                'dl',
-                { className: _ScreenshotPageScss2['default'].metadata },
-                _react2['default'].createElement(
-                  'dt',
-                  null,
-                  'Date'
-                ),
-                _react2['default'].createElement(
-                  'dd',
-                  null,
-                  date
-                ),
-                _react2['default'].createElement(
-                  'dt',
-                  null,
-                  'Dimensions'
-                ),
-                _react2['default'].createElement(
-                  'dd',
-                  null,
-                  this.state.screenshot.width,
-                  ' × ',
-                  this.state.screenshot.height
-                ),
-                _react2['default'].createElement(
-                  'dt',
-                  null,
-                  'File Size'
-                ),
-                _react2['default'].createElement(
-                  'dd',
-                  null,
-                  this.state.screenshot.fileSize
-                )
               )
             )
           ) : _react2['default'].createElement(
@@ -4633,7 +4613,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadataTitle_3d8 {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 0 0 20px;\n  white-space: nowrap;\n}\n\n.ScreenshotPage_metadata_1CM dt {\n  font-weight: 400;\n}\n\n.ScreenshotPage_metadata_1CM dd {\n  margin-left: 0;\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_metadata_1CM dt {\n    float: left;\n    width: 6em;\n    overflow: hidden;\n    clear: left;\n    text-align: right;\n    text-overflow: ellipsis;\n    white-space: nowrap\n  }\n  .ScreenshotPage_metadata_1CM dt:after {\n    content: \":\";\n  }\n  .ScreenshotPage_metadata_1CM dd {\n    margin-left: 7em;\n  }\n  .ScreenshotPage_metadata_1CM:before, .ScreenshotPage_metadata_1CM:after {\n    display: table;\n    content: \"\";\n  }\n  .ScreenshotPage_metadata_1CM:after {\n    clear: both;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;CASrB;;AAPC;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;CAChB;;AAGH;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EACE,eAAmB;EACnB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EAWI;IACE,YAAY;IACZ,WAAW;IACX,iBAAiB;IACjB,YAAY;IACZ,kBAAkB;IAClB,wBAAwB;IACxB,mBAAoB;GAKrB;EAHC;IACE,aAAa;GACd;EAGH;IACE,iBAAiB;GAClB;EAzBD;IACE,eAAe;IACf,YAAY;GACb;EAED;IACE,YAAY;GACb;CAoBJ","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadataTitle {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.metadata {\n  margin: 0 0 20px;\n  white-space: nowrap;\n\n  dt {\n    font-weight: 400;\n  }\n\n  dd {\n    margin-left: 0;\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .metadata {\n    &:before, &:after {\n      display: table;\n      content: \"\";\n    }\n\n    &:after {\n      clear: both;\n    }\n\n    dt {\n      float: left;\n      width: 6em;\n      overflow: hidden;\n      clear: left;\n      text-align: right;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      &:after {\n        content: \":\";\n      }\n    }\n\n    dd {\n      margin-left: 7em;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EACE,eAAmB;EACnB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4645,7 +4625,6 @@ module.exports =
   	"screenshot": "ScreenshotPage_screenshot_1Ek",
   	"description": "ScreenshotPage_description_3-p",
   	"colorsMessage": "ScreenshotPage_colorsMessage_2MN",
-  	"metadataTitle": "ScreenshotPage_metadataTitle_3d8",
   	"metadata": "ScreenshotPage_metadata_1CM",
   	"authorLink": "ScreenshotPage_authorLink_2ME",
   	"fullSizeLink": "ScreenshotPage_fullSizeLink_26o",

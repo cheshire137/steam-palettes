@@ -106,6 +106,13 @@ class ScreenshotPage extends Component {
               >
                 View {this.props.username}'s profile
               </a>
+              <ul className={s.metadata}>
+                <li>{date}</li>
+                <li>
+                  {this.state.screenshot.width} &times; {this.state.screenshot.height}
+                </li>
+                <li>{this.state.screenshot.fileSize}</li>
+              </ul>
             </div>
             <div className={s.right}>
               {areColorsLoaded ? (
@@ -113,17 +120,6 @@ class ScreenshotPage extends Component {
               ) : (
                 <p className={s.colorsMessage}>Loading colors...</p>
               )}
-              <h3 className={s.metadataTitle}>Metadata</h3>
-              <dl className={s.metadata}>
-                <dt>Date</dt>
-                <dd>{date}</dd>
-                <dt>Dimensions</dt>
-                <dd>
-                  {this.state.screenshot.width} &times; {this.state.screenshot.height}
-                </dd>
-                <dt>File Size</dt>
-                <dd>{this.state.screenshot.fileSize}</dd>
-              </dl>
             </div>
           </div>
         ) : (
