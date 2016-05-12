@@ -83,29 +83,29 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(62);
+  var _componentsHtml = __webpack_require__(68);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(63);
+  var _assets = __webpack_require__(69);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _config = __webpack_require__(44);
+  var _config = __webpack_require__(34);
   
-  var _configJson = __webpack_require__(45);
+  var _configJson = __webpack_require__(35);
   
   var _configJson2 = _interopRequireDefault(_configJson);
   
-  var _coreFetch = __webpack_require__(42);
+  var _coreFetch = __webpack_require__(32);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(64);
+  var _actionsScreenshotsScraper = __webpack_require__(70);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(67);
+  var _actionsScreenshotScraper = __webpack_require__(73);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
@@ -394,15 +394,15 @@ module.exports =
   
   var _componentsApp2 = _interopRequireDefault(_componentsApp);
   
-  var _componentsNotFoundPage = __webpack_require__(32);
+  var _componentsNotFoundPage = __webpack_require__(22);
   
   var _componentsNotFoundPage2 = _interopRequireDefault(_componentsNotFoundPage);
   
-  var _componentsErrorPage = __webpack_require__(35);
+  var _componentsErrorPage = __webpack_require__(25);
   
   var _componentsErrorPage2 = _interopRequireDefault(_componentsErrorPage);
   
-  var _componentsPlayerLookupPage = __webpack_require__(68);
+  var _componentsPlayerLookupPage = __webpack_require__(28);
   
   var _componentsPlayerLookupPage2 = _interopRequireDefault(_componentsPlayerLookupPage);
   
@@ -410,7 +410,7 @@ module.exports =
   
   var _componentsPlayerPage2 = _interopRequireDefault(_componentsPlayerPage);
   
-  var _componentsScreenshotPage = __webpack_require__(59);
+  var _componentsScreenshotPage = __webpack_require__(65);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -1374,7 +1374,7 @@ module.exports =
   
   var _AppScss2 = _interopRequireDefault(_AppScss);
   
-  var _Footer = __webpack_require__(29);
+  var _Footer = __webpack_require__(18);
   
   var _Footer2 = _interopRequireDefault(_Footer);
   
@@ -1757,100 +1757,44 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _HeaderScss = __webpack_require__(19);
+  var _FooterScss = __webpack_require__(19);
   
-  var _HeaderScss2 = _interopRequireDefault(_HeaderScss);
+  var _FooterScss2 = _interopRequireDefault(_FooterScss);
   
   var _decoratorsWithStyles = __webpack_require__(21);
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(22);
+  var Footer = (function (_Component) {
+    _inherits(Footer, _Component);
   
-  var _Link2 = _interopRequireDefault(_Link);
+    function Footer() {
+      _classCallCheck(this, _Footer);
   
-  var Header = (function (_Component) {
-    _inherits(Header, _Component);
-  
-    function Header() {
-      _classCallCheck(this, _Header);
-  
-      _get(Object.getPrototypeOf(_Header.prototype), 'constructor', this).apply(this, arguments);
+      _get(Object.getPrototypeOf(_Footer.prototype), 'constructor', this).apply(this, arguments);
     }
   
-    _createClass(Header, [{
+    _createClass(Footer, [{
       key: 'render',
       value: function render() {
-        var hasBackLink = typeof this.props.previousUrl === 'string';
-        var hasNamedBackLink = typeof this.props.previousTitle === 'string';
-        var hasTitle = typeof this.props.title === 'string';
         return _react2['default'].createElement(
-          'header',
-          { className: _HeaderScss2['default'].header },
+          'footer',
+          { className: _FooterScss2['default'].footer },
           _react2['default'].createElement(
-            'h1',
-            { className: _HeaderScss2['default'].title },
-            hasBackLink && !hasNamedBackLink ? _react2['default'].createElement(
-              'a',
-              { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
-                onClick: _Link2['default'].handleClick
-              },
-              '←'
-            ) : '',
-            _react2['default'].createElement(
-              'a',
-              { className: _HeaderScss2['default'].brand, href: '/', onClick: _Link2['default'].handleClick },
-              'Steam Palettes'
-            ),
-            hasBackLink && hasNamedBackLink ? _react2['default'].createElement(
-              'span',
-              { className: _HeaderScss2['default'].backLinkWrapper },
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].separator },
-                '/'
-              ),
-              _react2['default'].createElement(
-                'a',
-                { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
-                  onClick: _Link2['default'].handleClick
-                },
-                this.props.previousTitle
-              )
-            ) : '',
-            hasTitle ? _react2['default'].createElement(
-              'span',
-              { className: _HeaderScss2['default'].subtitleWrapper },
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].separator },
-                '/'
-              ),
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].subtitle },
-                this.props.title
-              )
-            ) : ''
+            'div',
+            { className: _FooterScss2['default'].innerContainer },
+            '© 2016 Sarah Vessels'
           )
         );
       }
-    }], [{
-      key: 'propTypes',
-      value: {
-        title: _react.PropTypes.string,
-        previousUrl: _react.PropTypes.string,
-        previousTitle: _react.PropTypes.string
-      },
-      enumerable: true
     }]);
   
-    var _Header = Header;
-    Header = (0, _decoratorsWithStyles2['default'])(_HeaderScss2['default'])(Header) || Header;
-    return Header;
+    var _Footer = Footer;
+    Footer = (0, _decoratorsWithStyles2['default'])(_FooterScss2['default'])(Footer) || Footer;
+    return Footer;
   })(_react.Component);
   
-  exports['default'] = Header;
+  exports['default'] = Footer;
   module.exports = exports['default'];
 
 /***/ },
@@ -1874,8 +1818,8 @@ module.exports =
       // Hot Module Replacement
       // https://webpack.github.io/docs/hot-module-replacement
       if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss");
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss");
           if (typeof newContent === 'string') {
             newContent = [[module.id, content, '']];
           }
@@ -1894,14 +1838,12 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"header": "Header_header_3bM",
-  	"title": "Header_title_YtT",
-  	"brand": "Header_brand_1-T",
-  	"separator": "Header_separator_1Qr"
+  	"footer": "Footer_footer_2nh",
+  	"innerContainer": "Footer_innerContainer_3fW"
   };
 
 /***/ },
@@ -2002,195 +1944,6 @@ module.exports =
     value: true
   });
   
-  var _this = this;
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _historyLibParsePath = __webpack_require__(23);
-  
-  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
-  
-  var _coreLocation = __webpack_require__(24);
-  
-  var _coreLocation2 = _interopRequireDefault(_coreLocation);
-  
-  function isLeftClickEvent(event) {
-    return event.button === 0;
-  }
-  
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-  
-  var Link = (function (_Component) {
-    _inherits(Link, _Component);
-  
-    function Link() {
-      _classCallCheck(this, Link);
-  
-      _get(Object.getPrototypeOf(Link.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Link, [{
-      key: 'render',
-      value: function render() {
-        var _props = this.props;
-        var to = _props.to;
-        var query = _props.query;
-  
-        var props = _objectWithoutProperties(_props, ['to', 'query']);
-  
-        return _react2['default'].createElement('a', _extends({ href: _coreLocation2['default'].createHref(to, query), onClick: Link.handleClick.bind(this) }, props));
-      }
-    }], [{
-      key: 'propTypes',
-      value: {
-        to: _react.PropTypes.string.isRequired,
-        query: _react.PropTypes.object,
-        state: _react.PropTypes.object,
-        onClick: _react.PropTypes.func
-      },
-      enumerable: true
-    }, {
-      key: 'handleClick',
-      value: function value(event) {
-        var allowTransition = true;
-        var clickResult = undefined;
-  
-        if (_this.props && _this.props.onClick) {
-          clickResult = _this.props.onClick(event);
-        }
-  
-        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
-          return;
-        }
-  
-        if (clickResult === false || event.defaultPrevented === true) {
-          allowTransition = false;
-        }
-  
-        event.preventDefault();
-  
-        if (allowTransition) {
-          var link = event.currentTarget;
-          if (_this.props && _this.props.to) {
-            _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(_this.props.to), {
-              state: _this.props && _this.props.state || null
-            }));
-          } else {
-            _coreLocation2['default'].push({
-              pathname: link.pathname,
-              search: link.search,
-              state: _this.props && _this.props.state || null
-            });
-          }
-        }
-      },
-      enumerable: true
-    }]);
-  
-    return Link;
-  })(_react.Component);
-  
-  exports['default'] = Link;
-  module.exports = exports['default'];
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/parsePath");
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _fbjsLibExecutionEnvironment = __webpack_require__(25);
-  
-  var _historyLibCreateBrowserHistory = __webpack_require__(26);
-  
-  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
-  
-  var _historyLibCreateMemoryHistory = __webpack_require__(27);
-  
-  var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
-  
-  var _historyLibUseQueries = __webpack_require__(28);
-  
-  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
-  
-  var location = (0, _historyLibUseQueries2['default'])(_fbjsLibExecutionEnvironment.canUseDOM ? _historyLibCreateBrowserHistory2['default'] : _historyLibCreateMemoryHistory2['default'])();
-  
-  exports['default'] = location;
-  module.exports = exports['default'];
-
-/***/ },
-/* 25 */
-/***/ function(module, exports) {
-
-  module.exports = require("fbjs/lib/ExecutionEnvironment");
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/createBrowserHistory");
-
-/***/ },
-/* 27 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/createMemoryHistory");
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/useQueries");
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
   
   var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -2205,129 +1958,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FooterScss = __webpack_require__(30);
-  
-  var _FooterScss2 = _interopRequireDefault(_FooterScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var Footer = (function (_Component) {
-    _inherits(Footer, _Component);
-  
-    function Footer() {
-      _classCallCheck(this, _Footer);
-  
-      _get(Object.getPrototypeOf(_Footer.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Footer, [{
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'footer',
-          { className: _FooterScss2['default'].footer },
-          _react2['default'].createElement(
-            'div',
-            { className: _FooterScss2['default'].innerContainer },
-            '© 2016 Sarah Vessels'
-          )
-        );
-      }
-    }]);
-  
-    var _Footer = Footer;
-    Footer = (0, _decoratorsWithStyles2['default'])(_FooterScss2['default'])(Footer) || Footer;
-    return Footer;
-  })(_react.Component);
-  
-  exports['default'] = Footer;
-  module.exports = exports['default'];
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(31);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"footer": "Footer_footer_2nh",
-  	"innerContainer": "Footer_innerContainer_3fW"
-  };
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _NotFoundPageScss = __webpack_require__(33);
+  var _NotFoundPageScss = __webpack_require__(23);
   
   var _NotFoundPageScss2 = _interopRequireDefault(_NotFoundPageScss);
   
@@ -2388,11 +2019,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(34);
+      var content = __webpack_require__(24);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2420,7 +2051,7 @@ module.exports =
     
 
 /***/ },
-/* 34 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2434,7 +2065,7 @@ module.exports =
 
 
 /***/ },
-/* 35 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2466,7 +2097,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ErrorPageScss = __webpack_require__(36);
+  var _ErrorPageScss = __webpack_require__(26);
   
   var _ErrorPageScss2 = _interopRequireDefault(_ErrorPageScss);
   
@@ -2526,11 +2157,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 36 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(37);
+      var content = __webpack_require__(27);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -2558,7 +2189,7 @@ module.exports =
     
 
 /***/ },
-/* 37 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -2572,10 +2203,242 @@ module.exports =
 
 
 /***/ },
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _PlayerLookupPageScss = __webpack_require__(29);
+  
+  var _PlayerLookupPageScss2 = _interopRequireDefault(_PlayerLookupPageScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _apiSteam = __webpack_require__(31);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var _classnames = __webpack_require__(36);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _coreLocation = __webpack_require__(37);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
+  var _historyLibParsePath = __webpack_require__(42);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _Header = __webpack_require__(43);
+  
+  var _Header2 = _interopRequireDefault(_Header);
+  
+  var title = 'Find a Steam User';
+  
+  var PlayerLookupPage = (function (_Component) {
+    _inherits(PlayerLookupPage, _Component);
+  
+    _createClass(PlayerLookupPage, null, [{
+      key: 'contextTypes',
+      value: {
+        onSetTitle: _react.PropTypes.func.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function PlayerLookupPage(props, context) {
+      _classCallCheck(this, _PlayerLookupPage);
+  
+      _get(Object.getPrototypeOf(_PlayerLookupPage.prototype), 'constructor', this).call(this, props, context);
+      this.state = {
+        name: undefined,
+        disabled: false,
+        error: false,
+        message: 'The Steam profile must be public.'
+      };
+    }
+  
+    _createClass(PlayerLookupPage, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        this.context.onSetTitle(title);
+      }
+    }, {
+      key: 'onNameChange',
+      value: function onNameChange(event) {
+        this.setState({ name: event.target.value });
+      }
+    }, {
+      key: 'onSteamIDLoaded',
+      value: function onSteamIDLoaded(steamID) {
+        this.setState({
+          disabled: false,
+          error: false,
+          message: undefined
+        });
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
+      }
+    }, {
+      key: 'onSteamIDLoadError',
+      value: function onSteamIDLoadError(response) {
+        console.error('failed to load Steam ID', response);
+        this.setState({
+          disabled: false,
+          error: true,
+          message: 'There was an error looking up your Steam ID. :('
+        });
+      }
+    }, {
+      key: 'handleSubmit',
+      value: function handleSubmit(event) {
+        event.preventDefault();
+        this.setState({
+          disabled: true,
+          message: 'Looking up Steam ID...',
+          error: false
+        });
+        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var messageStyle = {};
+        if (typeof this.state.message !== 'string') {
+          messageStyle.display = 'none';
+        }
+        var messageClass = this.state.error ? _PlayerLookupPageScss2['default'].error : _PlayerLookupPageScss2['default'].success;
+        return _react2['default'].createElement(
+          'div',
+          { className: _PlayerLookupPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], null),
+          _react2['default'].createElement(
+            'form',
+            { className: _PlayerLookupPageScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
+            _react2['default'].createElement(
+              'h1',
+              { className: _PlayerLookupPageScss2['default'].title },
+              title
+            ),
+            _react2['default'].createElement(
+              'label',
+              { className: _PlayerLookupPageScss2['default'].label,
+                htmlFor: 'user-name'
+              },
+              'Steam user name:'
+            ),
+            _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _PlayerLookupPageScss2['default'].textField,
+              id: 'user-name',
+              placeholder: 'e.g., cheshire137',
+              onChange: this.onNameChange.bind(this),
+              value: this.state.name,
+              disabled: this.state.disabled
+            }),
+            _react2['default'].createElement(
+              'button',
+              { type: 'submit', disabled: this.state.disabled,
+                className: _PlayerLookupPageScss2['default'].button
+              },
+              'Search'
+            ),
+            _react2['default'].createElement(
+              'p',
+              { className: (0, _classnames2['default'])(_PlayerLookupPageScss2['default'].message, messageClass), style: messageStyle },
+              this.state.message
+            )
+          )
+        );
+      }
+    }]);
+  
+    var _PlayerLookupPage = PlayerLookupPage;
+    PlayerLookupPage = (0, _decoratorsWithStyles2['default'])(_PlayerLookupPageScss2['default'])(PlayerLookupPage) || PlayerLookupPage;
+    return PlayerLookupPage;
+  })(_react.Component);
+  
+  exports['default'] = PlayerLookupPage;
+  module.exports = exports['default'];
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(30);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"label": "PlayerLookupPage_label_R4M",
+  	"textField": "PlayerLookupPage_textField_3sr",
+  	"button": "PlayerLookupPage_button_la3",
+  	"title": "PlayerLookupPage_title_1LY",
+  	"form": "PlayerLookupPage_form_1Od",
+  	"message": "PlayerLookupPage_message_2jv",
+  	"success": "PlayerLookupPage_success_1hv",
+  	"error": "PlayerLookupPage_error_1P-",
+  	"container": "PlayerLookupPage_container_zPm"
+  };
+
+/***/ },
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2590,11 +2453,11 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(42);
+  var _coreFetch = __webpack_require__(32);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _configJson = __webpack_require__(45);
+  var _configJson = __webpack_require__(35);
   
   var _configJson2 = _interopRequireDefault(_configJson);
   
@@ -2898,7 +2761,7 @@ module.exports =
   // see https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29
 
 /***/ },
-/* 42 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2918,11 +2781,11 @@ module.exports =
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _nodeFetch = __webpack_require__(43);
+  var _nodeFetch = __webpack_require__(33);
   
   var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
   
-  var _config = __webpack_require__(44);
+  var _config = __webpack_require__(34);
   
   function localUrl(url) {
     if (url.startsWith('//')) {
@@ -2946,13 +2809,13 @@ module.exports =
   exports.Response = _nodeFetch.Response;
 
 /***/ },
-/* 43 */
+/* 33 */
 /***/ function(module, exports) {
 
   module.exports = require("node-fetch");
 
 /***/ },
-/* 44 */
+/* 34 */
 /***/ function(module, exports) {
 
   /**
@@ -2977,7 +2840,7 @@ module.exports =
   exports.googleAnalyticsId = googleAnalyticsId;
 
 /***/ },
-/* 45 */
+/* 35 */
 /***/ function(module, exports) {
 
   module.exports = {
@@ -2988,10 +2851,379 @@ module.exports =
   };
 
 /***/ },
-/* 46 */
+/* 36 */
 /***/ function(module, exports) {
 
   module.exports = require("classnames");
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _fbjsLibExecutionEnvironment = __webpack_require__(38);
+  
+  var _historyLibCreateBrowserHistory = __webpack_require__(39);
+  
+  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
+  
+  var _historyLibCreateMemoryHistory = __webpack_require__(40);
+  
+  var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
+  
+  var _historyLibUseQueries = __webpack_require__(41);
+  
+  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
+  
+  var location = (0, _historyLibUseQueries2['default'])(_fbjsLibExecutionEnvironment.canUseDOM ? _historyLibCreateBrowserHistory2['default'] : _historyLibCreateMemoryHistory2['default'])();
+  
+  exports['default'] = location;
+  module.exports = exports['default'];
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+  module.exports = require("fbjs/lib/ExecutionEnvironment");
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/createBrowserHistory");
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/createMemoryHistory");
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/useQueries");
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/parsePath");
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _HeaderScss = __webpack_require__(44);
+  
+  var _HeaderScss2 = _interopRequireDefault(_HeaderScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Link = __webpack_require__(46);
+  
+  var _Link2 = _interopRequireDefault(_Link);
+  
+  var Header = (function (_Component) {
+    _inherits(Header, _Component);
+  
+    function Header() {
+      _classCallCheck(this, _Header);
+  
+      _get(Object.getPrototypeOf(_Header.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Header, [{
+      key: 'render',
+      value: function render() {
+        var hasBackLink = typeof this.props.previousUrl === 'string';
+        var hasNamedBackLink = typeof this.props.previousTitle === 'string';
+        var hasTitle = typeof this.props.title === 'string';
+        return _react2['default'].createElement(
+          'header',
+          { className: _HeaderScss2['default'].header },
+          _react2['default'].createElement(
+            'h1',
+            { className: _HeaderScss2['default'].title },
+            hasBackLink && !hasNamedBackLink ? _react2['default'].createElement(
+              'a',
+              { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
+                onClick: _Link2['default'].handleClick
+              },
+              '←'
+            ) : '',
+            _react2['default'].createElement(
+              'a',
+              { className: _HeaderScss2['default'].brand, href: '/', onClick: _Link2['default'].handleClick },
+              'Steam Palettes'
+            ),
+            hasBackLink && hasNamedBackLink ? _react2['default'].createElement(
+              'span',
+              { className: _HeaderScss2['default'].backLinkWrapper },
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].separator },
+                '/'
+              ),
+              _react2['default'].createElement(
+                'a',
+                { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
+                  onClick: _Link2['default'].handleClick
+                },
+                this.props.previousTitle
+              )
+            ) : '',
+            hasTitle ? _react2['default'].createElement(
+              'span',
+              { className: _HeaderScss2['default'].subtitleWrapper },
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].separator },
+                '/'
+              ),
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].subtitle },
+                this.props.title
+              )
+            ) : ''
+          )
+        );
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        title: _react.PropTypes.string,
+        previousUrl: _react.PropTypes.string,
+        previousTitle: _react.PropTypes.string
+      },
+      enumerable: true
+    }]);
+  
+    var _Header = Header;
+    Header = (0, _decoratorsWithStyles2['default'])(_HeaderScss2['default'])(Header) || Header;
+    return Header;
+  })(_react.Component);
+  
+  exports['default'] = Header;
+  module.exports = exports['default'];
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(45);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"header": "Header_header_3bM",
+  	"title": "Header_title_YtT",
+  	"brand": "Header_brand_1-T",
+  	"separator": "Header_separator_1Qr"
+  };
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _this = this;
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _historyLibParsePath = __webpack_require__(42);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _coreLocation = __webpack_require__(37);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
+  function isLeftClickEvent(event) {
+    return event.button === 0;
+  }
+  
+  function isModifiedEvent(event) {
+    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  }
+  
+  var Link = (function (_Component) {
+    _inherits(Link, _Component);
+  
+    function Link() {
+      _classCallCheck(this, Link);
+  
+      _get(Object.getPrototypeOf(Link.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Link, [{
+      key: 'render',
+      value: function render() {
+        var _props = this.props;
+        var to = _props.to;
+        var query = _props.query;
+  
+        var props = _objectWithoutProperties(_props, ['to', 'query']);
+  
+        return _react2['default'].createElement('a', _extends({ href: _coreLocation2['default'].createHref(to, query), onClick: Link.handleClick.bind(this) }, props));
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        to: _react.PropTypes.string.isRequired,
+        query: _react.PropTypes.object,
+        state: _react.PropTypes.object,
+        onClick: _react.PropTypes.func
+      },
+      enumerable: true
+    }, {
+      key: 'handleClick',
+      value: function value(event) {
+        var allowTransition = true;
+        var clickResult = undefined;
+  
+        if (_this.props && _this.props.onClick) {
+          clickResult = _this.props.onClick(event);
+        }
+  
+        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+          return;
+        }
+  
+        if (clickResult === false || event.defaultPrevented === true) {
+          allowTransition = false;
+        }
+  
+        event.preventDefault();
+  
+        if (allowTransition) {
+          var link = event.currentTarget;
+          if (_this.props && _this.props.to) {
+            _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(_this.props.to), {
+              state: _this.props && _this.props.state || null
+            }));
+          } else {
+            _coreLocation2['default'].push({
+              pathname: link.pathname,
+              search: link.search,
+              state: _this.props && _this.props.state || null
+            });
+          }
+        }
+      },
+      enumerable: true
+    }]);
+  
+    return Link;
+  })(_react.Component);
+  
+  exports['default'] = Link;
+  module.exports = exports['default'];
 
 /***/ },
 /* 47 */
@@ -3029,19 +3261,19 @@ module.exports =
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
-  var _FriendsListFriendsList = __webpack_require__(71);
+  var _FriendsListFriendsList = __webpack_require__(53);
   
   var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
   
-  var _apiSteam = __webpack_require__(41);
+  var _apiSteam = __webpack_require__(31);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(53);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(59);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
-  var _Header = __webpack_require__(18);
+  var _Header = __webpack_require__(43);
   
   var _Header2 = _interopRequireDefault(_Header);
   
@@ -3217,7 +3449,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _apiSteam = __webpack_require__(41);
+  var _apiSteam = __webpack_require__(31);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
@@ -3428,7 +3660,326 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotsListScss = __webpack_require__(54);
+  var _FriendsListScss = __webpack_require__(54);
+  
+  var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _apiSteam = __webpack_require__(31);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var _FriendListItemFriendListItem = __webpack_require__(56);
+  
+  var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
+  
+  var FriendsList = (function (_Component) {
+    _inherits(FriendsList, _Component);
+  
+    _createClass(FriendsList, null, [{
+      key: 'propTypes',
+      value: {
+        steamID: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function FriendsList(props, context) {
+      _classCallCheck(this, _FriendsList);
+  
+      _get(Object.getPrototypeOf(_FriendsList.prototype), 'constructor', this).call(this, props, context);
+      this.state = { friends: undefined };
+    }
+  
+    _createClass(FriendsList, [{
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        _apiSteam2['default'].getFriends(this.props.steamID).then(this.onFriendsLoaded.bind(this))['catch'](this.onFriendsLoadError.bind(this));
+      }
+    }, {
+      key: 'onFriendsLoaded',
+      value: function onFriendsLoaded(friends) {
+        this.setState({ friends: friends });
+      }
+    }, {
+      key: 'onFriendsLoadError',
+      value: function onFriendsLoadError(response) {
+        console.error('failed to load friends list', response);
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this = this;
+  
+        var friendsLoaded = typeof this.state.friends === 'object';
+        var publicFriends = [];
+        if (friendsLoaded) {
+          publicFriends = this.state.friends.filter(function (friend) {
+            return friend.communityvisibilitystate === 3;
+          });
+        }
+        return _react2['default'].createElement(
+          'div',
+          { className: _FriendsListScss2['default'].container },
+          friendsLoaded ? _react2['default'].createElement(
+            'ul',
+            { className: _FriendsListScss2['default'].friends },
+            _react2['default'].createElement(
+              'li',
+              { className: _FriendsListScss2['default'].header },
+              'Friends'
+            ),
+            publicFriends.map(function (friend) {
+              var key = _this.props.steamID + '-' + friend.steamid;
+              return _react2['default'].createElement(_FriendListItemFriendListItem2['default'], _extends({ key: key }, friend));
+            })
+          ) : _react2['default'].createElement(
+            'p',
+            { className: _FriendsListScss2['default'].message },
+            'Loading friends...'
+          )
+        );
+      }
+    }]);
+  
+    var _FriendsList = FriendsList;
+    FriendsList = (0, _decoratorsWithStyles2['default'])(_FriendsListScss2['default'])(FriendsList) || FriendsList;
+    return FriendsList;
+  })(_react.Component);
+  
+  exports['default'] = FriendsList;
+  module.exports = exports['default'];
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(55);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #8B8086;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"friends": "FriendsList_friends_9Ov",
+  	"header": "FriendsList_header_2m2"
+  };
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _FriendListItemScss = __webpack_require__(57);
+  
+  var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Link = __webpack_require__(46);
+  
+  var _Link2 = _interopRequireDefault(_Link);
+  
+  var FriendListItem = (function (_Component) {
+    _inherits(FriendListItem, _Component);
+  
+    _createClass(FriendListItem, null, [{
+      key: 'propTypes',
+      value: {
+        avatar: _react.PropTypes.string,
+        avatarfull: _react.PropTypes.string,
+        avatarmedium: _react.PropTypes.string.isRequired,
+        lastlogoff: _react.PropTypes.number,
+        loccityid: _react.PropTypes.number,
+        loccountrycode: _react.PropTypes.string,
+        locstatecode: _react.PropTypes.string,
+        personaname: _react.PropTypes.string,
+        personastate: _react.PropTypes.number,
+        personastateflags: _react.PropTypes.number,
+        primaryclanid: _react.PropTypes.string,
+        profilestate: _react.PropTypes.number,
+        profileurl: _react.PropTypes.string.isRequired,
+        realname: _react.PropTypes.string,
+        steamid: _react.PropTypes.string.isRequired,
+        timecreated: _react.PropTypes.number
+      },
+      enumerable: true
+    }]);
+  
+    function FriendListItem(props, context) {
+      _classCallCheck(this, _FriendListItem);
+  
+      _get(Object.getPrototypeOf(_FriendListItem.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(FriendListItem, [{
+      key: 'render',
+      value: function render() {
+        var url = '/player/' + this.props.personaname + '/' + this.props.steamid;
+        return _react2['default'].createElement(
+          'li',
+          { className: _FriendListItemScss2['default'].friend },
+          _react2['default'].createElement(
+            'a',
+            { href: url, className: _FriendListItemScss2['default'].link, onClick: _Link2['default'].handleClick },
+            _react2['default'].createElement('img', { src: this.props.avatar, className: _FriendListItemScss2['default'].avatar,
+              alt: this.props.steamid
+            }),
+            _react2['default'].createElement(
+              'span',
+              { className: _FriendListItemScss2['default'].name },
+              this.props.personaname
+            )
+          )
+        );
+      }
+    }]);
+  
+    var _FriendListItem = FriendListItem;
+    FriendListItem = (0, _decoratorsWithStyles2['default'])(_FriendListItemScss2['default'])(FriendListItem) || FriendListItem;
+    return FriendListItem;
+  })(_react.Component);
+  
+  exports['default'] = FriendListItem;
+  module.exports = exports['default'];
+
+/***/ },
+/* 57 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(58);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACF/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"friend": "FriendListItem_friend_2Y7",
+  	"avatar": "FriendListItem_avatar_3B5",
+  	"link": "FriendListItem_link_3AZ",
+  	"name": "FriendListItem_name_3KN"
+  };
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _ScreenshotsListScss = __webpack_require__(60);
   
   var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
   
@@ -3436,7 +3987,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _ScreenshotListItemScreenshotListItem = __webpack_require__(56);
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(62);
   
   var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
   
@@ -3496,11 +4047,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 54 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(55);
+      var content = __webpack_require__(61);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3528,7 +4079,7 @@ module.exports =
     
 
 /***/ },
-/* 55 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3545,7 +4096,7 @@ module.exports =
   };
 
 /***/ },
-/* 56 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3568,7 +4119,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotListItemScss = __webpack_require__(57);
+  var _ScreenshotListItemScss = __webpack_require__(63);
   
   var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
   
@@ -3576,7 +4127,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(22);
+  var _Link = __webpack_require__(46);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -3645,11 +4196,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(58);
+      var content = __webpack_require__(64);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3677,7 +4228,7 @@ module.exports =
     
 
 /***/ },
-/* 58 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3693,7 +4244,7 @@ module.exports =
   };
 
 /***/ },
-/* 59 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3716,7 +4267,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(60);
+  var _ScreenshotPageScss = __webpack_require__(66);
   
   var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
@@ -3724,11 +4275,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _apiSteam = __webpack_require__(41);
+  var _apiSteam = __webpack_require__(31);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _Header = __webpack_require__(18);
+  var _Header = __webpack_require__(43);
   
   var _Header2 = _interopRequireDefault(_Header);
   
@@ -3878,11 +4429,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(61);
+      var content = __webpack_require__(67);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3910,7 +4461,7 @@ module.exports =
     
 
 /***/ },
-/* 61 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3933,7 +4484,7 @@ module.exports =
   };
 
 /***/ },
-/* 62 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -3965,7 +4516,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _config = __webpack_require__(44);
+  var _config = __webpack_require__(34);
   
   var Html = (function (_Component) {
     _inherits(Html, _Component);
@@ -4039,13 +4590,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 69 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 64 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4060,15 +4611,15 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(42);
+  var _coreFetch = __webpack_require__(32);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(65);
+  var _jsdom = __webpack_require__(71);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(66);
+  var _bluebird = __webpack_require__(72);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -4154,19 +4705,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 65 */
+/* 71 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 66 */
+/* 72 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 67 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4181,15 +4732,15 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(42);
+  var _coreFetch = __webpack_require__(32);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(65);
+  var _jsdom = __webpack_require__(71);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(66);
+  var _bluebird = __webpack_require__(72);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -4349,560 +4900,6 @@ module.exports =
   
   exports['default'] = ScreenshotScraper;
   module.exports = exports['default'];
-
-/***/ },
-/* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _PlayerLookupPageScss = __webpack_require__(69);
-  
-  var _PlayerLookupPageScss2 = _interopRequireDefault(_PlayerLookupPageScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _apiSteam = __webpack_require__(41);
-  
-  var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var _classnames = __webpack_require__(46);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  var _coreLocation = __webpack_require__(24);
-  
-  var _coreLocation2 = _interopRequireDefault(_coreLocation);
-  
-  var _historyLibParsePath = __webpack_require__(23);
-  
-  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
-  
-  var _Header = __webpack_require__(18);
-  
-  var _Header2 = _interopRequireDefault(_Header);
-  
-  var title = 'Find a Steam User';
-  
-  var PlayerLookupPage = (function (_Component) {
-    _inherits(PlayerLookupPage, _Component);
-  
-    _createClass(PlayerLookupPage, null, [{
-      key: 'contextTypes',
-      value: {
-        onSetTitle: _react.PropTypes.func.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function PlayerLookupPage(props, context) {
-      _classCallCheck(this, _PlayerLookupPage);
-  
-      _get(Object.getPrototypeOf(_PlayerLookupPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {
-        name: undefined,
-        disabled: false,
-        error: false,
-        message: 'The Steam profile must be public.'
-      };
-    }
-  
-    _createClass(PlayerLookupPage, [{
-      key: 'componentWillMount',
-      value: function componentWillMount() {
-        this.context.onSetTitle(title);
-      }
-    }, {
-      key: 'onNameChange',
-      value: function onNameChange(event) {
-        this.setState({ name: event.target.value });
-      }
-    }, {
-      key: 'onSteamIDLoaded',
-      value: function onSteamIDLoaded(steamID) {
-        this.setState({
-          disabled: false,
-          error: false,
-          message: undefined
-        });
-        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
-      }
-    }, {
-      key: 'onSteamIDLoadError',
-      value: function onSteamIDLoadError(response) {
-        console.error('failed to load Steam ID', response);
-        this.setState({
-          disabled: false,
-          error: true,
-          message: 'There was an error looking up your Steam ID. :('
-        });
-      }
-    }, {
-      key: 'handleSubmit',
-      value: function handleSubmit(event) {
-        event.preventDefault();
-        this.setState({
-          disabled: true,
-          message: 'Looking up Steam ID...',
-          error: false
-        });
-        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var messageStyle = {};
-        if (typeof this.state.message !== 'string') {
-          messageStyle.display = 'none';
-        }
-        var messageClass = this.state.error ? _PlayerLookupPageScss2['default'].error : _PlayerLookupPageScss2['default'].success;
-        return _react2['default'].createElement(
-          'div',
-          { className: _PlayerLookupPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], null),
-          _react2['default'].createElement(
-            'form',
-            { className: _PlayerLookupPageScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
-            _react2['default'].createElement(
-              'h1',
-              { className: _PlayerLookupPageScss2['default'].title },
-              title
-            ),
-            _react2['default'].createElement(
-              'label',
-              { className: _PlayerLookupPageScss2['default'].label,
-                htmlFor: 'user-name'
-              },
-              'Steam user name:'
-            ),
-            _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _PlayerLookupPageScss2['default'].textField,
-              id: 'user-name',
-              placeholder: 'e.g., cheshire137',
-              onChange: this.onNameChange.bind(this),
-              value: this.state.name,
-              disabled: this.state.disabled
-            }),
-            _react2['default'].createElement(
-              'button',
-              { type: 'submit', disabled: this.state.disabled,
-                className: _PlayerLookupPageScss2['default'].button
-              },
-              'Search'
-            ),
-            _react2['default'].createElement(
-              'p',
-              { className: (0, _classnames2['default'])(_PlayerLookupPageScss2['default'].message, messageClass), style: messageStyle },
-              this.state.message
-            )
-          )
-        );
-      }
-    }]);
-  
-    var _PlayerLookupPage = PlayerLookupPage;
-    PlayerLookupPage = (0, _decoratorsWithStyles2['default'])(_PlayerLookupPageScss2['default'])(PlayerLookupPage) || PlayerLookupPage;
-    return PlayerLookupPage;
-  })(_react.Component);
-  
-  exports['default'] = PlayerLookupPage;
-  module.exports = exports['default'];
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(70);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerLookupPage.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"label": "PlayerLookupPage_label_R4M",
-  	"textField": "PlayerLookupPage_textField_3sr",
-  	"button": "PlayerLookupPage_button_la3",
-  	"title": "PlayerLookupPage_title_1LY",
-  	"form": "PlayerLookupPage_form_1Od",
-  	"message": "PlayerLookupPage_message_2jv",
-  	"success": "PlayerLookupPage_success_1hv",
-  	"error": "PlayerLookupPage_error_1P-",
-  	"container": "PlayerLookupPage_container_zPm"
-  };
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _FriendsListScss = __webpack_require__(72);
-  
-  var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _apiSteam = __webpack_require__(41);
-  
-  var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var _FriendListItemFriendListItem = __webpack_require__(74);
-  
-  var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
-  
-  var FriendsList = (function (_Component) {
-    _inherits(FriendsList, _Component);
-  
-    _createClass(FriendsList, null, [{
-      key: 'propTypes',
-      value: {
-        steamID: _react.PropTypes.string.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function FriendsList(props, context) {
-      _classCallCheck(this, _FriendsList);
-  
-      _get(Object.getPrototypeOf(_FriendsList.prototype), 'constructor', this).call(this, props, context);
-      this.state = { friends: undefined };
-    }
-  
-    _createClass(FriendsList, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        _apiSteam2['default'].getFriends(this.props.steamID).then(this.onFriendsLoaded.bind(this))['catch'](this.onFriendsLoadError.bind(this));
-      }
-    }, {
-      key: 'onFriendsLoaded',
-      value: function onFriendsLoaded(friends) {
-        this.setState({ friends: friends });
-      }
-    }, {
-      key: 'onFriendsLoadError',
-      value: function onFriendsLoadError(response) {
-        console.error('failed to load friends list', response);
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var _this = this;
-  
-        var friendsLoaded = typeof this.state.friends === 'object';
-        var publicFriends = [];
-        if (friendsLoaded) {
-          publicFriends = this.state.friends.filter(function (friend) {
-            return friend.communityvisibilitystate === 3;
-          });
-        }
-        return _react2['default'].createElement(
-          'div',
-          { className: _FriendsListScss2['default'].container },
-          friendsLoaded ? _react2['default'].createElement(
-            'ul',
-            { className: _FriendsListScss2['default'].friends },
-            _react2['default'].createElement(
-              'li',
-              { className: _FriendsListScss2['default'].header },
-              'Friends'
-            ),
-            publicFriends.map(function (friend) {
-              var key = _this.props.steamID + '-' + friend.steamid;
-              return _react2['default'].createElement(_FriendListItemFriendListItem2['default'], _extends({ key: key }, friend));
-            })
-          ) : _react2['default'].createElement(
-            'p',
-            { className: _FriendsListScss2['default'].message },
-            'Loading friends...'
-          )
-        );
-      }
-    }]);
-  
-    var _FriendsList = FriendsList;
-    FriendsList = (0, _decoratorsWithStyles2['default'])(_FriendsListScss2['default'])(FriendsList) || FriendsList;
-    return FriendsList;
-  })(_react.Component);
-  
-  exports['default'] = FriendsList;
-  module.exports = exports['default'];
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(73);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 73 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #8B8086;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"friends": "FriendsList_friends_9Ov",
-  	"header": "FriendsList_header_2m2"
-  };
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _FriendListItemScss = __webpack_require__(75);
-  
-  var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _Link = __webpack_require__(22);
-  
-  var _Link2 = _interopRequireDefault(_Link);
-  
-  var FriendListItem = (function (_Component) {
-    _inherits(FriendListItem, _Component);
-  
-    _createClass(FriendListItem, null, [{
-      key: 'propTypes',
-      value: {
-        avatar: _react.PropTypes.string,
-        avatarfull: _react.PropTypes.string,
-        avatarmedium: _react.PropTypes.string.isRequired,
-        lastlogoff: _react.PropTypes.number,
-        loccityid: _react.PropTypes.number,
-        loccountrycode: _react.PropTypes.string,
-        locstatecode: _react.PropTypes.string,
-        personaname: _react.PropTypes.string,
-        personastate: _react.PropTypes.number,
-        personastateflags: _react.PropTypes.number,
-        primaryclanid: _react.PropTypes.string,
-        profilestate: _react.PropTypes.number,
-        profileurl: _react.PropTypes.string.isRequired,
-        realname: _react.PropTypes.string,
-        steamid: _react.PropTypes.string.isRequired,
-        timecreated: _react.PropTypes.number
-      },
-      enumerable: true
-    }]);
-  
-    function FriendListItem(props, context) {
-      _classCallCheck(this, _FriendListItem);
-  
-      _get(Object.getPrototypeOf(_FriendListItem.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
-    }
-  
-    _createClass(FriendListItem, [{
-      key: 'render',
-      value: function render() {
-        var url = '/player/' + this.props.personaname + '/' + this.props.steamid;
-        return _react2['default'].createElement(
-          'li',
-          { className: _FriendListItemScss2['default'].friend },
-          _react2['default'].createElement(
-            'a',
-            { href: url, className: _FriendListItemScss2['default'].link, onClick: _Link2['default'].handleClick },
-            _react2['default'].createElement('img', { src: this.props.avatar, className: _FriendListItemScss2['default'].avatar,
-              alt: this.props.steamid
-            }),
-            _react2['default'].createElement(
-              'span',
-              { className: _FriendListItemScss2['default'].name },
-              this.props.personaname
-            )
-          )
-        );
-      }
-    }]);
-  
-    var _FriendListItem = FriendListItem;
-    FriendListItem = (0, _decoratorsWithStyles2['default'])(_FriendListItemScss2['default'])(FriendListItem) || FriendListItem;
-    return FriendListItem;
-  })(_react.Component);
-  
-  exports['default'] = FriendListItem;
-  module.exports = exports['default'];
-
-/***/ },
-/* 75 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(76);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 76 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAEgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACF/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #F5EFEF;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #8B8086;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"friend": "FriendListItem_friend_2Y7",
-  	"avatar": "FriendListItem_avatar_3B5",
-  	"link": "FriendListItem_link_3AZ",
-  	"name": "FriendListItem_name_3KN"
-  };
 
 /***/ }
 /******/ ]);
