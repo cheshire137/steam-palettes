@@ -30,8 +30,9 @@ const server = global.server = express();
 server.use(express.static(path.join(__dirname, 'public')));
 
 server.all('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin',
-             Config[process.env.NODE_ENV].clientUri);
+  const config = Config[process.env.NODE_ENV];
+  const origin = req.protocol + '://' + config.clientHost;
+  res.header('Access-Control-Allow-Origin', origin);
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');

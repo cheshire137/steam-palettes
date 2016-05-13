@@ -1,10 +1,12 @@
 {
   "development": {
-    "serverUri": "http://localhost:5000",
-    "clientUri": "http://localhost:3000"
+    "preferredScheme": "http",
+    "serverHost": "localhost:5000",
+    "clientHost": "localhost:3000"
   },
   "production": {
-    "serverUri": "https://steam-palettes.herokuapp.com",
-    "clientUri": "https://steam-palettes.herokuapp.com"
+    "preferredScheme": "https",
+    "serverHost": "steam-palettes.herokuapp.com",
+    "clientHost": "steam-palettes.herokuapp.com"
   }
 }

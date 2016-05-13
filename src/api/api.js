@@ -10,7 +10,8 @@ class Api {
   }
 
   static async makeRequest(path, options) {
-    const url = Config[process.env.NODE_ENV].serverUri + path;
+    const config = Config[process.env.NODE_ENV];
+    const url = config.preferredScheme + '://' + config.serverHost + path;
     const response = await fetch(url, options || {});
     const isJSON = path.indexOf('format=json') > -1;
     if (isJSON) {
