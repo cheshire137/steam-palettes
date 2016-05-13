@@ -2938,7 +2938,7 @@ module.exports =
   exports.port = port;
   var host = process.env.WEBSITE_HOSTNAME || 'localhost:' + port;
   exports.host = host;
-  var googleAnalyticsId = 'UA-XXXXX-X';
+  var googleAnalyticsId = 'UA-77717806-1';
   exports.googleAnalyticsId = googleAnalyticsId;
 
 /***/ },
