@@ -76,3 +76,9 @@
 .message {
 
 }
+
+@media (min-width: 768px) {
+  .right {
+    min-width: 370px;
+  }
+}

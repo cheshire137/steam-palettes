@@ -45,7 +45,6 @@ class ImageAnalyzer {
       if (hash.hasOwnProperty(key)) {
         const value = hash[key];
         if (value > valueThreshold) {
-          console.log(key + ': ' + value);
           results.push([key, value]);
         }
       }
@@ -57,8 +56,8 @@ class ImageAnalyzer {
     const leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
     const colorCount = {};
     for (let pixel = 0, _i = 0, _ref = cvs.height;
-         0 <= _ref ? _i < _ref : _i > _ref;
-         pixel = 0 <= _ref ? ++_i : --_i) {
+         _ref > 0 ? _i < _ref : _i > _ref;
+         pixel = _ref > 0 ? ++_i : --_i) {
       const red = leftEdgeColors.data[pixel * 4];
       const green = leftEdgeColors.data[pixel * 4 + 1];
       const blue = leftEdgeColors.data[pixel * 4 + 2];
@@ -93,11 +92,11 @@ class ImageAnalyzer {
     const findDarkTextColor = !this.isDarkColor(this.bgcolor);
     const colorCount = {};
     for (let row = 0, _i = 0, _ref = cvs.height;
-         0 <= _ref ? _i < _ref : _i > _ref;
-         row = 0 <= _ref ? ++_i : --_i) {
+         _ref > 0 ? _i < _ref : _i > _ref;
+         row = _ref > 0 ? ++_i : --_i) {
       for (let column = 0, _j = 0, _ref1 = cvs.width;
-           0 <= _ref1 ? _j < _ref1 : _j > _ref1;
-           column = 0 <= _ref1 ? ++_j : --_j) {
+           _ref1 > 0 ? _j < _ref1 : _j > _ref1;
+           column = _ref1 > 0 ? ++_j : --_j) {
         const red = colors.data[(row * (cvs.width * 4)) + (column * 4)];
         const green = colors.data[((row * (cvs.width * 4)) + (column * 4)) + 1];
         const blue = colors.data[((row * (cvs.width * 4)) + (column * 4)) + 2];
@@ -151,11 +150,15 @@ class ImageAnalyzer {
       this.detailColor = defaultColor;
     }
     resolve({
-      bg: tinycolor('rgb(' + this.bgcolor + ')').toHexString(),
-      primary: tinycolor('rgb(' + this.primaryColor + ')').toHexString(),
-      secondary: tinycolor('rgb(' + this.secondaryColor + ')').toHexString(),
-      detail: tinycolor('rgb(' + this.detailColor + ')').toHexString(),
+      bg: this.rgbSnippetToHex(this.bgcolor),
+      primary: this.rgbSnippetToHex(this.primaryColor),
+      secondary: this.rgbSnippetToHex(this.secondaryColor),
+      detail: this.rgbSnippetToHex(this.detailColor),
     });
+  }
+
+  rgbSnippetToHex(rgbSnippet) {
+    return tinycolor('rgb(' + rgbSnippet + ')').toHexString();
   }
 
   isBlackOrWhite(color) {
