@@ -2325,7 +2325,8 @@ module.exports =
         name: undefined,
         disabled: false,
         error: false,
-        message: 'The Steam profile must be public.'
+        message: 'The Steam profile must be public.',
+        noMatch: false
       };
     }
   
@@ -2356,7 +2357,8 @@ module.exports =
         this.setState({
           disabled: false,
           error: true,
-          message: 'There was an error looking up your Steam ID. :('
+          message: 'There was an error looking up your Steam ID. :(',
+          noMatch: response.message === 'No match'
         });
       }
     }, {
@@ -2415,7 +2417,25 @@ module.exports =
               'p',
               { className: (0, _classnames2['default'])(_PlayerLookupPageScss2['default'].message, messageClass), style: messageStyle },
               this.state.message
-            )
+            ),
+            this.state.error && this.state.noMatch ? _react2['default'].createElement(
+              'div',
+              { className: _PlayerLookupPageScss2['default'].steamInstructions },
+              _react2['default'].createElement(
+                'p',
+                { className: _PlayerLookupPageScss2['default'].instruction },
+                'Try setting your custom URL in Steam:'
+              ),
+              _react2['default'].createElement('img', { src: __webpack_require__(87), width: '640',
+                height: '321', alt: 'Edit Steam profile',
+                className: _PlayerLookupPageScss2['default'].instructionImage
+              }),
+              _react2['default'].createElement(
+                'p',
+                { className: _PlayerLookupPageScss2['default'].instruction },
+                'Then, search here for the name you set in that custom URL.'
+              )
+            ) : ''
           )
         );
       }
@@ -2470,7 +2490,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerLookupPage_label_R4M {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerLookupPage_textField_3sr, .PlayerLookupPage_button_la3 {\n  font-size: 18px;\n}\n\n.PlayerLookupPage_title_1LY {\n  margin: 0 0 10px;\n}\n\n.PlayerLookupPage_form_1Od {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerLookupPage_message_2jv {\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_success_1hv {\n  color: #A5A781;\n}\n\n.PlayerLookupPage_message_2jv.PlayerLookupPage_error_1P- {\n  color: #A78E81;\n}\n\n.PlayerLookupPage_container_zPm {\n\n}\n\n.PlayerLookupPage_steamInstructions_149 {\n\n}\n\n.PlayerLookupPage_instruction_1h3 {\n\n}\n\n.PlayerLookupPage_instructionImage_2Kk {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerLookupPage/PlayerLookupPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"PlayerLookupPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.title {\n  margin: 0 0 10px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.container {\n\n}\n\n.steamInstructions {\n\n}\n\n.instruction {\n\n}\n\n.instructionImage {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2482,7 +2502,10 @@ module.exports =
   	"message": "PlayerLookupPage_message_2jv",
   	"success": "PlayerLookupPage_success_1hv",
   	"error": "PlayerLookupPage_error_1P-",
-  	"container": "PlayerLookupPage_container_zPm"
+  	"container": "PlayerLookupPage_container_zPm",
+  	"steamInstructions": "PlayerLookupPage_steamInstructions_149",
+  	"instruction": "PlayerLookupPage_instruction_1h3",
+  	"instructionImage": "PlayerLookupPage_instructionImage_2Kk"
   };
 
 /***/ },
@@ -5791,6 +5814,12 @@ module.exports =
 /***/ function(module, exports) {
 
   module.exports = require("color-thief");
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+  module.exports = __webpack_require__.p + "e9c530170ced5eaa9717f3e2ec7c4eab.jpg";
 
 /***/ }
 /******/ ]);

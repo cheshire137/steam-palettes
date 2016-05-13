@@ -22,6 +22,7 @@ class PlayerLookupPage extends Component {
       disabled: false,
       error: false,
       message: 'The Steam profile must be public.',
+      noMatch: false,
     };
   }
 
@@ -51,6 +52,7 @@ class PlayerLookupPage extends Component {
       disabled: false,
       error: true,
       message: 'There was an error looking up your Steam ID. :(',
+      noMatch: response.message === 'No match',
     });
   }
 
@@ -95,6 +97,20 @@ class PlayerLookupPage extends Component {
           <p className={cx(s.message, messageClass)} style={messageStyle}>
             {this.state.message}
           </p>
+          {this.state.error && this.state.noMatch ? (
+            <div className={s.steamInstructions}>
+              <p className={s.instruction}>
+                Try setting your custom URL in Steam:
+              </p>
+              <img src={require('./steam-edit-profile.jpg')} width="640"
+                height="321" alt="Edit Steam profile"
+                className={s.instructionImage}
+              />
+              <p className={s.instruction}>
+                Then, search here for the name you set in that custom URL.
+              </p>
+            </div>
+          ) : ''}
         </form>
       </div>
     );
