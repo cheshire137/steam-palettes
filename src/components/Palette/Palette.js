@@ -13,15 +13,24 @@ class Palette extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = { selectedColors: [] };
   }
 
   onColorSelected(color) {
-    console.log(color, 'selected');
+    const colors = this.state.selectedColors.slice();
+    if (colors.indexOf(color) < 0) {
+      colors.push(color);
+    }
+    this.setState({ selectedColors: colors });
   }
 
   onColorDeselected(color) {
-    console.log(color, 'deselected');
+    const colors = this.state.selectedColors.slice();
+    const index = colors.indexOf(color);
+    if (index > -1) {
+      delete colors[index];
+    }
+    this.setState({ selectedColors: colors });
   }
 
   getAllColors() {
@@ -101,24 +110,53 @@ class Palette extends Component {
     return results;
   }
 
-  createPalette(allColors, event) {
-    const sampledColors = this.sample(allColors, 5).map((c) => {
-      return c.replace(/^#/, '');
-    });
+  hashStripper(c) {
+    return c.replace(/^#/, '');
+  }
+
+  setLinkToNewPaletteLink(event, colors) {
     let link = event.target;
     if (link.nodeName !== 'A') {
       link = link.closest('a');
     }
     link.href = 'http://www.colourlovers.com/palettes/add?colors=' +
-                sampledColors.join(',');
+                colors.map(this.hashStripper).join(',');
     link.blur();
+  }
+
+  createPalette(event) {
+    this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
+  }
+
+  createRandomPalette(allColors, event) {
+    this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
   }
 
   render() {
     const hexColors = this.getAllColors();
     return (
       <div className={s.container}>
-        <a href="#" onClick={this.createPalette.bind(this, hexColors)}
+        {this.state.selectedColors.length > 0 ? (
+          <div className={s.selectedColorsWrapper}>
+            <a href="#" onClick={this.createPalette.bind(this)}
+              target="_blank"
+            >
+              <FontAwesome name="external-link" className={s.linkIcon} />
+              Create palette
+            </a>
+            <ul className={s.selectedColors}>
+              {this.state.selectedColors.map((hex) => {
+                const key = 'selected-' + hex;
+                return (
+                  <li key={key} className={s.listItem}>
+                    <Swatch hexColor={hex} />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : ''}
+        <a href="#" onClick={this.createRandomPalette.bind(this, hexColors)}
           target="_blank"
         >
           <FontAwesome name="external-link" className={s.linkIcon} />

@@ -4522,7 +4522,6 @@ module.exports =
     }, {
       key: 'onColorsLoaded',
       value: function onColorsLoaded(colors) {
-        console.log('colors', colors);
         this.setState({ colors: colors });
       }
     }, {
@@ -4837,18 +4836,27 @@ module.exports =
       _classCallCheck(this, _Palette);
   
       _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
+      this.state = { selectedColors: [] };
     }
   
     _createClass(Palette, [{
       key: 'onColorSelected',
       value: function onColorSelected(color) {
-        console.log(color, 'selected');
+        var colors = this.state.selectedColors.slice();
+        if (colors.indexOf(color) < 0) {
+          colors.push(color);
+        }
+        this.setState({ selectedColors: colors });
       }
     }, {
       key: 'onColorDeselected',
       value: function onColorDeselected(color) {
-        console.log(color, 'deselected');
+        var colors = this.state.selectedColors.slice();
+        var index = colors.indexOf(color);
+        if (index > -1) {
+          delete colors[index];
+        }
+        this.setState({ selectedColors: colors });
       }
     }, {
       key: 'getAllColors',
@@ -4934,17 +4942,29 @@ module.exports =
         return results;
       }
     }, {
-      key: 'createPalette',
-      value: function createPalette(allColors, event) {
-        var sampledColors = this.sample(allColors, 5).map(function (c) {
-          return c.replace(/^#/, '');
-        });
+      key: 'hashStripper',
+      value: function hashStripper(c) {
+        return c.replace(/^#/, '');
+      }
+    }, {
+      key: 'setLinkToNewPaletteLink',
+      value: function setLinkToNewPaletteLink(event, colors) {
         var link = event.target;
         if (link.nodeName !== 'A') {
           link = link.closest('a');
         }
-        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + sampledColors.join(',');
+        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
         link.blur();
+      }
+    }, {
+      key: 'createPalette',
+      value: function createPalette(event) {
+        this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
+      }
+    }, {
+      key: 'createRandomPalette',
+      value: function createRandomPalette(allColors, event) {
+        this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
       }
     }, {
       key: 'render',
@@ -4955,9 +4975,33 @@ module.exports =
         return _react2['default'].createElement(
           'div',
           { className: _PaletteScss2['default'].container },
+          this.state.selectedColors.length > 0 ? _react2['default'].createElement(
+            'div',
+            { className: _PaletteScss2['default'].selectedColorsWrapper },
+            _react2['default'].createElement(
+              'a',
+              { href: '#', onClick: this.createPalette.bind(this),
+                target: '_blank'
+              },
+              _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
+              'Create palette'
+            ),
+            _react2['default'].createElement(
+              'ul',
+              { className: _PaletteScss2['default'].selectedColors },
+              this.state.selectedColors.map(function (hex) {
+                var key = 'selected-' + hex;
+                return _react2['default'].createElement(
+                  'li',
+                  { key: key, className: _PaletteScss2['default'].listItem },
+                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex })
+                );
+              })
+            )
+          ) : '',
           _react2['default'].createElement(
             'a',
-            { href: '#', onClick: this.createPalette.bind(this, hexColors),
+            { href: '#', onClick: this.createRandomPalette.bind(this, hexColors),
               target: '_blank'
             },
             _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
@@ -5030,12 +5074,13 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "Palette_container_1Ha",
   	"colors": "Palette_colors_jGR",
+  	"selectedColors": "Palette_selectedColors_1qk",
   	"title": "Palette_title_2zJ",
   	"linkIcon": "Palette_linkIcon_2U5"
   };
@@ -5087,8 +5132,8 @@ module.exports =
       key: 'propTypes',
       value: {
         hexColor: _react.PropTypes.string.isRequired,
-        onSelected: _react.PropTypes.func.isRequired,
-        onDeselected: _react.PropTypes.func.isRequired
+        onSelected: _react.PropTypes.func,
+        onDeselected: _react.PropTypes.func
       },
       enumerable: true
     }]);
@@ -5121,11 +5166,20 @@ module.exports =
         var selectedClass = this.state.selected ? _SwatchScss2['default'].selected : _SwatchScss2['default'].unselected;
         var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
         var darknessClass = isDark ? _SwatchScss2['default'].dark : _SwatchScss2['default'].light;
-        return _react2['default'].createElement('a', { href: '#', className: (0, _classnames2['default'])(_SwatchScss2['default'].container, selectedClass, darknessClass),
-          style: swatchStyle,
-          title: this.props.hexColor,
-          onClick: this.toggleSelected.bind(this)
-        });
+        var allowSelection = typeof this.props.onSelected === 'function' && typeof this.props.onDeselected === 'function';
+        return _react2['default'].createElement(
+          'span',
+          { className: _SwatchScss2['default'].outerContainer },
+          allowSelection ? _react2['default'].createElement('a', { href: '#', className: (0, _classnames2['default'])(_SwatchScss2['default'].container, selectedClass, darknessClass),
+            style: swatchStyle,
+            title: this.props.hexColor,
+            onClick: this.toggleSelected.bind(this)
+          }) : _react2['default'].createElement('span', { href: '#',
+            className: (0, _classnames2['default'])(_SwatchScss2['default'].container, selectedClass, darknessClass),
+            style: swatchStyle,
+            title: this.props.hexColor
+          })
+        );
       }
     }]);
   
@@ -5178,7 +5232,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_container_2L5.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_container_2L5.Swatch_dark_1H7 {}\n\n.Swatch_container_2L5.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_container_2L5.Swatch_light_2i7 {}\n\n.Swatch_container_2L5.Swatch_light_2i7:after {\n  color: #000\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED,wCAIC;;AAHC;EACE,WAAY;CACb;;AAGH,yCAIC;;AAHC;EACE,WAAY;CACb","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_container_2L5.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_container_2L5.Swatch_dark_1H7 {\n\n}\n\n.Swatch_container_2L5.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_container_2L5.Swatch_light_2i7 {\n\n}\n\n.Swatch_container_2L5.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_outerContainer_jxx {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.outerContainer {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -5186,7 +5240,8 @@ module.exports =
   	"selected": "Swatch_selected_kJg",
   	"unselected": "Swatch_unselected_1Wl",
   	"dark": "Swatch_dark_1H7",
-  	"light": "Swatch_light_2i7"
+  	"light": "Swatch_light_2i7",
+  	"outerContainer": "Swatch_outerContainer_jxx"
   };
 
 /***/ },

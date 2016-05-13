@@ -53,7 +53,6 @@ class ScreenshotPage extends Component {
   }
 
   onColorsLoaded(colors) {
-    console.log('colors', colors);
     this.setState({ colors });
   }
 

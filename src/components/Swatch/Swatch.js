@@ -8,8 +8,8 @@ import tinycolor from 'tinycolor2';
 class Swatch extends Component {
   static propTypes = {
     hexColor: PropTypes.string.isRequired,
-    onSelected: PropTypes.func.isRequired,
-    onDeselected: PropTypes.func.isRequired,
+    onSelected: PropTypes.func,
+    onDeselected: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -33,13 +33,24 @@ class Swatch extends Component {
     const selectedClass = this.state.selected ? s.selected : s.unselected;
     const isDark = tinycolor(this.props.hexColor).isDark();
     const darknessClass = isDark ? s.dark : s.light;
+    const allowSelection = typeof this.props.onSelected === 'function' &&
+        typeof this.props.onDeselected === 'function';
     return (
-      <a href="#" className={cx(s.container, selectedClass, darknessClass)}
-        style={swatchStyle}
-        title={this.props.hexColor}
-        onClick={this.toggleSelected.bind(this)}
-      >
-      </a>
+      <span className={s.outerContainer}>
+        {allowSelection ? (
+          <a href="#" className={cx(s.container, selectedClass, darknessClass)}
+            style={swatchStyle}
+            title={this.props.hexColor}
+            onClick={this.toggleSelected.bind(this)}
+          ></a>
+        ) : (
+          <span href="#"
+            className={cx(s.container, selectedClass, darknessClass)}
+            style={swatchStyle}
+            title={this.props.hexColor}
+          ></span>
+        )}
+      </span>
     );
   }
 

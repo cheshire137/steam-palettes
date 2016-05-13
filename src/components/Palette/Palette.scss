@@ -4,7 +4,7 @@
   margin-bottom: 20px;
 }
 
-.colors {
+.colors, .selectedColors {
   list-style: none;
   padding-left: 0;
 
@@ -12,6 +12,13 @@
     display: inline-block;
     line-height: 1;
   }
+}
+
+.colors {
+}
+
+.selectedColors {
+  margin-bottom: 20px;
 }
 
 .title {
