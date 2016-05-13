@@ -4851,11 +4851,10 @@ module.exports =
     }, {
       key: 'onColorDeselected',
       value: function onColorDeselected(color) {
-        var colors = this.state.selectedColors.slice();
-        var index = colors.indexOf(color);
-        if (index > -1) {
-          delete colors[index];
-        }
+        var index = this.state.selectedColors.indexOf(color);
+        var head = this.state.selectedColors.slice(0, index);
+        var tail = this.state.selectedColors.slice(index + 1, this.state.selectedColors.length);
+        var colors = head.concat(tail);
         this.setState({ selectedColors: colors });
       }
     }, {
@@ -4994,7 +4993,11 @@ module.exports =
                 return _react2['default'].createElement(
                   'li',
                   { key: key, className: _PaletteScss2['default'].listItem },
-                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex })
+                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
+                    allowSelection: false,
+                    onDeselected: _this.onColorDeselected.bind(_this),
+                    initiallySelected: true
+                  })
                 );
               })
             )
@@ -5011,12 +5014,17 @@ module.exports =
             'ul',
             { className: _PaletteScss2['default'].colors },
             hexColors.map(function (hex) {
+              var allowSelection = _this.state.selectedColors.length < 5;
+              var initiallySelected = _this.state.selectedColors.indexOf(hex) > -1;
+              var key = hex + '-' + allowSelection + '-' + initiallySelected;
               return _react2['default'].createElement(
                 'li',
-                { key: hex, className: _PaletteScss2['default'].listItem },
+                { key: key, className: _PaletteScss2['default'].listItem },
                 _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
                   onSelected: _this.onColorSelected.bind(_this),
-                  onDeselected: _this.onColorDeselected.bind(_this)
+                  onDeselected: _this.onColorDeselected.bind(_this),
+                  allowSelection: allowSelection,
+                  initiallySelected: initiallySelected
                 })
               );
             })
@@ -5133,7 +5141,9 @@ module.exports =
       value: {
         hexColor: _react.PropTypes.string.isRequired,
         onSelected: _react.PropTypes.func,
-        onDeselected: _react.PropTypes.func
+        onDeselected: _react.PropTypes.func,
+        allowSelection: _react.PropTypes.bool.isRequired,
+        initiallySelected: _react.PropTypes.bool.isRequired
       },
       enumerable: true
     }]);
@@ -5142,22 +5152,29 @@ module.exports =
       _classCallCheck(this, _Swatch);
   
       _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
-      this.state = { selected: false };
+      this.state = { selected: props.initiallySelected };
     }
   
     _createClass(Swatch, [{
+      key: 'propagateSelected',
+      value: function propagateSelected() {
+        if (this.state.selected) {
+          this.props.onSelected(this.props.hexColor);
+        } else {
+          this.props.onDeselected(this.props.hexColor);
+        }
+      }
+    }, {
       key: 'toggleSelected',
       value: function toggleSelected(event) {
-        var _this = this;
-  
         event.preventDefault();
-        this.setState({ selected: !this.state.selected }, function () {
-          if (_this.state.selected) {
-            _this.props.onSelected(_this.props.hexColor);
-          } else {
-            _this.props.onDeselected(_this.props.hexColor);
-          }
-        });
+        this.setState({ selected: !this.state.selected }, this.propagateSelected.bind(this));
+      }
+    }, {
+      key: 'deselect',
+      value: function deselect(event) {
+        event.preventDefault();
+        this.setState({ selected: false }, this.propagateSelected.bind(this));
       }
     }, {
       key: 'render',
@@ -5166,19 +5183,28 @@ module.exports =
         var selectedClass = this.state.selected ? _SwatchScss2['default'].selected : _SwatchScss2['default'].unselected;
         var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
         var darknessClass = isDark ? _SwatchScss2['default'].dark : _SwatchScss2['default'].light;
-        var allowSelection = typeof this.props.onSelected === 'function' && typeof this.props.onDeselected === 'function';
         return _react2['default'].createElement(
           'span',
-          { className: _SwatchScss2['default'].outerContainer },
-          allowSelection ? _react2['default'].createElement('a', { href: '#', className: (0, _classnames2['default'])(_SwatchScss2['default'].container, selectedClass, darknessClass),
+          { className: _SwatchScss2['default'].container },
+          this.props.allowSelection ? _react2['default'].createElement('a', { href: '#',
+            className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
             style: swatchStyle,
             title: this.props.hexColor,
             onClick: this.toggleSelected.bind(this)
-          }) : _react2['default'].createElement('span', { href: '#',
-            className: (0, _classnames2['default'])(_SwatchScss2['default'].container, selectedClass, darknessClass),
-            style: swatchStyle,
-            title: this.props.hexColor
-          })
+          }) : _react2['default'].createElement(
+            'span',
+            { className: _SwatchScss2['default'].disallowSelection },
+            this.state.selected ? _react2['default'].createElement('a', { href: '#',
+              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
+              style: swatchStyle,
+              title: this.props.hexColor,
+              onClick: this.deselect.bind(this)
+            }) : _react2['default'].createElement('span', {
+              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, selectedClass, darknessClass),
+              style: swatchStyle,
+              title: this.props.hexColor
+            })
+          )
         );
       }
     }]);
@@ -5232,16 +5258,17 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5 {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_container_2L5.Swatch_selected_kJg:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_container_2L5.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_container_2L5.Swatch_dark_1H7 {\n\n}\n\n.Swatch_container_2L5.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_container_2L5.Swatch_light_2i7 {\n\n}\n\n.Swatch_container_2L5.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_outerContainer_jxx {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.outerContainer {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg, .Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after, .Swatch_swatch_3nj.Swatch_link_3Ji:hover:after, .Swatch_swatch_3nj.Swatch_link_3Ji:focus:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected, &.link:hover, &.link:focus {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"container": "Swatch_container_2L5",
+  	"swatch": "Swatch_swatch_3nj",
   	"selected": "Swatch_selected_kJg",
+  	"link": "Swatch_link_3Ji",
   	"unselected": "Swatch_unselected_1Wl",
   	"dark": "Swatch_dark_1H7",
   	"light": "Swatch_light_2i7",
-  	"outerContainer": "Swatch_outerContainer_jxx"
+  	"container": "Swatch_container_2L5"
   };
 
 /***/ },

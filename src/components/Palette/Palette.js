@@ -25,11 +25,11 @@ class Palette extends Component {
   }
 
   onColorDeselected(color) {
-    const colors = this.state.selectedColors.slice();
-    const index = colors.indexOf(color);
-    if (index > -1) {
-      delete colors[index];
-    }
+    const index = this.state.selectedColors.indexOf(color);
+    const head = this.state.selectedColors.slice(0, index);
+    const tail = this.state.selectedColors.
+        slice(index + 1, this.state.selectedColors.length);
+    const colors = head.concat(tail);
     this.setState({ selectedColors: colors });
   }
 
@@ -149,7 +149,11 @@ class Palette extends Component {
                 const key = 'selected-' + hex;
                 return (
                   <li key={key} className={s.listItem}>
-                    <Swatch hexColor={hex} />
+                    <Swatch hexColor={hex}
+                      allowSelection={false}
+                      onDeselected={this.onColorDeselected.bind(this)}
+                      initiallySelected
+                    />
                   </li>
                 );
               })}
@@ -164,11 +168,17 @@ class Palette extends Component {
         </a>
         <ul className={s.colors}>
           {hexColors.map((hex) => {
+            const allowSelection = this.state.selectedColors.length < 5;
+            const initiallySelected =
+                this.state.selectedColors.indexOf(hex) > -1;
+            const key = hex + '-' + allowSelection + '-' + initiallySelected;
             return (
-              <li key={hex} className={s.listItem}>
+              <li key={key} className={s.listItem}>
                 <Swatch hexColor={hex}
                   onSelected={this.onColorSelected.bind(this)}
                   onDeselected={this.onColorDeselected.bind(this)}
+                  allowSelection={allowSelection}
+                  initiallySelected={initiallySelected}
                 />
               </li>
             );
