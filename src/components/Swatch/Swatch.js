@@ -1,25 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import s from './Swatch.scss';
+import cx from 'classnames';
 import withStyles from '../../decorators/withStyles';
+import tinycolor from 'tinycolor2';
 
 @withStyles(s)
 class Swatch extends Component {
   static propTypes = {
     hexColor: PropTypes.string.isRequired,
+    onSelected: PropTypes.func.isRequired,
+    onDeselected: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = {};
+    this.state = { selected: false };
+  }
+
+  toggleSelected(event) {
+    event.preventDefault();
+    this.setState({ selected: !this.state.selected }, () => {
+      if (this.state.selected) {
+        this.props.onSelected(this.props.hexColor);
+      } else {
+        this.props.onDeselected(this.props.hexColor);
+      }
+    });
   }
 
   render() {
     const swatchStyle = { backgroundColor: this.props.hexColor };
+    const selectedClass = this.state.selected ? s.selected : s.unselected;
+    const isDark = tinycolor(this.props.hexColor).isDark();
+    const darknessClass = isDark ? s.dark : s.light;
     return (
-      <div className={s.container} style={swatchStyle}
+      <a href="#" className={cx(s.container, selectedClass, darknessClass)}
+        style={swatchStyle}
         title={this.props.hexColor}
+        onClick={this.toggleSelected.bind(this)}
       >
-      </div>
+      </a>
     );
   }
 

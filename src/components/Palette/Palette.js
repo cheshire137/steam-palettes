@@ -16,6 +16,14 @@ class Palette extends Component {
     this.state = {};
   }
 
+  onColorSelected(color) {
+    console.log(color, 'selected');
+  }
+
+  onColorDeselected(color) {
+    console.log(color, 'deselected');
+  }
+
   getAllColors() {
     const hexColors = [];
     for (let i = 0; i < this.props.colors.length; i++) {
@@ -120,7 +128,10 @@ class Palette extends Component {
           {hexColors.map((hex) => {
             return (
               <li key={hex} className={s.listItem}>
-                <Swatch hexColor={hex} />
+                <Swatch hexColor={hex}
+                  onSelected={this.onColorSelected.bind(this)}
+                  onDeselected={this.onColorDeselected.bind(this)}
+                />
               </li>
             );
           })}

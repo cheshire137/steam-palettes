@@ -8,7 +8,36 @@
   height: $swatch-size;
   text-align: center;
   margin: 2px 5px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
   -webkit-box-shadow: 1px 1px 3px 0 #000;
   box-shadow: 1px 1px 3px 0 #000;
+
+  &.selected {
+    border-color: rgba(255, 255, 255, 0.7);
+
+    &:after {
+      content: "x";
+      position: absolute;
+      left: 5px;
+      top: 1px;
+    }
+  }
+
+  &.unselected {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  &.dark {
+    &:after {
+      color: #fff;
+    }
+  }
+
+  &.light {
+    &:after {
+      color: #000;
+    }
+  }
 }
