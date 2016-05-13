@@ -1820,7 +1820,16 @@ module.exports =
           _react2['default'].createElement(
             'div',
             { className: _FooterScss2['default'].innerContainer },
-            '© 2016 Sarah Vessels'
+            '© 2016 Sarah Vessels',
+            _react2['default'].createElement('span', { className: _FooterScss2['default'].separator }),
+            _react2['default'].createElement(
+              'a',
+              { href: 'https://github.com/cheshire137/steam-palettes',
+                target: '_blank',
+                className: _FooterScss2['default'].link
+              },
+              'View source'
+            )
           )
         );
       }
@@ -1875,12 +1884,14 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,eAAe;EACf,iBAAiB;EACjB,eAAe;EACf,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  color: #8B8086;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Footer_footer_2nh, a.Footer_link_NoJ, .Footer_link_NoJ:link, .Footer_link_NoJ:visited, .Footer_link_NoJ:active {\r\n  color: #8B8086;\r\n}\r\n\r\n.Footer_footer_2nh {\r\n  display: block;\r\n  margin-top: 40px;\r\n  text-align: center;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.Footer_innerContainer_3fW {\r\n  max-width: 1000px;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n\r\na.Footer_link_NoJ {\r\n  text-decoration: underline\r\n}\r\n\r\na.Footer_link_NoJ:hover, a.Footer_link_NoJ:focus {\r\n  text-decoration: none;\r\n  color: #fff;\r\n}\r\n\r\n.Footer_separator_3a2 {\r\n}\r\n\r\n.Footer_separator_3a2:before {\r\n  content: \"\\A0\\B7\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EAEE,eAAmB;CACpB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,mBAAmB;EACnB,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB;;AAED;EACE,0BAA2B;CAM5B;;AAJC;EACE,sBAAsB;EACtB,YAAmB;CACpB;;AAGH;CAIC;;AAHC;EACE,qBAAqB;CACtB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n","@import '../variables.scss';\r\n\r\n.footer,\r\na.link, .link:link, .link:visited, .link:active {\r\n  color: $text-color;\r\n}\r\n\r\n.footer {\r\n  display: block;\r\n  margin-top: 40px;\r\n  text-align: center;\r\n  font-size: 12px;\r\n  background-color: #0D0C0B;\r\n}\r\n\r\n.innerContainer {\r\n  max-width: $max-content-width;\r\n  margin: 0 auto;\r\n  padding: 40px 0;\r\n}\r\n\r\na.link {\r\n  text-decoration: underline;\r\n\r\n  &:hover, &:focus {\r\n    text-decoration: none;\r\n    color: $link-color;\r\n  }\r\n}\r\n\r\n.separator {\r\n  &:before {\r\n    content: \"\\a0\\b7\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"footer": "Footer_footer_2nh",
-  	"innerContainer": "Footer_innerContainer_3fW"
+  	"link": "Footer_link_NoJ",
+  	"innerContainer": "Footer_innerContainer_3fW",
+  	"separator": "Footer_separator_3a2"
   };
 
 /***/ },

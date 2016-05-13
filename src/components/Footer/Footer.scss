@@ -1,9 +1,14 @@
 @import '../variables.scss';
 
+.footer,
+a.link, .link:link, .link:visited, .link:active {
+  color: $text-color;
+}
+
 .footer {
   display: block;
   margin-top: 40px;
-  color: #8B8086;
+  text-align: center;
   font-size: 12px;
   background-color: #0D0C0B;
 }
@@ -12,4 +17,19 @@
   max-width: $max-content-width;
   margin: 0 auto;
   padding: 40px 0;
+}
+
+a.link {
+  text-decoration: underline;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    color: $link-color;
+  }
+}
+
+.separator {
+  &:before {
+    content: "\a0\b7\a0";
+  }
 }
