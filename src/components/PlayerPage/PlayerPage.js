@@ -45,7 +45,7 @@ class PlayerPage extends Component {
     const screenshotsLoaded = typeof this.state.screenshots === 'object';
     return (
       <div className={s.container}>
-        <Header title={this.state.title} />
+        <Header title={this.state.title} titleIcon="user" />
         <div className={s.row}>
           <div className={s.left}>
             <PlayerSummary key={this.props.steamID}

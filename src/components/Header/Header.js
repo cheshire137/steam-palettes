@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import s from './Header.scss';
 import withStyles from '../../decorators/withStyles';
 import Link from '../Link';
+import FontAwesome from 'react-fontawesome';
 
 @withStyles(s)
 class Header extends Component {
@@ -9,6 +10,8 @@ class Header extends Component {
     title: PropTypes.string,
     previousUrl: PropTypes.string,
     previousTitle: PropTypes.string,
+    previousIcon: PropTypes.string,
+    titleIcon: PropTypes.string,
   };
 
   render() {
@@ -34,6 +37,11 @@ class Header extends Component {
               <a href={this.props.previousUrl} className={s.backLink}
                 onClick={Link.handleClick}
               >
+                {typeof this.props.previousIcon === 'string' ? (
+                  <FontAwesome name={this.props.previousIcon}
+                    className={s.icon}
+                  />
+                ) : ''}
                 {this.props.previousTitle}
               </a>
             </span>
@@ -42,6 +50,11 @@ class Header extends Component {
             <span className={s.subtitleWrapper}>
               <span className={s.separator}>/</span>
               <span className={s.subtitle}>
+                {typeof this.props.titleIcon === 'string' ? (
+                  <FontAwesome name={this.props.titleIcon}
+                    className={s.icon}
+                  />
+                ) : ''}
                 {this.props.title}
               </span>
             </span>

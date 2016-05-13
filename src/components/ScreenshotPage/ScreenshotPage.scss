@@ -66,7 +66,9 @@
 .fullSizeLink, .detailsUrl {
   &:after {
     color: $text-color;
-    content: "\a0\b7\a0";
+    content: "\b7";
+    margin-left: 0.75em;
+    margin-right: 0.75em;
   }
 }
 
@@ -81,4 +83,21 @@
   .right {
     min-width: 370px;
   }
+}
+
+.icon {
+  margin-right: 0.5em;
+  font-size: 14px;
+}
+
+.profileIcon {
+
+}
+
+.detailsIcon {
+
+}
+
+.fullSizeIcon {
+
 }

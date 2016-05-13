@@ -83,11 +83,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(77);
+  var _componentsHtml = __webpack_require__(78);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(78);
+  var _assets = __webpack_require__(79);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -101,15 +101,15 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(79);
+  var _actionsScreenshotsScraper = __webpack_require__(80);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(82);
+  var _actionsScreenshotScraper = __webpack_require__(83);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(83);
+  var _actionsImageAnalyzer = __webpack_require__(84);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
@@ -443,11 +443,11 @@ module.exports =
   
   var _componentsPlayerLookupPage2 = _interopRequireDefault(_componentsPlayerLookupPage);
   
-  var _componentsPlayerPage = __webpack_require__(48);
+  var _componentsPlayerPage = __webpack_require__(49);
   
   var _componentsPlayerPage2 = _interopRequireDefault(_componentsPlayerPage);
   
-  var _componentsScreenshotPage = __webpack_require__(66);
+  var _componentsScreenshotPage = __webpack_require__(67);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -2426,7 +2426,7 @@ module.exports =
                 { className: _PlayerLookupPageScss2['default'].instruction },
                 'Try setting your custom URL in Steam:'
               ),
-              _react2['default'].createElement('img', { src: __webpack_require__(87), width: '640',
+              _react2['default'].createElement('img', { src: __webpack_require__(48), width: '640',
                 height: '321', alt: 'Edit Steam profile',
                 className: _PlayerLookupPageScss2['default'].instructionImage
               }),
@@ -3104,6 +3104,10 @@ module.exports =
   
   var _Link2 = _interopRequireDefault(_Link);
   
+  var _reactFontawesome = __webpack_require__(88);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  
   var Header = (function (_Component) {
     _inherits(Header, _Component);
   
@@ -3150,6 +3154,9 @@ module.exports =
                 { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
                   onClick: _Link2['default'].handleClick
                 },
+                typeof this.props.previousIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.previousIcon,
+                  className: _HeaderScss2['default'].icon
+                }) : '',
                 this.props.previousTitle
               )
             ) : '',
@@ -3164,6 +3171,9 @@ module.exports =
               _react2['default'].createElement(
                 'span',
                 { className: _HeaderScss2['default'].subtitle },
+                typeof this.props.titleIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.titleIcon,
+                  className: _HeaderScss2['default'].icon
+                }) : '',
                 this.props.title
               )
             ) : ''
@@ -3175,7 +3185,9 @@ module.exports =
       value: {
         title: _react.PropTypes.string,
         previousUrl: _react.PropTypes.string,
-        previousTitle: _react.PropTypes.string
+        previousTitle: _react.PropTypes.string,
+        previousIcon: _react.PropTypes.string,
+        titleIcon: _react.PropTypes.string
       },
       enumerable: true
     }]);
@@ -3229,14 +3241,15 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"header": "Header_header_3bM",
   	"title": "Header_title_YtT",
   	"brand": "Header_brand_1-T",
-  	"separator": "Header_separator_1Qr"
+  	"separator": "Header_separator_1Qr",
+  	"icon": "Header_icon_3H0"
   };
 
 /***/ },
@@ -3371,6 +3384,12 @@ module.exports =
 /* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
+  module.exports = __webpack_require__.p + "e9c530170ced5eaa9717f3e2ec7c4eab.jpg";
+
+/***/ },
+/* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
   'use strict';
   
   Object.defineProperty(exports, '__esModule', {
@@ -3391,7 +3410,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerPageScss = __webpack_require__(49);
+  var _PlayerPageScss = __webpack_require__(50);
   
   var _PlayerPageScss2 = _interopRequireDefault(_PlayerPageScss);
   
@@ -3399,11 +3418,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _PlayerSummaryPlayerSummary = __webpack_require__(51);
+  var _PlayerSummaryPlayerSummary = __webpack_require__(52);
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
-  var _FriendsListFriendsList = __webpack_require__(54);
+  var _FriendsListFriendsList = __webpack_require__(55);
   
   var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
   
@@ -3411,7 +3430,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(60);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(61);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
@@ -3471,7 +3490,7 @@ module.exports =
         return _react2['default'].createElement(
           'div',
           { className: _PlayerPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], { title: this.state.title }),
+          _react2['default'].createElement(_Header2['default'], { title: this.state.title, titleIcon: 'user' }),
           _react2['default'].createElement(
             'div',
             { className: _PlayerPageScss2['default'].row },
@@ -3509,11 +3528,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(50);
+      var content = __webpack_require__(51);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3541,7 +3560,7 @@ module.exports =
     
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3560,7 +3579,7 @@ module.exports =
   };
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3583,7 +3602,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerSummaryScss = __webpack_require__(52);
+  var _PlayerSummaryScss = __webpack_require__(53);
   
   var _PlayerSummaryScss2 = _interopRequireDefault(_PlayerSummaryScss);
   
@@ -3719,11 +3738,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(53);
+      var content = __webpack_require__(54);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3751,7 +3770,7 @@ module.exports =
     
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3777,7 +3796,7 @@ module.exports =
   };
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3802,7 +3821,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendsListScss = __webpack_require__(55);
+  var _FriendsListScss = __webpack_require__(56);
   
   var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
   
@@ -3814,7 +3833,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _FriendListItemFriendListItem = __webpack_require__(57);
+  var _FriendListItemFriendListItem = __webpack_require__(58);
   
   var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
   
@@ -3896,11 +3915,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(56);
+      var content = __webpack_require__(57);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3928,7 +3947,7 @@ module.exports =
     
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3945,7 +3964,7 @@ module.exports =
   };
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3968,7 +3987,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendListItemScss = __webpack_require__(58);
+  var _FriendListItemScss = __webpack_require__(59);
   
   var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
   
@@ -4045,11 +4064,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(59);
+      var content = __webpack_require__(60);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4077,7 +4096,7 @@ module.exports =
     
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4096,7 +4115,7 @@ module.exports =
   };
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4121,7 +4140,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotsListScss = __webpack_require__(61);
+  var _ScreenshotsListScss = __webpack_require__(62);
   
   var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
   
@@ -4129,7 +4148,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _ScreenshotListItemScreenshotListItem = __webpack_require__(63);
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(64);
   
   var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
   
@@ -4193,11 +4212,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(62);
+      var content = __webpack_require__(63);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4225,7 +4244,7 @@ module.exports =
     
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4242,7 +4261,7 @@ module.exports =
   };
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4265,7 +4284,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotListItemScss = __webpack_require__(64);
+  var _ScreenshotListItemScss = __webpack_require__(65);
   
   var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
   
@@ -4342,11 +4361,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(65);
+      var content = __webpack_require__(66);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4374,7 +4393,7 @@ module.exports =
     
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4390,7 +4409,7 @@ module.exports =
   };
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4413,13 +4432,17 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(67);
+  var _ScreenshotPageScss = __webpack_require__(68);
   
   var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
   var _decoratorsWithStyles = __webpack_require__(21);
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _classnames = __webpack_require__(37);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
   
   var _apiSteam = __webpack_require__(31);
   
@@ -4429,13 +4452,17 @@ module.exports =
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _apiColors = __webpack_require__(69);
+  var _apiColors = __webpack_require__(70);
   
   var _apiColors2 = _interopRequireDefault(_apiColors);
   
-  var _Palette = __webpack_require__(70);
+  var _Palette = __webpack_require__(71);
   
   var _Palette2 = _interopRequireDefault(_Palette);
+  
+  var _reactFontawesome = __webpack_require__(88);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
   var ScreenshotPage = (function (_Component) {
     _inherits(ScreenshotPage, _Component);
@@ -4527,7 +4554,8 @@ module.exports =
           'div',
           { className: _ScreenshotPageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
-            previousTitle: backTitle
+            previousTitle: backTitle,
+            previousIcon: 'user'
           }),
           isScreenshotLoaded ? _react2['default'].createElement(
             'div',
@@ -4550,6 +4578,9 @@ module.exports =
                 { href: this.state.screenshot.url, target: '_blank',
                   className: _ScreenshotPageScss2['default'].detailsUrl
                 },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'info',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].detailsIcon)
+                }),
                 'View details'
               ),
               _react2['default'].createElement(
@@ -4557,6 +4588,9 @@ module.exports =
                 { href: this.state.screenshot.fullSizeUrl, target: '_blank',
                   className: _ScreenshotPageScss2['default'].fullSizeLink
                 },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'search-plus',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].fullSizeIcon)
+                }),
                 'View full size'
               ),
               _react2['default'].createElement(
@@ -4564,6 +4598,9 @@ module.exports =
                 { className: _ScreenshotPageScss2['default'].authorLink, href: this.state.screenshot.userUrl,
                   target: '_blank'
                 },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'steam',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].profileIcon)
+                }),
                 'View ',
                 this.props.username,
                 '\'s profile'
@@ -4617,11 +4654,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(68);
+      var content = __webpack_require__(69);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4649,7 +4686,7 @@ module.exports =
     
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4657,7 +4694,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EACE,eAAmB;EACnB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4673,11 +4710,15 @@ module.exports =
   	"authorLink": "ScreenshotPage_authorLink_2ME",
   	"fullSizeLink": "ScreenshotPage_fullSizeLink_26o",
   	"detailsUrl": "ScreenshotPage_detailsUrl_3O_",
-  	"message": "ScreenshotPage_message_1kw"
+  	"message": "ScreenshotPage_message_1kw",
+  	"icon": "ScreenshotPage_icon_3uB",
+  	"profileIcon": "ScreenshotPage_profileIcon_5Dv",
+  	"detailsIcon": "ScreenshotPage_detailsIcon_Bml",
+  	"fullSizeIcon": "ScreenshotPage_fullSizeIcon_2Di"
   };
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4738,7 +4779,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4761,7 +4802,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PaletteScss = __webpack_require__(71);
+  var _PaletteScss = __webpack_require__(72);
   
   var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
   
@@ -4769,13 +4810,17 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Swatch = __webpack_require__(73);
+  var _Swatch = __webpack_require__(74);
   
   var _Swatch2 = _interopRequireDefault(_Swatch);
   
-  var _tinycolor2 = __webpack_require__(76);
+  var _tinycolor2 = __webpack_require__(77);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var _reactFontawesome = __webpack_require__(88);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
   var Palette = (function (_Component) {
     _inherits(Palette, _Component);
@@ -4900,6 +4945,7 @@ module.exports =
             { href: '#', onClick: this.createPalette.bind(this, hexColors),
               target: '_blank'
             },
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
             'Create random palette'
           ),
           _react2['default'].createElement(
@@ -4926,11 +4972,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(72);
+      var content = __webpack_require__(73);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4958,7 +5004,7 @@ module.exports =
     
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4966,17 +5012,18 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "Palette_container_1Ha",
   	"colors": "Palette_colors_jGR",
-  	"title": "Palette_title_2zJ"
+  	"title": "Palette_title_2zJ",
+  	"linkIcon": "Palette_linkIcon_2U5"
   };
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4999,7 +5046,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _SwatchScss = __webpack_require__(74);
+  var _SwatchScss = __webpack_require__(75);
   
   var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
   
@@ -5044,11 +5091,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(75);
+      var content = __webpack_require__(76);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -5076,7 +5123,7 @@ module.exports =
     
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -5092,13 +5139,13 @@ module.exports =
   };
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports) {
 
   module.exports = require("tinycolor2");
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -5167,6 +5214,7 @@ module.exports =
             _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
             _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
             _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo:400,700', rel: 'stylesheet', type: 'text/css' }),
+            _react2['default'].createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' }),
             _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
           ),
           _react2['default'].createElement(
@@ -5204,13 +5252,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5229,11 +5277,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(80);
+  var _jsdom = __webpack_require__(81);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(81);
+  var _bluebird = __webpack_require__(82);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -5319,19 +5367,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5350,11 +5398,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(80);
+  var _jsdom = __webpack_require__(81);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(81);
+  var _bluebird = __webpack_require__(82);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -5514,7 +5562,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5529,23 +5577,23 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(81);
+  var _bluebird = __webpack_require__(82);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
-  var _http = __webpack_require__(84);
+  var _http = __webpack_require__(85);
   
   var _http2 = _interopRequireDefault(_http);
   
-  var _canvas = __webpack_require__(85);
+  var _canvas = __webpack_require__(86);
   
   var _canvas2 = _interopRequireDefault(_canvas);
   
-  var _tinycolor2 = __webpack_require__(76);
+  var _tinycolor2 = __webpack_require__(77);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
-  var _colorThief = __webpack_require__(86);
+  var _colorThief = __webpack_require__(87);
   
   var _colorThief2 = _interopRequireDefault(_colorThief);
   
@@ -5798,28 +5846,28 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports) {
 
   module.exports = require("http");
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports) {
 
   module.exports = require("canvas");
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports) {
 
   module.exports = require("color-thief");
 
 /***/ },
-/* 87 */
-/***/ function(module, exports, __webpack_require__) {
+/* 88 */
+/***/ function(module, exports) {
 
-  module.exports = __webpack_require__.p + "e9c530170ced5eaa9717f3e2ec7c4eab.jpg";
+  module.exports = require("react-fontawesome");
 
 /***/ }
 /******/ ]);

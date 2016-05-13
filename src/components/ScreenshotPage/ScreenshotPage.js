@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import s from './ScreenshotPage.scss';
 import withStyles from '../../decorators/withStyles';
+import cx from 'classnames';
 import Steam from '../../api/steam';
 import Header from '../Header';
 import Colors from '../../api/colors';
 import Palette from '../Palette';
+import FontAwesome from 'react-fontawesome';
 
 @withStyles(s)
 class ScreenshotPage extends Component {
@@ -80,6 +82,7 @@ class ScreenshotPage extends Component {
       <div className={s.container}>
         <Header title={this.state.title} previousUrl={backUrl}
           previousTitle={backTitle}
+          previousIcon="user"
         />
         {isScreenshotLoaded ? (
           <div className={s.details}>
@@ -95,16 +98,25 @@ class ScreenshotPage extends Component {
               <a href={this.state.screenshot.url} target="_blank"
                 className={s.detailsUrl}
               >
+                <FontAwesome name="info"
+                  className={cx(s.icon, s.detailsIcon)}
+                />
                 View details
               </a>
               <a href={this.state.screenshot.fullSizeUrl} target="_blank"
                 className={s.fullSizeLink}
               >
+                <FontAwesome name="search-plus"
+                  className={cx(s.icon, s.fullSizeIcon)}
+                />
                 View full size
               </a>
               <a className={s.authorLink} href={this.state.screenshot.userUrl}
                 target="_blank"
               >
+                <FontAwesome name="steam"
+                  className={cx(s.icon, s.profileIcon)}
+                />
                 View {this.props.username}'s profile
               </a>
               <ul className={s.metadata}>

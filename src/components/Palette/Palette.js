@@ -3,6 +3,7 @@ import s from './Palette.scss';
 import withStyles from '../../decorators/withStyles';
 import Swatch from '../Swatch';
 import tinycolor from 'tinycolor2';
+import FontAwesome from 'react-fontawesome';
 
 @withStyles(s)
 class Palette extends Component {
@@ -109,6 +110,7 @@ class Palette extends Component {
         <a href="#" onClick={this.createPalette.bind(this, hexColors)}
           target="_blank"
         >
+          <FontAwesome name="external-link" className={s.linkIcon} />
           Create random palette
         </a>
         <ul className={s.colors}>
