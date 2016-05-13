@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import s from './Swatch.scss';
 import withStyles from '../../decorators/withStyles';
-import tinycolor from 'tinycolor2';
 
 @withStyles(s)
 class Swatch extends Component {
@@ -16,15 +15,10 @@ class Swatch extends Component {
 
   render() {
     const swatchStyle = { backgroundColor: this.props.hexColor };
-    const isDark = tinycolor(this.props.hexColor).isDark();
-    const nameStyle = {
-      color: isDark ? '#efefef' : '#000',
-    };
     return (
-      <div className={s.container} style={swatchStyle}>
-        <span className={s.name} style={nameStyle}>
-          {this.props.hexColor}
-        </span>
+      <div className={s.container} style={swatchStyle}
+        title={this.props.hexColor}
+      >
       </div>
     );
   }

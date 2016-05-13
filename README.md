@@ -31,5 +31,5 @@ Visit [localhost:3000](http://localhost:3000/) to view the app. The server runs 
 
 ## Thanks
 
-- [itunes-colors](https://github.com/lukasklein/itunes-colors)
-- [TinyColor](https://github.com/bgrins/TinyColor)
+- [itunes-colors](https://github.com/lukasklein/itunes-colors) and [Color Thief](https://github.com/lokesh/color-thief) for extracting color palettes from images.
+- [TinyColor](https://github.com/bgrins/TinyColor) for translating between RGB and hex colors as well as getting analogous and monochromatic color variations.

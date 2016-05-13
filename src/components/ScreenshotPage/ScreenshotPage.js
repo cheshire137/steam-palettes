@@ -51,6 +51,7 @@ class ScreenshotPage extends Component {
   }
 
   onColorsLoaded(colors) {
+    console.log('colors', colors);
     this.setState({ colors });
   }
 
@@ -116,7 +117,7 @@ class ScreenshotPage extends Component {
             </div>
             <div className={s.right}>
               {areColorsLoaded ? (
-                <Palette {...this.state.colors} />
+                <Palette colors={this.state.colors} />
               ) : (
                 <p className={s.colorsMessage}>Loading colors...</p>
               )}

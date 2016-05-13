@@ -2,6 +2,7 @@ import Promise from 'bluebird';
 import http from 'http';
 import Canvas from 'canvas';
 import tinycolor from 'tinycolor2';
+import ColorThief from 'color-thief';
 
 // Converted from
 // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
@@ -11,6 +12,7 @@ class ImageAnalyzer {
     this.primaryColor = null;
     this.secondaryColor = null;
     this.detailColor = null;
+    this.thiefPalette = [];
   }
 
   getColors(imageUrl) {
@@ -36,6 +38,10 @@ class ImageAnalyzer {
     const ctx = cvs.getContext('2d');
     ctx.drawImage(img, 0, 0, img.width, img.height);
     this.bgcolor = this.findEdgeColor(cvs, ctx);
+    const thief = new ColorThief();
+    this.thiefPalette = thief.getPalette(data, 8).map((rgb) => {
+      return tinycolor({ r: rgb[0], g: rgb[1], b: rgb[2] }).toHexString();
+    });
     this.findTextColors(cvs, ctx, resolve);
   }
 
@@ -149,12 +155,13 @@ class ImageAnalyzer {
     if (!this.detailColor) {
       this.detailColor = defaultColor;
     }
-    resolve({
-      bg: this.rgbSnippetToHex(this.bgcolor),
-      primary: this.rgbSnippetToHex(this.primaryColor),
-      secondary: this.rgbSnippetToHex(this.secondaryColor),
-      detail: this.rgbSnippetToHex(this.detailColor),
-    });
+    const allColors = this.thiefPalette.concat([
+      this.rgbSnippetToHex(this.bgcolor),
+      this.rgbSnippetToHex(this.primaryColor),
+      this.rgbSnippetToHex(this.secondaryColor),
+      this.rgbSnippetToHex(this.detailColor),
+    ]);
+    resolve(Array.from(new Set(allColors)));
   }
 
   rgbSnippetToHex(rgbSnippet) {

@@ -7,10 +7,7 @@ import tinycolor from 'tinycolor2';
 @withStyles(s)
 class Palette extends Component {
   static propTypes = {
-    bg: PropTypes.string.isRequired,
-    primary: PropTypes.string.isRequired,
-    secondary: PropTypes.string.isRequired,
-    detail: PropTypes.string.isRequired,
+    colors: PropTypes.array.isRequired,
   };
 
   constructor(props, context) {
@@ -18,17 +15,61 @@ class Palette extends Component {
     this.state = {};
   }
 
-  getHexColors() {
-    const baseColors = [this.props.bg, this.props.primary, this.props.secondary,
-                        this.props.detail];
+  getAllColors() {
     const hexColors = [];
-    for (let i = 0; i < baseColors.length; i++) {
-      hexColors.push(baseColors[i]);
-      const color = tinycolor(baseColors[i]);
+    for (let i = 0; i < this.props.colors.length; i++) {
+      hexColors.push(this.props.colors[i]);
+      const color = tinycolor(this.props.colors[i]);
       this.addVariation(hexColors, color, 'analogous');
       this.addVariation(hexColors, color, 'monochromatic');
     }
-    return this.uniq(hexColors);
+    const uniqueColors = this.uniq(hexColors);
+    uniqueColors.sort(this.colorSorter.bind(this));
+    return uniqueColors;
+  }
+
+  // See 'Step sorting' on http://www.alanzucconi.com/2015/09/30/colour-sorting/
+  colorSorter(aStr, bStr) {
+    const colorA = tinycolor(aStr);
+    const colorB = tinycolor(bStr);
+    const lumA = colorA.getLuminance();
+    const lumB = colorB.getLuminance();
+    const hsvA = colorA.toHsv();
+    const hsvB = colorB.toHsv();
+    const repetitions = 8;
+    const h2A = Math.round(hsvA.h * repetitions);
+    const h2B = Math.round(hsvB.h * repetitions);
+    let lum2A = Math.round(lumA * repetitions);
+    let lum2B = Math.round(lumB * repetitions);
+    let v2A = Math.round(hsvA.v * repetitions);
+    let v2B = Math.round(hsvB.v * repetitions);
+    if (h2A % 2 === 1) {
+      v2A = repetitions - v2A;
+      lum2A = repetitions - lum2A;
+    }
+    if (h2B % 2 === 1) {
+      v2B = repetitions - v2B;
+      lum2B = repetitions - lum2B;
+    }
+    if (h2A < h2B) {
+      return -1;
+    }
+    if (h2A > h2B) {
+      return 1;
+    }
+    if (lum2A < lum2B) {
+      return -1;
+    }
+    if (lum2A > lum2B) {
+      return 1;
+    }
+    if (v2A < v2B) {
+      return -1;
+    }
+    if (v2A > v2B) {
+      return 1;
+    }
+    return 0;
   }
 
   addVariation(list, color, funcName) {
@@ -62,7 +103,7 @@ class Palette extends Component {
   }
 
   render() {
-    const hexColors = this.getHexColors();
+    const hexColors = this.getAllColors();
     return (
       <div className={s.container}>
         <a href="#" onClick={this.createPalette.bind(this, hexColors)}
