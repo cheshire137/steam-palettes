@@ -4930,6 +4930,9 @@ module.exports =
           return c.replace(/^#/, '');
         });
         var link = event.target;
+        if (link.nodeName !== 'A') {
+          link = link.closest('a');
+        }
         link.href = 'http://www.colourlovers.com/palettes/add?colors=' + sampledColors.join(',');
         link.blur();
       }
