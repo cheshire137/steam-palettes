@@ -2,9 +2,13 @@
 
 This is the successor to [steamy-screenshots](https://github.com/cheshire137/steamy-screenshots), built as a React web app. The goal is to let you view Steam screenshots and create color palettes from them on [COLOURlovers](http://www.colourlovers.com/).
 
-![Screenshots list](https://raw.githubusercontent.com/cheshire137/steam-palettes/master/steam-palettes-screenshot-list.png)
+![search page](search-page.png)
 
-![Screenshot page with colors](https://raw.githubusercontent.com/cheshire137/steam-palettes/master/steam-palettes-screenshot-page.png)
+![game page](game-page.png)
+
+![player page](player-page.png)
+
+![screenshot page](screenshot-page.png)
 
 ## How to Run
 
