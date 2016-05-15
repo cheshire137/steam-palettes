@@ -24,6 +24,18 @@ class Steam extends Api {
     return data;
   }
 
+  static async getRandomScreenshot(appid) {
+    let query = '/api/screenshot?format=json';
+    if (typeof appid !== 'undefined') {
+      query += '&appid=' + appid;
+    }
+    const screenshot = await this.get(query);
+    if (screenshot.date) {
+      screenshot.date = new Date(screenshot.date);
+    }
+    return screenshot;
+  }
+
   static async getScreenshot(screenshotID) {
     const screenshot =
         await this.get('/api/screenshot?id=' + screenshotID + '&format=json');

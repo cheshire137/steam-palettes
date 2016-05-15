@@ -71,7 +71,14 @@ class ScreenshotsScraper {
         title = ellipsis.innerHTML;
       }
     }
-    return { url, title };
+    const id = this.getIDFromUrl(url);
+    return { url, title, id };
+  }
+
+  getIDFromUrl(url) {
+    const prefix = 'id=';
+    const index = url.indexOf(prefix);
+    return url.slice(index + prefix.length);
   }
 
   getScreenshotFromCard(card) {
@@ -91,7 +98,8 @@ class ScreenshotsScraper {
     if (title.length < 1) {
       title = 'Screenshot';
     }
-    return { url, title };
+    const id = this.getIDFromUrl(url);
+    return { url, title, id };
   }
 }
 

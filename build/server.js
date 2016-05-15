@@ -201,35 +201,67 @@ module.exports =
   });
   
   server.get('/api/screenshot', function callee$0$0(req, res) {
-    var screenshotID, scraper, html;
+    var useScreenshotID, appid, scraper, popular, html;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
+      var _this2 = this;
+  
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
-          screenshotID = req.query.id;
+          useScreenshotID = function useScreenshotID(screenshotID) {
+            var scraper, html;
+            return regeneratorRuntime.async(function useScreenshotID$(context$2$0) {
+              while (1) switch (context$2$0.prev = context$2$0.next) {
+                case 0:
+                  console.log('using given screenshot id', req.query.id);
+                  scraper = new _actionsScreenshotScraper2['default'](screenshotID);
+                  context$2$0.next = 4;
+                  return regeneratorRuntime.awrap(scraper.getPage());
   
-          if (!(typeof screenshotID !== 'string' || screenshotID.length < 1)) {
-            context$1$0.next = 4;
+                case 4:
+                  html = context$2$0.sent;
+  
+                  scraper.getScreenshot(html).then(function (screenshot) {
+                    res.json(screenshot);
+                  }).fail(function (error) {
+                    res.status(400).json({ error: error });
+                  });
+  
+                case 6:
+                case 'end':
+                  return context$2$0.stop();
+              }
+            }, null, _this2);
+          };
+  
+          if (!(typeof req.query.id === 'undefined')) {
+            context$1$0.next = 11;
             break;
           }
   
-          res.status(400).json({ error: 'Must provide Steam screenshot ID in id param' });
-          return context$1$0.abrupt('return');
-  
-        case 4:
-          scraper = new _actionsScreenshotScraper2['default'](screenshotID);
+          appid = req.query.appid;
+          scraper = new _actionsScreenshotsScraper2['default']({ appid: appid });
+          popular = Math.random() > 0.5;
           context$1$0.next = 7;
-          return regeneratorRuntime.awrap(scraper.getPage());
+          return regeneratorRuntime.awrap(scraper.getPage(popular));
   
         case 7:
           html = context$1$0.sent;
   
-          scraper.getScreenshot(html).then(function (screenshot) {
-            res.json(screenshot);
+          scraper.getScreenshots(html).then(function (screenshots) {
+            var index = Math.floor(Math.random() * screenshots.length);
+            var screenshot = screenshots[index];
+            console.log('got random screenshot', screenshot);
+            useScreenshotID(screenshot.id);
           }).fail(function (error) {
             res.status(400).json({ error: error });
           });
+          context$1$0.next = 12;
+          break;
   
-        case 9:
+        case 11:
+          useScreenshotID(req.query.id);
+  
+        case 12:
         case 'end':
           return context$1$0.stop();
       }
@@ -352,7 +384,7 @@ module.exports =
   // -----------------------------------------------------------------------------
   server.get('*', function callee$0$0(req, res, next) {
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
-      var _this2 = this;
+      var _this3 = this;
   
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -395,7 +427,7 @@ module.exports =
                 case 'end':
                   return context$2$0.stop();
               }
-            }, null, _this2);
+            }, null, _this3);
           })());
   
         case 3:
@@ -3184,6 +3216,35 @@ module.exports =
               return context$2$0.abrupt('return', data);
   
             case 6:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }, {
+      key: 'getRandomScreenshot',
+      value: function getRandomScreenshot(appid) {
+        var query, screenshot;
+        return regeneratorRuntime.async(function getRandomScreenshot$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              query = '/api/screenshot?format=json';
+  
+              if (typeof appid !== 'undefined') {
+                query += '&appid=' + appid;
+              }
+              context$2$0.next = 4;
+              return regeneratorRuntime.awrap(this.get(query));
+  
+            case 4:
+              screenshot = context$2$0.sent;
+  
+              if (screenshot.date) {
+                screenshot.date = new Date(screenshot.date);
+              }
+              return context$2$0.abrupt('return', screenshot);
+  
+            case 7:
             case 'end':
               return context$2$0.stop();
           }
@@ -108726,7 +108787,15 @@ module.exports =
             title = ellipsis.innerHTML;
           }
         }
-        return { url: url, title: title };
+        var id = this.getIDFromUrl(url);
+        return { url: url, title: title, id: id };
+      }
+    }, {
+      key: 'getIDFromUrl',
+      value: function getIDFromUrl(url) {
+        var prefix = 'id=';
+        var index = url.indexOf(prefix);
+        return url.slice(index + prefix.length);
       }
     }, {
       key: 'getScreenshotFromCard',
@@ -108747,7 +108816,8 @@ module.exports =
         if (title.length < 1) {
           title = 'Screenshot';
         }
-        return { url: url, title: title };
+        var id = this.getIDFromUrl(url);
+        return { url: url, title: title, id: id };
       }
     }]);
   

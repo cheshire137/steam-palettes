@@ -70,19 +70,32 @@ server.get('/api/steam', async (req, res) => {
 });
 
 server.get('/api/screenshot', async (req, res) => {
-  const screenshotID = req.query.id;
-  if (typeof screenshotID !== 'string' || screenshotID.length < 1) {
-    res.status(400).
-        json({ error: 'Must provide Steam screenshot ID in id param' });
-    return;
+  const useScreenshotID = async (screenshotID) => {
+    console.log('using given screenshot id', req.query.id);
+    const scraper = new ScreenshotScraper(screenshotID);
+    const html = await scraper.getPage();
+    scraper.getScreenshot(html).then((screenshot) => {
+      res.json(screenshot);
+    }).fail((error) => {
+      res.status(400).json({ error });
+    });
+  };
+  if (typeof req.query.id === 'undefined') {
+    const appid = req.query.appid;
+    const scraper = new ScreenshotsScraper({ appid });
+    const popular = Math.random() > 0.5;
+    const html = await scraper.getPage(popular);
+    scraper.getScreenshots(html).then((screenshots) => {
+      const index = Math.floor(Math.random() * screenshots.length);
+      const screenshot = screenshots[index];
+      console.log('got random screenshot', screenshot);
+      useScreenshotID(screenshot.id);
+    }).fail((error) => {
+      res.status(400).json({ error });
+    });
+  } else {
+    useScreenshotID(req.query.id);
   }
-  const scraper = new ScreenshotScraper(screenshotID);
-  const html = await scraper.getPage();
-  scraper.getScreenshot(html).then((screenshot) => {
-    res.json(screenshot);
-  }).fail((error) => {
-    res.status(400).json({ error });
-  });
 });
 
 server.get('/api/screenshots', async (req, res) => {
