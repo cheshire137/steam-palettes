@@ -1,5 +1,7 @@
 @import '../variables.scss';
 
+$search-width: 26rem;
+
 .label {
   display: inline-block;
   font-weight: 700;
@@ -10,7 +12,7 @@
 }
 
 input[type="search"].textField {
-  width: 20em;
+  width: $search-width;
   display: inline-block;
   margin: 0 1rem;
   font-size: 18px;
@@ -28,12 +30,26 @@ input[type="search"].textField {
 
 .gamesList {
   list-style: none;
-  padding-left: 12rem;
-  max-width: 41rem;
+  margin: -1px 0 0 12rem;
+  padding-left: 0;
+  background-color: #574E4F;
+  width: $search-width;
+  border: 1px solid $border-color;
+  -webkit-border-bottom-right-radius: $border-radius;
+  -webkit-border-bottom-left-radius: $border-radius;
+  -moz-border-radius-bottomright: $border-radius;
+  -moz-border-radius-bottomleft: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
 }
 
 .gameListItem {
   text-align: left;
+}
+
+.gameLink {
+  display: block;
+  padding: 2px 6px;
 }
 
 .spinner {
