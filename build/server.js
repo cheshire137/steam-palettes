@@ -83,11 +83,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(90);
+  var _componentsHtml = __webpack_require__(91);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(91);
+  var _assets = __webpack_require__(92);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -101,15 +101,15 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(92);
+  var _actionsScreenshotsScraper = __webpack_require__(93);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(95);
+  var _actionsScreenshotScraper = __webpack_require__(96);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(96);
+  var _actionsImageAnalyzer = __webpack_require__(97);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
@@ -492,7 +492,7 @@ module.exports =
   
   var _componentsGamePage2 = _interopRequireDefault(_componentsGamePage);
   
-  var _componentsScreenshotPage = __webpack_require__(79);
+  var _componentsScreenshotPage = __webpack_require__(80);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -3623,6 +3623,10 @@ module.exports =
   
   var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
+  var _underscoreNode = __webpack_require__(101);
+  
+  var _underscoreNode2 = _interopRequireDefault(_underscoreNode);
+  
   var GameSearchForm = (function (_Component) {
     _inherits(GameSearchForm, _Component);
   
@@ -3636,6 +3640,7 @@ module.exports =
         searchMade: false,
         searching: false
       };
+      this.delaySearch = _underscoreNode2['default'].debounce(this.delaySearch, 500);
     }
   
     _createClass(GameSearchForm, [{
@@ -3665,7 +3670,7 @@ module.exports =
   
         this.setState({ searchMade: false, searching: false }, function () {
           if (_this.state.name.length > 1) {
-            _this.makeSearch();
+            _this.delaySearch();
           } else {
             _this.setState({ games: [] });
           }
@@ -3676,6 +3681,11 @@ module.exports =
       value: function makeSearch() {
         this.setState({ searching: true });
         _apiSteam2['default'].getGames(this.state.name).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
+      }
+    }, {
+      key: 'delaySearch',
+      value: function delaySearch() {
+        this.makeSearch();
       }
     }, {
       key: 'handleSubmit',
@@ -5021,7 +5031,7 @@ module.exports =
   
   var _steamAppsJson2 = _interopRequireDefault(_steamAppsJson);
   
-  var _lunr = __webpack_require__(100);
+  var _lunr = __webpack_require__(79);
   
   var _lunr2 = _interopRequireDefault(_lunr);
   
@@ -107313,6 +107323,12 @@ module.exports =
 
 /***/ },
 /* 79 */
+/***/ function(module, exports) {
+
+  module.exports = require("lunr");
+
+/***/ },
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107335,7 +107351,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(80);
+  var _ScreenshotPageScss = __webpack_require__(81);
   
   var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
@@ -107355,11 +107371,11 @@ module.exports =
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _apiColors = __webpack_require__(82);
+  var _apiColors = __webpack_require__(83);
   
   var _apiColors2 = _interopRequireDefault(_apiColors);
   
-  var _Palette = __webpack_require__(83);
+  var _Palette = __webpack_require__(84);
   
   var _Palette2 = _interopRequireDefault(_Palette);
   
@@ -107556,11 +107572,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(81);
+      var content = __webpack_require__(82);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -107588,7 +107604,7 @@ module.exports =
     
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -107620,7 +107636,7 @@ module.exports =
   };
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107681,7 +107697,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107704,7 +107720,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PaletteScss = __webpack_require__(84);
+  var _PaletteScss = __webpack_require__(85);
   
   var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
   
@@ -107712,11 +107728,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Swatch = __webpack_require__(86);
+  var _Swatch = __webpack_require__(87);
   
   var _Swatch2 = _interopRequireDefault(_Swatch);
   
-  var _tinycolor2 = __webpack_require__(89);
+  var _tinycolor2 = __webpack_require__(90);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
@@ -107945,11 +107961,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(85);
+      var content = __webpack_require__(86);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -107977,7 +107993,7 @@ module.exports =
     
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -107997,7 +108013,7 @@ module.exports =
   };
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108020,7 +108036,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _SwatchScss = __webpack_require__(87);
+  var _SwatchScss = __webpack_require__(88);
   
   var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
   
@@ -108032,7 +108048,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _tinycolor2 = __webpack_require__(89);
+  var _tinycolor2 = __webpack_require__(90);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
@@ -108121,11 +108137,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(88);
+      var content = __webpack_require__(89);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -108153,7 +108169,7 @@ module.exports =
     
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -108175,13 +108191,13 @@ module.exports =
   };
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports) {
 
   module.exports = require("tinycolor2");
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -108288,13 +108304,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108313,11 +108329,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(93);
+  var _jsdom = __webpack_require__(94);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(94);
+  var _bluebird = __webpack_require__(95);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -108403,19 +108419,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108434,11 +108450,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(93);
+  var _jsdom = __webpack_require__(94);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(94);
+  var _bluebird = __webpack_require__(95);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -108598,7 +108614,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108613,23 +108629,23 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(94);
+  var _bluebird = __webpack_require__(95);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
-  var _http = __webpack_require__(97);
+  var _http = __webpack_require__(98);
   
   var _http2 = _interopRequireDefault(_http);
   
-  var _canvas = __webpack_require__(98);
+  var _canvas = __webpack_require__(99);
   
   var _canvas2 = _interopRequireDefault(_canvas);
   
-  var _tinycolor2 = __webpack_require__(89);
+  var _tinycolor2 = __webpack_require__(90);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
-  var _colorThief = __webpack_require__(99);
+  var _colorThief = __webpack_require__(100);
   
   var _colorThief2 = _interopRequireDefault(_colorThief);
   
@@ -108882,28 +108898,28 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports) {
 
   module.exports = require("http");
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports) {
 
   module.exports = require("canvas");
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports) {
 
   module.exports = require("color-thief");
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports) {
 
-  module.exports = require("lunr");
+  module.exports = require("underscore-node");
 
 /***/ }
 /******/ ]);

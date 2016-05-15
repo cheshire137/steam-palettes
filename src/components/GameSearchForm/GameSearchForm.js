@@ -4,6 +4,7 @@ import withStyles from '../../decorators/withStyles';
 import Link from '../Link';
 import Steam from '../../api/steam';
 import FontAwesome from 'react-fontawesome';
+import _ from 'underscore-node';
 
 @withStyles(s)
 class GameSearchForm extends Component {
@@ -15,6 +16,7 @@ class GameSearchForm extends Component {
       searchMade: false,
       searching: false,
     };
+    this.delaySearch = _.debounce(this.delaySearch, 500);
   }
 
   onSteamGamesLoaded(games) {
@@ -37,7 +39,7 @@ class GameSearchForm extends Component {
   search() {
     this.setState({ searchMade: false, searching: false }, () => {
       if (this.state.name.length > 1) {
-        this.makeSearch();
+        this.delaySearch();
       } else {
         this.setState({ games: [] });
       }
@@ -49,6 +51,10 @@ class GameSearchForm extends Component {
     Steam.getGames(this.state.name).
           then(this.onSteamGamesLoaded.bind(this)).
           catch(this.onSteamGamesLoadError.bind(this));
+  }
+
+  delaySearch() {
+    this.makeSearch();
   }
 
   handleSubmit(event) {
