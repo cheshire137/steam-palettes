@@ -83,6 +83,12 @@ class ScreenshotsScraper {
         title += authorLinks[i].innerHTML + ' ';
       }
       title = title.trim();
+      if (title.length > 0) {
+        title = 'Screenshot by ' + title;
+      }
+    }
+    if (title.length < 1) {
+      title = 'Screenshot';
     }
     return { url, title };
   }

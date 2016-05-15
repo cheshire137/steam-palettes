@@ -7,13 +7,15 @@ import Header from '../Header';
 import Colors from '../../api/colors';
 import Palette from '../Palette';
 import FontAwesome from 'react-fontawesome';
+import SteamApps from '../../stores/steamApps';
 
 @withStyles(s)
 class ScreenshotPage extends Component {
   static propTypes = {
-    steamID: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    steamID: PropTypes.string,
+    username: PropTypes.string,
     screenshotID: PropTypes.string.isRequired,
+    gameID: PropTypes.number,
   };
 
   static contextTypes = {
@@ -74,14 +76,23 @@ class ScreenshotPage extends Component {
     if (isScreenshotLoaded && this.state.screenshot.date) {
       date = this.state.screenshot.date.toLocaleDateString();
     }
-    const backTitle = this.props.username;
-    const backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+    const backTitle = this.props.username ||
+                      SteamApps.getName(this.props.gameID);
+    let backUrl = '';
+    let backIcon = '';
+    if (typeof this.props.username === 'string') {
+      backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+      backIcon = 'user';
+    } else {
+      backUrl = '/game/' + this.props.gameID;
+      backIcon = 'steam';
+    }
     const areColorsLoaded = typeof this.state.colors === 'object';
     return (
       <div className={s.container}>
         <Header title={this.state.title} previousUrl={backUrl}
           previousTitle={backTitle}
-          previousIcon="user"
+          previousIcon={backIcon}
         />
         {isScreenshotLoaded ? (
           <div className={s.details}>
@@ -116,7 +127,11 @@ class ScreenshotPage extends Component {
                 <FontAwesome name="steam"
                   className={cx(s.icon, s.profileIcon)}
                 />
-                View {this.props.username}'s profile
+                {typeof this.props.username === 'string' ? (
+                  <span>View {this.props.username}'s profile</span>
+                ) : (
+                  <span>View user profile</span>
+                )}
               </a>
               <ul className={s.metadata}>
                 <li>{date}</li>

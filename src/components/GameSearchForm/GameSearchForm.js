@@ -68,7 +68,7 @@ class GameSearchForm extends Component {
         <label className={s.label}
           htmlFor="game-name"
         >Steam game:</label>
-        <input type="search" autoFocus="autofocus" className={s.textField}
+        <input type="search" className={s.textField}
           id="game-name"
           placeholder="e.g., Skyrim"
           onChange={this.onNameChange.bind(this)}

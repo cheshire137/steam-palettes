@@ -5,7 +5,7 @@ import Header from '../Header';
 import PlayerSearchForm from '../PlayerSearchForm';
 import GameSearchForm from '../GameSearchForm';
 
-const title = 'Find a Steam User';
+const title = 'Find Screenshots - Steam Palettes';
 
 @withStyles(s)
 class SearchPage extends Component {
@@ -27,6 +27,7 @@ class SearchPage extends Component {
     return (
       <div className={s.container}>
         <Header />
+        <p className={s.intro}>Find screenshots by Steam user or game:</p>
         <PlayerSearchForm />
         <GameSearchForm />
       </div>

@@ -26,6 +26,17 @@ const router = new Router(on => {
     );
   });
 
+  on('/game/:appid/:screenshotID', async (req) => {
+    const appid = parseInt(req.params.appid, 10);
+    const screenshotID = req.params.screenshotID;
+    const key = appid + '-' + screenshotID;
+    return (
+      <ScreenshotPage gameID={appid}
+        screenshotID={screenshotID} key={key}
+      />
+    );
+  });
+
   on('/game/:appid', async (req) => {
     const appid = parseInt(req.params.appid, 10);
     return <GamePage gameID={appid} />;

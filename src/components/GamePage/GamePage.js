@@ -23,7 +23,7 @@ class GamePage extends Component {
   }
 
   componentWillMount() {
-    this.context.onSetTitle(this.state.title);
+    this.context.onSetTitle(this.state.title + ' Screenshots - Steam Palettes');
   }
 
   componentDidMount() {

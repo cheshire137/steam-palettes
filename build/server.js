@@ -545,6 +545,25 @@ module.exports =
       }, null, _this);
     });
   
+    on('/game/:appid/:screenshotID', function callee$1$0(req) {
+      var appid, screenshotID, key;
+      return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
+        while (1) switch (context$2$0.prev = context$2$0.next) {
+          case 0:
+            appid = parseInt(req.params.appid, 10);
+            screenshotID = req.params.screenshotID;
+            key = appid + '-' + screenshotID;
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { gameID: appid,
+              screenshotID: screenshotID, key: key
+            }));
+  
+          case 4:
+          case 'end':
+            return context$2$0.stop();
+        }
+      }, null, _this);
+    });
+  
     on('/game/:appid', function callee$1$0(req) {
       var appid;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
@@ -2359,7 +2378,7 @@ module.exports =
   
   var _GameSearchForm2 = _interopRequireDefault(_GameSearchForm);
   
-  var title = 'Find a Steam User';
+  var title = 'Find Screenshots - Steam Palettes';
   
   var SearchPage = (function (_Component) {
     _inherits(SearchPage, _Component);
@@ -2391,6 +2410,11 @@ module.exports =
           'div',
           { className: _SearchPageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], null),
+          _react2['default'].createElement(
+            'p',
+            { className: _SearchPageScss2['default'].intro },
+            'Find screenshots by Steam user or game:'
+          ),
           _react2['default'].createElement(_PlayerSearchForm2['default'], null),
           _react2['default'].createElement(_GameSearchForm2['default'], null)
         );
@@ -2446,11 +2470,12 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n\n.SearchPage_intro_2or {\n  text-align: center;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,mBAAmB;CACpB","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.intro {\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"container": "SearchPage_container_17N"
+  	"container": "SearchPage_container_17N",
+  	"intro": "SearchPage_intro_2or"
   };
 
 /***/ },
@@ -3718,7 +3743,7 @@ module.exports =
             },
             'Steam game:'
           ),
-          _react2['default'].createElement('input', { type: 'search', autoFocus: 'autofocus', className: _GameSearchFormScss2['default'].textField,
+          _react2['default'].createElement('input', { type: 'search', className: _GameSearchFormScss2['default'].textField,
             id: 'game-name',
             placeholder: 'e.g., Skyrim',
             onChange: this.onNameChange.bind(this),
@@ -4599,7 +4624,7 @@ module.exports =
         screenshots: _react.PropTypes.array.isRequired,
         steamID: _react.PropTypes.string,
         username: _react.PropTypes.string,
-        gameID: _react.PropTypes.string
+        gameID: _react.PropTypes.number
       },
       enumerable: true
     }]);
@@ -4752,7 +4777,7 @@ module.exports =
         title: _react.PropTypes.string,
         steamID: _react.PropTypes.string,
         username: _react.PropTypes.string,
-        gameID: _react.PropTypes.string
+        gameID: _react.PropTypes.number
       },
       enumerable: true
     }]);
@@ -4775,16 +4800,18 @@ module.exports =
       key: 'render',
       value: function render() {
         var id = this.getIDFromUrl();
-        var href = '';
+        var url = '';
         if (typeof this.props.username === 'string') {
-          href = '/player/' + this.props.username + '/' + this.props.steamID + '/' + id;
-        } else {}
+          url = '/player/' + this.props.username + '/' + this.props.steamID + '/' + id;
+        } else {
+          url = '/game/' + this.props.gameID + '/' + id;
+        }
         return _react2['default'].createElement(
           'li',
           { className: _ScreenshotListItemScss2['default'].screenshot },
           _react2['default'].createElement(
             'a',
-            { href: href, onClick: _Link2['default'].handleClick },
+            { href: url, onClick: _Link2['default'].handleClick },
             typeof this.props.title === 'string' ? _react2['default'].createElement(
               'span',
               { className: _ScreenshotListItemScss2['default'].title },
@@ -4934,7 +4961,7 @@ module.exports =
     _createClass(GamePage, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
-        this.context.onSetTitle(this.state.title);
+        this.context.onSetTitle(this.state.title + ' Screenshots - Steam Palettes');
       }
     }, {
       key: 'componentDidMount',
@@ -107396,15 +107423,20 @@ module.exports =
   
   var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
+  var _storesSteamApps = __webpack_require__(77);
+  
+  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
+  
   var ScreenshotPage = (function (_Component) {
     _inherits(ScreenshotPage, _Component);
   
     _createClass(ScreenshotPage, null, [{
       key: 'propTypes',
       value: {
-        steamID: _react.PropTypes.string.isRequired,
-        username: _react.PropTypes.string.isRequired,
-        screenshotID: _react.PropTypes.string.isRequired
+        steamID: _react.PropTypes.string,
+        username: _react.PropTypes.string,
+        screenshotID: _react.PropTypes.string.isRequired,
+        gameID: _react.PropTypes.number
       },
       enumerable: true
     }, {
@@ -107478,15 +107510,23 @@ module.exports =
         if (isScreenshotLoaded && this.state.screenshot.date) {
           date = this.state.screenshot.date.toLocaleDateString();
         }
-        var backTitle = this.props.username;
-        var backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+        var backTitle = this.props.username || _storesSteamApps2['default'].getName(this.props.gameID);
+        var backUrl = '';
+        var backIcon = '';
+        if (typeof this.props.username === 'string') {
+          backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+          backIcon = 'user';
+        } else {
+          backUrl = '/game/' + this.props.gameID;
+          backIcon = 'steam';
+        }
         var areColorsLoaded = typeof this.state.colors === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _ScreenshotPageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
             previousTitle: backTitle,
-            previousIcon: 'user'
+            previousIcon: backIcon
           }),
           isScreenshotLoaded ? _react2['default'].createElement(
             'div',
@@ -107532,9 +107572,17 @@ module.exports =
                 _react2['default'].createElement(_reactFontawesome2['default'], { name: 'steam',
                   className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].profileIcon)
                 }),
-                'View ',
-                this.props.username,
-                '\'s profile'
+                typeof this.props.username === 'string' ? _react2['default'].createElement(
+                  'span',
+                  null,
+                  'View ',
+                  this.props.username,
+                  '\'s profile'
+                ) : _react2['default'].createElement(
+                  'span',
+                  null,
+                  'View user profile'
+                )
               ),
               _react2['default'].createElement(
                 'ul',
@@ -108459,6 +108507,12 @@ module.exports =
             title += authorLinks[i].innerHTML + ' ';
           }
           title = title.trim();
+          if (title.length > 0) {
+            title = 'Screenshot by ' + title;
+          }
+        }
+        if (title.length < 1) {
+          title = 'Screenshot';
         }
         return { url: url, title: title };
       }

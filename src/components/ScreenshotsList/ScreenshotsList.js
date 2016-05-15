@@ -9,7 +9,7 @@ class ScreenshotsList extends Component {
     screenshots: PropTypes.array.isRequired,
     steamID: PropTypes.string,
     username: PropTypes.string,
-    gameID: PropTypes.string,
+    gameID: PropTypes.number,
   };
 
   constructor(props, context) {
