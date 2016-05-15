@@ -123,8 +123,7 @@ server.get('/api/games', async (req, res) => {
         json({ error: 'Must provide Steam game name query in name param' });
     return;
   }
-  const games = SteamApps.search(name);
-  res.json(games);
+  res.json(SteamApps.search(name));
 });
 
 //

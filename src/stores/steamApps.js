@@ -1,4 +1,10 @@
 import SteamAppsList from './steam-apps.json';
+import lunr from 'lunr';
+
+const SteamAppsIndex = lunr(function lunrInit() {
+  this.field('name', { boost: 10 });
+  this.ref('appid');
+});
 
 class SteamApps {
   static _init() {
@@ -7,16 +13,23 @@ class SteamApps {
     }
     this.apps = SteamAppsList.applist.apps;
     this.apps.sort(this._appSorter.bind(this));
+    this._appsByID = {};
+    for (let i = 0; i < this.apps.length; i++) {
+      const app = this.apps[i];
+      SteamAppsIndex.add({
+        name: app.name.trim().toLowerCase(),
+        appid: app.appid,
+      });
+      this._appsByID[app.appid] = app;
+    }
+    console.log('indexed ' + this.apps.length + ' games');
     this._sortedIds = this.apps.map((app) => String(app.appid));
-    this._sortedNames = this.apps.map((app) => app.name);
   }
 
   static search(name) {
     this._init();
-    return this.apps.filter((app) => {
-      return this._normalizeName(app.name).
-                  indexOf(this._normalizeName(name)) === 0;
-    });
+    const appIDs = SteamAppsIndex.search(name.toLowerCase()).map((r) => r.ref);
+    return appIDs.map((id) => this._appsByID[id]);
   }
 
   static _appSorter(a, b) {
@@ -38,8 +51,7 @@ class SteamApps {
 
   static getName(appId) {
     this._init();
-    const index = this._sortedIds.indexOf(String(appId));
-    return this._sortedNames[index];
+    return this._appsByID[appId].name;
   }
 
   static _idSorter(a, b) {

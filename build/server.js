@@ -83,37 +83,37 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(79);
+  var _componentsHtml = __webpack_require__(90);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(80);
+  var _assets = __webpack_require__(91);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _config = __webpack_require__(35);
+  var _config = __webpack_require__(50);
   
-  var _configJson = __webpack_require__(36);
+  var _configJson = __webpack_require__(51);
   
   var _configJson2 = _interopRequireDefault(_configJson);
   
-  var _coreFetch = __webpack_require__(33);
+  var _coreFetch = __webpack_require__(48);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(81);
+  var _actionsScreenshotsScraper = __webpack_require__(92);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(84);
+  var _actionsScreenshotScraper = __webpack_require__(95);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(85);
+  var _actionsImageAnalyzer = __webpack_require__(96);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
-  var _storesSteamApps = __webpack_require__(100);
+  var _storesSteamApps = __webpack_require__(77);
   
   var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
@@ -304,7 +304,7 @@ module.exports =
   });
   
   server.get('/api/games', function callee$0$0(req, res) {
-    var name, games;
+    var name;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -319,11 +319,9 @@ module.exports =
           return context$1$0.abrupt('return');
   
         case 4:
-          games = _storesSteamApps2['default'].search(name);
+          res.json(_storesSteamApps2['default'].search(name));
   
-          res.json(games);
-  
-        case 6:
+        case 5:
         case 'end':
           return context$1$0.stop();
       }
@@ -470,19 +468,19 @@ module.exports =
   
   var _componentsErrorPage2 = _interopRequireDefault(_componentsErrorPage);
   
-  var _componentsSearchPage = __webpack_require__(89);
+  var _componentsSearchPage = __webpack_require__(28);
   
   var _componentsSearchPage2 = _interopRequireDefault(_componentsSearchPage);
   
-  var _componentsPlayerPage = __webpack_require__(50);
+  var _componentsPlayerPage = __webpack_require__(56);
   
   var _componentsPlayerPage2 = _interopRequireDefault(_componentsPlayerPage);
   
-  var _componentsGamePage = __webpack_require__(102);
+  var _componentsGamePage = __webpack_require__(74);
   
   var _componentsGamePage2 = _interopRequireDefault(_componentsGamePage);
   
-  var _componentsScreenshotPage = __webpack_require__(68);
+  var _componentsScreenshotPage = __webpack_require__(79);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -2301,9 +2299,144 @@ module.exports =
 
 
 /***/ },
-/* 28 */,
-/* 29 */,
-/* 30 */,
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _SearchPageScss = __webpack_require__(29);
+  
+  var _SearchPageScss2 = _interopRequireDefault(_SearchPageScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Header = __webpack_require__(31);
+  
+  var _Header2 = _interopRequireDefault(_Header);
+  
+  var _PlayerSearchForm = __webpack_require__(42);
+  
+  var _PlayerSearchForm2 = _interopRequireDefault(_PlayerSearchForm);
+  
+  var _GameSearchForm = __webpack_require__(53);
+  
+  var _GameSearchForm2 = _interopRequireDefault(_GameSearchForm);
+  
+  var title = 'Find a Steam User';
+  
+  var SearchPage = (function (_Component) {
+    _inherits(SearchPage, _Component);
+  
+    _createClass(SearchPage, null, [{
+      key: 'contextTypes',
+      value: {
+        onSetTitle: _react.PropTypes.func.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function SearchPage(props, context) {
+      _classCallCheck(this, _SearchPage);
+  
+      _get(Object.getPrototypeOf(_SearchPage.prototype), 'constructor', this).call(this, props, context);
+      this.state = {};
+    }
+  
+    _createClass(SearchPage, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        this.context.onSetTitle(title);
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'div',
+          { className: _SearchPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], null),
+          _react2['default'].createElement(_PlayerSearchForm2['default'], null),
+          _react2['default'].createElement(_GameSearchForm2['default'], null)
+        );
+      }
+    }]);
+  
+    var _SearchPage = SearchPage;
+    SearchPage = (0, _decoratorsWithStyles2['default'])(_SearchPageScss2['default'])(SearchPage) || SearchPage;
+    return SearchPage;
+  })(_react.Component);
+  
+  exports['default'] = SearchPage;
+  module.exports = exports['default'];
+
+/***/ },
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(30);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "SearchPage_container_17N"
+  };
+
+/***/ },
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2323,7 +2456,628 @@ module.exports =
   
   function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
   
-  var _api = __webpack_require__(32);
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _HeaderScss = __webpack_require__(32);
+  
+  var _HeaderScss2 = _interopRequireDefault(_HeaderScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Link = __webpack_require__(34);
+  
+  var _Link2 = _interopRequireDefault(_Link);
+  
+  var _reactFontawesome = __webpack_require__(41);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  
+  var Header = (function (_Component) {
+    _inherits(Header, _Component);
+  
+    function Header() {
+      _classCallCheck(this, _Header);
+  
+      _get(Object.getPrototypeOf(_Header.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Header, [{
+      key: 'render',
+      value: function render() {
+        var hasBackLink = typeof this.props.previousUrl === 'string';
+        var hasNamedBackLink = typeof this.props.previousTitle === 'string';
+        var hasTitle = typeof this.props.title === 'string';
+        return _react2['default'].createElement(
+          'header',
+          { className: _HeaderScss2['default'].header },
+          _react2['default'].createElement(
+            'h1',
+            { className: _HeaderScss2['default'].title },
+            hasBackLink && !hasNamedBackLink ? _react2['default'].createElement(
+              'a',
+              { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
+                onClick: _Link2['default'].handleClick
+              },
+              '←'
+            ) : '',
+            _react2['default'].createElement(
+              'a',
+              { className: _HeaderScss2['default'].brand, href: '/', onClick: _Link2['default'].handleClick },
+              'Steam Palettes'
+            ),
+            hasBackLink && hasNamedBackLink ? _react2['default'].createElement(
+              'span',
+              { className: _HeaderScss2['default'].backLinkWrapper },
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].separator },
+                '/'
+              ),
+              _react2['default'].createElement(
+                'a',
+                { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
+                  onClick: _Link2['default'].handleClick
+                },
+                typeof this.props.previousIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.previousIcon,
+                  className: _HeaderScss2['default'].icon
+                }) : '',
+                this.props.previousTitle
+              )
+            ) : '',
+            hasTitle ? _react2['default'].createElement(
+              'span',
+              { className: _HeaderScss2['default'].subtitleWrapper },
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].separator },
+                '/'
+              ),
+              _react2['default'].createElement(
+                'span',
+                { className: _HeaderScss2['default'].subtitle },
+                typeof this.props.titleIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.titleIcon,
+                  className: _HeaderScss2['default'].icon
+                }) : '',
+                this.props.title
+              )
+            ) : ''
+          )
+        );
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        title: _react.PropTypes.string,
+        previousUrl: _react.PropTypes.string,
+        previousTitle: _react.PropTypes.string,
+        previousIcon: _react.PropTypes.string,
+        titleIcon: _react.PropTypes.string
+      },
+      enumerable: true
+    }]);
+  
+    var _Header = Header;
+    Header = (0, _decoratorsWithStyles2['default'])(_HeaderScss2['default'])(Header) || Header;
+    return Header;
+  })(_react.Component);
+  
+  exports['default'] = Header;
+  module.exports = exports['default'];
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(33);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 33 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"header": "Header_header_3bM",
+  	"title": "Header_title_YtT",
+  	"brand": "Header_brand_1-T",
+  	"separator": "Header_separator_1Qr",
+  	"icon": "Header_icon_3H0"
+  };
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _this = this;
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _historyLibParsePath = __webpack_require__(35);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _coreLocation = __webpack_require__(36);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
+  function isLeftClickEvent(event) {
+    return event.button === 0;
+  }
+  
+  function isModifiedEvent(event) {
+    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  }
+  
+  var Link = (function (_Component) {
+    _inherits(Link, _Component);
+  
+    function Link() {
+      _classCallCheck(this, Link);
+  
+      _get(Object.getPrototypeOf(Link.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Link, [{
+      key: 'render',
+      value: function render() {
+        var _props = this.props;
+        var to = _props.to;
+        var query = _props.query;
+  
+        var props = _objectWithoutProperties(_props, ['to', 'query']);
+  
+        return _react2['default'].createElement('a', _extends({ href: _coreLocation2['default'].createHref(to, query), onClick: Link.handleClick.bind(this) }, props));
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        to: _react.PropTypes.string.isRequired,
+        query: _react.PropTypes.object,
+        state: _react.PropTypes.object,
+        onClick: _react.PropTypes.func
+      },
+      enumerable: true
+    }, {
+      key: 'handleClick',
+      value: function value(event) {
+        var allowTransition = true;
+        var clickResult = undefined;
+  
+        if (_this.props && _this.props.onClick) {
+          clickResult = _this.props.onClick(event);
+        }
+  
+        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
+          return;
+        }
+  
+        if (clickResult === false || event.defaultPrevented === true) {
+          allowTransition = false;
+        }
+  
+        event.preventDefault();
+  
+        if (allowTransition) {
+          var link = event.currentTarget;
+          if (_this.props && _this.props.to) {
+            _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(_this.props.to), {
+              state: _this.props && _this.props.state || null
+            }));
+          } else {
+            _coreLocation2['default'].push({
+              pathname: link.pathname,
+              search: link.search,
+              state: _this.props && _this.props.state || null
+            });
+          }
+        }
+      },
+      enumerable: true
+    }]);
+  
+    return Link;
+  })(_react.Component);
+  
+  exports['default'] = Link;
+  module.exports = exports['default'];
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/parsePath");
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  var _fbjsLibExecutionEnvironment = __webpack_require__(37);
+  
+  var _historyLibCreateBrowserHistory = __webpack_require__(38);
+  
+  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
+  
+  var _historyLibCreateMemoryHistory = __webpack_require__(39);
+  
+  var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
+  
+  var _historyLibUseQueries = __webpack_require__(40);
+  
+  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
+  
+  var location = (0, _historyLibUseQueries2['default'])(_fbjsLibExecutionEnvironment.canUseDOM ? _historyLibCreateBrowserHistory2['default'] : _historyLibCreateMemoryHistory2['default'])();
+  
+  exports['default'] = location;
+  module.exports = exports['default'];
+
+/***/ },
+/* 37 */
+/***/ function(module, exports) {
+
+  module.exports = require("fbjs/lib/ExecutionEnvironment");
+
+/***/ },
+/* 38 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/createBrowserHistory");
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/createMemoryHistory");
+
+/***/ },
+/* 40 */
+/***/ function(module, exports) {
+
+  module.exports = require("history/lib/useQueries");
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-fontawesome");
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _PlayerSearchFormScss = __webpack_require__(43);
+  
+  var _PlayerSearchFormScss2 = _interopRequireDefault(_PlayerSearchFormScss);
+  
+  var _classnames = __webpack_require__(45);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _coreLocation = __webpack_require__(36);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
+  var _historyLibParsePath = __webpack_require__(35);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _apiSteam = __webpack_require__(46);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var PlayerSearchForm = (function (_Component) {
+    _inherits(PlayerSearchForm, _Component);
+  
+    function PlayerSearchForm(props, context) {
+      _classCallCheck(this, _PlayerSearchForm);
+  
+      _get(Object.getPrototypeOf(_PlayerSearchForm.prototype), 'constructor', this).call(this, props, context);
+      this.state = {
+        name: undefined,
+        disabled: false,
+        error: false,
+        message: 'The Steam profile must be public.',
+        noMatch: false
+      };
+    }
+  
+    _createClass(PlayerSearchForm, [{
+      key: 'onNameChange',
+      value: function onNameChange(event) {
+        this.setState({ name: event.target.value });
+      }
+    }, {
+      key: 'onSteamIDLoaded',
+      value: function onSteamIDLoaded(steamID) {
+        this.setState({
+          disabled: false,
+          error: false,
+          message: undefined
+        });
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
+      }
+    }, {
+      key: 'onSteamIDLoadError',
+      value: function onSteamIDLoadError(response) {
+        console.error('failed to load Steam ID', response);
+        this.setState({
+          disabled: false,
+          error: true,
+          message: 'There was an error looking up your Steam ID. :(',
+          noMatch: response.message === 'No match'
+        });
+      }
+    }, {
+      key: 'handleSubmit',
+      value: function handleSubmit(event) {
+        event.preventDefault();
+        this.setState({
+          disabled: true,
+          message: 'Looking up Steam ID...',
+          error: false
+        });
+        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var messageStyle = {};
+        if (typeof this.state.message !== 'string') {
+          messageStyle.display = 'none';
+        }
+        var messageClass = this.state.error ? _PlayerSearchFormScss2['default'].error : _PlayerSearchFormScss2['default'].success;
+        return _react2['default'].createElement(
+          'form',
+          { className: _PlayerSearchFormScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
+          _react2['default'].createElement(
+            'label',
+            { className: _PlayerSearchFormScss2['default'].label,
+              htmlFor: 'user-name'
+            },
+            'Steam user name:'
+          ),
+          _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _PlayerSearchFormScss2['default'].textField,
+            id: 'user-name',
+            placeholder: 'e.g., cheshire137',
+            onChange: this.onNameChange.bind(this),
+            value: this.state.name,
+            disabled: this.state.disabled
+          }),
+          _react2['default'].createElement(
+            'button',
+            { type: 'submit', disabled: this.state.disabled,
+              className: _PlayerSearchFormScss2['default'].button
+            },
+            'Search'
+          ),
+          _react2['default'].createElement(
+            'p',
+            { className: (0, _classnames2['default'])(_PlayerSearchFormScss2['default'].message, messageClass), style: messageStyle },
+            this.state.message
+          ),
+          this.state.error && this.state.noMatch ? _react2['default'].createElement(
+            'div',
+            { className: _PlayerSearchFormScss2['default'].steamInstructions },
+            _react2['default'].createElement(
+              'p',
+              { className: _PlayerSearchFormScss2['default'].instruction },
+              'Try setting your custom URL in Steam:'
+            ),
+            _react2['default'].createElement('img', { src: __webpack_require__(52), width: '640',
+              height: '321', alt: 'Edit Steam profile',
+              className: _PlayerSearchFormScss2['default'].instructionImage
+            }),
+            _react2['default'].createElement(
+              'p',
+              { className: _PlayerSearchFormScss2['default'].instruction },
+              'Then, search here for the name you set in that custom URL.'
+            )
+          ) : ''
+        );
+      }
+    }]);
+  
+    var _PlayerSearchForm = PlayerSearchForm;
+    PlayerSearchForm = (0, _decoratorsWithStyles2['default'])(_PlayerSearchFormScss2['default'])(PlayerSearchForm) || PlayerSearchForm;
+    return PlayerSearchForm;
+  })(_react.Component);
+  
+  exports['default'] = PlayerSearchForm;
+  module.exports = exports['default'];
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(44);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSearchForm_label_ftR {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerSearchForm_textField_1Tc {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerSearchForm_textField_1Tc, .PlayerSearchForm_button_35M {\n  font-size: 18px;\n}\n\n.PlayerSearchForm_form_2AJ {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerSearchForm_message_dpS {\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_success_35L {\n  color: #A5A781;\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_error_2af {\n  color: #A78E81;\n}\n\n.PlayerSearchForm_steamInstructions_2Jw {\n\n}\n\n.PlayerSearchForm_instruction_21D {\n\n}\n\n.PlayerSearchForm_instructionImage_24o {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSearchForm/PlayerSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"PlayerSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.steamInstructions {\n\n}\n\n.instruction {\n\n}\n\n.instructionImage {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"label": "PlayerSearchForm_label_ftR",
+  	"textField": "PlayerSearchForm_textField_1Tc",
+  	"button": "PlayerSearchForm_button_35M",
+  	"form": "PlayerSearchForm_form_2AJ",
+  	"message": "PlayerSearchForm_message_dpS",
+  	"success": "PlayerSearchForm_success_35L",
+  	"error": "PlayerSearchForm_error_2af",
+  	"steamInstructions": "PlayerSearchForm_steamInstructions_2Jw",
+  	"instruction": "PlayerSearchForm_instruction_21D",
+  	"instructionImage": "PlayerSearchForm_instructionImage_24o"
+  };
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+  module.exports = require("classnames");
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _api = __webpack_require__(47);
   
   var _api2 = _interopRequireDefault(_api);
   
@@ -2575,7 +3329,7 @@ module.exports =
   // see https://developer.valvesoftware.com/wiki/Steam_Web_API#GetPlayerSummaries_.28v0002.29
 
 /***/ },
-/* 32 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2590,11 +3344,11 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(33);
+  var _coreFetch = __webpack_require__(48);
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _configJson = __webpack_require__(36);
+  var _configJson = __webpack_require__(51);
   
   var _configJson2 = _interopRequireDefault(_configJson);
   
@@ -2712,7 +3466,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -2732,11 +3486,11 @@ module.exports =
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
   
-  var _nodeFetch = __webpack_require__(34);
+  var _nodeFetch = __webpack_require__(49);
   
   var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
   
-  var _config = __webpack_require__(35);
+  var _config = __webpack_require__(50);
   
   function localUrl(url) {
     if (url.startsWith('//')) {
@@ -2760,13 +3514,13 @@ module.exports =
   exports.Response = _nodeFetch.Response;
 
 /***/ },
-/* 34 */
+/* 49 */
 /***/ function(module, exports) {
 
   module.exports = require("node-fetch");
 
 /***/ },
-/* 35 */
+/* 50 */
 /***/ function(module, exports) {
 
   /**
@@ -2791,7 +3545,7 @@ module.exports =
   exports.googleAnalyticsId = googleAnalyticsId;
 
 /***/ },
-/* 36 */
+/* 51 */
 /***/ function(module, exports) {
 
   module.exports = {
@@ -2808,83 +3562,13 @@ module.exports =
   };
 
 /***/ },
-/* 37 */
-/***/ function(module, exports) {
-
-  module.exports = require("classnames");
-
-/***/ },
-/* 38 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  var _fbjsLibExecutionEnvironment = __webpack_require__(39);
-  
-  var _historyLibCreateBrowserHistory = __webpack_require__(40);
-  
-  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
-  
-  var _historyLibCreateMemoryHistory = __webpack_require__(41);
-  
-  var _historyLibCreateMemoryHistory2 = _interopRequireDefault(_historyLibCreateMemoryHistory);
-  
-  var _historyLibUseQueries = __webpack_require__(42);
-  
-  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
-  
-  var location = (0, _historyLibUseQueries2['default'])(_fbjsLibExecutionEnvironment.canUseDOM ? _historyLibCreateBrowserHistory2['default'] : _historyLibCreateMemoryHistory2['default'])();
-  
-  exports['default'] = location;
-  module.exports = exports['default'];
+  module.exports = __webpack_require__.p + "e9c530170ced5eaa9717f3e2ec7c4eab.jpg";
 
 /***/ },
-/* 39 */
-/***/ function(module, exports) {
-
-  module.exports = require("fbjs/lib/ExecutionEnvironment");
-
-/***/ },
-/* 40 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/createBrowserHistory");
-
-/***/ },
-/* 41 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/createMemoryHistory");
-
-/***/ },
-/* 42 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/useQueries");
-
-/***/ },
-/* 43 */
-/***/ function(module, exports) {
-
-  module.exports = require("history/lib/parsePath");
-
-/***/ },
-/* 44 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2907,120 +3591,137 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _HeaderScss = __webpack_require__(45);
+  var _GameSearchFormScss = __webpack_require__(54);
   
-  var _HeaderScss2 = _interopRequireDefault(_HeaderScss);
+  var _GameSearchFormScss2 = _interopRequireDefault(_GameSearchFormScss);
   
   var _decoratorsWithStyles = __webpack_require__(21);
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(47);
+  var _Link = __webpack_require__(34);
   
   var _Link2 = _interopRequireDefault(_Link);
   
-  var _reactFontawesome = __webpack_require__(48);
+  var _apiSteam = __webpack_require__(46);
   
-  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var Header = (function (_Component) {
-    _inherits(Header, _Component);
+  var GameSearchForm = (function (_Component) {
+    _inherits(GameSearchForm, _Component);
   
-    function Header() {
-      _classCallCheck(this, _Header);
+    function GameSearchForm(props, context) {
+      _classCallCheck(this, _GameSearchForm);
   
-      _get(Object.getPrototypeOf(_Header.prototype), 'constructor', this).apply(this, arguments);
+      _get(Object.getPrototypeOf(_GameSearchForm.prototype), 'constructor', this).call(this, props, context);
+      this.state = {
+        name: undefined,
+        games: [],
+        searchMade: false
+      };
     }
   
-    _createClass(Header, [{
+    _createClass(GameSearchForm, [{
+      key: 'onSteamGamesLoaded',
+      value: function onSteamGamesLoaded(games) {
+        this.setState({ games: games, searchMade: true });
+      }
+    }, {
+      key: 'onSteamGamesLoadError',
+      value: function onSteamGamesLoadError(response) {
+        console.error('failed to load Steam games', response);
+        this.setState({
+          message: 'There was an error searching for Steam games. :(',
+          searchMade: true
+        });
+      }
+    }, {
+      key: 'onNameChange',
+      value: function onNameChange(event) {
+        this.setState({ name: event.target.value }, this.search.bind(this));
+      }
+    }, {
+      key: 'search',
+      value: function search() {
+        this.setState({ searchMade: false });
+        if (this.state.name.length > 3) {
+          _apiSteam2['default'].getGames(this.state.name).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
+        }
+      }
+    }, {
+      key: 'handleSubmit',
+      value: function handleSubmit(event) {
+        event.preventDefault();
+      }
+    }, {
       key: 'render',
       value: function render() {
-        var hasBackLink = typeof this.props.previousUrl === 'string';
-        var hasNamedBackLink = typeof this.props.previousTitle === 'string';
-        var hasTitle = typeof this.props.title === 'string';
         return _react2['default'].createElement(
-          'header',
-          { className: _HeaderScss2['default'].header },
+          'form',
+          { className: _GameSearchFormScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
           _react2['default'].createElement(
-            'h1',
-            { className: _HeaderScss2['default'].title },
-            hasBackLink && !hasNamedBackLink ? _react2['default'].createElement(
-              'a',
-              { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
-                onClick: _Link2['default'].handleClick
-              },
-              '←'
-            ) : '',
-            _react2['default'].createElement(
-              'a',
-              { className: _HeaderScss2['default'].brand, href: '/', onClick: _Link2['default'].handleClick },
-              'Steam Palettes'
-            ),
-            hasBackLink && hasNamedBackLink ? _react2['default'].createElement(
-              'span',
-              { className: _HeaderScss2['default'].backLinkWrapper },
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].separator },
-                '/'
-              ),
-              _react2['default'].createElement(
-                'a',
-                { href: this.props.previousUrl, className: _HeaderScss2['default'].backLink,
-                  onClick: _Link2['default'].handleClick
-                },
-                typeof this.props.previousIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.previousIcon,
-                  className: _HeaderScss2['default'].icon
-                }) : '',
-                this.props.previousTitle
-              )
-            ) : '',
-            hasTitle ? _react2['default'].createElement(
-              'span',
-              { className: _HeaderScss2['default'].subtitleWrapper },
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].separator },
-                '/'
-              ),
-              _react2['default'].createElement(
-                'span',
-                { className: _HeaderScss2['default'].subtitle },
-                typeof this.props.titleIcon === 'string' ? _react2['default'].createElement(_reactFontawesome2['default'], { name: this.props.titleIcon,
-                  className: _HeaderScss2['default'].icon
-                }) : '',
-                this.props.title
-              )
+            'label',
+            { className: _GameSearchFormScss2['default'].label,
+              htmlFor: 'game-name'
+            },
+            'Steam game:'
+          ),
+          _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _GameSearchFormScss2['default'].textField,
+            id: 'game-name',
+            placeholder: 'e.g., Skyrim',
+            onChange: this.onNameChange.bind(this),
+            value: this.state.name,
+            disabled: this.state.disabled
+          }),
+          typeof this.state.message === 'string' ? _react2['default'].createElement(
+            'p',
+            { className: _GameSearchFormScss2['default'].message },
+            this.state.message
+          ) : '',
+          this.state.games.length > 0 ? _react2['default'].createElement(
+            'ul',
+            { className: _GameSearchFormScss2['default'].gamesList },
+            this.state.games.map(function (game) {
+              var url = '/game/' + game.appid;
+              return _react2['default'].createElement(
+                'li',
+                { key: game.appid, className: _GameSearchFormScss2['default'].gameListItem },
+                _react2['default'].createElement(
+                  'a',
+                  { href: url, className: _GameSearchFormScss2['default'].gameLink,
+                    onClick: _Link2['default'].handleClick
+                  },
+                  game.name
+                )
+              );
+            })
+          ) : _react2['default'].createElement(
+            'div',
+            null,
+            this.state.searchMade ? _react2['default'].createElement(
+              'p',
+              { className: _GameSearchFormScss2['default'].message },
+              'No games match'
             ) : ''
           )
         );
       }
-    }], [{
-      key: 'propTypes',
-      value: {
-        title: _react.PropTypes.string,
-        previousUrl: _react.PropTypes.string,
-        previousTitle: _react.PropTypes.string,
-        previousIcon: _react.PropTypes.string,
-        titleIcon: _react.PropTypes.string
-      },
-      enumerable: true
     }]);
   
-    var _Header = Header;
-    Header = (0, _decoratorsWithStyles2['default'])(_HeaderScss2['default'])(Header) || Header;
-    return Header;
+    var _GameSearchForm = GameSearchForm;
+    GameSearchForm = (0, _decoratorsWithStyles2['default'])(_GameSearchFormScss2['default'])(GameSearchForm) || GameSearchForm;
+    return GameSearchForm;
   })(_react.Component);
   
-  exports['default'] = Header;
+  exports['default'] = GameSearchForm;
   module.exports = exports['default'];
 
 /***/ },
-/* 45 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(46);
+      var content = __webpack_require__(55);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3036,8 +3737,8 @@ module.exports =
       // Hot Module Replacement
       // https://webpack.github.io/docs/hot-module-replacement
       if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss");
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss");
           if (typeof newContent === 'string') {
             newContent = [[module.id, content, '']];
           }
@@ -3048,7 +3749,7 @@ module.exports =
     
 
 /***/ },
-/* 46 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3056,154 +3757,20 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.GameSearchForm_label_bm1 {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].GameSearchForm_textField_gWE {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n  font-size: 18px;\n}\n\n.GameSearchForm_form_c3w {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.GameSearchForm_message_2G3 {\n  color: #A78E81;\n}\n\n.GameSearchForm_gamesList_1Dx {\n  list-style: none;\n  padding-left: 0;\n}\n\n.GameSearchForm_gameListItem_2Zi {\n  text-align: left;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/GameSearchForm/GameSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;EACf,gBAAgB;CACjB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;EACE,eAAyB;CAC1B;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB","file":"GameSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n  font-size: 18px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  color: $error-text-color;\n}\n\n.gamesList {\n  list-style: none;\n  padding-left: 0;\n}\n\n.gameListItem {\n  text-align: left;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"header": "Header_header_3bM",
-  	"title": "Header_title_YtT",
-  	"brand": "Header_brand_1-T",
-  	"separator": "Header_separator_1Qr",
-  	"icon": "Header_icon_3H0"
+  	"label": "GameSearchForm_label_bm1",
+  	"textField": "GameSearchForm_textField_gWE",
+  	"form": "GameSearchForm_form_c3w",
+  	"message": "GameSearchForm_message_2G3",
+  	"gamesList": "GameSearchForm_gamesList_1Dx",
+  	"gameListItem": "GameSearchForm_gameListItem_2Zi"
   };
 
 /***/ },
-/* 47 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _this = this;
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _historyLibParsePath = __webpack_require__(43);
-  
-  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
-  
-  var _coreLocation = __webpack_require__(38);
-  
-  var _coreLocation2 = _interopRequireDefault(_coreLocation);
-  
-  function isLeftClickEvent(event) {
-    return event.button === 0;
-  }
-  
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-  
-  var Link = (function (_Component) {
-    _inherits(Link, _Component);
-  
-    function Link() {
-      _classCallCheck(this, Link);
-  
-      _get(Object.getPrototypeOf(Link.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Link, [{
-      key: 'render',
-      value: function render() {
-        var _props = this.props;
-        var to = _props.to;
-        var query = _props.query;
-  
-        var props = _objectWithoutProperties(_props, ['to', 'query']);
-  
-        return _react2['default'].createElement('a', _extends({ href: _coreLocation2['default'].createHref(to, query), onClick: Link.handleClick.bind(this) }, props));
-      }
-    }], [{
-      key: 'propTypes',
-      value: {
-        to: _react.PropTypes.string.isRequired,
-        query: _react.PropTypes.object,
-        state: _react.PropTypes.object,
-        onClick: _react.PropTypes.func
-      },
-      enumerable: true
-    }, {
-      key: 'handleClick',
-      value: function value(event) {
-        var allowTransition = true;
-        var clickResult = undefined;
-  
-        if (_this.props && _this.props.onClick) {
-          clickResult = _this.props.onClick(event);
-        }
-  
-        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
-          return;
-        }
-  
-        if (clickResult === false || event.defaultPrevented === true) {
-          allowTransition = false;
-        }
-  
-        event.preventDefault();
-  
-        if (allowTransition) {
-          var link = event.currentTarget;
-          if (_this.props && _this.props.to) {
-            _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(_this.props.to), {
-              state: _this.props && _this.props.state || null
-            }));
-          } else {
-            _coreLocation2['default'].push({
-              pathname: link.pathname,
-              search: link.search,
-              state: _this.props && _this.props.state || null
-            });
-          }
-        }
-      },
-      enumerable: true
-    }]);
-  
-    return Link;
-  })(_react.Component);
-  
-  exports['default'] = Link;
-  module.exports = exports['default'];
-
-/***/ },
-/* 48 */
-/***/ function(module, exports) {
-
-  module.exports = require("react-fontawesome");
-
-/***/ },
-/* 49 */,
-/* 50 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3226,7 +3793,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerPageScss = __webpack_require__(51);
+  var _PlayerPageScss = __webpack_require__(57);
   
   var _PlayerPageScss2 = _interopRequireDefault(_PlayerPageScss);
   
@@ -3234,23 +3801,23 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _PlayerSummaryPlayerSummary = __webpack_require__(53);
+  var _PlayerSummaryPlayerSummary = __webpack_require__(59);
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
-  var _FriendsListFriendsList = __webpack_require__(56);
+  var _FriendsListFriendsList = __webpack_require__(62);
   
   var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
   
-  var _apiSteam = __webpack_require__(31);
+  var _apiSteam = __webpack_require__(46);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(62);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(68);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
-  var _Header = __webpack_require__(44);
+  var _Header = __webpack_require__(31);
   
   var _Header2 = _interopRequireDefault(_Header);
   
@@ -3344,11 +3911,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 51 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(52);
+      var content = __webpack_require__(58);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3376,7 +3943,7 @@ module.exports =
     
 
 /***/ },
-/* 52 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3395,7 +3962,7 @@ module.exports =
   };
 
 /***/ },
-/* 53 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3418,7 +3985,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerSummaryScss = __webpack_require__(54);
+  var _PlayerSummaryScss = __webpack_require__(60);
   
   var _PlayerSummaryScss2 = _interopRequireDefault(_PlayerSummaryScss);
   
@@ -3426,7 +3993,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _apiSteam = __webpack_require__(31);
+  var _apiSteam = __webpack_require__(46);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
@@ -3554,11 +4121,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 54 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(55);
+      var content = __webpack_require__(61);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3586,7 +4153,7 @@ module.exports =
     
 
 /***/ },
-/* 55 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3612,7 +4179,7 @@ module.exports =
   };
 
 /***/ },
-/* 56 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3637,7 +4204,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendsListScss = __webpack_require__(57);
+  var _FriendsListScss = __webpack_require__(63);
   
   var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
   
@@ -3645,11 +4212,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _apiSteam = __webpack_require__(31);
+  var _apiSteam = __webpack_require__(46);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _FriendListItemFriendListItem = __webpack_require__(59);
+  var _FriendListItemFriendListItem = __webpack_require__(65);
   
   var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
   
@@ -3731,11 +4298,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(58);
+      var content = __webpack_require__(64);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3763,7 +4330,7 @@ module.exports =
     
 
 /***/ },
-/* 58 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3780,7 +4347,7 @@ module.exports =
   };
 
 /***/ },
-/* 59 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3803,7 +4370,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendListItemScss = __webpack_require__(60);
+  var _FriendListItemScss = __webpack_require__(66);
   
   var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
   
@@ -3811,7 +4378,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(47);
+  var _Link = __webpack_require__(34);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -3880,11 +4447,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(61);
+      var content = __webpack_require__(67);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -3912,7 +4479,7 @@ module.exports =
     
 
 /***/ },
-/* 61 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -3931,7 +4498,7 @@ module.exports =
   };
 
 /***/ },
-/* 62 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3956,7 +4523,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotsListScss = __webpack_require__(63);
+  var _ScreenshotsListScss = __webpack_require__(69);
   
   var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
   
@@ -3964,7 +4531,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _ScreenshotListItemScreenshotListItem = __webpack_require__(65);
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(71);
   
   var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
   
@@ -4034,11 +4601,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(64);
+      var content = __webpack_require__(70);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4066,7 +4633,7 @@ module.exports =
     
 
 /***/ },
-/* 64 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4083,7 +4650,7 @@ module.exports =
   };
 
 /***/ },
-/* 65 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4106,7 +4673,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotListItemScss = __webpack_require__(66);
+  var _ScreenshotListItemScss = __webpack_require__(72);
   
   var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
   
@@ -4114,7 +4681,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Link = __webpack_require__(47);
+  var _Link = __webpack_require__(34);
   
   var _Link2 = _interopRequireDefault(_Link);
   
@@ -4187,11 +4754,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 66 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(67);
+      var content = __webpack_require__(73);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4219,7 +4786,7 @@ module.exports =
     
 
 /***/ },
-/* 67 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4235,7 +4802,7 @@ module.exports =
   };
 
 /***/ },
-/* 68 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4258,47 +4825,37 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(69);
+  var _GamePageScss = __webpack_require__(75);
   
-  var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
+  var _GamePageScss2 = _interopRequireDefault(_GamePageScss);
   
   var _decoratorsWithStyles = __webpack_require__(21);
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _classnames = __webpack_require__(37);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  var _apiSteam = __webpack_require__(31);
+  var _apiSteam = __webpack_require__(46);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _Header = __webpack_require__(44);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(68);
+  
+  var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
+  
+  var _Header = __webpack_require__(31);
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _apiColors = __webpack_require__(71);
+  var _storesSteamApps = __webpack_require__(77);
   
-  var _apiColors2 = _interopRequireDefault(_apiColors);
+  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
-  var _Palette = __webpack_require__(72);
+  var GamePage = (function (_Component) {
+    _inherits(GamePage, _Component);
   
-  var _Palette2 = _interopRequireDefault(_Palette);
-  
-  var _reactFontawesome = __webpack_require__(48);
-  
-  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
-  
-  var ScreenshotPage = (function (_Component) {
-    _inherits(ScreenshotPage, _Component);
-  
-    _createClass(ScreenshotPage, null, [{
+    _createClass(GamePage, null, [{
       key: 'propTypes',
       value: {
-        steamID: _react.PropTypes.string.isRequired,
-        username: _react.PropTypes.string.isRequired,
-        screenshotID: _react.PropTypes.string.isRequired
+        gameID: _react.PropTypes.string.isRequired
       },
       enumerable: true
     }, {
@@ -4309,18 +4866,15 @@ module.exports =
       enumerable: true
     }]);
   
-    function ScreenshotPage(props, context) {
-      _classCallCheck(this, _ScreenshotPage);
+    function GamePage(props, context) {
+      _classCallCheck(this, _GamePage);
   
-      _get(Object.getPrototypeOf(_ScreenshotPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {
-        screenshot: undefined,
-        title: 'Screenshot ' + props.screenshotID,
-        colors: undefined
-      };
+      _get(Object.getPrototypeOf(_GamePage.prototype), 'constructor', this).call(this, props, context);
+      var title = _storesSteamApps2['default'].getName(props.gameID);
+      this.state = { screenshots: undefined, title: title };
     }
   
-    _createClass(ScreenshotPage, [{
+    _createClass(GamePage, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
         this.context.onSetTitle(this.state.title);
@@ -4328,898 +4882,97 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        _apiSteam2['default'].getScreenshot(this.props.screenshotID).then(this.onScreenshotLoaded.bind(this))['catch'](this.onScreenshotLoadError.bind(this));
+        // Steam.getScreenshots(this.props.username).
+        //       then(this.onScreenshotsLoaded.bind(this)).
+        //       catch(this.onScreenshotsLoadError.bind(this));
       }
     }, {
-      key: 'onScreenshotLoaded',
-      value: function onScreenshotLoaded(screenshot) {
-        var _this = this;
-  
-        this.setState({ screenshot: screenshot }, function () {
-          _this.updateTitle();
-        });
-        _apiColors2['default'].getColors(screenshot.mediumUrl).then(this.onColorsLoaded.bind(this))['catch'](this.onColorsLoadError.bind(this));
+      key: 'onScreenshotsLoaded',
+      value: function onScreenshotsLoaded(screenshots) {
+        this.setState({ screenshots: screenshots });
       }
     }, {
-      key: 'onScreenshotLoadError',
-      value: function onScreenshotLoadError(response) {
-        console.error('failed to load Steam screenshot', response);
-      }
-    }, {
-      key: 'onColorsLoaded',
-      value: function onColorsLoaded(colors) {
-        this.setState({ colors: colors });
-      }
-    }, {
-      key: 'onColorsLoadError',
-      value: function onColorsLoadError(response) {
-        console.error('failed to load colors from image', response);
-      }
-    }, {
-      key: 'updateTitle',
-      value: function updateTitle() {
-        var description = this.state.screenshot.description;
-        if (typeof description === 'string' && description.length > 0) {
-          this.setState({ title: description });
-        }
+      key: 'onScreenshotsLoadError',
+      value: function onScreenshotsLoadError(response) {
+        console.error('failed to load Steam screenshots', response);
       }
     }, {
       key: 'render',
       value: function render() {
-        var alt = 'Screenshot ' + this.props.screenshotID;
-        var isScreenshotLoaded = typeof this.state.screenshot === 'object';
-        var date = '';
-        if (isScreenshotLoaded && this.state.screenshot.date) {
-          date = this.state.screenshot.date.toLocaleDateString();
-        }
-        var backTitle = this.props.username;
-        var backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
-        var areColorsLoaded = typeof this.state.colors === 'object';
+        var screenshotsLoaded = typeof this.state.screenshots === 'object';
         return _react2['default'].createElement(
           'div',
-          { className: _ScreenshotPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
-            previousTitle: backTitle,
-            previousIcon: 'user'
-          }),
-          isScreenshotLoaded ? _react2['default'].createElement(
-            'div',
-            { className: _ScreenshotPageScss2['default'].details },
-            _react2['default'].createElement(
-              'div',
-              { className: _ScreenshotPageScss2['default'].left },
-              _react2['default'].createElement(
-                'a',
-                { href: this.state.screenshot.fullSizeUrl, target: '_blank',
-                  className: _ScreenshotPageScss2['default'].screenshotLink
-                },
-                _react2['default'].createElement('img', { src: this.state.screenshot.mediumUrl,
-                  alt: alt,
-                  className: _ScreenshotPageScss2['default'].screenshot
-                })
-              ),
-              _react2['default'].createElement(
-                'a',
-                { href: this.state.screenshot.url, target: '_blank',
-                  className: _ScreenshotPageScss2['default'].detailsUrl
-                },
-                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'info',
-                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].detailsIcon)
-                }),
-                'View details'
-              ),
-              _react2['default'].createElement(
-                'a',
-                { href: this.state.screenshot.fullSizeUrl, target: '_blank',
-                  className: _ScreenshotPageScss2['default'].fullSizeLink
-                },
-                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'search-plus',
-                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].fullSizeIcon)
-                }),
-                'View full size'
-              ),
-              _react2['default'].createElement(
-                'a',
-                { className: _ScreenshotPageScss2['default'].authorLink, href: this.state.screenshot.userUrl,
-                  target: '_blank'
-                },
-                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'steam',
-                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].profileIcon)
-                }),
-                'View ',
-                this.props.username,
-                '\'s profile'
-              ),
-              _react2['default'].createElement(
-                'ul',
-                { className: _ScreenshotPageScss2['default'].metadata },
-                _react2['default'].createElement(
-                  'li',
-                  null,
-                  date
-                ),
-                _react2['default'].createElement(
-                  'li',
-                  null,
-                  this.state.screenshot.width,
-                  ' × ',
-                  this.state.screenshot.height
-                ),
-                _react2['default'].createElement(
-                  'li',
-                  null,
-                  this.state.screenshot.fileSize
-                )
-              )
-            ),
-            _react2['default'].createElement(
-              'div',
-              { className: _ScreenshotPageScss2['default'].right },
-              areColorsLoaded ? _react2['default'].createElement(_Palette2['default'], { colors: this.state.colors }) : _react2['default'].createElement(
-                'p',
-                { className: _ScreenshotPageScss2['default'].colorsMessage },
-                'Loading colors...'
-              )
-            )
-          ) : _react2['default'].createElement(
+          { className: _GamePageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], { title: this.state.title, titleIcon: 'steam' }),
+          screenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
+            gameID: this.props.gameID
+          }) : _react2['default'].createElement(
             'p',
-            { className: _ScreenshotPageScss2['default'].message },
-            'Loading screenshot...'
+            { className: _GamePageScss2['default'].message },
+            'Loading screenshots...'
           )
         );
       }
     }]);
   
-    var _ScreenshotPage = ScreenshotPage;
-    ScreenshotPage = (0, _decoratorsWithStyles2['default'])(_ScreenshotPageScss2['default'])(ScreenshotPage) || ScreenshotPage;
-    return ScreenshotPage;
+    var _GamePage = GamePage;
+    GamePage = (0, _decoratorsWithStyles2['default'])(_GamePageScss2['default'])(GamePage) || GamePage;
+    return GamePage;
   })(_react.Component);
   
-  exports['default'] = ScreenshotPage;
+  exports['default'] = GamePage;
   module.exports = exports['default'];
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(70);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "ScreenshotPage_container_1ix",
-  	"details": "ScreenshotPage_details_2bS",
-  	"left": "ScreenshotPage_left_2eX",
-  	"right": "ScreenshotPage_right_21z",
-  	"screenshotLink": "ScreenshotPage_screenshotLink_3rs",
-  	"screenshot": "ScreenshotPage_screenshot_1Ek",
-  	"description": "ScreenshotPage_description_3-p",
-  	"colorsMessage": "ScreenshotPage_colorsMessage_2MN",
-  	"metadata": "ScreenshotPage_metadata_1CM",
-  	"authorLink": "ScreenshotPage_authorLink_2ME",
-  	"fullSizeLink": "ScreenshotPage_fullSizeLink_26o",
-  	"detailsUrl": "ScreenshotPage_detailsUrl_3O_",
-  	"message": "ScreenshotPage_message_1kw",
-  	"icon": "ScreenshotPage_icon_3uB",
-  	"profileIcon": "ScreenshotPage_profileIcon_5Dv",
-  	"detailsIcon": "ScreenshotPage_detailsIcon_Bml",
-  	"fullSizeIcon": "ScreenshotPage_fullSizeIcon_2Di"
-  };
-
-/***/ },
-/* 71 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _api = __webpack_require__(32);
-  
-  var _api2 = _interopRequireDefault(_api);
-  
-  var Colors = (function (_Api) {
-    _inherits(Colors, _Api);
-  
-    function Colors() {
-      _classCallCheck(this, Colors);
-  
-      _get(Object.getPrototypeOf(Colors.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Colors, null, [{
-      key: 'getColors',
-      value: function getColors(imageUrl) {
-        var data;
-        return regeneratorRuntime.async(function getColors$(context$2$0) {
-          while (1) switch (context$2$0.prev = context$2$0.next) {
-            case 0:
-              context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.makeRequest('/api/colors?url=' + encodeURIComponent(imageUrl) + '&format=json'));
-  
-            case 2:
-              data = context$2$0.sent;
-              return context$2$0.abrupt('return', data);
-  
-            case 4:
-            case 'end':
-              return context$2$0.stop();
-          }
-        }, null, this);
-      }
-    }]);
-  
-    return Colors;
-  })(_api2['default']);
-  
-  exports['default'] = Colors;
-  module.exports = exports['default'];
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _PaletteScss = __webpack_require__(73);
-  
-  var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _Swatch = __webpack_require__(75);
-  
-  var _Swatch2 = _interopRequireDefault(_Swatch);
-  
-  var _tinycolor2 = __webpack_require__(78);
-  
-  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
-  
-  var _reactFontawesome = __webpack_require__(48);
-  
-  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
-  
-  var Palette = (function (_Component) {
-    _inherits(Palette, _Component);
-  
-    _createClass(Palette, null, [{
-      key: 'propTypes',
-      value: {
-        colors: _react.PropTypes.array.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function Palette(props, context) {
-      _classCallCheck(this, _Palette);
-  
-      _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
-      this.state = { selectedColors: [] };
-    }
-  
-    _createClass(Palette, [{
-      key: 'onColorSelected',
-      value: function onColorSelected(color) {
-        var colors = this.state.selectedColors.slice();
-        if (colors.indexOf(color) < 0) {
-          colors.push(color);
-        }
-        this.setState({ selectedColors: colors });
-      }
-    }, {
-      key: 'onColorDeselected',
-      value: function onColorDeselected(color) {
-        var index = this.state.selectedColors.indexOf(color);
-        var head = this.state.selectedColors.slice(0, index);
-        var tail = this.state.selectedColors.slice(index + 1, this.state.selectedColors.length);
-        var colors = head.concat(tail);
-        this.setState({ selectedColors: colors });
-      }
-    }, {
-      key: 'getAllColors',
-      value: function getAllColors() {
-        var hexColors = [];
-        for (var i = 0; i < this.props.colors.length; i++) {
-          hexColors.push(this.props.colors[i]);
-          var color = (0, _tinycolor22['default'])(this.props.colors[i]);
-          this.addVariation(hexColors, color, 'analogous');
-          this.addVariation(hexColors, color, 'monochromatic');
-        }
-        var uniqueColors = this.uniq(hexColors);
-        uniqueColors.sort(this.colorSorter.bind(this));
-        return uniqueColors;
-      }
-  
-      // See 'Step sorting' on http://www.alanzucconi.com/2015/09/30/colour-sorting/
-    }, {
-      key: 'colorSorter',
-      value: function colorSorter(aStr, bStr) {
-        var colorA = (0, _tinycolor22['default'])(aStr);
-        var colorB = (0, _tinycolor22['default'])(bStr);
-        var lumA = colorA.getLuminance();
-        var lumB = colorB.getLuminance();
-        var hsvA = colorA.toHsv();
-        var hsvB = colorB.toHsv();
-        var repetitions = 8;
-        var h2A = Math.round(hsvA.h * repetitions);
-        var h2B = Math.round(hsvB.h * repetitions);
-        var lum2A = Math.round(lumA * repetitions);
-        var lum2B = Math.round(lumB * repetitions);
-        var v2A = Math.round(hsvA.v * repetitions);
-        var v2B = Math.round(hsvB.v * repetitions);
-        if (h2A % 2 === 1) {
-          v2A = repetitions - v2A;
-          lum2A = repetitions - lum2A;
-        }
-        if (h2B % 2 === 1) {
-          v2B = repetitions - v2B;
-          lum2B = repetitions - lum2B;
-        }
-        if (h2A < h2B) {
-          return -1;
-        }
-        if (h2A > h2B) {
-          return 1;
-        }
-        if (lum2A < lum2B) {
-          return -1;
-        }
-        if (lum2A > lum2B) {
-          return 1;
-        }
-        if (v2A < v2B) {
-          return -1;
-        }
-        if (v2A > v2B) {
-          return 1;
-        }
-        return 0;
-      }
-    }, {
-      key: 'addVariation',
-      value: function addVariation(list, color, funcName) {
-        var variations = color[funcName]();
-        for (var j = 0; j < variations.length; j++) {
-          list.push(variations[j].toHexString());
-        }
-      }
-    }, {
-      key: 'uniq',
-      value: function uniq(arr) {
-        var set = new Set(arr);
-        return Array.from(set);
-      }
-    }, {
-      key: 'sample',
-      value: function sample(list, total) {
-        var results = [];
-        while (results.length < total) {
-          results.push(list[Math.floor(Math.random() * list.length)]);
-        }
-        return results;
-      }
-    }, {
-      key: 'hashStripper',
-      value: function hashStripper(c) {
-        return c.replace(/^#/, '');
-      }
-    }, {
-      key: 'setLinkToNewPaletteLink',
-      value: function setLinkToNewPaletteLink(event, colors) {
-        var link = event.target;
-        if (link.nodeName !== 'A') {
-          link = link.closest('a');
-        }
-        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
-        link.blur();
-      }
-    }, {
-      key: 'createPalette',
-      value: function createPalette(event) {
-        this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
-      }
-    }, {
-      key: 'createRandomPalette',
-      value: function createRandomPalette(allColors, event) {
-        this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var _this = this;
-  
-        var hexColors = this.getAllColors();
-        return _react2['default'].createElement(
-          'div',
-          { className: _PaletteScss2['default'].container },
-          this.state.selectedColors.length > 0 ? _react2['default'].createElement(
-            'div',
-            { className: _PaletteScss2['default'].selectedColorsWrapper },
-            _react2['default'].createElement(
-              'a',
-              { href: '#', onClick: this.createPalette.bind(this),
-                target: '_blank'
-              },
-              _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
-              'Create palette'
-            ),
-            _react2['default'].createElement(
-              'ul',
-              { className: _PaletteScss2['default'].selectedColors },
-              this.state.selectedColors.map(function (hex) {
-                var key = 'selected-' + hex;
-                return _react2['default'].createElement(
-                  'li',
-                  { key: key, className: _PaletteScss2['default'].listItem },
-                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
-                    allowSelection: false,
-                    onDeselected: _this.onColorDeselected.bind(_this),
-                    initiallySelected: true
-                  })
-                );
-              })
-            )
-          ) : '',
-          _react2['default'].createElement(
-            'a',
-            { href: '#', onClick: this.createRandomPalette.bind(this, hexColors),
-              target: '_blank'
-            },
-            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
-            'Create random palette'
-          ),
-          _react2['default'].createElement(
-            'ul',
-            { className: _PaletteScss2['default'].colors },
-            hexColors.map(function (hex) {
-              var allowSelection = _this.state.selectedColors.length < 5;
-              var initiallySelected = _this.state.selectedColors.indexOf(hex) > -1;
-              var key = hex + '-' + allowSelection + '-' + initiallySelected;
-              return _react2['default'].createElement(
-                'li',
-                { key: key, className: _PaletteScss2['default'].listItem },
-                _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
-                  onSelected: _this.onColorSelected.bind(_this),
-                  onDeselected: _this.onColorDeselected.bind(_this),
-                  allowSelection: allowSelection,
-                  initiallySelected: initiallySelected
-                })
-              );
-            })
-          )
-        );
-      }
-    }]);
-  
-    var _Palette = Palette;
-    Palette = (0, _decoratorsWithStyles2['default'])(_PaletteScss2['default'])(Palette) || Palette;
-    return Palette;
-  })(_react.Component);
-  
-  exports['default'] = Palette;
-  module.exports = exports['default'];
-
-/***/ },
-/* 73 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(74);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "Palette_container_1Ha",
-  	"colors": "Palette_colors_jGR",
-  	"selectedColors": "Palette_selectedColors_1qk",
-  	"title": "Palette_title_2zJ",
-  	"linkIcon": "Palette_linkIcon_2U5"
-  };
 
 /***/ },
 /* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
-  'use strict';
   
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
+      var content = __webpack_require__(76);
+      var insertCss = __webpack_require__(17);
   
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _SwatchScss = __webpack_require__(76);
-  
-  var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
-  
-  var _classnames = __webpack_require__(37);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _tinycolor2 = __webpack_require__(78);
-  
-  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
-  
-  var Swatch = (function (_Component) {
-    _inherits(Swatch, _Component);
-  
-    _createClass(Swatch, null, [{
-      key: 'propTypes',
-      value: {
-        hexColor: _react.PropTypes.string.isRequired,
-        onSelected: _react.PropTypes.func,
-        onDeselected: _react.PropTypes.func,
-        allowSelection: _react.PropTypes.bool.isRequired,
-        initiallySelected: _react.PropTypes.bool.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function Swatch(props, context) {
-      _classCallCheck(this, _Swatch);
-  
-      _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
-      this.state = { selected: props.initiallySelected };
-    }
-  
-    _createClass(Swatch, [{
-      key: 'propagateSelected',
-      value: function propagateSelected() {
-        if (this.state.selected) {
-          this.props.onSelected(this.props.hexColor);
-        } else {
-          this.props.onDeselected(this.props.hexColor);
-        }
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
       }
-    }, {
-      key: 'toggleSelected',
-      value: function toggleSelected(event) {
-        event.preventDefault();
-        this.setState({ selected: !this.state.selected }, this.propagateSelected.bind(this));
-      }
-    }, {
-      key: 'deselect',
-      value: function deselect(event) {
-        event.preventDefault();
-        this.setState({ selected: false }, this.propagateSelected.bind(this));
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var swatchStyle = { backgroundColor: this.props.hexColor };
-        var selectedClass = this.state.selected ? _SwatchScss2['default'].selected : _SwatchScss2['default'].unselected;
-        var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
-        var darknessClass = isDark ? _SwatchScss2['default'].dark : _SwatchScss2['default'].light;
-        return _react2['default'].createElement(
-          'span',
-          { className: _SwatchScss2['default'].container },
-          this.props.allowSelection ? _react2['default'].createElement('a', { href: '#',
-            className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
-            style: swatchStyle,
-            title: this.props.hexColor,
-            onClick: this.toggleSelected.bind(this)
-          }) : _react2['default'].createElement(
-            'span',
-            { className: _SwatchScss2['default'].disallowSelection },
-            this.state.selected ? _react2['default'].createElement('a', { href: '#',
-              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
-              style: swatchStyle,
-              title: this.props.hexColor,
-              onClick: this.deselect.bind(this)
-            }) : _react2['default'].createElement('span', {
-              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, selectedClass, darknessClass),
-              style: swatchStyle,
-              title: this.props.hexColor
-            })
-          )
-        );
-      }
-    }]);
   
-    var _Swatch = Swatch;
-    Swatch = (0, _decoratorsWithStyles2['default'])(_SwatchScss2['default'])(Swatch) || Swatch;
-    return Swatch;
-  })(_react.Component);
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
   
-  exports['default'] = Swatch;
-  module.exports = exports['default'];
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
+  exports = module.exports = __webpack_require__(16)();
+  // imports
   
-      var content = __webpack_require__(77);
-      var insertCss = __webpack_require__(17);
   
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n", "", {"version":3,"sources":["/./src/components/variables.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC","file":"GamePage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n"],"sourceRoot":"webpack://"}]);
   
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
+  // exports
+
 
 /***/ },
 /* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg, .Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after, .Swatch_swatch_3nj.Swatch_link_3Ji:hover:after, .Swatch_swatch_3nj.Swatch_link_3Ji:focus:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected, &.link:hover, &.link:focus {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"swatch": "Swatch_swatch_3nj",
-  	"selected": "Swatch_selected_kJg",
-  	"link": "Swatch_link_3Ji",
-  	"unselected": "Swatch_unselected_1Wl",
-  	"dark": "Swatch_dark_1H7",
-  	"light": "Swatch_light_2i7",
-  	"container": "Swatch_container_2L5"
-  };
-
-/***/ },
-/* 78 */
-/***/ function(module, exports) {
-
-  module.exports = require("tinycolor2");
-
-/***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _config = __webpack_require__(35);
-  
-  var Html = (function (_Component) {
-    _inherits(Html, _Component);
-  
-    function Html() {
-      _classCallCheck(this, Html);
-  
-      _get(Object.getPrototypeOf(Html.prototype), 'constructor', this).apply(this, arguments);
-    }
-  
-    _createClass(Html, [{
-      key: 'trackingCode',
-      value: function trackingCode() {
-        return { __html: '(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=' + 'function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;' + 'e=o.createElement(i);r=o.getElementsByTagName(i)[0];' + 'e.src=\'https://www.google-analytics.com/analytics.js\';' + 'r.parentNode.insertBefore(e,r)}(window,document,\'script\',\'ga\'));' + ('ga(\'create\',\'' + _config.googleAnalyticsId + '\',\'auto\');ga(\'send\',\'pageview\');')
-        };
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'html',
-          { className: 'no-js', lang: '' },
-          _react2['default'].createElement(
-            'head',
-            null,
-            _react2['default'].createElement('meta', { charSet: 'utf-8' }),
-            _react2['default'].createElement('meta', { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' }),
-            _react2['default'].createElement(
-              'title',
-              null,
-              this.props.title
-            ),
-            _react2['default'].createElement('meta', { name: 'description', content: this.props.description }),
-            _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
-            _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
-            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo:400,700', rel: 'stylesheet', type: 'text/css' }),
-            _react2['default'].createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' }),
-            _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
-          ),
-          _react2['default'].createElement(
-            'body',
-            null,
-            _react2['default'].createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: this.props.body } }),
-            _react2['default'].createElement('script', { src: this.props.entry }),
-            _react2['default'].createElement('script', { dangerouslySetInnerHTML: this.trackingCode() })
-          )
-        );
-      }
-    }], [{
-      key: 'propTypes',
-      value: {
-        title: _react.PropTypes.string,
-        description: _react.PropTypes.string,
-        css: _react.PropTypes.string,
-        body: _react.PropTypes.string.isRequired,
-        entry: _react.PropTypes.string.isRequired
-      },
-      enumerable: true
-    }, {
-      key: 'defaultProps',
-      value: {
-        title: '',
-        description: ''
-      },
-      enumerable: true
-    }]);
-  
-    return Html;
-  })(_react.Component);
-  
-  exports['default'] = Html;
-  module.exports = exports['default'];
-
-/***/ },
-/* 80 */
-/***/ function(module, exports) {
-
-  module.exports = require("./assets");
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
   'use strict';
   
   Object.defineProperty(exports, '__esModule', {
@@ -5232,1189 +4985,18 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _coreFetch = __webpack_require__(33);
-  
-  var _coreFetch2 = _interopRequireDefault(_coreFetch);
-  
-  var _jsdom = __webpack_require__(82);
-  
-  var _jsdom2 = _interopRequireDefault(_jsdom);
-  
-  var _bluebird = __webpack_require__(83);
-  
-  var _bluebird2 = _interopRequireDefault(_bluebird);
-  
-  var ScreenshotsScraper = (function () {
-    function ScreenshotsScraper(username) {
-      _classCallCheck(this, ScreenshotsScraper);
-  
-      this.username = username;
-    }
-  
-    _createClass(ScreenshotsScraper, [{
-      key: 'getPage',
-      value: function getPage() {
-        var url, response, data;
-        return regeneratorRuntime.async(function getPage$(context$2$0) {
-          while (1) switch (context$2$0.prev = context$2$0.next) {
-            case 0:
-              url = 'http://steamcommunity.com/id/' + this.username + '/screenshots/?appid=0&sort=newestfirst&' + 'browsefilter=myfiles&view=grid';
-              context$2$0.next = 3;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url));
-  
-            case 3:
-              response = context$2$0.sent;
-              context$2$0.next = 6;
-              return regeneratorRuntime.awrap(response.text());
-  
-            case 6:
-              data = context$2$0.sent;
-              return context$2$0.abrupt('return', data);
-  
-            case 8:
-            case 'end':
-              return context$2$0.stop();
-          }
-        }, null, this);
-      }
-    }, {
-      key: 'getScreenshots',
-      value: function getScreenshots(html) {
-        var _this = this;
-  
-        return new _bluebird2['default'](function (resolve, reject) {
-          _jsdom2['default'].env({
-            html: html,
-            done: _this.scrapeDom.bind(_this, resolve, reject)
-          });
-        });
-      }
-    }, {
-      key: 'scrapeDom',
-      value: function scrapeDom(resolve, reject, err, window) {
-        var selector = '#image_wall .imageWallRow .profile_media_item';
-        var links = window.document.querySelectorAll(selector);
-        var screenshots = [];
-        for (var i = 0; i < links.length; i++) {
-          screenshots.push(this.getScreenshotFromLink(links[i]));
-        }
-        resolve(screenshots);
-      }
-    }, {
-      key: 'getScreenshotFromLink',
-      value: function getScreenshotFromLink(link) {
-        var href = link.getAttribute('href');
-        var descEl = link.querySelector('.imgWallHoverDescription');
-        var title = undefined;
-        if (descEl) {
-          var ellipsis = descEl.querySelector('.ellipsis');
-          if (ellipsis) {
-            title = ellipsis.innerHTML;
-          }
-        }
-        return {
-          url: href,
-          title: title
-        };
-      }
-    }]);
-  
-    return ScreenshotsScraper;
-  })();
-  
-  exports['default'] = ScreenshotsScraper;
-  module.exports = exports['default'];
-
-/***/ },
-/* 82 */
-/***/ function(module, exports) {
-
-  module.exports = require("jsdom");
-
-/***/ },
-/* 83 */
-/***/ function(module, exports) {
-
-  module.exports = require("bluebird");
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  var _coreFetch = __webpack_require__(33);
-  
-  var _coreFetch2 = _interopRequireDefault(_coreFetch);
-  
-  var _jsdom = __webpack_require__(82);
-  
-  var _jsdom2 = _interopRequireDefault(_jsdom);
-  
-  var _bluebird = __webpack_require__(83);
-  
-  var _bluebird2 = _interopRequireDefault(_bluebird);
-  
-  var ScreenshotScraper = (function () {
-    function ScreenshotScraper(id) {
-      _classCallCheck(this, ScreenshotScraper);
-  
-      this.id = id;
-      this.url = 'http://steamcommunity.com/sharedfiles/filedetails/?id=' + this.id;
-    }
-  
-    _createClass(ScreenshotScraper, [{
-      key: 'getPage',
-      value: function getPage() {
-        var response, data;
-        return regeneratorRuntime.async(function getPage$(context$2$0) {
-          while (1) switch (context$2$0.prev = context$2$0.next) {
-            case 0:
-              context$2$0.next = 2;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(this.url));
-  
-            case 2:
-              response = context$2$0.sent;
-              context$2$0.next = 5;
-              return regeneratorRuntime.awrap(response.text());
-  
-            case 5:
-              data = context$2$0.sent;
-              return context$2$0.abrupt('return', data);
-  
-            case 7:
-            case 'end':
-              return context$2$0.stop();
-          }
-        }, null, this);
-      }
-    }, {
-      key: 'getScreenshot',
-      value: function getScreenshot(html) {
-        var _this = this;
-  
-        return new _bluebird2['default'](function (resolve, reject) {
-          _jsdom2['default'].env({
-            html: html,
-            done: _this.scrapeDom.bind(_this, resolve, reject)
-          });
-        });
-      }
-    }, {
-      key: 'scrapeDom',
-      value: function scrapeDom(resolve, reject, err, window) {
-        var link = window.document.querySelector('.actualmediactn a');
-        var screenshot = { url: this.url };
-        if (link) {
-          screenshot.fullSizeUrl = link.getAttribute('href');
-          var image = link.querySelector('img');
-          if (image) {
-            screenshot.mediumUrl = image.getAttribute('src');
-          }
-        }
-        var desc = window.document.querySelector('.screenshotDescription');
-        if (desc) {
-          screenshot.description = desc.innerHTML.trim().replace(/^"|"$/g, '');
-        }
-        var author = window.document.querySelector('.creatorsBlock');
-        if (author) {
-          var authorLink = author.querySelector('.friendBlockLinkOverlay');
-          if (authorLink) {
-            screenshot.userUrl = authorLink.getAttribute('href');
-          }
-        }
-        // metadata like:
-        // 0.302 MB
-        // May 8 @ 10:01pm
-        // 1920 x 1080
-        var metadata = window.document.querySelectorAll('.detailsStatsContainerRight .detailsStatRight');
-        var date = this.getDate(metadata);
-        if (date) {
-          screenshot.date = date;
-        }
-        var dimensions = this.getDimensions(metadata);
-        if (dimensions) {
-          screenshot.width = dimensions[0];
-          screenshot.height = dimensions[1];
-        }
-        var fileSize = this.getFileSize(metadata);
-        if (fileSize) {
-          screenshot.fileSize = fileSize;
-        }
-        resolve(screenshot);
-      }
-    }, {
-      key: 'getFileSize',
-      value: function getFileSize(metadata) {
-        for (var i = 0; i < metadata.length; i++) {
-          var text = metadata[i].innerHTML;
-          if (text.indexOf('@') < 0 && text.indexOf(' x ') < 0) {
-            return text;
-          }
-        }
-      }
-    }, {
-      key: 'getDimensions',
-      value: function getDimensions(metadata) {
-        var divider = ' x ';
-        for (var i = 0; i < metadata.length; i++) {
-          var text = metadata[i].innerHTML;
-          if (text.indexOf(divider) > -1) {
-            var dimensions = text.split(divider);
-            var width = parseInt(dimensions[0], 10);
-            var height = parseInt(dimensions[1], 10);
-            return [width, height];
-          }
-        }
-      }
-    }, {
-      key: 'getDate',
-      value: function getDate(metadata) {
-        for (var i = 0; i < metadata.length; i++) {
-          var text = metadata[i].innerHTML;
-          if (text.indexOf('@') > -1) {
-            return this.parseDate(text);
-          }
-        }
-      }
-  
-      // e.g., Mar 2, 2014 @ 12:55pm
-      // e.g., Jul 4 @ 1:17pm
-    }, {
-      key: 'parseDate',
-      value: function parseDate(rawDateStr) {
-        var dateStr = rawDateStr.trim().toLowerCase();
-        var dateAndTime = dateStr.split(/\s+@\s+/);
-        var hourAndMinute = dateAndTime[1].split(':'); // 1, 17pm
-        var hour = parseInt(hourAndMinute[0], 10);
-        var isPM = hourAndMinute[1].indexOf('pm') > -1;
-        if (isPM) {
-          hour += 12;
-        }
-        var minute = parseInt(hourAndMinute[1].replace(/[ap]m$/, ''), 10);
-        var monthDayYear = dateStr.split(/,\s+/);
-        var year = new Date().getFullYear();
-        if (monthDayYear.length > 1 && monthDayYear[1].length > 0) {
-          year = parseInt(monthDayYear[1], 10);
-        }
-        var monthDay = monthDayYear[0].split(/\s+/);
-        var month = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].indexOf(monthDay[0]);
-        var day = parseInt(monthDay[1], 10);
-        return new Date(year, month, day, hour, minute);
-      }
-    }]);
-  
-    return ScreenshotScraper;
-  })();
-  
-  exports['default'] = ScreenshotScraper;
-  module.exports = exports['default'];
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  var _bluebird = __webpack_require__(83);
-  
-  var _bluebird2 = _interopRequireDefault(_bluebird);
-  
-  var _http = __webpack_require__(86);
-  
-  var _http2 = _interopRequireDefault(_http);
-  
-  var _canvas = __webpack_require__(87);
-  
-  var _canvas2 = _interopRequireDefault(_canvas);
-  
-  var _tinycolor2 = __webpack_require__(78);
-  
-  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
-  
-  var _colorThief = __webpack_require__(88);
-  
-  var _colorThief2 = _interopRequireDefault(_colorThief);
-  
-  // Converted from
-  // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
-  
-  var ImageAnalyzer = (function () {
-    function ImageAnalyzer() {
-      _classCallCheck(this, ImageAnalyzer);
-  
-      this.bgcolor = null;
-      this.primaryColor = null;
-      this.secondaryColor = null;
-      this.detailColor = null;
-      this.thiefPalette = [];
-    }
-  
-    _createClass(ImageAnalyzer, [{
-      key: 'getColors',
-      value: function getColors(imageUrl) {
-        var _this = this;
-  
-        return new _bluebird2['default'](function (resolve) {
-          _http2['default'].get(imageUrl, _this.handleGet.bind(_this, resolve));
-        });
-      }
-    }, {
-      key: 'handleGet',
-      value: function handleGet(resolve, res) {
-        var data = new Buffer(parseInt(res.headers['content-length'], 10));
-        var pos = 0;
-        res.on('data', function (chunk) {
-          chunk.copy(data, pos);
-          pos += chunk.length;
-        });
-        res.on('end', this.onImageLoaded.bind(this, resolve, data));
-      }
-    }, {
-      key: 'onImageLoaded',
-      value: function onImageLoaded(resolve, data) {
-        var img = new _canvas2['default'].Image();
-        img.src = data;
-        var cvs = new _canvas2['default'](img.width, img.height);
-        var ctx = cvs.getContext('2d');
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        this.bgcolor = this.findEdgeColor(cvs, ctx);
-        var thief = new _colorThief2['default']();
-        this.thiefPalette = thief.getPalette(data, 8).map(function (rgb) {
-          return (0, _tinycolor22['default'])({ r: rgb[0], g: rgb[1], b: rgb[2] }).toHexString();
-        });
-        this.findTextColors(cvs, ctx, resolve);
-      }
-    }, {
-      key: 'getAboveThreshold',
-      value: function getAboveThreshold(hash, valueThreshold) {
-        var results = [];
-        for (var key in hash) {
-          if (hash.hasOwnProperty(key)) {
-            var value = hash[key];
-            if (value > valueThreshold) {
-              results.push([key, value]);
-            }
-          }
-        }
-        return results;
-      }
-    }, {
-      key: 'findEdgeColor',
-      value: function findEdgeColor(cvs, ctx) {
-        var leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
-        var colorCount = {};
-        for (var pixel = 0, _i = 0, _ref = cvs.height; _ref > 0 ? _i < _ref : _i > _ref; pixel = _ref > 0 ? ++_i : --_i) {
-          var red = leftEdgeColors.data[pixel * 4];
-          var green = leftEdgeColors.data[pixel * 4 + 1];
-          var blue = leftEdgeColors.data[pixel * 4 + 2];
-          var index = red + ',' + green + ',' + blue;
-          if (!colorCount[index]) {
-            colorCount[index] = 0;
-          }
-          colorCount[index]++;
-        }
-        var sortedColorCount = this.getAboveThreshold(colorCount, 2);
-        if (sortedColorCount.length < 1) {
-          sortedColorCount = this.getAboveThreshold(colorCount, 1);
-        }
-        sortedColorCount.sort(function (a, b) {
-          return b[1] - a[1];
-        });
-        var proposedEdgeColor = sortedColorCount[0];
-        if (this.isBlackOrWhite(proposedEdgeColor[0])) {
-          for (var _j = 0, _len = sortedColorCount.length; _j < _len; _j++) {
-            var nextProposedEdgeColor = sortedColorCount[_j];
-            if (nextProposedEdgeColor[1] / proposedEdgeColor[1] > 0.3) {
-              if (!this.isBlackOrWhite(nextProposedEdgeColor[0])) {
-                proposedEdgeColor = nextProposedEdgeColor;
-                break;
-              }
-            }
-          }
-        }
-        return proposedEdgeColor[0];
-      }
-    }, {
-      key: 'findTextColors',
-      value: function findTextColors(cvs, ctx, resolve) {
-        var colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
-        var findDarkTextColor = !this.isDarkColor(this.bgcolor);
-        var colorCount = {};
-        for (var row = 0, _i = 0, _ref = cvs.height; _ref > 0 ? _i < _ref : _i > _ref; row = _ref > 0 ? ++_i : --_i) {
-          for (var column = 0, _j = 0, _ref1 = cvs.width; _ref1 > 0 ? _j < _ref1 : _j > _ref1; column = _ref1 > 0 ? ++_j : --_j) {
-            var red = colors.data[row * (cvs.width * 4) + column * 4];
-            var green = colors.data[row * (cvs.width * 4) + column * 4 + 1];
-            var blue = colors.data[row * (cvs.width * 4) + column * 4 + 2];
-            var index = red + ',' + green + ',' + blue;
-            if (!colorCount[index]) {
-              colorCount[index] = 0;
-            }
-            colorCount[index]++;
-          }
-        }
-        var possibleColorsSorted = [];
-        for (var color in colorCount) {
-          if (colorCount.hasOwnProperty(color)) {
-            var count = colorCount[color];
-            var curDark = this.isDarkColor(color);
-            if (curDark === findDarkTextColor) {
-              possibleColorsSorted.push([color, count]);
-            }
-          }
-        }
-        possibleColorsSorted.sort(function (a, b) {
-          return b[1] - a[1];
-        });
-        for (var _k = 0, _len = possibleColorsSorted.length; _k < _len; _k++) {
-          var color = possibleColorsSorted[_k];
-          if (!this.primaryColor) {
-            if (this.isContrastingColor(color[0], this.bgcolor)) {
-              this.primaryColor = color[0];
-            }
-          } else if (!this.secondaryColor) {
-            if (!this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
-              continue;
-            }
-            this.secondaryColor = color[0];
-          } else if (!this.detailColor) {
-            if (!this.isDistinct(this.secondaryColor, color[0]) || !this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
-              continue;
-            }
-            this.detailColor = color[0];
-            break;
-          }
-        }
-        var defaultColor = findDarkTextColor ? '0,0,0' : '255,255,255';
-        if (!this.primaryColor) {
-          this.primaryColor = defaultColor;
-        }
-        if (!this.secondaryColor) {
-          this.secondaryColor = defaultColor;
-        }
-        if (!this.detailColor) {
-          this.detailColor = defaultColor;
-        }
-        var allColors = this.thiefPalette.concat([this.rgbSnippetToHex(this.bgcolor), this.rgbSnippetToHex(this.primaryColor), this.rgbSnippetToHex(this.secondaryColor), this.rgbSnippetToHex(this.detailColor)]);
-        resolve(Array.from(new Set(allColors)));
-      }
-    }, {
-      key: 'rgbSnippetToHex',
-      value: function rgbSnippetToHex(rgbSnippet) {
-        return (0, _tinycolor22['default'])('rgb(' + rgbSnippet + ')').toHexString();
-      }
-    }, {
-      key: 'isBlackOrWhite',
-      value: function isBlackOrWhite(color) {
-        var splitted = color.split(',');
-        var red = splitted[0];
-        var green = splitted[1];
-        var blue = splitted[2];
-        var thresholdWhite = 255 * 0.91;
-        var thresholdBlack = 255 * 0.09;
-        if (red > thresholdWhite && green > thresholdWhite && blue > thresholdWhite) {
-          return true;
-        }
-        if (red < thresholdBlack && green < thresholdBlack && blue < thresholdBlack) {
-          return true;
-        }
-        return false;
-      }
-    }, {
-      key: 'isDarkColor',
-      value: function isDarkColor(color) {
-        if (color) {
-          var splitted = color.split(',');
-          var red = splitted[0] / 255;
-          var green = splitted[1] / 255;
-          var blue = splitted[2] / 255;
-          var lum = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-          return lum < 0.5;
-        }
-        return false;
-      }
-    }, {
-      key: 'isContrastingColor',
-      value: function isContrastingColor(color1, color2) {
-        var splitted1 = color1.split(',');
-        var red1 = splitted1[0] / 255;
-        var green1 = splitted1[1] / 255;
-        var blue1 = splitted1[2] / 255;
-        var lum1 = 0.2126 * red1 + 0.7152 * green1 + 0.0722 * blue1;
-        var splitted2 = color2.split(',');
-        var red2 = splitted2[0] / 255;
-        var green2 = splitted2[1] / 255;
-        var blue2 = splitted2[2] / 255;
-        var lum2 = 0.2126 * red2 + 0.7152 * green2 + 0.0722 * blue2;
-        var contrast = 0;
-        if (lum1 > lum2) {
-          contrast = (lum1 + 0.05) / (lum2 + 0.05);
-        } else {
-          contrast = (lum2 + 0.05) / (lum1 + 0.05);
-        }
-        return contrast > 1.6;
-      }
-    }, {
-      key: 'isDistinct',
-      value: function isDistinct(color1, color2) {
-        var splitted1 = color1.split(',');
-        var red1 = splitted1[0] / 255;
-        var green1 = splitted1[1] / 255;
-        var blue1 = splitted1[2] / 255;
-        var splitted2 = color2.split(',');
-        var red2 = splitted2[0] / 255;
-        var green2 = splitted2[1] / 255;
-        var blue2 = splitted2[2] / 255;
-        var threshold = 0.25;
-        if (Math.abs(red1 - red2) > threshold || Math.abs(green1 - green2) > threshold || Math.abs(blue1 - blue2) > threshold) {
-          if (Math.abs(red1 - green1) < 0.03 && Math.abs(red1 - blue1) < 0.03) {
-            if (Math.abs(red2 - green2) < 0.03 && Math.abs(red2 - blue2) < 0.03) {
-              return false;
-            }
-          }
-          return true;
-        }
-        return false;
-      }
-    }]);
-  
-    return ImageAnalyzer;
-  })();
-  
-  exports['default'] = ImageAnalyzer;
-  module.exports = exports['default'];
-
-/***/ },
-/* 86 */
-/***/ function(module, exports) {
-
-  module.exports = require("http");
-
-/***/ },
-/* 87 */
-/***/ function(module, exports) {
-
-  module.exports = require("canvas");
-
-/***/ },
-/* 88 */
-/***/ function(module, exports) {
-
-  module.exports = require("color-thief");
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _SearchPageScss = __webpack_require__(90);
-  
-  var _SearchPageScss2 = _interopRequireDefault(_SearchPageScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _Header = __webpack_require__(44);
-  
-  var _Header2 = _interopRequireDefault(_Header);
-  
-  var _PlayerSearchForm = __webpack_require__(93);
-  
-  var _PlayerSearchForm2 = _interopRequireDefault(_PlayerSearchForm);
-  
-  var _GameSearchForm = __webpack_require__(97);
-  
-  var _GameSearchForm2 = _interopRequireDefault(_GameSearchForm);
-  
-  var title = 'Find a Steam User';
-  
-  var SearchPage = (function (_Component) {
-    _inherits(SearchPage, _Component);
-  
-    _createClass(SearchPage, null, [{
-      key: 'contextTypes',
-      value: {
-        onSetTitle: _react.PropTypes.func.isRequired
-      },
-      enumerable: true
-    }]);
-  
-    function SearchPage(props, context) {
-      _classCallCheck(this, _SearchPage);
-  
-      _get(Object.getPrototypeOf(_SearchPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
-    }
-  
-    _createClass(SearchPage, [{
-      key: 'componentWillMount',
-      value: function componentWillMount() {
-        this.context.onSetTitle(title);
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'div',
-          { className: _SearchPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], null),
-          _react2['default'].createElement(_PlayerSearchForm2['default'], null),
-          _react2['default'].createElement(_GameSearchForm2['default'], null)
-        );
-      }
-    }]);
-  
-    var _SearchPage = SearchPage;
-    SearchPage = (0, _decoratorsWithStyles2['default'])(_SearchPageScss2['default'])(SearchPage) || SearchPage;
-    return SearchPage;
-  })(_react.Component);
-  
-  exports['default'] = SearchPage;
-  module.exports = exports['default'];
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(91);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "SearchPage_container_17N"
-  };
-
-/***/ },
-/* 92 */,
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _PlayerSearchFormScss = __webpack_require__(94);
-  
-  var _PlayerSearchFormScss2 = _interopRequireDefault(_PlayerSearchFormScss);
-  
-  var _classnames = __webpack_require__(37);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _coreLocation = __webpack_require__(38);
-  
-  var _coreLocation2 = _interopRequireDefault(_coreLocation);
-  
-  var _historyLibParsePath = __webpack_require__(43);
-  
-  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
-  
-  var _apiSteam = __webpack_require__(31);
-  
-  var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var PlayerSearchForm = (function (_Component) {
-    _inherits(PlayerSearchForm, _Component);
-  
-    function PlayerSearchForm(props, context) {
-      _classCallCheck(this, _PlayerSearchForm);
-  
-      _get(Object.getPrototypeOf(_PlayerSearchForm.prototype), 'constructor', this).call(this, props, context);
-      this.state = {
-        name: undefined,
-        disabled: false,
-        error: false,
-        message: 'The Steam profile must be public.',
-        noMatch: false
-      };
-    }
-  
-    _createClass(PlayerSearchForm, [{
-      key: 'onNameChange',
-      value: function onNameChange(event) {
-        this.setState({ name: event.target.value });
-      }
-    }, {
-      key: 'onSteamIDLoaded',
-      value: function onSteamIDLoaded(steamID) {
-        this.setState({
-          disabled: false,
-          error: false,
-          message: undefined
-        });
-        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])('/player/' + encodeURIComponent(this.state.name) + '/' + steamID)));
-      }
-    }, {
-      key: 'onSteamIDLoadError',
-      value: function onSteamIDLoadError(response) {
-        console.error('failed to load Steam ID', response);
-        this.setState({
-          disabled: false,
-          error: true,
-          message: 'There was an error looking up your Steam ID. :(',
-          noMatch: response.message === 'No match'
-        });
-      }
-    }, {
-      key: 'handleSubmit',
-      value: function handleSubmit(event) {
-        event.preventDefault();
-        this.setState({
-          disabled: true,
-          message: 'Looking up Steam ID...',
-          error: false
-        });
-        _apiSteam2['default'].getSteamId(this.state.name).then(this.onSteamIDLoaded.bind(this))['catch'](this.onSteamIDLoadError.bind(this));
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        var messageStyle = {};
-        if (typeof this.state.message !== 'string') {
-          messageStyle.display = 'none';
-        }
-        var messageClass = this.state.error ? _PlayerSearchFormScss2['default'].error : _PlayerSearchFormScss2['default'].success;
-        return _react2['default'].createElement(
-          'form',
-          { className: _PlayerSearchFormScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
-          _react2['default'].createElement(
-            'label',
-            { className: _PlayerSearchFormScss2['default'].label,
-              htmlFor: 'user-name'
-            },
-            'Steam user name:'
-          ),
-          _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _PlayerSearchFormScss2['default'].textField,
-            id: 'user-name',
-            placeholder: 'e.g., cheshire137',
-            onChange: this.onNameChange.bind(this),
-            value: this.state.name,
-            disabled: this.state.disabled
-          }),
-          _react2['default'].createElement(
-            'button',
-            { type: 'submit', disabled: this.state.disabled,
-              className: _PlayerSearchFormScss2['default'].button
-            },
-            'Search'
-          ),
-          _react2['default'].createElement(
-            'p',
-            { className: (0, _classnames2['default'])(_PlayerSearchFormScss2['default'].message, messageClass), style: messageStyle },
-            this.state.message
-          ),
-          this.state.error && this.state.noMatch ? _react2['default'].createElement(
-            'div',
-            { className: _PlayerSearchFormScss2['default'].steamInstructions },
-            _react2['default'].createElement(
-              'p',
-              { className: _PlayerSearchFormScss2['default'].instruction },
-              'Try setting your custom URL in Steam:'
-            ),
-            _react2['default'].createElement('img', { src: __webpack_require__(96), width: '640',
-              height: '321', alt: 'Edit Steam profile',
-              className: _PlayerSearchFormScss2['default'].instructionImage
-            }),
-            _react2['default'].createElement(
-              'p',
-              { className: _PlayerSearchFormScss2['default'].instruction },
-              'Then, search here for the name you set in that custom URL.'
-            )
-          ) : ''
-        );
-      }
-    }]);
-  
-    var _PlayerSearchForm = PlayerSearchForm;
-    PlayerSearchForm = (0, _decoratorsWithStyles2['default'])(_PlayerSearchFormScss2['default'])(PlayerSearchForm) || PlayerSearchForm;
-    return PlayerSearchForm;
-  })(_react.Component);
-  
-  exports['default'] = PlayerSearchForm;
-  module.exports = exports['default'];
-
-/***/ },
-/* 94 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(95);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 95 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSearchForm_label_ftR {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].PlayerSearchForm_textField_1Tc {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].PlayerSearchForm_textField_1Tc, .PlayerSearchForm_button_35M {\n  font-size: 18px;\n}\n\n.PlayerSearchForm_form_2AJ {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.PlayerSearchForm_message_dpS {\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_success_35L {\n  color: #A5A781;\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_error_2af {\n  color: #A78E81;\n}\n\n.PlayerSearchForm_steamInstructions_2Jw {\n\n}\n\n.PlayerSearchForm_instruction_21D {\n\n}\n\n.PlayerSearchForm_instructionImage_24o {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSearchForm/PlayerSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;CAQC;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"PlayerSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n}\n\ninput[type=\"text\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.steamInstructions {\n\n}\n\n.instruction {\n\n}\n\n.instructionImage {\n\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"label": "PlayerSearchForm_label_ftR",
-  	"textField": "PlayerSearchForm_textField_1Tc",
-  	"button": "PlayerSearchForm_button_35M",
-  	"form": "PlayerSearchForm_form_2AJ",
-  	"message": "PlayerSearchForm_message_dpS",
-  	"success": "PlayerSearchForm_success_35L",
-  	"error": "PlayerSearchForm_error_2af",
-  	"steamInstructions": "PlayerSearchForm_steamInstructions_2Jw",
-  	"instruction": "PlayerSearchForm_instruction_21D",
-  	"instructionImage": "PlayerSearchForm_instructionImage_24o"
-  };
-
-/***/ },
-/* 96 */
-/***/ function(module, exports, __webpack_require__) {
-
-  module.exports = __webpack_require__.p + "e9c530170ced5eaa9717f3e2ec7c4eab.jpg";
-
-/***/ },
-/* 97 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-  
-  var _react = __webpack_require__(4);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _GameSearchFormScss = __webpack_require__(98);
-  
-  var _GameSearchFormScss2 = _interopRequireDefault(_GameSearchFormScss);
-  
-  var _decoratorsWithStyles = __webpack_require__(21);
-  
-  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
-  
-  var _Link = __webpack_require__(47);
-  
-  var _Link2 = _interopRequireDefault(_Link);
-  
-  var _apiSteam = __webpack_require__(31);
-  
-  var _apiSteam2 = _interopRequireDefault(_apiSteam);
-  
-  var GameSearchForm = (function (_Component) {
-    _inherits(GameSearchForm, _Component);
-  
-    function GameSearchForm(props, context) {
-      _classCallCheck(this, _GameSearchForm);
-  
-      _get(Object.getPrototypeOf(_GameSearchForm.prototype), 'constructor', this).call(this, props, context);
-      this.state = {
-        name: undefined,
-        games: [],
-        searchMade: false
-      };
-    }
-  
-    _createClass(GameSearchForm, [{
-      key: 'onSteamGamesLoaded',
-      value: function onSteamGamesLoaded(games) {
-        this.setState({ games: games, searchMade: true });
-      }
-    }, {
-      key: 'onSteamGamesLoadError',
-      value: function onSteamGamesLoadError(response) {
-        console.error('failed to load Steam games', response);
-        this.setState({
-          message: 'There was an error searching for Steam games. :(',
-          searchMade: true
-        });
-      }
-    }, {
-      key: 'onNameChange',
-      value: function onNameChange(event) {
-        this.setState({ name: event.target.value }, this.search.bind(this));
-      }
-    }, {
-      key: 'search',
-      value: function search() {
-        this.setState({ searchMade: false });
-        if (this.state.name.length > 3) {
-          _apiSteam2['default'].getGames(this.state.name).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
-        }
-      }
-    }, {
-      key: 'handleSubmit',
-      value: function handleSubmit(event) {
-        event.preventDefault();
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'form',
-          { className: _GameSearchFormScss2['default'].form, onSubmit: this.handleSubmit.bind(this) },
-          _react2['default'].createElement(
-            'label',
-            { className: _GameSearchFormScss2['default'].label,
-              htmlFor: 'game-name'
-            },
-            'Steam game:'
-          ),
-          _react2['default'].createElement('input', { type: 'text', autoFocus: 'autofocus', className: _GameSearchFormScss2['default'].textField,
-            id: 'game-name',
-            placeholder: 'e.g., Skyrim',
-            onChange: this.onNameChange.bind(this),
-            value: this.state.name,
-            disabled: this.state.disabled
-          }),
-          typeof this.state.message === 'string' ? _react2['default'].createElement(
-            'p',
-            { className: _GameSearchFormScss2['default'].message },
-            this.state.message
-          ) : '',
-          this.state.games.length > 0 ? _react2['default'].createElement(
-            'ul',
-            { className: _GameSearchFormScss2['default'].gamesList },
-            this.state.games.map(function (game) {
-              var url = '/game/' + game.appid;
-              return _react2['default'].createElement(
-                'li',
-                { key: game.appid, className: _GameSearchFormScss2['default'].gameListItem },
-                _react2['default'].createElement(
-                  'a',
-                  { href: url, className: _GameSearchFormScss2['default'].gameLink,
-                    onClick: _Link2['default'].handleClick
-                  },
-                  game.name
-                )
-              );
-            })
-          ) : _react2['default'].createElement(
-            'div',
-            null,
-            this.state.searchMade ? _react2['default'].createElement(
-              'p',
-              { className: _GameSearchFormScss2['default'].message },
-              'No games match'
-            ) : ''
-          )
-        );
-      }
-    }]);
-  
-    var _GameSearchForm = GameSearchForm;
-    GameSearchForm = (0, _decoratorsWithStyles2['default'])(_GameSearchFormScss2['default'])(GameSearchForm) || GameSearchForm;
-    return GameSearchForm;
-  })(_react.Component);
-  
-  exports['default'] = GameSearchForm;
-  module.exports = exports['default'];
-
-/***/ },
-/* 98 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(99);
-      var insertCss = __webpack_require__(17);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = insertCss.bind(null, content);
-    
-      var removeCss = function() {};
-  
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss");
-          if (typeof newContent === 'string') {
-            newContent = [[module.id, content, '']];
-          }
-          removeCss = insertCss(newContent, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 99 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(16)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.GameSearchForm_label_bm1 {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].GameSearchForm_textField_gWE {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n  font-size: 18px;\n}\n\n.GameSearchForm_form_c3w {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.GameSearchForm_message_2G3 {\n  color: #A78E81;\n}\n\n.GameSearchForm_gamesList_1Dx {\n  list-style: none;\n  padding-left: 0;\n}\n\n.GameSearchForm_gameListItem_2Zi {\n  text-align: left;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/GameSearchForm/GameSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;CACpB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;EACf,gBAAgB;CACjB;;AAED;EACE,eAAe;EACf,mBAAmB;CACpB;;AAED;EACE,eAAyB;CAC1B;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB","file":"GameSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n}\n\ninput[type=\"text\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 10px;\n  font-size: 18px;\n}\n\n.form {\n  margin: 0 auto;\n  text-align: center;\n}\n\n.message {\n  color: $error-text-color;\n}\n\n.gamesList {\n  list-style: none;\n  padding-left: 0;\n}\n\n.gameListItem {\n  text-align: left;\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"label": "GameSearchForm_label_bm1",
-  	"textField": "GameSearchForm_textField_gWE",
-  	"form": "GameSearchForm_form_c3w",
-  	"message": "GameSearchForm_message_2G3",
-  	"gamesList": "GameSearchForm_gamesList_1Dx",
-  	"gameListItem": "GameSearchForm_gameListItem_2Zi"
-  };
-
-/***/ },
-/* 100 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-  
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-  
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-  
-  var _steamAppsJson = __webpack_require__(101);
+  var _steamAppsJson = __webpack_require__(78);
   
   var _steamAppsJson2 = _interopRequireDefault(_steamAppsJson);
+  
+  var _lunr = __webpack_require__(100);
+  
+  var _lunr2 = _interopRequireDefault(_lunr);
+  
+  var SteamAppsIndex = (0, _lunr2['default'])(function lunrInit() {
+    this.field('name', { boost: 10 });
+    this.ref('appid');
+  });
   
   var SteamApps = (function () {
     function SteamApps() {
@@ -6429,11 +5011,18 @@ module.exports =
         }
         this.apps = _steamAppsJson2['default'].applist.apps;
         this.apps.sort(this._appSorter.bind(this));
+        this._appsByID = {};
+        for (var i = 0; i < this.apps.length; i++) {
+          var app = this.apps[i];
+          SteamAppsIndex.add({
+            name: app.name.trim().toLowerCase(),
+            appid: app.appid
+          });
+          this._appsByID[app.appid] = app;
+        }
+        console.log('indexed ' + this.apps.length + ' games');
         this._sortedIds = this.apps.map(function (app) {
           return String(app.appid);
-        });
-        this._sortedNames = this.apps.map(function (app) {
-          return app.name;
         });
       }
     }, {
@@ -6442,8 +5031,11 @@ module.exports =
         var _this = this;
   
         this._init();
-        return this.apps.filter(function (app) {
-          return _this._normalizeName(app.name).indexOf(_this._normalizeName(name)) === 0;
+        var appIDs = SteamAppsIndex.search(name.toLowerCase()).map(function (r) {
+          return r.ref;
+        });
+        return appIDs.map(function (id) {
+          return _this._appsByID[id];
         });
       }
     }, {
@@ -6469,8 +5061,7 @@ module.exports =
       key: 'getName',
       value: function getName(appId) {
         this._init();
-        var index = this._sortedIds.indexOf(String(appId));
-        return this._sortedNames[index];
+        return this._appsByID[appId].name;
       }
     }, {
       key: '_idSorter',
@@ -6498,7 +5089,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 101 */
+/* 78 */
 /***/ function(module, exports) {
 
   module.exports = {
@@ -108689,7 +107280,7 @@ module.exports =
   };
 
 /***/ },
-/* 102 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108712,37 +107303,47 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _GamePageScss = __webpack_require__(103);
+  var _ScreenshotPageScss = __webpack_require__(80);
   
-  var _GamePageScss2 = _interopRequireDefault(_GamePageScss);
+  var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
   var _decoratorsWithStyles = __webpack_require__(21);
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _apiSteam = __webpack_require__(31);
+  var _classnames = __webpack_require__(45);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _apiSteam = __webpack_require__(46);
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(62);
-  
-  var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
-  
-  var _Header = __webpack_require__(44);
+  var _Header = __webpack_require__(31);
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _storesSteamApps = __webpack_require__(100);
+  var _apiColors = __webpack_require__(82);
   
-  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
+  var _apiColors2 = _interopRequireDefault(_apiColors);
   
-  var GamePage = (function (_Component) {
-    _inherits(GamePage, _Component);
+  var _Palette = __webpack_require__(83);
   
-    _createClass(GamePage, null, [{
+  var _Palette2 = _interopRequireDefault(_Palette);
+  
+  var _reactFontawesome = __webpack_require__(41);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  
+  var ScreenshotPage = (function (_Component) {
+    _inherits(ScreenshotPage, _Component);
+  
+    _createClass(ScreenshotPage, null, [{
       key: 'propTypes',
       value: {
-        gameID: _react.PropTypes.string.isRequired
+        steamID: _react.PropTypes.string.isRequired,
+        username: _react.PropTypes.string.isRequired,
+        screenshotID: _react.PropTypes.string.isRequired
       },
       enumerable: true
     }, {
@@ -108753,15 +107354,18 @@ module.exports =
       enumerable: true
     }]);
   
-    function GamePage(props, context) {
-      _classCallCheck(this, _GamePage);
+    function ScreenshotPage(props, context) {
+      _classCallCheck(this, _ScreenshotPage);
   
-      _get(Object.getPrototypeOf(_GamePage.prototype), 'constructor', this).call(this, props, context);
-      var title = _storesSteamApps2['default'].getName(props.gameID);
-      this.state = { screenshots: undefined, title: title };
+      _get(Object.getPrototypeOf(_ScreenshotPage.prototype), 'constructor', this).call(this, props, context);
+      this.state = {
+        screenshot: undefined,
+        title: 'Screenshot ' + props.screenshotID,
+        colors: undefined
+      };
     }
   
-    _createClass(GamePage, [{
+    _createClass(ScreenshotPage, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
         this.context.onSetTitle(this.state.title);
@@ -108769,53 +107373,162 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        // Steam.getScreenshots(this.props.username).
-        //       then(this.onScreenshotsLoaded.bind(this)).
-        //       catch(this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshot(this.props.screenshotID).then(this.onScreenshotLoaded.bind(this))['catch'](this.onScreenshotLoadError.bind(this));
       }
     }, {
-      key: 'onScreenshotsLoaded',
-      value: function onScreenshotsLoaded(screenshots) {
-        this.setState({ screenshots: screenshots });
+      key: 'onScreenshotLoaded',
+      value: function onScreenshotLoaded(screenshot) {
+        var _this = this;
+  
+        this.setState({ screenshot: screenshot }, function () {
+          _this.updateTitle();
+        });
+        _apiColors2['default'].getColors(screenshot.mediumUrl).then(this.onColorsLoaded.bind(this))['catch'](this.onColorsLoadError.bind(this));
       }
     }, {
-      key: 'onScreenshotsLoadError',
-      value: function onScreenshotsLoadError(response) {
-        console.error('failed to load Steam screenshots', response);
+      key: 'onScreenshotLoadError',
+      value: function onScreenshotLoadError(response) {
+        console.error('failed to load Steam screenshot', response);
+      }
+    }, {
+      key: 'onColorsLoaded',
+      value: function onColorsLoaded(colors) {
+        this.setState({ colors: colors });
+      }
+    }, {
+      key: 'onColorsLoadError',
+      value: function onColorsLoadError(response) {
+        console.error('failed to load colors from image', response);
+      }
+    }, {
+      key: 'updateTitle',
+      value: function updateTitle() {
+        var description = this.state.screenshot.description;
+        if (typeof description === 'string' && description.length > 0) {
+          this.setState({ title: description });
+        }
       }
     }, {
       key: 'render',
       value: function render() {
-        var screenshotsLoaded = typeof this.state.screenshots === 'object';
+        var alt = 'Screenshot ' + this.props.screenshotID;
+        var isScreenshotLoaded = typeof this.state.screenshot === 'object';
+        var date = '';
+        if (isScreenshotLoaded && this.state.screenshot.date) {
+          date = this.state.screenshot.date.toLocaleDateString();
+        }
+        var backTitle = this.props.username;
+        var backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
+        var areColorsLoaded = typeof this.state.colors === 'object';
         return _react2['default'].createElement(
           'div',
-          { className: _GamePageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], { title: this.state.title, titleIcon: 'steam' }),
-          screenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
-            gameID: this.props.gameID
-          }) : _react2['default'].createElement(
+          { className: _ScreenshotPageScss2['default'].container },
+          _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
+            previousTitle: backTitle,
+            previousIcon: 'user'
+          }),
+          isScreenshotLoaded ? _react2['default'].createElement(
+            'div',
+            { className: _ScreenshotPageScss2['default'].details },
+            _react2['default'].createElement(
+              'div',
+              { className: _ScreenshotPageScss2['default'].left },
+              _react2['default'].createElement(
+                'a',
+                { href: this.state.screenshot.fullSizeUrl, target: '_blank',
+                  className: _ScreenshotPageScss2['default'].screenshotLink
+                },
+                _react2['default'].createElement('img', { src: this.state.screenshot.mediumUrl,
+                  alt: alt,
+                  className: _ScreenshotPageScss2['default'].screenshot
+                })
+              ),
+              _react2['default'].createElement(
+                'a',
+                { href: this.state.screenshot.url, target: '_blank',
+                  className: _ScreenshotPageScss2['default'].detailsUrl
+                },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'info',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].detailsIcon)
+                }),
+                'View details'
+              ),
+              _react2['default'].createElement(
+                'a',
+                { href: this.state.screenshot.fullSizeUrl, target: '_blank',
+                  className: _ScreenshotPageScss2['default'].fullSizeLink
+                },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'search-plus',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].fullSizeIcon)
+                }),
+                'View full size'
+              ),
+              _react2['default'].createElement(
+                'a',
+                { className: _ScreenshotPageScss2['default'].authorLink, href: this.state.screenshot.userUrl,
+                  target: '_blank'
+                },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'steam',
+                  className: (0, _classnames2['default'])(_ScreenshotPageScss2['default'].icon, _ScreenshotPageScss2['default'].profileIcon)
+                }),
+                'View ',
+                this.props.username,
+                '\'s profile'
+              ),
+              _react2['default'].createElement(
+                'ul',
+                { className: _ScreenshotPageScss2['default'].metadata },
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  date
+                ),
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  this.state.screenshot.width,
+                  ' × ',
+                  this.state.screenshot.height
+                ),
+                _react2['default'].createElement(
+                  'li',
+                  null,
+                  this.state.screenshot.fileSize
+                )
+              )
+            ),
+            _react2['default'].createElement(
+              'div',
+              { className: _ScreenshotPageScss2['default'].right },
+              areColorsLoaded ? _react2['default'].createElement(_Palette2['default'], { colors: this.state.colors }) : _react2['default'].createElement(
+                'p',
+                { className: _ScreenshotPageScss2['default'].colorsMessage },
+                'Loading colors...'
+              )
+            )
+          ) : _react2['default'].createElement(
             'p',
-            { className: _GamePageScss2['default'].message },
-            'Loading screenshots...'
+            { className: _ScreenshotPageScss2['default'].message },
+            'Loading screenshot...'
           )
         );
       }
     }]);
   
-    var _GamePage = GamePage;
-    GamePage = (0, _decoratorsWithStyles2['default'])(_GamePageScss2['default'])(GamePage) || GamePage;
-    return GamePage;
+    var _ScreenshotPage = ScreenshotPage;
+    ScreenshotPage = (0, _decoratorsWithStyles2['default'])(_ScreenshotPageScss2['default'])(ScreenshotPage) || ScreenshotPage;
+    return ScreenshotPage;
   })(_react.Component);
   
-  exports['default'] = GamePage;
+  exports['default'] = ScreenshotPage;
   module.exports = exports['default'];
 
 /***/ },
-/* 103 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(104);
+      var content = __webpack_require__(81);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -108831,8 +107544,8 @@ module.exports =
       // Hot Module Replacement
       // https://webpack.github.io/docs/hot-module-replacement
       if (false) {
-        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss", function() {
-          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss");
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss");
           if (typeof newContent === 'string') {
             newContent = [[module.id, content, '']];
           }
@@ -108843,7 +107556,7 @@ module.exports =
     
 
 /***/ },
-/* 104 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -108851,10 +107564,1314 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n", "", {"version":3,"sources":["/./src/components/variables.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC","file":"GamePage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
+  exports.locals = {
+  	"container": "ScreenshotPage_container_1ix",
+  	"details": "ScreenshotPage_details_2bS",
+  	"left": "ScreenshotPage_left_2eX",
+  	"right": "ScreenshotPage_right_21z",
+  	"screenshotLink": "ScreenshotPage_screenshotLink_3rs",
+  	"screenshot": "ScreenshotPage_screenshot_1Ek",
+  	"description": "ScreenshotPage_description_3-p",
+  	"colorsMessage": "ScreenshotPage_colorsMessage_2MN",
+  	"metadata": "ScreenshotPage_metadata_1CM",
+  	"authorLink": "ScreenshotPage_authorLink_2ME",
+  	"fullSizeLink": "ScreenshotPage_fullSizeLink_26o",
+  	"detailsUrl": "ScreenshotPage_detailsUrl_3O_",
+  	"message": "ScreenshotPage_message_1kw",
+  	"icon": "ScreenshotPage_icon_3uB",
+  	"profileIcon": "ScreenshotPage_profileIcon_5Dv",
+  	"detailsIcon": "ScreenshotPage_detailsIcon_Bml",
+  	"fullSizeIcon": "ScreenshotPage_fullSizeIcon_2Di"
+  };
 
+/***/ },
+/* 82 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _api = __webpack_require__(47);
+  
+  var _api2 = _interopRequireDefault(_api);
+  
+  var Colors = (function (_Api) {
+    _inherits(Colors, _Api);
+  
+    function Colors() {
+      _classCallCheck(this, Colors);
+  
+      _get(Object.getPrototypeOf(Colors.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Colors, null, [{
+      key: 'getColors',
+      value: function getColors(imageUrl) {
+        var data;
+        return regeneratorRuntime.async(function getColors$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              context$2$0.next = 2;
+              return regeneratorRuntime.awrap(this.makeRequest('/api/colors?url=' + encodeURIComponent(imageUrl) + '&format=json'));
+  
+            case 2:
+              data = context$2$0.sent;
+              return context$2$0.abrupt('return', data);
+  
+            case 4:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }]);
+  
+    return Colors;
+  })(_api2['default']);
+  
+  exports['default'] = Colors;
+  module.exports = exports['default'];
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _PaletteScss = __webpack_require__(84);
+  
+  var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _Swatch = __webpack_require__(86);
+  
+  var _Swatch2 = _interopRequireDefault(_Swatch);
+  
+  var _tinycolor2 = __webpack_require__(89);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var _reactFontawesome = __webpack_require__(41);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  
+  var Palette = (function (_Component) {
+    _inherits(Palette, _Component);
+  
+    _createClass(Palette, null, [{
+      key: 'propTypes',
+      value: {
+        colors: _react.PropTypes.array.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function Palette(props, context) {
+      _classCallCheck(this, _Palette);
+  
+      _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
+      this.state = { selectedColors: [] };
+    }
+  
+    _createClass(Palette, [{
+      key: 'onColorSelected',
+      value: function onColorSelected(color) {
+        var colors = this.state.selectedColors.slice();
+        if (colors.indexOf(color) < 0) {
+          colors.push(color);
+        }
+        this.setState({ selectedColors: colors });
+      }
+    }, {
+      key: 'onColorDeselected',
+      value: function onColorDeselected(color) {
+        var index = this.state.selectedColors.indexOf(color);
+        var head = this.state.selectedColors.slice(0, index);
+        var tail = this.state.selectedColors.slice(index + 1, this.state.selectedColors.length);
+        var colors = head.concat(tail);
+        this.setState({ selectedColors: colors });
+      }
+    }, {
+      key: 'getAllColors',
+      value: function getAllColors() {
+        var hexColors = [];
+        for (var i = 0; i < this.props.colors.length; i++) {
+          hexColors.push(this.props.colors[i]);
+          var color = (0, _tinycolor22['default'])(this.props.colors[i]);
+          this.addVariation(hexColors, color, 'analogous');
+          this.addVariation(hexColors, color, 'monochromatic');
+        }
+        var uniqueColors = this.uniq(hexColors);
+        uniqueColors.sort(this.colorSorter.bind(this));
+        return uniqueColors;
+      }
+  
+      // See 'Step sorting' on http://www.alanzucconi.com/2015/09/30/colour-sorting/
+    }, {
+      key: 'colorSorter',
+      value: function colorSorter(aStr, bStr) {
+        var colorA = (0, _tinycolor22['default'])(aStr);
+        var colorB = (0, _tinycolor22['default'])(bStr);
+        var lumA = colorA.getLuminance();
+        var lumB = colorB.getLuminance();
+        var hsvA = colorA.toHsv();
+        var hsvB = colorB.toHsv();
+        var repetitions = 8;
+        var h2A = Math.round(hsvA.h * repetitions);
+        var h2B = Math.round(hsvB.h * repetitions);
+        var lum2A = Math.round(lumA * repetitions);
+        var lum2B = Math.round(lumB * repetitions);
+        var v2A = Math.round(hsvA.v * repetitions);
+        var v2B = Math.round(hsvB.v * repetitions);
+        if (h2A % 2 === 1) {
+          v2A = repetitions - v2A;
+          lum2A = repetitions - lum2A;
+        }
+        if (h2B % 2 === 1) {
+          v2B = repetitions - v2B;
+          lum2B = repetitions - lum2B;
+        }
+        if (h2A < h2B) {
+          return -1;
+        }
+        if (h2A > h2B) {
+          return 1;
+        }
+        if (lum2A < lum2B) {
+          return -1;
+        }
+        if (lum2A > lum2B) {
+          return 1;
+        }
+        if (v2A < v2B) {
+          return -1;
+        }
+        if (v2A > v2B) {
+          return 1;
+        }
+        return 0;
+      }
+    }, {
+      key: 'addVariation',
+      value: function addVariation(list, color, funcName) {
+        var variations = color[funcName]();
+        for (var j = 0; j < variations.length; j++) {
+          list.push(variations[j].toHexString());
+        }
+      }
+    }, {
+      key: 'uniq',
+      value: function uniq(arr) {
+        var set = new Set(arr);
+        return Array.from(set);
+      }
+    }, {
+      key: 'sample',
+      value: function sample(list, total) {
+        var results = [];
+        while (results.length < total) {
+          results.push(list[Math.floor(Math.random() * list.length)]);
+        }
+        return results;
+      }
+    }, {
+      key: 'hashStripper',
+      value: function hashStripper(c) {
+        return c.replace(/^#/, '');
+      }
+    }, {
+      key: 'setLinkToNewPaletteLink',
+      value: function setLinkToNewPaletteLink(event, colors) {
+        var link = event.target;
+        if (link.nodeName !== 'A') {
+          link = link.closest('a');
+        }
+        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
+        link.blur();
+      }
+    }, {
+      key: 'createPalette',
+      value: function createPalette(event) {
+        this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
+      }
+    }, {
+      key: 'createRandomPalette',
+      value: function createRandomPalette(allColors, event) {
+        this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this = this;
+  
+        var hexColors = this.getAllColors();
+        return _react2['default'].createElement(
+          'div',
+          { className: _PaletteScss2['default'].container },
+          this.state.selectedColors.length > 0 ? _react2['default'].createElement(
+            'div',
+            { className: _PaletteScss2['default'].selectedColorsWrapper },
+            _react2['default'].createElement(
+              'a',
+              { href: '#', onClick: this.createPalette.bind(this),
+                target: '_blank'
+              },
+              _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
+              'Create palette'
+            ),
+            _react2['default'].createElement(
+              'ul',
+              { className: _PaletteScss2['default'].selectedColors },
+              this.state.selectedColors.map(function (hex) {
+                var key = 'selected-' + hex;
+                return _react2['default'].createElement(
+                  'li',
+                  { key: key, className: _PaletteScss2['default'].listItem },
+                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
+                    allowSelection: false,
+                    onDeselected: _this.onColorDeselected.bind(_this),
+                    initiallySelected: true
+                  })
+                );
+              })
+            )
+          ) : '',
+          _react2['default'].createElement(
+            'a',
+            { href: '#', onClick: this.createRandomPalette.bind(this, hexColors),
+              target: '_blank'
+            },
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
+            'Create random palette'
+          ),
+          _react2['default'].createElement(
+            'ul',
+            { className: _PaletteScss2['default'].colors },
+            hexColors.map(function (hex) {
+              var allowSelection = _this.state.selectedColors.length < 5;
+              var initiallySelected = _this.state.selectedColors.indexOf(hex) > -1;
+              var key = hex + '-' + allowSelection + '-' + initiallySelected;
+              return _react2['default'].createElement(
+                'li',
+                { key: key, className: _PaletteScss2['default'].listItem },
+                _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
+                  onSelected: _this.onColorSelected.bind(_this),
+                  onDeselected: _this.onColorDeselected.bind(_this),
+                  allowSelection: allowSelection,
+                  initiallySelected: initiallySelected
+                })
+              );
+            })
+          )
+        );
+      }
+    }]);
+  
+    var _Palette = Palette;
+    Palette = (0, _decoratorsWithStyles2['default'])(_PaletteScss2['default'])(Palette) || Palette;
+    return Palette;
+  })(_react.Component);
+  
+  exports['default'] = Palette;
+  module.exports = exports['default'];
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(85);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "Palette_container_1Ha",
+  	"colors": "Palette_colors_jGR",
+  	"selectedColors": "Palette_selectedColors_1qk",
+  	"title": "Palette_title_2zJ",
+  	"linkIcon": "Palette_linkIcon_2U5"
+  };
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _SwatchScss = __webpack_require__(87);
+  
+  var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
+  
+  var _classnames = __webpack_require__(45);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  var _decoratorsWithStyles = __webpack_require__(21);
+  
+  var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
+  
+  var _tinycolor2 = __webpack_require__(89);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var Swatch = (function (_Component) {
+    _inherits(Swatch, _Component);
+  
+    _createClass(Swatch, null, [{
+      key: 'propTypes',
+      value: {
+        hexColor: _react.PropTypes.string.isRequired,
+        onSelected: _react.PropTypes.func,
+        onDeselected: _react.PropTypes.func,
+        allowSelection: _react.PropTypes.bool.isRequired,
+        initiallySelected: _react.PropTypes.bool.isRequired
+      },
+      enumerable: true
+    }]);
+  
+    function Swatch(props, context) {
+      _classCallCheck(this, _Swatch);
+  
+      _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
+      this.state = { selected: props.initiallySelected };
+    }
+  
+    _createClass(Swatch, [{
+      key: 'propagateSelected',
+      value: function propagateSelected() {
+        if (this.state.selected) {
+          this.props.onSelected(this.props.hexColor);
+        } else {
+          this.props.onDeselected(this.props.hexColor);
+        }
+      }
+    }, {
+      key: 'toggleSelected',
+      value: function toggleSelected(event) {
+        event.preventDefault();
+        this.setState({ selected: !this.state.selected }, this.propagateSelected.bind(this));
+      }
+    }, {
+      key: 'deselect',
+      value: function deselect(event) {
+        event.preventDefault();
+        this.setState({ selected: false }, this.propagateSelected.bind(this));
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var swatchStyle = { backgroundColor: this.props.hexColor };
+        var selectedClass = this.state.selected ? _SwatchScss2['default'].selected : _SwatchScss2['default'].unselected;
+        var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
+        var darknessClass = isDark ? _SwatchScss2['default'].dark : _SwatchScss2['default'].light;
+        return _react2['default'].createElement(
+          'span',
+          { className: _SwatchScss2['default'].container },
+          this.props.allowSelection ? _react2['default'].createElement('a', { href: '#',
+            className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
+            style: swatchStyle,
+            title: this.props.hexColor,
+            onClick: this.toggleSelected.bind(this)
+          }) : _react2['default'].createElement(
+            'span',
+            { className: _SwatchScss2['default'].disallowSelection },
+            this.state.selected ? _react2['default'].createElement('a', { href: '#',
+              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
+              style: swatchStyle,
+              title: this.props.hexColor,
+              onClick: this.deselect.bind(this)
+            }) : _react2['default'].createElement('span', {
+              className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, selectedClass, darknessClass),
+              style: swatchStyle,
+              title: this.props.hexColor
+            })
+          )
+        );
+      }
+    }]);
+  
+    var _Swatch = Swatch;
+    Swatch = (0, _decoratorsWithStyles2['default'])(_SwatchScss2['default'])(Swatch) || Swatch;
+    return Swatch;
+  })(_react.Component);
+  
+  exports['default'] = Swatch;
+  module.exports = exports['default'];
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(88);
+      var insertCss = __webpack_require__(17);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = insertCss.bind(null, content);
+    
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(16)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg, .Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after, .Swatch_swatch_3nj.Swatch_link_3Ji:hover:after, .Swatch_swatch_3nj.Swatch_link_3Ji:focus:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected, &.link:hover, &.link:focus {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"swatch": "Swatch_swatch_3nj",
+  	"selected": "Swatch_selected_kJg",
+  	"link": "Swatch_link_3Ji",
+  	"unselected": "Swatch_unselected_1Wl",
+  	"dark": "Swatch_dark_1H7",
+  	"light": "Swatch_light_2i7",
+  	"container": "Swatch_container_2L5"
+  };
+
+/***/ },
+/* 89 */
+/***/ function(module, exports) {
+
+  module.exports = require("tinycolor2");
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+  
+  var _react = __webpack_require__(4);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _config = __webpack_require__(50);
+  
+  var Html = (function (_Component) {
+    _inherits(Html, _Component);
+  
+    function Html() {
+      _classCallCheck(this, Html);
+  
+      _get(Object.getPrototypeOf(Html.prototype), 'constructor', this).apply(this, arguments);
+    }
+  
+    _createClass(Html, [{
+      key: 'trackingCode',
+      value: function trackingCode() {
+        return { __html: '(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=' + 'function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;' + 'e=o.createElement(i);r=o.getElementsByTagName(i)[0];' + 'e.src=\'https://www.google-analytics.com/analytics.js\';' + 'r.parentNode.insertBefore(e,r)}(window,document,\'script\',\'ga\'));' + ('ga(\'create\',\'' + _config.googleAnalyticsId + '\',\'auto\');ga(\'send\',\'pageview\');')
+        };
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        return _react2['default'].createElement(
+          'html',
+          { className: 'no-js', lang: '' },
+          _react2['default'].createElement(
+            'head',
+            null,
+            _react2['default'].createElement('meta', { charSet: 'utf-8' }),
+            _react2['default'].createElement('meta', { httpEquiv: 'X-UA-Compatible', content: 'IE=edge' }),
+            _react2['default'].createElement(
+              'title',
+              null,
+              this.props.title
+            ),
+            _react2['default'].createElement('meta', { name: 'description', content: this.props.description }),
+            _react2['default'].createElement('meta', { name: 'viewport', content: 'width=device-width, initial-scale=1' }),
+            _react2['default'].createElement('link', { rel: 'apple-touch-icon', href: 'apple-touch-icon.png' }),
+            _react2['default'].createElement('link', { href: 'https://fonts.googleapis.com/css?family=Arimo:400,700', rel: 'stylesheet', type: 'text/css' }),
+            _react2['default'].createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css' }),
+            _react2['default'].createElement('style', { id: 'css', dangerouslySetInnerHTML: { __html: this.props.css } })
+          ),
+          _react2['default'].createElement(
+            'body',
+            null,
+            _react2['default'].createElement('div', { id: 'app', dangerouslySetInnerHTML: { __html: this.props.body } }),
+            _react2['default'].createElement('script', { src: this.props.entry }),
+            _react2['default'].createElement('script', { dangerouslySetInnerHTML: this.trackingCode() })
+          )
+        );
+      }
+    }], [{
+      key: 'propTypes',
+      value: {
+        title: _react.PropTypes.string,
+        description: _react.PropTypes.string,
+        css: _react.PropTypes.string,
+        body: _react.PropTypes.string.isRequired,
+        entry: _react.PropTypes.string.isRequired
+      },
+      enumerable: true
+    }, {
+      key: 'defaultProps',
+      value: {
+        title: '',
+        description: ''
+      },
+      enumerable: true
+    }]);
+  
+    return Html;
+  })(_react.Component);
+  
+  exports['default'] = Html;
+  module.exports = exports['default'];
+
+/***/ },
+/* 91 */
+/***/ function(module, exports) {
+
+  module.exports = require("./assets");
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _coreFetch = __webpack_require__(48);
+  
+  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  
+  var _jsdom = __webpack_require__(93);
+  
+  var _jsdom2 = _interopRequireDefault(_jsdom);
+  
+  var _bluebird = __webpack_require__(94);
+  
+  var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  var ScreenshotsScraper = (function () {
+    function ScreenshotsScraper(username) {
+      _classCallCheck(this, ScreenshotsScraper);
+  
+      this.username = username;
+    }
+  
+    _createClass(ScreenshotsScraper, [{
+      key: 'getPage',
+      value: function getPage() {
+        var url, response, data;
+        return regeneratorRuntime.async(function getPage$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              url = 'http://steamcommunity.com/id/' + this.username + '/screenshots/?appid=0&sort=newestfirst&' + 'browsefilter=myfiles&view=grid';
+              context$2$0.next = 3;
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url));
+  
+            case 3:
+              response = context$2$0.sent;
+              context$2$0.next = 6;
+              return regeneratorRuntime.awrap(response.text());
+  
+            case 6:
+              data = context$2$0.sent;
+              return context$2$0.abrupt('return', data);
+  
+            case 8:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }, {
+      key: 'getScreenshots',
+      value: function getScreenshots(html) {
+        var _this = this;
+  
+        return new _bluebird2['default'](function (resolve, reject) {
+          _jsdom2['default'].env({
+            html: html,
+            done: _this.scrapeDom.bind(_this, resolve, reject)
+          });
+        });
+      }
+    }, {
+      key: 'scrapeDom',
+      value: function scrapeDom(resolve, reject, err, window) {
+        var selector = '#image_wall .imageWallRow .profile_media_item';
+        var links = window.document.querySelectorAll(selector);
+        var screenshots = [];
+        for (var i = 0; i < links.length; i++) {
+          screenshots.push(this.getScreenshotFromLink(links[i]));
+        }
+        resolve(screenshots);
+      }
+    }, {
+      key: 'getScreenshotFromLink',
+      value: function getScreenshotFromLink(link) {
+        var href = link.getAttribute('href');
+        var descEl = link.querySelector('.imgWallHoverDescription');
+        var title = undefined;
+        if (descEl) {
+          var ellipsis = descEl.querySelector('.ellipsis');
+          if (ellipsis) {
+            title = ellipsis.innerHTML;
+          }
+        }
+        return {
+          url: href,
+          title: title
+        };
+      }
+    }]);
+  
+    return ScreenshotsScraper;
+  })();
+  
+  exports['default'] = ScreenshotsScraper;
+  module.exports = exports['default'];
+
+/***/ },
+/* 93 */
+/***/ function(module, exports) {
+
+  module.exports = require("jsdom");
+
+/***/ },
+/* 94 */
+/***/ function(module, exports) {
+
+  module.exports = require("bluebird");
+
+/***/ },
+/* 95 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _coreFetch = __webpack_require__(48);
+  
+  var _coreFetch2 = _interopRequireDefault(_coreFetch);
+  
+  var _jsdom = __webpack_require__(93);
+  
+  var _jsdom2 = _interopRequireDefault(_jsdom);
+  
+  var _bluebird = __webpack_require__(94);
+  
+  var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  var ScreenshotScraper = (function () {
+    function ScreenshotScraper(id) {
+      _classCallCheck(this, ScreenshotScraper);
+  
+      this.id = id;
+      this.url = 'http://steamcommunity.com/sharedfiles/filedetails/?id=' + this.id;
+    }
+  
+    _createClass(ScreenshotScraper, [{
+      key: 'getPage',
+      value: function getPage() {
+        var response, data;
+        return regeneratorRuntime.async(function getPage$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              context$2$0.next = 2;
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(this.url));
+  
+            case 2:
+              response = context$2$0.sent;
+              context$2$0.next = 5;
+              return regeneratorRuntime.awrap(response.text());
+  
+            case 5:
+              data = context$2$0.sent;
+              return context$2$0.abrupt('return', data);
+  
+            case 7:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }, {
+      key: 'getScreenshot',
+      value: function getScreenshot(html) {
+        var _this = this;
+  
+        return new _bluebird2['default'](function (resolve, reject) {
+          _jsdom2['default'].env({
+            html: html,
+            done: _this.scrapeDom.bind(_this, resolve, reject)
+          });
+        });
+      }
+    }, {
+      key: 'scrapeDom',
+      value: function scrapeDom(resolve, reject, err, window) {
+        var link = window.document.querySelector('.actualmediactn a');
+        var screenshot = { url: this.url };
+        if (link) {
+          screenshot.fullSizeUrl = link.getAttribute('href');
+          var image = link.querySelector('img');
+          if (image) {
+            screenshot.mediumUrl = image.getAttribute('src');
+          }
+        }
+        var desc = window.document.querySelector('.screenshotDescription');
+        if (desc) {
+          screenshot.description = desc.innerHTML.trim().replace(/^"|"$/g, '');
+        }
+        var author = window.document.querySelector('.creatorsBlock');
+        if (author) {
+          var authorLink = author.querySelector('.friendBlockLinkOverlay');
+          if (authorLink) {
+            screenshot.userUrl = authorLink.getAttribute('href');
+          }
+        }
+        // metadata like:
+        // 0.302 MB
+        // May 8 @ 10:01pm
+        // 1920 x 1080
+        var metadata = window.document.querySelectorAll('.detailsStatsContainerRight .detailsStatRight');
+        var date = this.getDate(metadata);
+        if (date) {
+          screenshot.date = date;
+        }
+        var dimensions = this.getDimensions(metadata);
+        if (dimensions) {
+          screenshot.width = dimensions[0];
+          screenshot.height = dimensions[1];
+        }
+        var fileSize = this.getFileSize(metadata);
+        if (fileSize) {
+          screenshot.fileSize = fileSize;
+        }
+        resolve(screenshot);
+      }
+    }, {
+      key: 'getFileSize',
+      value: function getFileSize(metadata) {
+        for (var i = 0; i < metadata.length; i++) {
+          var text = metadata[i].innerHTML;
+          if (text.indexOf('@') < 0 && text.indexOf(' x ') < 0) {
+            return text;
+          }
+        }
+      }
+    }, {
+      key: 'getDimensions',
+      value: function getDimensions(metadata) {
+        var divider = ' x ';
+        for (var i = 0; i < metadata.length; i++) {
+          var text = metadata[i].innerHTML;
+          if (text.indexOf(divider) > -1) {
+            var dimensions = text.split(divider);
+            var width = parseInt(dimensions[0], 10);
+            var height = parseInt(dimensions[1], 10);
+            return [width, height];
+          }
+        }
+      }
+    }, {
+      key: 'getDate',
+      value: function getDate(metadata) {
+        for (var i = 0; i < metadata.length; i++) {
+          var text = metadata[i].innerHTML;
+          if (text.indexOf('@') > -1) {
+            return this.parseDate(text);
+          }
+        }
+      }
+  
+      // e.g., Mar 2, 2014 @ 12:55pm
+      // e.g., Jul 4 @ 1:17pm
+    }, {
+      key: 'parseDate',
+      value: function parseDate(rawDateStr) {
+        var dateStr = rawDateStr.trim().toLowerCase();
+        var dateAndTime = dateStr.split(/\s+@\s+/);
+        var hourAndMinute = dateAndTime[1].split(':'); // 1, 17pm
+        var hour = parseInt(hourAndMinute[0], 10);
+        var isPM = hourAndMinute[1].indexOf('pm') > -1;
+        if (isPM) {
+          hour += 12;
+        }
+        var minute = parseInt(hourAndMinute[1].replace(/[ap]m$/, ''), 10);
+        var monthDayYear = dateStr.split(/,\s+/);
+        var year = new Date().getFullYear();
+        if (monthDayYear.length > 1 && monthDayYear[1].length > 0) {
+          year = parseInt(monthDayYear[1], 10);
+        }
+        var monthDay = monthDayYear[0].split(/\s+/);
+        var month = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].indexOf(monthDay[0]);
+        var day = parseInt(monthDay[1], 10);
+        return new Date(year, month, day, hour, minute);
+      }
+    }]);
+  
+    return ScreenshotScraper;
+  })();
+  
+  exports['default'] = ScreenshotScraper;
+  module.exports = exports['default'];
+
+/***/ },
+/* 96 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+  
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+  
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  
+  var _bluebird = __webpack_require__(94);
+  
+  var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  var _http = __webpack_require__(97);
+  
+  var _http2 = _interopRequireDefault(_http);
+  
+  var _canvas = __webpack_require__(98);
+  
+  var _canvas2 = _interopRequireDefault(_canvas);
+  
+  var _tinycolor2 = __webpack_require__(89);
+  
+  var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var _colorThief = __webpack_require__(99);
+  
+  var _colorThief2 = _interopRequireDefault(_colorThief);
+  
+  // Converted from
+  // https://github.com/lukasklein/itunes-colors/blob/master/js/app.js
+  
+  var ImageAnalyzer = (function () {
+    function ImageAnalyzer() {
+      _classCallCheck(this, ImageAnalyzer);
+  
+      this.bgcolor = null;
+      this.primaryColor = null;
+      this.secondaryColor = null;
+      this.detailColor = null;
+      this.thiefPalette = [];
+    }
+  
+    _createClass(ImageAnalyzer, [{
+      key: 'getColors',
+      value: function getColors(imageUrl) {
+        var _this = this;
+  
+        return new _bluebird2['default'](function (resolve) {
+          _http2['default'].get(imageUrl, _this.handleGet.bind(_this, resolve));
+        });
+      }
+    }, {
+      key: 'handleGet',
+      value: function handleGet(resolve, res) {
+        var data = new Buffer(parseInt(res.headers['content-length'], 10));
+        var pos = 0;
+        res.on('data', function (chunk) {
+          chunk.copy(data, pos);
+          pos += chunk.length;
+        });
+        res.on('end', this.onImageLoaded.bind(this, resolve, data));
+      }
+    }, {
+      key: 'onImageLoaded',
+      value: function onImageLoaded(resolve, data) {
+        var img = new _canvas2['default'].Image();
+        img.src = data;
+        var cvs = new _canvas2['default'](img.width, img.height);
+        var ctx = cvs.getContext('2d');
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+        this.bgcolor = this.findEdgeColor(cvs, ctx);
+        var thief = new _colorThief2['default']();
+        this.thiefPalette = thief.getPalette(data, 8).map(function (rgb) {
+          return (0, _tinycolor22['default'])({ r: rgb[0], g: rgb[1], b: rgb[2] }).toHexString();
+        });
+        this.findTextColors(cvs, ctx, resolve);
+      }
+    }, {
+      key: 'getAboveThreshold',
+      value: function getAboveThreshold(hash, valueThreshold) {
+        var results = [];
+        for (var key in hash) {
+          if (hash.hasOwnProperty(key)) {
+            var value = hash[key];
+            if (value > valueThreshold) {
+              results.push([key, value]);
+            }
+          }
+        }
+        return results;
+      }
+    }, {
+      key: 'findEdgeColor',
+      value: function findEdgeColor(cvs, ctx) {
+        var leftEdgeColors = ctx.getImageData(0, 0, 1, cvs.height);
+        var colorCount = {};
+        for (var pixel = 0, _i = 0, _ref = cvs.height; _ref > 0 ? _i < _ref : _i > _ref; pixel = _ref > 0 ? ++_i : --_i) {
+          var red = leftEdgeColors.data[pixel * 4];
+          var green = leftEdgeColors.data[pixel * 4 + 1];
+          var blue = leftEdgeColors.data[pixel * 4 + 2];
+          var index = red + ',' + green + ',' + blue;
+          if (!colorCount[index]) {
+            colorCount[index] = 0;
+          }
+          colorCount[index]++;
+        }
+        var sortedColorCount = this.getAboveThreshold(colorCount, 2);
+        if (sortedColorCount.length < 1) {
+          sortedColorCount = this.getAboveThreshold(colorCount, 1);
+        }
+        sortedColorCount.sort(function (a, b) {
+          return b[1] - a[1];
+        });
+        var proposedEdgeColor = sortedColorCount[0];
+        if (this.isBlackOrWhite(proposedEdgeColor[0])) {
+          for (var _j = 0, _len = sortedColorCount.length; _j < _len; _j++) {
+            var nextProposedEdgeColor = sortedColorCount[_j];
+            if (nextProposedEdgeColor[1] / proposedEdgeColor[1] > 0.3) {
+              if (!this.isBlackOrWhite(nextProposedEdgeColor[0])) {
+                proposedEdgeColor = nextProposedEdgeColor;
+                break;
+              }
+            }
+          }
+        }
+        return proposedEdgeColor[0];
+      }
+    }, {
+      key: 'findTextColors',
+      value: function findTextColors(cvs, ctx, resolve) {
+        var colors = ctx.getImageData(0, 0, cvs.width, cvs.height);
+        var findDarkTextColor = !this.isDarkColor(this.bgcolor);
+        var colorCount = {};
+        for (var row = 0, _i = 0, _ref = cvs.height; _ref > 0 ? _i < _ref : _i > _ref; row = _ref > 0 ? ++_i : --_i) {
+          for (var column = 0, _j = 0, _ref1 = cvs.width; _ref1 > 0 ? _j < _ref1 : _j > _ref1; column = _ref1 > 0 ? ++_j : --_j) {
+            var red = colors.data[row * (cvs.width * 4) + column * 4];
+            var green = colors.data[row * (cvs.width * 4) + column * 4 + 1];
+            var blue = colors.data[row * (cvs.width * 4) + column * 4 + 2];
+            var index = red + ',' + green + ',' + blue;
+            if (!colorCount[index]) {
+              colorCount[index] = 0;
+            }
+            colorCount[index]++;
+          }
+        }
+        var possibleColorsSorted = [];
+        for (var color in colorCount) {
+          if (colorCount.hasOwnProperty(color)) {
+            var count = colorCount[color];
+            var curDark = this.isDarkColor(color);
+            if (curDark === findDarkTextColor) {
+              possibleColorsSorted.push([color, count]);
+            }
+          }
+        }
+        possibleColorsSorted.sort(function (a, b) {
+          return b[1] - a[1];
+        });
+        for (var _k = 0, _len = possibleColorsSorted.length; _k < _len; _k++) {
+          var color = possibleColorsSorted[_k];
+          if (!this.primaryColor) {
+            if (this.isContrastingColor(color[0], this.bgcolor)) {
+              this.primaryColor = color[0];
+            }
+          } else if (!this.secondaryColor) {
+            if (!this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
+              continue;
+            }
+            this.secondaryColor = color[0];
+          } else if (!this.detailColor) {
+            if (!this.isDistinct(this.secondaryColor, color[0]) || !this.isDistinct(this.primaryColor, color[0]) || !this.isContrastingColor(color[0], this.bgcolor)) {
+              continue;
+            }
+            this.detailColor = color[0];
+            break;
+          }
+        }
+        var defaultColor = findDarkTextColor ? '0,0,0' : '255,255,255';
+        if (!this.primaryColor) {
+          this.primaryColor = defaultColor;
+        }
+        if (!this.secondaryColor) {
+          this.secondaryColor = defaultColor;
+        }
+        if (!this.detailColor) {
+          this.detailColor = defaultColor;
+        }
+        var allColors = this.thiefPalette.concat([this.rgbSnippetToHex(this.bgcolor), this.rgbSnippetToHex(this.primaryColor), this.rgbSnippetToHex(this.secondaryColor), this.rgbSnippetToHex(this.detailColor)]);
+        resolve(Array.from(new Set(allColors)));
+      }
+    }, {
+      key: 'rgbSnippetToHex',
+      value: function rgbSnippetToHex(rgbSnippet) {
+        return (0, _tinycolor22['default'])('rgb(' + rgbSnippet + ')').toHexString();
+      }
+    }, {
+      key: 'isBlackOrWhite',
+      value: function isBlackOrWhite(color) {
+        var splitted = color.split(',');
+        var red = splitted[0];
+        var green = splitted[1];
+        var blue = splitted[2];
+        var thresholdWhite = 255 * 0.91;
+        var thresholdBlack = 255 * 0.09;
+        if (red > thresholdWhite && green > thresholdWhite && blue > thresholdWhite) {
+          return true;
+        }
+        if (red < thresholdBlack && green < thresholdBlack && blue < thresholdBlack) {
+          return true;
+        }
+        return false;
+      }
+    }, {
+      key: 'isDarkColor',
+      value: function isDarkColor(color) {
+        if (color) {
+          var splitted = color.split(',');
+          var red = splitted[0] / 255;
+          var green = splitted[1] / 255;
+          var blue = splitted[2] / 255;
+          var lum = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+          return lum < 0.5;
+        }
+        return false;
+      }
+    }, {
+      key: 'isContrastingColor',
+      value: function isContrastingColor(color1, color2) {
+        var splitted1 = color1.split(',');
+        var red1 = splitted1[0] / 255;
+        var green1 = splitted1[1] / 255;
+        var blue1 = splitted1[2] / 255;
+        var lum1 = 0.2126 * red1 + 0.7152 * green1 + 0.0722 * blue1;
+        var splitted2 = color2.split(',');
+        var red2 = splitted2[0] / 255;
+        var green2 = splitted2[1] / 255;
+        var blue2 = splitted2[2] / 255;
+        var lum2 = 0.2126 * red2 + 0.7152 * green2 + 0.0722 * blue2;
+        var contrast = 0;
+        if (lum1 > lum2) {
+          contrast = (lum1 + 0.05) / (lum2 + 0.05);
+        } else {
+          contrast = (lum2 + 0.05) / (lum1 + 0.05);
+        }
+        return contrast > 1.6;
+      }
+    }, {
+      key: 'isDistinct',
+      value: function isDistinct(color1, color2) {
+        var splitted1 = color1.split(',');
+        var red1 = splitted1[0] / 255;
+        var green1 = splitted1[1] / 255;
+        var blue1 = splitted1[2] / 255;
+        var splitted2 = color2.split(',');
+        var red2 = splitted2[0] / 255;
+        var green2 = splitted2[1] / 255;
+        var blue2 = splitted2[2] / 255;
+        var threshold = 0.25;
+        if (Math.abs(red1 - red2) > threshold || Math.abs(green1 - green2) > threshold || Math.abs(blue1 - blue2) > threshold) {
+          if (Math.abs(red1 - green1) < 0.03 && Math.abs(red1 - blue1) < 0.03) {
+            if (Math.abs(red2 - green2) < 0.03 && Math.abs(red2 - blue2) < 0.03) {
+              return false;
+            }
+          }
+          return true;
+        }
+        return false;
+      }
+    }]);
+  
+    return ImageAnalyzer;
+  })();
+  
+  exports['default'] = ImageAnalyzer;
+  module.exports = exports['default'];
+
+/***/ },
+/* 97 */
+/***/ function(module, exports) {
+
+  module.exports = require("http");
+
+/***/ },
+/* 98 */
+/***/ function(module, exports) {
+
+  module.exports = require("canvas");
+
+/***/ },
+/* 99 */
+/***/ function(module, exports) {
+
+  module.exports = require("color-thief");
+
+/***/ },
+/* 100 */
+/***/ function(module, exports) {
+
+  module.exports = require("lunr");
 
 /***/ }
 /******/ ]);
