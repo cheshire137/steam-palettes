@@ -3,6 +3,7 @@ import s from './Swatch.scss';
 import cx from 'classnames';
 import withStyles from '../../decorators/withStyles';
 import tinycolor from 'tinycolor2';
+import ReactZeroClipboard from 'react-zeroclipboard';
 
 @withStyles(s)
 class Swatch extends Component {
@@ -12,11 +13,19 @@ class Swatch extends Component {
     onDeselected: PropTypes.func,
     allowSelection: PropTypes.bool.isRequired,
     initiallySelected: PropTypes.bool.isRequired,
+    onCopy: PropTypes.func.isRequired,
   };
 
   constructor(props, context) {
     super(props, context);
-    this.state = { selected: props.initiallySelected };
+    this.state = {
+      selected: props.initiallySelected,
+      showCopyMessage: false,
+    };
+  }
+
+  onCopy() {
+    this.props.onCopy('Copied ' + this.props.hexColor);
   }
 
   propagateSelected() {
@@ -46,21 +55,29 @@ class Swatch extends Component {
     return (
       <span className={s.container}>
         {this.props.allowSelection ? (
-          <a href="#"
-            className={cx(s.swatch, s.link, selectedClass, darknessClass)}
-            style={swatchStyle}
-            title={this.props.hexColor}
-            onClick={this.toggleSelected.bind(this)}
-          ></a>
+          <ReactZeroClipboard text={this.props.hexColor}
+            onCopy={this.onCopy.bind(this)}
+          >
+            <a href="#"
+              className={cx(s.swatch, s.link, selectedClass, darknessClass)}
+              style={swatchStyle}
+              title={this.props.hexColor}
+              onClick={this.toggleSelected.bind(this)}
+            ></a>
+          </ReactZeroClipboard>
         ) : (
           <span className={s.disallowSelection}>
             {this.state.selected ? (
-              <a href="#"
-                className={cx(s.swatch, s.link, selectedClass, darknessClass)}
-                style={swatchStyle}
-                title={this.props.hexColor}
-                onClick={this.deselect.bind(this)}
-              ></a>
+              <ReactZeroClipboard text={this.props.hexColor}
+                onCopy={this.onCopy.bind(this)}
+              >
+                <a href="#"
+                  className={cx(s.swatch, s.link, selectedClass, darknessClass)}
+                  style={swatchStyle}
+                  title={this.props.hexColor}
+                  onClick={this.deselect.bind(this)}
+                ></a>
+              </ReactZeroClipboard>
             ) : (
               <span
                 className={cx(s.swatch, selectedClass, darknessClass)}

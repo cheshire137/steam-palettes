@@ -83,11 +83,11 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _componentsHtml = __webpack_require__(91);
+  var _componentsHtml = __webpack_require__(92);
   
   var _componentsHtml2 = _interopRequireDefault(_componentsHtml);
   
-  var _assets = __webpack_require__(92);
+  var _assets = __webpack_require__(93);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -101,19 +101,19 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _actionsScreenshotsScraper = __webpack_require__(93);
+  var _actionsScreenshotsScraper = __webpack_require__(94);
   
   var _actionsScreenshotsScraper2 = _interopRequireDefault(_actionsScreenshotsScraper);
   
-  var _actionsScreenshotScraper = __webpack_require__(96);
+  var _actionsScreenshotScraper = __webpack_require__(97);
   
   var _actionsScreenshotScraper2 = _interopRequireDefault(_actionsScreenshotScraper);
   
-  var _actionsImageAnalyzer = __webpack_require__(97);
+  var _actionsImageAnalyzer = __webpack_require__(98);
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
-  var _storesSteamApps = __webpack_require__(77);
+  var _storesSteamApps = __webpack_require__(78);
   
   var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
@@ -490,15 +490,15 @@ module.exports =
   
   var _componentsSearchPage2 = _interopRequireDefault(_componentsSearchPage);
   
-  var _componentsPlayerPage = __webpack_require__(56);
+  var _componentsPlayerPage = __webpack_require__(57);
   
   var _componentsPlayerPage2 = _interopRequireDefault(_componentsPlayerPage);
   
-  var _componentsGamePage = __webpack_require__(74);
+  var _componentsGamePage = __webpack_require__(75);
   
   var _componentsGamePage2 = _interopRequireDefault(_componentsGamePage);
   
-  var _componentsScreenshotPage = __webpack_require__(80);
+  var _componentsScreenshotPage = __webpack_require__(81);
   
   var _componentsScreenshotPage2 = _interopRequireDefault(_componentsScreenshotPage);
   
@@ -3664,7 +3664,7 @@ module.exports =
   
   var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
-  var _underscoreNode = __webpack_require__(101);
+  var _underscoreNode = __webpack_require__(56);
   
   var _underscoreNode2 = _interopRequireDefault(_underscoreNode);
   
@@ -3855,6 +3855,12 @@ module.exports =
 
 /***/ },
 /* 56 */
+/***/ function(module, exports) {
+
+  module.exports = require("underscore-node");
+
+/***/ },
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3877,7 +3883,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerPageScss = __webpack_require__(57);
+  var _PlayerPageScss = __webpack_require__(58);
   
   var _PlayerPageScss2 = _interopRequireDefault(_PlayerPageScss);
   
@@ -3885,11 +3891,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _PlayerSummaryPlayerSummary = __webpack_require__(59);
+  var _PlayerSummaryPlayerSummary = __webpack_require__(60);
   
   var _PlayerSummaryPlayerSummary2 = _interopRequireDefault(_PlayerSummaryPlayerSummary);
   
-  var _FriendsListFriendsList = __webpack_require__(62);
+  var _FriendsListFriendsList = __webpack_require__(63);
   
   var _FriendsListFriendsList2 = _interopRequireDefault(_FriendsListFriendsList);
   
@@ -3897,7 +3903,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(68);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(69);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
@@ -3995,11 +4001,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(58);
+      var content = __webpack_require__(59);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4027,7 +4033,7 @@ module.exports =
     
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4046,7 +4052,7 @@ module.exports =
   };
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4069,7 +4075,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PlayerSummaryScss = __webpack_require__(60);
+  var _PlayerSummaryScss = __webpack_require__(61);
   
   var _PlayerSummaryScss2 = _interopRequireDefault(_PlayerSummaryScss);
   
@@ -4205,11 +4211,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(61);
+      var content = __webpack_require__(62);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4237,7 +4243,7 @@ module.exports =
     
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4263,7 +4269,7 @@ module.exports =
   };
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4288,7 +4294,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendsListScss = __webpack_require__(63);
+  var _FriendsListScss = __webpack_require__(64);
   
   var _FriendsListScss2 = _interopRequireDefault(_FriendsListScss);
   
@@ -4300,7 +4306,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _FriendListItemFriendListItem = __webpack_require__(65);
+  var _FriendListItemFriendListItem = __webpack_require__(66);
   
   var _FriendListItemFriendListItem2 = _interopRequireDefault(_FriendListItemFriendListItem);
   
@@ -4391,11 +4397,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(64);
+      var content = __webpack_require__(65);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4423,7 +4429,7 @@ module.exports =
     
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4442,7 +4448,7 @@ module.exports =
   };
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4465,7 +4471,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _FriendListItemScss = __webpack_require__(66);
+  var _FriendListItemScss = __webpack_require__(67);
   
   var _FriendListItemScss2 = _interopRequireDefault(_FriendListItemScss);
   
@@ -4542,11 +4548,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(67);
+      var content = __webpack_require__(68);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4574,7 +4580,7 @@ module.exports =
     
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4593,7 +4599,7 @@ module.exports =
   };
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4618,7 +4624,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotsListScss = __webpack_require__(69);
+  var _ScreenshotsListScss = __webpack_require__(70);
   
   var _ScreenshotsListScss2 = _interopRequireDefault(_ScreenshotsListScss);
   
@@ -4626,7 +4632,7 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _ScreenshotListItemScreenshotListItem = __webpack_require__(71);
+  var _ScreenshotListItemScreenshotListItem = __webpack_require__(72);
   
   var _ScreenshotListItemScreenshotListItem2 = _interopRequireDefault(_ScreenshotListItemScreenshotListItem);
   
@@ -4698,11 +4704,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(70);
+      var content = __webpack_require__(71);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4730,7 +4736,7 @@ module.exports =
     
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4747,7 +4753,7 @@ module.exports =
   };
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4770,7 +4776,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotListItemScss = __webpack_require__(72);
+  var _ScreenshotListItemScss = __webpack_require__(73);
   
   var _ScreenshotListItemScss2 = _interopRequireDefault(_ScreenshotListItemScss);
   
@@ -4861,11 +4867,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(73);
+      var content = __webpack_require__(74);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -4893,7 +4899,7 @@ module.exports =
     
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -4909,7 +4915,7 @@ module.exports =
   };
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4932,7 +4938,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _GamePageScss = __webpack_require__(75);
+  var _GamePageScss = __webpack_require__(76);
   
   var _GamePageScss2 = _interopRequireDefault(_GamePageScss);
   
@@ -4944,7 +4950,7 @@ module.exports =
   
   var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
-  var _ScreenshotsListScreenshotsList = __webpack_require__(68);
+  var _ScreenshotsListScreenshotsList = __webpack_require__(69);
   
   var _ScreenshotsListScreenshotsList2 = _interopRequireDefault(_ScreenshotsListScreenshotsList);
   
@@ -4952,7 +4958,7 @@ module.exports =
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _storesSteamApps = __webpack_require__(77);
+  var _storesSteamApps = __webpack_require__(78);
   
   var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
@@ -5069,11 +5075,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(76);
+      var content = __webpack_require__(77);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -5101,7 +5107,7 @@ module.exports =
     
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -5122,7 +5128,7 @@ module.exports =
   };
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5137,11 +5143,11 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _steamAppsJson = __webpack_require__(78);
+  var _steamAppsJson = __webpack_require__(79);
   
   var _steamAppsJson2 = _interopRequireDefault(_steamAppsJson);
   
-  var _lunr = __webpack_require__(79);
+  var _lunr = __webpack_require__(80);
   
   var _lunr2 = _interopRequireDefault(_lunr);
   
@@ -5241,7 +5247,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports) {
 
   module.exports = {
@@ -107432,13 +107438,13 @@ module.exports =
   };
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
   module.exports = require("lunr");
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107461,7 +107467,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ScreenshotPageScss = __webpack_require__(81);
+  var _ScreenshotPageScss = __webpack_require__(82);
   
   var _ScreenshotPageScss2 = _interopRequireDefault(_ScreenshotPageScss);
   
@@ -107481,11 +107487,11 @@ module.exports =
   
   var _Header2 = _interopRequireDefault(_Header);
   
-  var _apiColors = __webpack_require__(83);
+  var _apiColors = __webpack_require__(84);
   
   var _apiColors2 = _interopRequireDefault(_apiColors);
   
-  var _Palette = __webpack_require__(84);
+  var _Palette = __webpack_require__(85);
   
   var _Palette2 = _interopRequireDefault(_Palette);
   
@@ -107493,7 +107499,7 @@ module.exports =
   
   var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
   
-  var _storesSteamApps = __webpack_require__(77);
+  var _storesSteamApps = __webpack_require__(78);
   
   var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
@@ -107703,11 +107709,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(82);
+      var content = __webpack_require__(83);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -107735,7 +107741,7 @@ module.exports =
     
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -107767,7 +107773,7 @@ module.exports =
   };
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107828,7 +107834,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -107851,7 +107857,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _PaletteScss = __webpack_require__(85);
+  var _PaletteScss = __webpack_require__(86);
   
   var _PaletteScss2 = _interopRequireDefault(_PaletteScss);
   
@@ -107859,11 +107865,11 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _Swatch = __webpack_require__(87);
+  var _Swatch = __webpack_require__(88);
   
   var _Swatch2 = _interopRequireDefault(_Swatch);
   
-  var _tinycolor2 = __webpack_require__(90);
+  var _tinycolor2 = __webpack_require__(91);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
@@ -107908,6 +107914,11 @@ module.exports =
         this.setState({ selectedColors: colors });
       }
     }, {
+      key: 'onCopy',
+      value: function onCopy(copyMessage) {
+        this.setState({ copyMessage: copyMessage });
+      }
+    }, {
       key: 'getAllColors',
       value: function getAllColors() {
         var hexColors = [];
@@ -107920,6 +107931,44 @@ module.exports =
         var uniqueColors = this.uniq(hexColors);
         uniqueColors.sort(this.colorSorter.bind(this));
         return uniqueColors;
+      }
+    }, {
+      key: 'setLinkToNewPaletteLink',
+      value: function setLinkToNewPaletteLink(event, colors) {
+        var link = event.target;
+        if (link.nodeName !== 'A') {
+          link = link.closest('a');
+        }
+        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
+        link.blur();
+      }
+    }, {
+      key: 'uniq',
+      value: function uniq(arr) {
+        var set = new Set(arr);
+        return Array.from(set);
+      }
+    }, {
+      key: 'sample',
+      value: function sample(list, total) {
+        var results = [];
+        while (results.length < total) {
+          results.push(list[Math.floor(Math.random() * list.length)]);
+        }
+        return results;
+      }
+    }, {
+      key: 'hashStripper',
+      value: function hashStripper(c) {
+        return c.replace(/^#/, '');
+      }
+    }, {
+      key: 'addVariation',
+      value: function addVariation(list, color, funcName) {
+        var variations = color[funcName]();
+        for (var j = 0; j < variations.length; j++) {
+          list.push(variations[j].toHexString());
+        }
       }
   
       // See 'Step sorting' on http://www.alanzucconi.com/2015/09/30/colour-sorting/
@@ -107968,44 +108017,6 @@ module.exports =
         return 0;
       }
     }, {
-      key: 'addVariation',
-      value: function addVariation(list, color, funcName) {
-        var variations = color[funcName]();
-        for (var j = 0; j < variations.length; j++) {
-          list.push(variations[j].toHexString());
-        }
-      }
-    }, {
-      key: 'uniq',
-      value: function uniq(arr) {
-        var set = new Set(arr);
-        return Array.from(set);
-      }
-    }, {
-      key: 'sample',
-      value: function sample(list, total) {
-        var results = [];
-        while (results.length < total) {
-          results.push(list[Math.floor(Math.random() * list.length)]);
-        }
-        return results;
-      }
-    }, {
-      key: 'hashStripper',
-      value: function hashStripper(c) {
-        return c.replace(/^#/, '');
-      }
-    }, {
-      key: 'setLinkToNewPaletteLink',
-      value: function setLinkToNewPaletteLink(event, colors) {
-        var link = event.target;
-        if (link.nodeName !== 'A') {
-          link = link.closest('a');
-        }
-        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
-        link.blur();
-      }
-    }, {
       key: 'createPalette',
       value: function createPalette(event) {
         this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
@@ -108024,6 +108035,11 @@ module.exports =
         return _react2['default'].createElement(
           'div',
           { className: _PaletteScss2['default'].container },
+          typeof this.state.copyMessage === 'string' ? _react2['default'].createElement(
+            'span',
+            { className: _PaletteScss2['default'].copyMessage },
+            this.state.copyMessage
+          ) : '',
           this.state.selectedColors.length > 0 ? _react2['default'].createElement(
             'div',
             { className: _PaletteScss2['default'].selectedColorsWrapper },
@@ -108046,7 +108062,8 @@ module.exports =
                   _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
                     allowSelection: false,
                     onDeselected: _this.onColorDeselected.bind(_this),
-                    initiallySelected: true
+                    initiallySelected: true,
+                    onCopy: _this.onCopy.bind(_this)
                   })
                 );
               })
@@ -108074,7 +108091,8 @@ module.exports =
                   onSelected: _this.onColorSelected.bind(_this),
                   onDeselected: _this.onColorDeselected.bind(_this),
                   allowSelection: allowSelection,
-                  initiallySelected: initiallySelected
+                  initiallySelected: initiallySelected,
+                  onCopy: _this.onCopy.bind(_this)
                 })
               );
             })
@@ -108092,11 +108110,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(86);
+      var content = __webpack_require__(87);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -108124,7 +108142,7 @@ module.exports =
     
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -108132,19 +108150,22 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;CACrB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColorsWrapper_22j {\n\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;CACC;;AAED;;CAEC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.listItem {\n}\n\n.selectedColorsWrapper {\n\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "Palette_container_1Ha",
   	"colors": "Palette_colors_jGR",
   	"selectedColors": "Palette_selectedColors_1qk",
+  	"listItem": "Palette_listItem_3uQ",
+  	"selectedColorsWrapper": "Palette_selectedColorsWrapper_22j",
   	"title": "Palette_title_2zJ",
-  	"linkIcon": "Palette_linkIcon_2U5"
+  	"linkIcon": "Palette_linkIcon_2U5",
+  	"copyMessage": "Palette_copyMessage_3Po"
   };
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108167,7 +108188,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _SwatchScss = __webpack_require__(88);
+  var _SwatchScss = __webpack_require__(89);
   
   var _SwatchScss2 = _interopRequireDefault(_SwatchScss);
   
@@ -108179,9 +108200,13 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _tinycolor2 = __webpack_require__(90);
+  var _tinycolor2 = __webpack_require__(91);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
+  
+  var _reactZeroclipboard = __webpack_require__(102);
+  
+  var _reactZeroclipboard2 = _interopRequireDefault(_reactZeroclipboard);
   
   var Swatch = (function (_Component) {
     _inherits(Swatch, _Component);
@@ -108193,7 +108218,8 @@ module.exports =
         onSelected: _react.PropTypes.func,
         onDeselected: _react.PropTypes.func,
         allowSelection: _react.PropTypes.bool.isRequired,
-        initiallySelected: _react.PropTypes.bool.isRequired
+        initiallySelected: _react.PropTypes.bool.isRequired,
+        onCopy: _react.PropTypes.func.isRequired
       },
       enumerable: true
     }]);
@@ -108202,10 +108228,18 @@ module.exports =
       _classCallCheck(this, _Swatch);
   
       _get(Object.getPrototypeOf(_Swatch.prototype), 'constructor', this).call(this, props, context);
-      this.state = { selected: props.initiallySelected };
+      this.state = {
+        selected: props.initiallySelected,
+        showCopyMessage: false
+      };
     }
   
     _createClass(Swatch, [{
+      key: 'onCopy',
+      value: function onCopy() {
+        this.props.onCopy('Copied ' + this.props.hexColor);
+      }
+    }, {
       key: 'propagateSelected',
       value: function propagateSelected() {
         if (this.state.selected) {
@@ -108236,20 +108270,32 @@ module.exports =
         return _react2['default'].createElement(
           'span',
           { className: _SwatchScss2['default'].container },
-          this.props.allowSelection ? _react2['default'].createElement('a', { href: '#',
-            className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
-            style: swatchStyle,
-            title: this.props.hexColor,
-            onClick: this.toggleSelected.bind(this)
-          }) : _react2['default'].createElement(
-            'span',
-            { className: _SwatchScss2['default'].disallowSelection },
-            this.state.selected ? _react2['default'].createElement('a', { href: '#',
+          this.props.allowSelection ? _react2['default'].createElement(
+            _reactZeroclipboard2['default'],
+            { text: this.props.hexColor,
+              onCopy: this.onCopy.bind(this)
+            },
+            _react2['default'].createElement('a', { href: '#',
               className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
               style: swatchStyle,
               title: this.props.hexColor,
-              onClick: this.deselect.bind(this)
-            }) : _react2['default'].createElement('span', {
+              onClick: this.toggleSelected.bind(this)
+            })
+          ) : _react2['default'].createElement(
+            'span',
+            { className: _SwatchScss2['default'].disallowSelection },
+            this.state.selected ? _react2['default'].createElement(
+              _reactZeroclipboard2['default'],
+              { text: this.props.hexColor,
+                onCopy: this.onCopy.bind(this)
+              },
+              _react2['default'].createElement('a', { href: '#',
+                className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, _SwatchScss2['default'].link, selectedClass, darknessClass),
+                style: swatchStyle,
+                title: this.props.hexColor,
+                onClick: this.deselect.bind(this)
+              })
+            ) : _react2['default'].createElement('span', {
               className: (0, _classnames2['default'])(_SwatchScss2['default'].swatch, selectedClass, darknessClass),
               style: swatchStyle,
               title: this.props.hexColor
@@ -108268,11 +108314,11 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(89);
+      var content = __webpack_require__(90);
       var insertCss = __webpack_require__(17);
   
       if (typeof content === 'string') {
@@ -108300,7 +108346,7 @@ module.exports =
     
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(16)();
@@ -108308,13 +108354,13 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg, .Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after, .Swatch_swatch_3nj.Swatch_link_3Ji:hover:after, .Swatch_swatch_3nj.Swatch_link_3Ji:focus:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {\n\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CA4BhC;;AA1BC;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;;CAEC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.selected, &.link:hover, &.link:focus {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: 1px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5 {\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CAgChC;;AA9BC;CAEC;;AAED;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,QAAS;CACV;;AAGH;EACE,sCAAuC;CACxC;;AAED;CAIC;;AAHC;EACE,WAAY;CACb;;AAGH;CAIC;;AAHC;EACE,WAAY;CACb;;AAIL;CACC","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.link:hover, &.link:focus {\n\n  }\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: 1px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container {\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"swatch": "Swatch_swatch_3nj",
-  	"selected": "Swatch_selected_kJg",
   	"link": "Swatch_link_3Ji",
+  	"selected": "Swatch_selected_kJg",
   	"unselected": "Swatch_unselected_1Wl",
   	"dark": "Swatch_dark_1H7",
   	"light": "Swatch_light_2i7",
@@ -108322,13 +108368,13 @@ module.exports =
   };
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports) {
 
   module.exports = require("tinycolor2");
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -108435,13 +108481,13 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108460,11 +108506,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(94);
+  var _jsdom = __webpack_require__(95);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(95);
+  var _bluebird = __webpack_require__(96);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -108596,19 +108642,19 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
   module.exports = require("jsdom");
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports) {
 
   module.exports = require("bluebird");
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108627,11 +108673,11 @@ module.exports =
   
   var _coreFetch2 = _interopRequireDefault(_coreFetch);
   
-  var _jsdom = __webpack_require__(94);
+  var _jsdom = __webpack_require__(95);
   
   var _jsdom2 = _interopRequireDefault(_jsdom);
   
-  var _bluebird = __webpack_require__(95);
+  var _bluebird = __webpack_require__(96);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
@@ -108791,7 +108837,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -108806,23 +108852,23 @@ module.exports =
   
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
   
-  var _bluebird = __webpack_require__(95);
+  var _bluebird = __webpack_require__(96);
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
-  var _http = __webpack_require__(98);
+  var _http = __webpack_require__(99);
   
   var _http2 = _interopRequireDefault(_http);
   
-  var _canvas = __webpack_require__(99);
+  var _canvas = __webpack_require__(100);
   
   var _canvas2 = _interopRequireDefault(_canvas);
   
-  var _tinycolor2 = __webpack_require__(90);
+  var _tinycolor2 = __webpack_require__(91);
   
   var _tinycolor22 = _interopRequireDefault(_tinycolor2);
   
-  var _colorThief = __webpack_require__(100);
+  var _colorThief = __webpack_require__(101);
   
   var _colorThief2 = _interopRequireDefault(_colorThief);
   
@@ -109075,28 +109121,28 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports) {
 
   module.exports = require("http");
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports) {
 
   module.exports = require("canvas");
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports) {
 
   module.exports = require("color-thief");
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports) {
 
-  module.exports = require("underscore-node");
+  module.exports = require("react-zeroclipboard");
 
 /***/ }
 /******/ ]);

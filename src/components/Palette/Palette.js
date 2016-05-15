@@ -33,6 +33,10 @@ class Palette extends Component {
     this.setState({ selectedColors: colors });
   }
 
+  onCopy(copyMessage) {
+    this.setState({ copyMessage });
+  }
+
   getAllColors() {
     const hexColors = [];
     for (let i = 0; i < this.props.colors.length; i++) {
@@ -44,6 +48,40 @@ class Palette extends Component {
     const uniqueColors = this.uniq(hexColors);
     uniqueColors.sort(this.colorSorter.bind(this));
     return uniqueColors;
+  }
+
+  setLinkToNewPaletteLink(event, colors) {
+    let link = event.target;
+    if (link.nodeName !== 'A') {
+      link = link.closest('a');
+    }
+    link.href = 'http://www.colourlovers.com/palettes/add?colors=' +
+                colors.map(this.hashStripper).join(',');
+    link.blur();
+  }
+
+  uniq(arr) {
+    const set = new Set(arr);
+    return Array.from(set);
+  }
+
+  sample(list, total) {
+    const results = [];
+    while (results.length < total) {
+      results.push(list[Math.floor(Math.random() * list.length)]);
+    }
+    return results;
+  }
+
+  hashStripper(c) {
+    return c.replace(/^#/, '');
+  }
+
+  addVariation(list, color, funcName) {
+    const variations = color[funcName]();
+    for (let j = 0; j < variations.length; j++) {
+      list.push(variations[j].toHexString());
+    }
   }
 
   // See 'Step sorting' on http://www.alanzucconi.com/2015/09/30/colour-sorting/
@@ -90,40 +128,6 @@ class Palette extends Component {
     return 0;
   }
 
-  addVariation(list, color, funcName) {
-    const variations = color[funcName]();
-    for (let j = 0; j < variations.length; j++) {
-      list.push(variations[j].toHexString());
-    }
-  }
-
-  uniq(arr) {
-    const set = new Set(arr);
-    return Array.from(set);
-  }
-
-  sample(list, total) {
-    const results = [];
-    while (results.length < total) {
-      results.push(list[Math.floor(Math.random() * list.length)]);
-    }
-    return results;
-  }
-
-  hashStripper(c) {
-    return c.replace(/^#/, '');
-  }
-
-  setLinkToNewPaletteLink(event, colors) {
-    let link = event.target;
-    if (link.nodeName !== 'A') {
-      link = link.closest('a');
-    }
-    link.href = 'http://www.colourlovers.com/palettes/add?colors=' +
-                colors.map(this.hashStripper).join(',');
-    link.blur();
-  }
-
   createPalette(event) {
     this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
   }
@@ -136,6 +140,9 @@ class Palette extends Component {
     const hexColors = this.getAllColors();
     return (
       <div className={s.container}>
+        {typeof this.state.copyMessage === 'string' ? (
+          <span className={s.copyMessage}>{this.state.copyMessage}</span>
+        ) : ''}
         {this.state.selectedColors.length > 0 ? (
           <div className={s.selectedColorsWrapper}>
             <a href="#" onClick={this.createPalette.bind(this)}
@@ -153,6 +160,7 @@ class Palette extends Component {
                       allowSelection={false}
                       onDeselected={this.onColorDeselected.bind(this)}
                       initiallySelected
+                      onCopy={this.onCopy.bind(this)}
                     />
                   </li>
                 );
@@ -179,6 +187,7 @@ class Palette extends Component {
                   onDeselected={this.onColorDeselected.bind(this)}
                   allowSelection={allowSelection}
                   initiallySelected={initiallySelected}
+                  onCopy={this.onCopy.bind(this)}
                 />
               </li>
             );

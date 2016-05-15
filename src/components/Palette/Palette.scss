@@ -2,6 +2,7 @@
 
 .container {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .colors, .selectedColors {
@@ -15,6 +16,13 @@
 }
 
 .colors {
+}
+
+.listItem {
+}
+
+.selectedColorsWrapper {
+
 }
 
 .selectedColors {
@@ -31,4 +39,9 @@
 .linkIcon {
   margin-right: 0.5em;
   font-size: 14px;
+}
+
+.copyMessage {
+  position: absolute;
+  right: 0;
 }
