@@ -1,0 +1,6 @@
+{
+  "name": "PlayerSearchForm",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PlayerSearchForm.js"
+}
