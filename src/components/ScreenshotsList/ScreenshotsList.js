@@ -7,8 +7,9 @@ import ScreenshotListItem from '../ScreenshotListItem/ScreenshotListItem';
 class ScreenshotsList extends Component {
   static propTypes = {
     screenshots: PropTypes.array.isRequired,
-    steamID: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    steamID: PropTypes.string,
+    username: PropTypes.string,
+    gameID: PropTypes.string,
   };
 
   constructor(props, context) {
@@ -19,7 +20,11 @@ class ScreenshotsList extends Component {
   render() {
     let message = 'Choose a screenshot:';
     if (this.props.screenshots.length < 1) {
-      message = 'This user does not have any screenshots.';
+      if (typeof this.props.username === 'undefined') {
+        message = 'This game does not have any screenshots.';
+      } else {
+        message = 'This user does not have any screenshots.';
+      }
     }
     return (
       <ul className={s.screenshots}>
@@ -31,6 +36,7 @@ class ScreenshotsList extends Component {
             <ScreenshotListItem key={screenshot.url} {...screenshot}
               steamID={this.props.steamID}
               username={this.props.username}
+              gameID={this.props.gameID}
             />
           );
         })}

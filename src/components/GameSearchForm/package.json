@@ -1,0 +1,6 @@
+{
+  "name": "GameSearchForm",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./GameSearchForm.js"
+}

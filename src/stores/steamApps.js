@@ -1,43 +1,50 @@
 import SteamAppsList from './steam-apps.json';
 
 class SteamApps {
-  static sortedIds() {
-    if (typeof this._sortedIds === 'object') {
-      return this._sortedIds;
+  static _init() {
+    if (typeof this.apps === 'object') {
+      return;
     }
-    const apps = SteamAppsList.applist.apps;
-    apps.sort(this.appSorter);
-    this._sortedIds = apps.map((app) => String(app.appid));
-    this._sortedNames = apps.map((app) => app.name);
-    return this._sortedIds;
+    this.apps = SteamAppsList.applist.apps;
+    this.apps.sort(this._appSorter.bind(this));
+    this._sortedIds = this.apps.map((app) => String(app.appid));
+    this._sortedNames = this.apps.map((app) => app.name);
   }
 
-  static appSorter(a, b) {
-    let aName = a.name.toLowerCase();
-    if (aName.indexOf('the ') === 0) {
-      aName = aName.substring(4);
-    }
-    if (aName.indexOf('a ') === 0) {
-      aName = aName.substring(2);
-    }
-    let bName = b.name.toLowerCase();
-    if (bName.indexOf('the ') === 0) {
-      bName = bName.substring(4);
-    }
-    if (bName.indexOf('a ') === 0) {
-      bName = bName.substring(2);
-    }
+  static search(name) {
+    this._init();
+    return this.apps.filter((app) => {
+      return this._normalizeName(app.name).
+                  indexOf(this._normalizeName(name)) === 0;
+    });
+  }
+
+  static _appSorter(a, b) {
+    const aName = this._normalizeName(a.name);
+    const bName = this._normalizeName(b.name);
     return aName.localeCompare(bName);
   }
 
+  static _normalizeName(rawName) {
+    let name = rawName.toLowerCase();
+    if (name.indexOf('the ') === 0) {
+      name = name.substring(4);
+    }
+    if (name.indexOf('a ') === 0) {
+      name = name.substring(2);
+    }
+    return name;
+  }
+
   static getName(appId) {
-    const index = this.sortedIds().indexOf(String(appId));
+    this._init();
+    const index = this._sortedIds.indexOf(String(appId));
     return this._sortedNames[index];
   }
 
-  static idSorter(sortedIds, a, b) {
-    const indexA = sortedIds.indexOf(String(a));
-    const indexB = sortedIds.indexOf(String(b));
+  static _idSorter(a, b) {
+    const indexA = this._sortedIds.indexOf(String(a));
+    const indexB = this._sortedIds.indexOf(String(b));
     if (indexA < indexB) {
       return -1;
     }
@@ -45,7 +52,8 @@ class SteamApps {
   }
 
   static sortIds(appIds) {
-    appIds.sort(this.idSorter.bind(this, this.sortedIds()));
+    this._init();
+    appIds.sort(this._idSorter.bind(this));
     return appIds;
   }
 }

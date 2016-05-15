@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import s from './PlayerSearchForm.scss';
 import cx from 'classnames';
 import withStyles from '../../decorators/withStyles';
@@ -8,9 +8,6 @@ import Steam from '../../api/steam';
 
 @withStyles(s)
 class PlayerSearchForm extends Component {
-  static propTypes = {
-  };
-
   constructor(props, context) {
     super(props, context);
     this.state = {

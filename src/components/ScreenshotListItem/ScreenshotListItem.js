@@ -8,8 +8,9 @@ class ScreenshotListItem extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
     title: PropTypes.string,
-    steamID: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    steamID: PropTypes.string,
+    username: PropTypes.string,
+    gameID: PropTypes.string,
   };
 
   constructor(props, context) {
@@ -25,8 +26,13 @@ class ScreenshotListItem extends Component {
 
   render() {
     const id = this.getIDFromUrl();
-    const href = '/player/' + this.props.username + '/' + this.props.steamID +
-                 '/' + id;
+    let href = '';
+    if (typeof this.props.username === 'string') {
+      href = '/player/' + this.props.username + '/' + this.props.steamID +
+             '/' + id;
+    } else {
+
+    }
     return (
       <li className={s.screenshot}>
         <a href={href} onClick={Link.handleClick}>

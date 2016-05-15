@@ -5,6 +5,7 @@ import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
 import SearchPage from './components/SearchPage';
 import PlayerPage from './components/PlayerPage';
+import GamePage from './components/GamePage';
 import ScreenshotPage from './components/ScreenshotPage';
 
 const router = new Router(on => {
@@ -23,6 +24,11 @@ const router = new Router(on => {
         screenshotID={screenshotID} key={key}
       />
     );
+  });
+
+  on('/game/:gameID', async (req) => {
+    const gameID = req.params.gameID;
+    return <GamePage gameID={gameID} />;
   });
 
   on('/player/:username/:steamID', async (req) => {

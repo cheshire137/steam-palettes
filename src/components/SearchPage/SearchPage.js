@@ -3,6 +3,7 @@ import s from './SearchPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
 import PlayerSearchForm from '../PlayerSearchForm';
+import GameSearchForm from '../GameSearchForm';
 
 const title = 'Find a Steam User';
 
@@ -27,6 +28,7 @@ class SearchPage extends Component {
       <div className={s.container}>
         <Header />
         <PlayerSearchForm />
+        <GameSearchForm />
       </div>
     );
   }

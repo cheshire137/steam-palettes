@@ -11,10 +11,6 @@ input[type="text"].textField {
   width: 20em;
   display: inline-block;
   margin: 0 10px;
-}
-
-input[type="text"].textField,
-.button {
   font-size: 18px;
 }
 
@@ -24,23 +20,14 @@ input[type="text"].textField,
 }
 
 .message {
-  &.success {
-    color: $success-text-color;
-  }
-
-  &.error {
-    color: $error-text-color;
-  }
+  color: $error-text-color;
 }
 
-.steamInstructions {
-
+.gamesList {
+  list-style: none;
+  padding-left: 0;
 }
 
-.instruction {
-
-}
-
-.instructionImage {
-
+.gameListItem {
+  text-align: left;
 }
