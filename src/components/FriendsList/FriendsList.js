@@ -12,7 +12,7 @@ class FriendsList extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { friends: undefined };
+    this.state = { friends: undefined, message: undefined };
   }
 
   componentDidMount() {
@@ -25,8 +25,9 @@ class FriendsList extends Component {
     this.setState({ friends });
   }
 
-  onFriendsLoadError(response) {
-    console.error('failed to load friends list', response);
+  onFriendsLoadError(error) {
+    console.error('failed to load friends list', error);
+    this.setState({ message: error.message });
   }
 
   render() {
@@ -50,7 +51,13 @@ class FriendsList extends Component {
             })}
           </ul>
         ) : (
-          <p className={s.message}>Loading friends...</p>
+          <div>
+            {typeof this.state.message === 'string' ? (
+              <p className={s.error}>{this.state.message}</p>
+            ) : (
+              <p className={s.message}>Loading friends...</p>
+            )}
+          </div>
         )}
       </div>
     );

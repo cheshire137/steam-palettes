@@ -4035,7 +4035,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n  max-width: 14rem;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n  max-width: 14rem;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4319,7 +4319,7 @@ module.exports =
       _classCallCheck(this, _FriendsList);
   
       _get(Object.getPrototypeOf(_FriendsList.prototype), 'constructor', this).call(this, props, context);
-      this.state = { friends: undefined };
+      this.state = { friends: undefined, message: undefined };
     }
   
     _createClass(FriendsList, [{
@@ -4334,8 +4334,9 @@ module.exports =
       }
     }, {
       key: 'onFriendsLoadError',
-      value: function onFriendsLoadError(response) {
-        console.error('failed to load friends list', response);
+      value: function onFriendsLoadError(error) {
+        console.error('failed to load friends list', error);
+        this.setState({ message: error.message });
       }
     }, {
       key: 'render',
@@ -4365,9 +4366,17 @@ module.exports =
               return _react2['default'].createElement(_FriendListItemFriendListItem2['default'], _extends({ key: key }, friend));
             })
           ) : _react2['default'].createElement(
-            'p',
-            { className: _FriendsListScss2['default'].message },
-            'Loading friends...'
+            'div',
+            null,
+            typeof this.state.message === 'string' ? _react2['default'].createElement(
+              'p',
+              { className: _FriendsListScss2['default'].error },
+              this.state.message
+            ) : _react2['default'].createElement(
+              'p',
+              { className: _FriendsListScss2['default'].message },
+              'Loading friends...'
+            )
           )
         );
       }
@@ -4422,12 +4431,14 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n\n.FriendsList_message_3s4 {\n\n}\n\n.FriendsList_error_3No {\n  color: #A78E81;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB;;AAED;;CAEC;;AAED;EACE,eAAyB;CAC1B","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n\n.message {\n\n}\n\n.error {\n  color: $error-text-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"friends": "FriendsList_friends_9Ov",
-  	"header": "FriendsList_header_2m2"
+  	"header": "FriendsList_header_2m2",
+  	"message": "FriendsList_message_3s4",
+  	"error": "FriendsList_error_3No"
   };
 
 /***/ },
