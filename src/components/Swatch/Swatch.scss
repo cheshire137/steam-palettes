@@ -1,11 +1,13 @@
 @import '../variables.scss';
 
+.container, .disallowSelection {
+  display: inline-block;
+}
+
 .swatch {
   display: inline-block;
   padding: 2px 4px;
   border-radius: $border-radius;
-  width: $swatch-size;
-  height: $swatch-size;
   text-align: center;
   vertical-align: top;
   margin: 2px 5px;
@@ -15,6 +17,16 @@
   -webkit-box-shadow: 1px 1px 3px 0 #000;
   box-shadow: 1px 1px 3px 0 #000;
 
+  &.normal {
+    width: $swatch-size;
+    height: $swatch-size;
+  }
+
+  &.large {
+    width: $large-swatch-size;
+    height: $large-swatch-size;
+  }
+
   &.link:hover, &.link:focus {
 
   }
@@ -23,10 +35,23 @@
     border-color: rgba(255, 255, 255, 0.7);
 
     &:after {
-      content: "x";
+      content: "\b7";
+      font-size: 36px;
       position: absolute;
-      left: 5px;
-      top: -2px;
+      left: 4px;
+      top: -1px;
+    }
+
+    &.normal {
+      &:after {
+        line-height: $swatch-size;
+      }
+    }
+
+    &.large {
+      &:after {
+        line-height: $large-swatch-size;
+      }
     }
   }
 
@@ -45,8 +70,4 @@
       color: #000;
     }
   }
-}
-
-.container, .disallowSelection {
-  display: inline-block;
 }

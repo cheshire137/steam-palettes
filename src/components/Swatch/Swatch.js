@@ -3,7 +3,6 @@ import s from './Swatch.scss';
 import cx from 'classnames';
 import withStyles from '../../decorators/withStyles';
 import tinycolor from 'tinycolor2';
-import ReactZeroClipboard from 'react-zeroclipboard';
 
 @withStyles(s)
 class Swatch extends Component {
@@ -14,7 +13,8 @@ class Swatch extends Component {
     allowSelection: PropTypes.bool.isRequired,
     initiallySelected: PropTypes.bool.isRequired,
     onCopy: PropTypes.func.isRequired,
-    indicateSelected: PropTypes.bool.isRequired,
+    indicateSelected: PropTypes.bool,
+    large: PropTypes.bool,
   };
 
   constructor(props, context) {
@@ -26,7 +26,8 @@ class Swatch extends Component {
   }
 
   onCopy() {
-    this.props.onCopy('Copied ' + this.props.hexColor);
+    console.log('should copy ' + this.props.hexColor);
+    // this.props.onCopy('Copied ' + this.props.hexColor);
   }
 
   propagateSelected() {
@@ -53,36 +54,39 @@ class Swatch extends Component {
   render() {
     const swatchStyle = { backgroundColor: this.props.hexColor };
     let selectedClass = s.unselected;
-    if (this.state.selected && this.props.indicateSelected) {
+    const indicateSelected =
+        typeof this.props.indicateSelected === 'undefined' ? true :
+        this.props.indicateSelected;
+    if (this.state.selected && indicateSelected) {
       selectedClass = s.selected;
     }
     const isDark = tinycolor(this.props.hexColor).isDark();
     const darknessClass = isDark ? s.dark : s.light;
+    let sizeClass = s.normal;
+    if (typeof this.props.large === 'boolean' && this.props.large) {
+      sizeClass = s.large;
+    }
     return (
       <span className={s.container}>
         {this.props.allowSelection ? (
-          <ReactZeroClipboard text={this.props.hexColor}>
-            <button type="button"
-              className={cx(s.swatch, s.link, selectedClass, darknessClass)}
-              style={swatchStyle}
-              title={this.props.hexColor}
-              onClick={this.toggleSelected.bind(this)}
-            ></button>
-          </ReactZeroClipboard>
+          <button type="button"
+            className={cx(s.swatch, s.link, sizeClass, selectedClass, darknessClass)}
+            style={swatchStyle}
+            title={this.props.hexColor}
+            onClick={this.toggleSelected.bind(this)}
+          ></button>
         ) : (
           <span className={s.disallowSelection}>
             {this.state.selected ? (
-              <ReactZeroClipboard text={this.props.hexColor}>
-                <button type="button"
-                  className={cx(s.swatch, s.link, selectedClass, darknessClass)}
-                  style={swatchStyle}
-                  title={this.props.hexColor}
-                  onClick={this.deselect.bind(this)}
-                ></button>
-              </ReactZeroClipboard>
+              <button type="button"
+                className={cx(s.swatch, s.link, sizeClass, selectedClass, darknessClass)}
+                style={swatchStyle}
+                title={this.props.hexColor}
+                onClick={this.deselect.bind(this)}
+              ></button>
             ) : (
               <span
-                className={cx(s.swatch, selectedClass, darknessClass)}
+                className={cx(s.swatch, selectedClass, sizeClass, darknessClass)}
                 style={swatchStyle}
                 title={this.props.hexColor}
               ></span>

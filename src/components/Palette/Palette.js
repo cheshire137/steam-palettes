@@ -15,7 +15,10 @@ class Palette extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = { selectedColors: [] };
+    this.state = {
+      selectedColors: [],
+      allColors: this.getAllColors(props.colors),
+    };
   }
 
   onColorSelected(color) {
@@ -43,15 +46,15 @@ class Palette extends Component {
     });
   }
 
-  getAllColors() {
-    const hexColors = [];
-    for (let i = 0; i < this.props.colors.length; i++) {
-      hexColors.push(this.props.colors[i]);
-      const color = tinycolor(this.props.colors[i]);
-      this.addVariation(hexColors, color, 'analogous');
-      this.addVariation(hexColors, color, 'monochromatic');
+  getAllColors(baseColors) {
+    const allColors = [];
+    for (let i = 0; i < baseColors.length; i++) {
+      allColors.push(baseColors[i]);
+      const color = tinycolor(baseColors[i]);
+      this.addVariation(allColors, color, 'analogous');
+      this.addVariation(allColors, color, 'monochromatic');
     }
-    const uniqueColors = this.uniq(hexColors);
+    const uniqueColors = this.uniq(allColors);
     uniqueColors.sort(this.colorSorter.bind(this));
     return uniqueColors;
   }
@@ -62,9 +65,17 @@ class Palette extends Component {
   }
 
   sample(list, total) {
+    if (total >= list.length) {
+      return list.slice();
+    }
     const results = [];
+    const getIndex = () => Math.floor(Math.random() * list.length);
     while (results.length < total) {
-      results.push(list[Math.floor(Math.random() * list.length)]);
+      let index = getIndex();
+      while (results.indexOf(list[index]) > -1) {
+        index = getIndex();
+      }
+      results.push(list[index]);
     }
     return results;
   }
@@ -135,18 +146,18 @@ class Palette extends Component {
     link.blur();
   }
 
-  createRandomPalette(allColors, event) {
+  createRandomPalette(event) {
     event.preventDefault();
     let link = event.target;
     if (link.nodeName !== 'A') {
       link = link.closest('a');
     }
     link.blur();
-    this.setState({ selectedColors: this.sample(allColors, 5) });
+    const selectedColors = this.sample(this.state.allColors.slice(), 5);
+    this.setState({ selectedColors });
   }
 
   render() {
-    const hexColors = this.getAllColors();
     return (
       <div className={s.container}>
         {typeof this.state.copyMessage === 'string' ? (
@@ -171,6 +182,7 @@ class Palette extends Component {
                       initiallySelected
                       onCopy={this.onCopy.bind(this)}
                       indicateSelected={false}
+                      large
                     />
                   </li>
                 );
@@ -178,14 +190,14 @@ class Palette extends Component {
             </ul>
           </div>
         ) : ''}
-        <a href="#" onClick={this.createRandomPalette.bind(this, hexColors)}
+        <a href="#" onClick={this.createRandomPalette.bind(this)}
           target="_blank"
         >
           <FontAwesome name="random" className={s.linkIcon} />
           Select random palette
         </a>
         <ul className={s.colors}>
-          {hexColors.map((hex) => {
+          {this.state.allColors.map((hex) => {
             const allowSelection = this.state.selectedColors.length < 5;
             const initiallySelected =
                 this.state.selectedColors.indexOf(hex) > -1;
@@ -198,7 +210,6 @@ class Palette extends Component {
                   allowSelection={allowSelection}
                   initiallySelected={initiallySelected}
                   onCopy={this.onCopy.bind(this)}
-                  indicateSelected={true}
                 />
               </li>
             );
