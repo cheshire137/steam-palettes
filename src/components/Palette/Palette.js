@@ -56,16 +56,6 @@ class Palette extends Component {
     return uniqueColors;
   }
 
-  setLinkToNewPaletteLink(event, colors) {
-    let link = event.target;
-    if (link.nodeName !== 'A') {
-      link = link.closest('a');
-    }
-    link.href = 'http://www.colourlovers.com/palettes/add?colors=' +
-                colors.map(this.hashStripper).join(',');
-    link.blur();
-  }
-
   uniq(arr) {
     const set = new Set(arr);
     return Array.from(set);
@@ -135,11 +125,24 @@ class Palette extends Component {
   }
 
   createPalette(event) {
-    this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
+    const colors = this.state.selectedColors.slice();
+    let link = event.target;
+    if (link.nodeName !== 'A') {
+      link = link.closest('a');
+    }
+    link.href = 'http://www.colourlovers.com/palettes/add?colors=' +
+                colors.map(this.hashStripper).join(',');
+    link.blur();
   }
 
   createRandomPalette(allColors, event) {
-    this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
+    event.preventDefault();
+    let link = event.target;
+    if (link.nodeName !== 'A') {
+      link = link.closest('a');
+    }
+    link.blur();
+    this.setState({ selectedColors: this.sample(allColors, 5) });
   }
 
   render() {
@@ -177,8 +180,8 @@ class Palette extends Component {
         <a href="#" onClick={this.createRandomPalette.bind(this, hexColors)}
           target="_blank"
         >
-          <FontAwesome name="external-link" className={s.linkIcon} />
-          Create random palette
+          <FontAwesome name="random" className={s.linkIcon} />
+          Select random palette
         </a>
         <ul className={s.colors}>
           {hexColors.map((hex) => {

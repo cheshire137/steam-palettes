@@ -108002,16 +108002,6 @@ module.exports =
         return uniqueColors;
       }
     }, {
-      key: 'setLinkToNewPaletteLink',
-      value: function setLinkToNewPaletteLink(event, colors) {
-        var link = event.target;
-        if (link.nodeName !== 'A') {
-          link = link.closest('a');
-        }
-        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
-        link.blur();
-      }
-    }, {
       key: 'uniq',
       value: function uniq(arr) {
         var set = new Set(arr);
@@ -108088,12 +108078,24 @@ module.exports =
     }, {
       key: 'createPalette',
       value: function createPalette(event) {
-        this.setLinkToNewPaletteLink(event, this.state.selectedColors.slice());
+        var colors = this.state.selectedColors.slice();
+        var link = event.target;
+        if (link.nodeName !== 'A') {
+          link = link.closest('a');
+        }
+        link.href = 'http://www.colourlovers.com/palettes/add?colors=' + colors.map(this.hashStripper).join(',');
+        link.blur();
       }
     }, {
       key: 'createRandomPalette',
       value: function createRandomPalette(allColors, event) {
-        this.setLinkToNewPaletteLink(event, this.sample(allColors, 5));
+        event.preventDefault();
+        var link = event.target;
+        if (link.nodeName !== 'A') {
+          link = link.closest('a');
+        }
+        link.blur();
+        this.setState({ selectedColors: this.sample(allColors, 5) });
       }
     }, {
       key: 'render',
@@ -108143,8 +108145,8 @@ module.exports =
             { href: '#', onClick: this.createRandomPalette.bind(this, hexColors),
               target: '_blank'
             },
-            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
-            'Create random palette'
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'random', className: _PaletteScss2['default'].linkIcon }),
+            'Select random palette'
           ),
           _react2['default'].createElement(
             'ul',
