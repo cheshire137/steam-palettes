@@ -22,8 +22,44 @@ class SteamApps {
       });
       this._appsByID[app.appid] = app;
     }
-    console.log('indexed ' + this.apps.length + ' games');
     this._sortedIds = this.apps.map((app) => String(app.appid));
+  }
+
+  static randomAppid() {
+    const gameIDs = [
+      22320,  // Morrowind
+      22330,  // Oblivion
+      72850,  // Skyrim
+      8980,   // Borderlands
+      49520,  // Borderlands 2
+      252490, // Rust
+      413150, // Stardew Valley
+      17450,  // Dragon Age: Origins
+      2280,   // The Ultimate Doom
+      2300,   // Doom 2,
+      9050,   // Doom 3
+      17460,  // Mass Effect,
+      24980,  // Mass Effect 2
+      20900,  // The Witcher,
+      20920,  // The Witcher 2
+      292030, // The Witcher 3
+      3900,   // Civ IV
+      8930,   // Civ V
+      10,     // Counter-Strike
+      730,    // Counter-Strike: Global Offensive
+      570,    // DotA 2
+      440,    // Team Fortress 2
+      252950, // Rocket League
+      107410, // Arma 3
+      236430, // Dark Souls II
+      374320, // Dark Souls III
+      22300,  // Fallout 3
+      22380,  // Fallout New Vegas
+      377160, // Fallout 4
+      105600, // Terraria
+    ];
+    const index = Math.floor(Math.random() * gameIDs.length);
+    return gameIDs[index];
   }
 
   static search(name) {

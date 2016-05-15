@@ -76,16 +76,17 @@ class ScreenshotPage extends Component {
     if (isScreenshotLoaded && this.state.screenshot.date) {
       date = this.state.screenshot.date.toLocaleDateString();
     }
-    const backTitle = this.props.username ||
-                      SteamApps.getName(this.props.gameID);
-    let backUrl = '';
-    let backIcon = '';
+    let backUrl = undefined;
+    let backIcon = undefined;
+    let backTitle = undefined;
     if (typeof this.props.username === 'string') {
       backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
       backIcon = 'user';
-    } else {
+      backTitle = this.props.username;
+    } else if (typeof this.props.gameID !== 'undefined') {
       backUrl = '/game/' + this.props.gameID;
       backIcon = 'steam';
+      backTitle = SteamApps.getName(this.props.gameID);
     }
     const areColorsLoaded = typeof this.state.colors === 'object';
     return (

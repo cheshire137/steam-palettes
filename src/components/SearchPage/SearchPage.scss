@@ -7,3 +7,21 @@
 .intro {
   text-align: center;
 }
+
+.randomWrapper {
+  text-align: center;
+}
+
+.randomScreenshot {
+  display: inline-block;
+}
+
+.divider {
+  border-color: $border-color;
+  margin: 20px 0;
+}
+
+.spinner {
+  display: inline-block;
+  margin-left: 10px;
+}

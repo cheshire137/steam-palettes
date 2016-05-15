@@ -14,6 +14,13 @@ const router = new Router(on => {
     return component && <App context={state.context}>{component}</App>;
   });
 
+  on('/screenshot/:screenshotID', async (req) => {
+    const screenshotID = req.params.screenshotID;
+    return (
+      <ScreenshotPage screenshotID={screenshotID} key={screenshotID} />
+    );
+  });
+
   on('/player/:username/:steamID/:screenshotID', async (req) => {
     const username = req.params.username;
     const steamID = req.params.steamID;

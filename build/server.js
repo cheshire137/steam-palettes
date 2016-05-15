@@ -201,44 +201,20 @@ module.exports =
   });
   
   server.get('/api/screenshot', function callee$0$0(req, res) {
-    var useScreenshotID, appid, scraper, popular, html;
+    var appid, scraper, popular, html;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
-      var _this2 = this;
-  
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
-          useScreenshotID = function useScreenshotID(screenshotID) {
-            var scraper, html;
-            return regeneratorRuntime.async(function useScreenshotID$(context$2$0) {
-              while (1) switch (context$2$0.prev = context$2$0.next) {
-                case 0:
-                  console.log('using given screenshot id', req.query.id);
-                  scraper = new _actionsScreenshotScraper2['default'](screenshotID);
-                  context$2$0.next = 4;
-                  return regeneratorRuntime.awrap(scraper.getPage());
-  
-                case 4:
-                  html = context$2$0.sent;
-  
-                  scraper.getScreenshot(html).then(function (screenshot) {
-                    res.json(screenshot);
-                  }).fail(function (error) {
-                    res.status(400).json({ error: error });
-                  });
-  
-                case 6:
-                case 'end':
-                  return context$2$0.stop();
-              }
-            }, null, _this2);
-          };
-  
           if (!(typeof req.query.id === 'undefined')) {
             context$1$0.next = 11;
             break;
           }
   
           appid = req.query.appid;
+  
+          if (typeof appid === 'undefined') {
+            appid = _storesSteamApps2['default'].randomAppid();
+          }
           scraper = new _actionsScreenshotsScraper2['default']({ appid: appid });
           popular = Math.random() > 0.5;
           context$1$0.next = 7;
@@ -250,18 +226,28 @@ module.exports =
           scraper.getScreenshots(html).then(function (screenshots) {
             var index = Math.floor(Math.random() * screenshots.length);
             var screenshot = screenshots[index];
-            console.log('got random screenshot', screenshot);
-            useScreenshotID(screenshot.id);
+            res.json(screenshot);
           }).fail(function (error) {
             res.status(400).json({ error: error });
           });
-          context$1$0.next = 12;
+          context$1$0.next = 16;
           break;
   
         case 11:
-          useScreenshotID(req.query.id);
+          scraper = new _actionsScreenshotScraper2['default'](req.query.id);
+          context$1$0.next = 14;
+          return regeneratorRuntime.awrap(scraper.getPage());
   
-        case 12:
+        case 14:
+          html = context$1$0.sent;
+  
+          scraper.getScreenshot(html).then(function (screenshot) {
+            res.json(screenshot);
+          }).fail(function (error) {
+            res.status(400).json({ error: error });
+          });
+  
+        case 16:
         case 'end':
           return context$1$0.stop();
       }
@@ -384,7 +370,7 @@ module.exports =
   // -----------------------------------------------------------------------------
   server.get('*', function callee$0$0(req, res, next) {
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
-      var _this3 = this;
+      var _this2 = this;
   
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -427,7 +413,7 @@ module.exports =
                 case 'end':
                   return context$2$0.stop();
               }
-            }, null, _this3);
+            }, null, _this2);
           })());
   
         case 3:
@@ -553,6 +539,21 @@ module.exports =
             ));
   
           case 4:
+          case 'end':
+            return context$2$0.stop();
+        }
+      }, null, _this);
+    });
+  
+    on('/screenshot/:screenshotID', function callee$1$0(req) {
+      var screenshotID;
+      return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
+        while (1) switch (context$2$0.prev = context$2$0.next) {
+          case 0:
+            screenshotID = req.params.screenshotID;
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { screenshotID: screenshotID, key: screenshotID }));
+  
+          case 2:
           case 'end':
             return context$2$0.stop();
         }
@@ -2378,6 +2379,8 @@ module.exports =
     value: true
   });
   
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
   
   var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -2412,6 +2415,22 @@ module.exports =
   
   var _GameSearchForm2 = _interopRequireDefault(_GameSearchForm);
   
+  var _apiSteam = __webpack_require__(46);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
+  
+  var _reactFontawesome = __webpack_require__(41);
+  
+  var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
+  
+  var _historyLibParsePath = __webpack_require__(35);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _coreLocation = __webpack_require__(36);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
   var title = 'Find Screenshots - Steam Palettes';
   
   var SearchPage = (function (_Component) {
@@ -2429,13 +2448,35 @@ module.exports =
       _classCallCheck(this, _SearchPage);
   
       _get(Object.getPrototypeOf(_SearchPage.prototype), 'constructor', this).call(this, props, context);
-      this.state = {};
+      this.state = {
+        loadingRandomScreenshot: false
+      };
     }
   
     _createClass(SearchPage, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
         this.context.onSetTitle(title);
+      }
+    }, {
+      key: 'onRandomScreenshotLoaded',
+      value: function onRandomScreenshotLoaded(screenshot) {
+        var path = '/screenshot/' + screenshot.id;
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(path)));
+      }
+    }, {
+      key: 'onRandomScreenshotLoadError',
+      value: function onRandomScreenshotLoadError(error) {
+        console.error('failed to load random screenshot', error);
+        this.setState({ loadingRandomScreenshot: false });
+      }
+    }, {
+      key: 'getRandomScreenshot',
+      value: function getRandomScreenshot(event) {
+        var button = event.target;
+        button.blur();
+        this.setState({ loadingRandomScreenshot: true });
+        _apiSteam2['default'].getRandomScreenshot().then(this.onRandomScreenshotLoaded.bind(this))['catch'](this.onRandomScreenshotLoadError.bind(this));
       }
     }, {
       key: 'render',
@@ -2445,9 +2486,23 @@ module.exports =
           { className: _SearchPageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], null),
           _react2['default'].createElement(
+            'div',
+            { className: _SearchPageScss2['default'].randomWrapper },
+            _react2['default'].createElement(
+              'button',
+              { type: 'button', className: _SearchPageScss2['default'].randomScreenshot,
+                onClick: this.getRandomScreenshot.bind(this),
+                disabled: this.state.loadingRandomScreenshot
+              },
+              'View random screenshot'
+            ),
+            this.state.loadingRandomScreenshot ? _react2['default'].createElement(_reactFontawesome2['default'], { name: 'spinner', spin: true, className: _SearchPageScss2['default'].spinner }) : ''
+          ),
+          _react2['default'].createElement('hr', { className: _SearchPageScss2['default'].divider }),
+          _react2['default'].createElement(
             'p',
             { className: _SearchPageScss2['default'].intro },
-            'Find screenshots by Steam game or user:'
+            'Or find screenshots by Steam game or user:'
           ),
           _react2['default'].createElement(_GameSearchForm2['default'], null),
           _react2['default'].createElement(_PlayerSearchForm2['default'], null)
@@ -2504,12 +2559,16 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n\n.SearchPage_intro_2or {\n  text-align: center;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,mBAAmB;CACpB","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.intro {\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n\n.SearchPage_intro_2or {\n  text-align: center;\n}\n\n.SearchPage_randomWrapper_wxz {\n  text-align: center;\n}\n\n.SearchPage_randomScreenshot_24S {\n  display: inline-block;\n}\n\n.SearchPage_divider_358 {\n  border-color: #574E4F;\n  margin: 20px 0;\n}\n\n.SearchPage_spinner_ucO {\n  display: inline-block;\n  margin-left: 10px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,sBAAsB;CACvB;;AAED;EACE,sBAA4B;EAC5B,eAAe;CAChB;;AAED;EACE,sBAAsB;EACtB,kBAAkB;CACnB","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.intro {\n  text-align: center;\n}\n\n.randomWrapper {\n  text-align: center;\n}\n\n.randomScreenshot {\n  display: inline-block;\n}\n\n.divider {\n  border-color: $border-color;\n  margin: 20px 0;\n}\n\n.spinner {\n  display: inline-block;\n  margin-left: 10px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"container": "SearchPage_container_17N",
-  	"intro": "SearchPage_intro_2or"
+  	"intro": "SearchPage_intro_2or",
+  	"randomWrapper": "SearchPage_randomWrapper_wxz",
+  	"randomScreenshot": "SearchPage_randomScreenshot_24S",
+  	"divider": "SearchPage_divider_358",
+  	"spinner": "SearchPage_spinner_ucO"
   };
 
 /***/ },
@@ -3749,7 +3808,8 @@ module.exports =
         searching: false,
         showNextPageLink: false,
         showPrevPageLink: false,
-        page: 1
+        page: 1,
+        message: undefined
       };
       this.delaySearch = _underscoreNode2['default'].debounce(this.delaySearch, 500);
     }
@@ -3762,6 +3822,7 @@ module.exports =
           searchMade: true,
           searching: false,
           page: data.page,
+          message: undefined,
           showNextPageLink: data.totalPages > data.page,
           showPrevPageLink: data.page > 1
         });
@@ -3806,7 +3867,13 @@ module.exports =
       value: function search() {
         var _this3 = this;
   
-        this.setState({ searchMade: false, searching: false, games: [] }, function () {
+        this.setState({
+          searchMade: false,
+          searching: false,
+          games: [],
+          page: 1,
+          message: undefined
+        }, function () {
           if (_this3.state.name.length > 1) {
             _this3.delaySearch();
           } else {
@@ -4915,6 +4982,7 @@ module.exports =
       value: {
         url: _react.PropTypes.string.isRequired,
         title: _react.PropTypes.string,
+        id: _react.PropTypes.string,
         steamID: _react.PropTypes.string,
         username: _react.PropTypes.string,
         gameID: _react.PropTypes.number
@@ -4930,21 +4998,13 @@ module.exports =
     }
   
     _createClass(ScreenshotListItem, [{
-      key: 'getIDFromUrl',
-      value: function getIDFromUrl() {
-        var prefix = 'id=';
-        var index = this.props.url.indexOf(prefix);
-        return this.props.url.slice(index + prefix.length);
-      }
-    }, {
       key: 'render',
       value: function render() {
-        var id = this.getIDFromUrl();
         var url = '';
         if (typeof this.props.username === 'string') {
-          url = '/player/' + this.props.username + '/' + this.props.steamID + '/' + id;
+          url = '/player/' + this.props.username + '/' + this.props.steamID + '/' + this.props.id;
         } else {
-          url = '/game/' + this.props.gameID + '/' + id;
+          url = '/game/' + this.props.gameID + '/' + this.props.id;
         }
         return _react2['default'].createElement(
           'li',
@@ -4970,7 +5030,7 @@ module.exports =
               'span',
               null,
               'Untitled ',
-              id
+              this.props.id
             )
           )
         );
@@ -5297,10 +5357,46 @@ module.exports =
           });
           this._appsByID[app.appid] = app;
         }
-        console.log('indexed ' + this.apps.length + ' games');
         this._sortedIds = this.apps.map(function (app) {
           return String(app.appid);
         });
+      }
+    }, {
+      key: 'randomAppid',
+      value: function randomAppid() {
+        var gameIDs = [22320, // Morrowind
+        22330, // Oblivion
+        72850, // Skyrim
+        8980, // Borderlands
+        49520, // Borderlands 2
+        252490, // Rust
+        413150, // Stardew Valley
+        17450, // Dragon Age: Origins
+        2280, // The Ultimate Doom
+        2300, // Doom 2,
+        9050, // Doom 3
+        17460, // Mass Effect,
+        24980, // Mass Effect 2
+        20900, // The Witcher,
+        20920, // The Witcher 2
+        292030, // The Witcher 3
+        3900, // Civ IV
+        8930, // Civ V
+        10, // Counter-Strike
+        730, // Counter-Strike: Global Offensive
+        570, // DotA 2
+        440, // Team Fortress 2
+        252950, // Rocket League
+        107410, // Arma 3
+        236430, // Dark Souls II
+        374320, // Dark Souls III
+        22300, // Fallout 3
+        22380, // Fallout New Vegas
+        377160, // Fallout 4
+        105600];
+        // Terraria
+        var index = Math.floor(Math.random() * gameIDs.length);
+        return gameIDs[index];
       }
     }, {
       key: 'search',
@@ -107705,15 +107801,17 @@ module.exports =
         if (isScreenshotLoaded && this.state.screenshot.date) {
           date = this.state.screenshot.date.toLocaleDateString();
         }
-        var backTitle = this.props.username || _storesSteamApps2['default'].getName(this.props.gameID);
-        var backUrl = '';
-        var backIcon = '';
+        var backUrl = undefined;
+        var backIcon = undefined;
+        var backTitle = undefined;
         if (typeof this.props.username === 'string') {
           backUrl = '/player/' + this.props.username + '/' + this.props.steamID;
           backIcon = 'user';
-        } else {
+          backTitle = this.props.username;
+        } else if (typeof this.props.gameID !== 'undefined') {
           backUrl = '/game/' + this.props.gameID;
           backIcon = 'steam';
+          backTitle = _storesSteamApps2['default'].getName(this.props.gameID);
         }
         var areColorsLoaded = typeof this.state.colors === 'object';
         return _react2['default'].createElement(

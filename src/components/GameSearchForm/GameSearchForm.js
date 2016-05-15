@@ -18,6 +18,7 @@ class GameSearchForm extends Component {
       showNextPageLink: false,
       showPrevPageLink: false,
       page: 1,
+      message: undefined,
     };
     this.delaySearch = _.debounce(this.delaySearch, 500);
   }
@@ -28,6 +29,7 @@ class GameSearchForm extends Component {
       searchMade: true,
       searching: false,
       page: data.page,
+      message: undefined,
       showNextPageLink: data.totalPages > data.page,
       showPrevPageLink: data.page > 1,
     });
@@ -61,7 +63,13 @@ class GameSearchForm extends Component {
   }
 
   search() {
-    this.setState({ searchMade: false, searching: false, games: [] }, () => {
+    this.setState({
+      searchMade: false,
+      searching: false,
+      games: [],
+      page: 1,
+      message: undefined,
+    }, () => {
       if (this.state.name.length > 1) {
         this.delaySearch();
       } else {
