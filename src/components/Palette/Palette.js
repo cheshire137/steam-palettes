@@ -170,6 +170,7 @@ class Palette extends Component {
                       onDeselected={this.onColorDeselected.bind(this)}
                       initiallySelected
                       onCopy={this.onCopy.bind(this)}
+                      indicateSelected={false}
                     />
                   </li>
                 );
@@ -197,6 +198,7 @@ class Palette extends Component {
                   allowSelection={allowSelection}
                   initiallySelected={initiallySelected}
                   onCopy={this.onCopy.bind(this)}
+                  indicateSelected={true}
                 />
               </li>
             );

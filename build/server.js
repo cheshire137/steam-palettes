@@ -108134,7 +108134,8 @@ module.exports =
                     allowSelection: false,
                     onDeselected: _this2.onColorDeselected.bind(_this2),
                     initiallySelected: true,
-                    onCopy: _this2.onCopy.bind(_this2)
+                    onCopy: _this2.onCopy.bind(_this2),
+                    indicateSelected: false
                   })
                 );
               })
@@ -108163,7 +108164,8 @@ module.exports =
                   onDeselected: _this2.onColorDeselected.bind(_this2),
                   allowSelection: allowSelection,
                   initiallySelected: initiallySelected,
-                  onCopy: _this2.onCopy.bind(_this2)
+                  onCopy: _this2.onCopy.bind(_this2),
+                  indicateSelected: true
                 })
               );
             })
@@ -108290,7 +108292,8 @@ module.exports =
         onDeselected: _react.PropTypes.func,
         allowSelection: _react.PropTypes.bool.isRequired,
         initiallySelected: _react.PropTypes.bool.isRequired,
-        onCopy: _react.PropTypes.func.isRequired
+        onCopy: _react.PropTypes.func.isRequired,
+        indicateSelected: _react.PropTypes.bool.isRequired
       },
       enumerable: true
     }]);
@@ -108337,7 +108340,10 @@ module.exports =
       key: 'render',
       value: function render() {
         var swatchStyle = { backgroundColor: this.props.hexColor };
-        var selectedClass = this.state.selected ? _SwatchScss2['default'].selected : _SwatchScss2['default'].unselected;
+        var selectedClass = _SwatchScss2['default'].unselected;
+        if (this.state.selected && this.props.indicateSelected) {
+          selectedClass = _SwatchScss2['default'].selected;
+        }
         var isDark = (0, _tinycolor22['default'])(this.props.hexColor).isDark();
         var darknessClass = isDark ? _SwatchScss2['default'].dark : _SwatchScss2['default'].light;
         return _react2['default'].createElement(

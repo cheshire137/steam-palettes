@@ -14,6 +14,7 @@ class Swatch extends Component {
     allowSelection: PropTypes.bool.isRequired,
     initiallySelected: PropTypes.bool.isRequired,
     onCopy: PropTypes.func.isRequired,
+    indicateSelected: PropTypes.bool.isRequired,
   };
 
   constructor(props, context) {
@@ -51,7 +52,10 @@ class Swatch extends Component {
 
   render() {
     const swatchStyle = { backgroundColor: this.props.hexColor };
-    const selectedClass = this.state.selected ? s.selected : s.unselected;
+    let selectedClass = s.unselected;
+    if (this.state.selected && this.props.indicateSelected) {
+      selectedClass = s.selected;
+    }
     const isDark = tinycolor(this.props.hexColor).isDark();
     const darknessClass = isDark ? s.dark : s.light;
     return (
