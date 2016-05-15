@@ -9,7 +9,7 @@ import SteamApps from '../../stores/steamApps';
 @withStyles(s)
 class GamePage extends Component {
   static propTypes = {
-    gameID: PropTypes.string.isRequired,
+    gameID: PropTypes.number.isRequired,
   };
 
   static contextTypes = {
@@ -27,9 +27,9 @@ class GamePage extends Component {
   }
 
   componentDidMount() {
-    // Steam.getScreenshots(this.props.username).
-    //       then(this.onScreenshotsLoaded.bind(this)).
-    //       catch(this.onScreenshotsLoadError.bind(this));
+    Steam.getScreenshots(this.props.gameID).
+          then(this.onScreenshotsLoaded.bind(this)).
+          catch(this.onScreenshotsLoadError.bind(this));
   }
 
   onScreenshotsLoaded(screenshots) {

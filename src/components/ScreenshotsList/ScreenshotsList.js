@@ -20,11 +20,13 @@ class ScreenshotsList extends Component {
   render() {
     let message = 'Choose a screenshot:';
     if (this.props.screenshots.length < 1) {
+      message = 'This ';
       if (typeof this.props.username === 'undefined') {
-        message = 'This game does not have any screenshots.';
+        message += 'game';
       } else {
-        message = 'This user does not have any screenshots.';
+        message += 'user';
       }
+      message += ' does not have any screenshots.';
     }
     return (
       <ul className={s.screenshots}>

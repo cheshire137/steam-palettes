@@ -1,10 +1,14 @@
 import Api from './api';
 
 class Steam extends Api {
-  static async getScreenshots(username) {
-    const data = await this.get('/api/screenshots?user=' +
-                                encodeURIComponent(username) +
-                                '&format=json');
+  static async getScreenshots(key) {
+    let query = '/api/screenshots?';
+    if (typeof key === 'string') {
+      query += 'user=' + encodeURIComponent(key);
+    } else {
+      query += 'appid=' + key;
+    }
+    const data = await this.get(query + '&format=json');
     return data;
   }
 

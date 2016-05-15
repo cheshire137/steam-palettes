@@ -87,12 +87,17 @@ server.get('/api/screenshot', async (req, res) => {
 
 server.get('/api/screenshots', async (req, res) => {
   const username = req.query.user;
-  if (typeof username !== 'string' || username.length < 1) {
-    res.status(400).
-        json({ error: 'Must provide Steam user name in user param' });
+  const appid = req.query.appid;
+  const haveUsername = typeof username === 'string' &&
+      username.length > 0;
+  const haveAppid = typeof appid === 'string' && appid.length > 0;
+  if (!haveUsername && !haveAppid) {
+    const error = 'Must provide Steam user name in user param or ' +
+                  'Steam app ID in appid param';
+    res.status(400).json({ error });
     return;
   }
-  const scraper = new ScreenshotsScraper(username);
+  const scraper = new ScreenshotsScraper({ username, appid });
   const html = await scraper.getPage();
   scraper.getScreenshots(html).then((screenshots) => {
     res.json(screenshots);

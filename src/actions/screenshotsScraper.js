@@ -3,15 +3,23 @@ import jsdom from 'jsdom';
 import Promise from 'bluebird';
 
 class ScreenshotsScraper {
-  constructor(username) {
-    this.username = username;
+  constructor(opts) {
+    this.username = opts.username;
+    this.appid = opts.appid;
+  }
+
+  getUrl() {
+    if (typeof this.username === 'string') {
+      return 'http://steamcommunity.com/id/' + this.username +
+             '/screenshots/?appid=0&sort=newestfirst&' +
+             'browsefilter=myfiles&view=grid';
+    }
+    return 'http://steamcommunity.com/app/' + this.appid +
+           '/screenshots/?sort=newestfirst&p=1&browsefilter=mostrecent';
   }
 
   async getPage() {
-    const url = 'http://steamcommunity.com/id/' + this.username +
-                '/screenshots/?appid=0&sort=newestfirst&' +
-                'browsefilter=myfiles&view=grid';
-    const response = await fetch(url);
+    const response = await fetch(this.getUrl());
     const data = await response.text();
     return data;
   }
@@ -26,6 +34,14 @@ class ScreenshotsScraper {
   }
 
   scrapeDom(resolve, reject, err, window) {
+    if (typeof this.username === 'string') {
+      this.scrapeUserDom(resolve, reject, err, window);
+    } else {
+      this.scrapeAppDom(resolve, reject, err, window);
+    }
+  }
+
+  scrapeUserDom(resolve, reject, err, window) {
     const selector = '#image_wall .imageWallRow .profile_media_item';
     const links = window.document.querySelectorAll(selector);
     const screenshots = [];
@@ -35,8 +51,17 @@ class ScreenshotsScraper {
     resolve(screenshots);
   }
 
+  scrapeAppDom(resolve, reject, err, window) {
+    const cards = window.document.querySelectorAll('.apphub_Card');
+    const screenshots = [];
+    for (let i = 0; i < cards.length; i++) {
+      screenshots.push(this.getScreenshotFromCard(cards[i]));
+    }
+    resolve(screenshots);
+  }
+
   getScreenshotFromLink(link) {
-    const href = link.getAttribute('href');
+    const url = link.getAttribute('href');
     const descEl = link.querySelector('.imgWallHoverDescription');
     let title = undefined;
     if (descEl) {
@@ -45,10 +70,21 @@ class ScreenshotsScraper {
         title = ellipsis.innerHTML;
       }
     }
-    return {
-      url: href,
-      title,
-    };
+    return { url, title };
+  }
+
+  getScreenshotFromCard(card) {
+    const url = card.getAttribute('data-modal-content-url');
+    const author = card.querySelector('.apphub_CardContentAuthorName');
+    let title = '';
+    if (author) {
+      const authorLinks = author.querySelectorAll('a');
+      for (let i = 0; i < authorLinks.length; i++) {
+        title += authorLinks[i].innerHTML + ' ';
+      }
+      title = title.trim();
+    }
+    return { url, title };
   }
 }
 

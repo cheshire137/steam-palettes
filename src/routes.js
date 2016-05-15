@@ -26,9 +26,9 @@ const router = new Router(on => {
     );
   });
 
-  on('/game/:gameID', async (req) => {
-    const gameID = req.params.gameID;
-    return <GamePage gameID={gameID} />;
+  on('/game/:appid', async (req) => {
+    const appid = parseInt(req.params.appid, 10);
+    return <GamePage gameID={appid} />;
   });
 
   on('/player/:username/:steamID', async (req) => {

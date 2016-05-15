@@ -237,26 +237,31 @@ module.exports =
   });
   
   server.get('/api/screenshots', function callee$0$0(req, res) {
-    var username, scraper, html;
+    var username, appid, haveUsername, haveAppid, error, scraper, html;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
           username = req.query.user;
+          appid = req.query.appid;
+          haveUsername = typeof username === 'string' && username.length > 0;
+          haveAppid = typeof appid === 'string' && appid.length > 0;
   
-          if (!(typeof username !== 'string' || username.length < 1)) {
-            context$1$0.next = 4;
+          if (!(!haveUsername && !haveAppid)) {
+            context$1$0.next = 8;
             break;
           }
   
-          res.status(400).json({ error: 'Must provide Steam user name in user param' });
+          error = 'Must provide Steam user name in user param or ' + 'Steam app ID in appid param';
+  
+          res.status(400).json({ error: error });
           return context$1$0.abrupt('return');
   
-        case 4:
-          scraper = new _actionsScreenshotsScraper2['default'](username);
-          context$1$0.next = 7;
+        case 8:
+          scraper = new _actionsScreenshotsScraper2['default']({ username: username, appid: appid });
+          context$1$0.next = 11;
           return regeneratorRuntime.awrap(scraper.getPage());
   
-        case 7:
+        case 11:
           html = context$1$0.sent;
   
           scraper.getScreenshots(html).then(function (screenshots) {
@@ -265,7 +270,7 @@ module.exports =
             res.status(400).json({ error: error });
           });
   
-        case 9:
+        case 13:
         case 'end':
           return context$1$0.stop();
       }
@@ -540,13 +545,13 @@ module.exports =
       }, null, _this);
     });
   
-    on('/game/:gameID', function callee$1$0(req) {
-      var gameID;
+    on('/game/:appid', function callee$1$0(req) {
+      var appid;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
-            gameID = req.params.gameID;
-            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsGamePage2['default'], { gameID: gameID }));
+            appid = parseInt(req.params.appid, 10);
+            return context$2$0.abrupt('return', _react2['default'].createElement(_componentsGamePage2['default'], { gameID: appid }));
   
           case 2:
           case 'end':
@@ -3104,19 +3109,26 @@ module.exports =
   
     _createClass(Steam, null, [{
       key: 'getScreenshots',
-      value: function getScreenshots(username) {
-        var data;
+      value: function getScreenshots(key) {
+        var query, data;
         return regeneratorRuntime.async(function getScreenshots$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
-              context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.get('/api/screenshots?user=' + encodeURIComponent(username) + '&format=json'));
+              query = '/api/screenshots?';
   
-            case 2:
+              if (typeof key === 'string') {
+                query += 'user=' + encodeURIComponent(key);
+              } else {
+                query += 'appid=' + key;
+              }
+              context$2$0.next = 4;
+              return regeneratorRuntime.awrap(this.get(query + '&format=json'));
+  
+            case 4:
               data = context$2$0.sent;
               return context$2$0.abrupt('return', data);
   
-            case 4:
+            case 6:
             case 'end':
               return context$2$0.stop();
           }
@@ -4606,11 +4618,13 @@ module.exports =
   
         var message = 'Choose a screenshot:';
         if (this.props.screenshots.length < 1) {
+          message = 'This ';
           if (typeof this.props.username === 'undefined') {
-            message = 'This game does not have any screenshots.';
+            message += 'game';
           } else {
-            message = 'This user does not have any screenshots.';
+            message += 'user';
           }
+          message += ' does not have any screenshots.';
         }
         return _react2['default'].createElement(
           'ul',
@@ -4898,7 +4912,7 @@ module.exports =
     _createClass(GamePage, null, [{
       key: 'propTypes',
       value: {
-        gameID: _react.PropTypes.string.isRequired
+        gameID: _react.PropTypes.number.isRequired
       },
       enumerable: true
     }, {
@@ -4925,9 +4939,7 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        // Steam.getScreenshots(this.props.username).
-        //       then(this.onScreenshotsLoaded.bind(this)).
-        //       catch(this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshots(this.props.gameID).then(this.onScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
       }
     }, {
       key: 'onScreenshotsLoaded',
@@ -108339,33 +108351,41 @@ module.exports =
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
   var ScreenshotsScraper = (function () {
-    function ScreenshotsScraper(username) {
+    function ScreenshotsScraper(opts) {
       _classCallCheck(this, ScreenshotsScraper);
   
-      this.username = username;
+      this.username = opts.username;
+      this.appid = opts.appid;
     }
   
     _createClass(ScreenshotsScraper, [{
+      key: 'getUrl',
+      value: function getUrl() {
+        if (typeof this.username === 'string') {
+          return 'http://steamcommunity.com/id/' + this.username + '/screenshots/?appid=0&sort=newestfirst&' + 'browsefilter=myfiles&view=grid';
+        }
+        return 'http://steamcommunity.com/app/' + this.appid + '/screenshots/?sort=newestfirst&p=1&browsefilter=mostrecent';
+      }
+    }, {
       key: 'getPage',
       value: function getPage() {
-        var url, response, data;
+        var response, data;
         return regeneratorRuntime.async(function getPage$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
-              url = 'http://steamcommunity.com/id/' + this.username + '/screenshots/?appid=0&sort=newestfirst&' + 'browsefilter=myfiles&view=grid';
-              context$2$0.next = 3;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url));
+              context$2$0.next = 2;
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(this.getUrl()));
   
-            case 3:
+            case 2:
               response = context$2$0.sent;
-              context$2$0.next = 6;
+              context$2$0.next = 5;
               return regeneratorRuntime.awrap(response.text());
   
-            case 6:
+            case 5:
               data = context$2$0.sent;
               return context$2$0.abrupt('return', data);
   
-            case 8:
+            case 7:
             case 'end':
               return context$2$0.stop();
           }
@@ -108386,6 +108406,15 @@ module.exports =
     }, {
       key: 'scrapeDom',
       value: function scrapeDom(resolve, reject, err, window) {
+        if (typeof this.username === 'string') {
+          this.scrapeUserDom(resolve, reject, err, window);
+        } else {
+          this.scrapeAppDom(resolve, reject, err, window);
+        }
+      }
+    }, {
+      key: 'scrapeUserDom',
+      value: function scrapeUserDom(resolve, reject, err, window) {
         var selector = '#image_wall .imageWallRow .profile_media_item';
         var links = window.document.querySelectorAll(selector);
         var screenshots = [];
@@ -108395,9 +108424,19 @@ module.exports =
         resolve(screenshots);
       }
     }, {
+      key: 'scrapeAppDom',
+      value: function scrapeAppDom(resolve, reject, err, window) {
+        var cards = window.document.querySelectorAll('.apphub_Card');
+        var screenshots = [];
+        for (var i = 0; i < cards.length; i++) {
+          screenshots.push(this.getScreenshotFromCard(cards[i]));
+        }
+        resolve(screenshots);
+      }
+    }, {
       key: 'getScreenshotFromLink',
       value: function getScreenshotFromLink(link) {
-        var href = link.getAttribute('href');
+        var url = link.getAttribute('href');
         var descEl = link.querySelector('.imgWallHoverDescription');
         var title = undefined;
         if (descEl) {
@@ -108406,10 +108445,22 @@ module.exports =
             title = ellipsis.innerHTML;
           }
         }
-        return {
-          url: href,
-          title: title
-        };
+        return { url: url, title: title };
+      }
+    }, {
+      key: 'getScreenshotFromCard',
+      value: function getScreenshotFromCard(card) {
+        var url = card.getAttribute('data-modal-content-url');
+        var author = card.querySelector('.apphub_CardContentAuthorName');
+        var title = '';
+        if (author) {
+          var authorLinks = author.querySelectorAll('a');
+          for (var i = 0; i < authorLinks.length; i++) {
+            title += authorLinks[i].innerHTML + ' ';
+          }
+          title = title.trim();
+        }
+        return { url: url, title: title };
       }
     }]);
   
