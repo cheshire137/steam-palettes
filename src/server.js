@@ -129,16 +129,18 @@ server.get('/api/games', async (req, res) => {
         json({ error: 'Must provide Steam game name query in name param' });
     return;
   }
-  let limit = parseInt(req.query.limit || 15, 10);
-  if (limit > 100) {
-    limit = 100;
+  const perPage = 6;
+  let page = parseInt(req.query.page || 1, 10);
+  if (page < 1) {
+    page = 1;
   }
-  let offset = parseInt(req.query.offset || 0, 10);
-  if (offset < 0) {
-    offset = 0;
-  }
-  const games = SteamApps.search(name).slice(offset, limit);
-  res.json(games);
+  const offset = perPage * (page - 1);
+  const allGames = SteamApps.search(name);
+  const totalCount = allGames.length;
+  const limit = Math.min(offset + perPage, totalCount);
+  const games = allGames.slice(offset, limit);
+  const totalPages = Math.ceil(totalCount / perPage * 1.0);
+  res.json({ games, page, totalPages, totalCount });
 });
 
 //

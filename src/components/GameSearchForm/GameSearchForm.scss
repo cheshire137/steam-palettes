@@ -54,3 +54,27 @@ input[type="search"].textField {
 .spinner {
 
 }
+
+.pagination {
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
+.prevPage {
+  float: left;
+
+  .icon {
+
+  }
+}
+
+.nextPage {
+  float: right;
+
+  .icon {
+
+  }
+}

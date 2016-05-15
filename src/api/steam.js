@@ -15,10 +15,12 @@ class Steam extends Api {
     return data;
   }
 
-  static async getGames(name) {
-    const data = await this.get('/api/games?name=' +
-                                encodeURIComponent(name) +
-                                '&format=json');
+  static async getGames(name, page) {
+    let query = '/api/games?name=' + encodeURIComponent(name) + '&format=json';
+    if (typeof page === 'number') {
+      query += '&page=' + page;
+    }
+    const data = await this.get(query);
     return data;
   }
 

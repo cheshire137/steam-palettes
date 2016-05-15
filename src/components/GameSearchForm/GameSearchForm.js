@@ -15,12 +15,22 @@ class GameSearchForm extends Component {
       games: [],
       searchMade: false,
       searching: false,
+      showNextPageLink: false,
+      showPrevPageLink: false,
+      page: 1,
     };
     this.delaySearch = _.debounce(this.delaySearch, 500);
   }
 
-  onSteamGamesLoaded(games) {
-    this.setState({ games, searchMade: true, searching: false });
+  onSteamGamesLoaded(data) {
+    this.setState({
+      games: data.games,
+      searchMade: true,
+      searching: false,
+      page: data.page,
+      showNextPageLink: data.totalPages > data.page,
+      showPrevPageLink: data.page > 1,
+    });
   }
 
   onSteamGamesLoadError(response) {
@@ -36,8 +46,22 @@ class GameSearchForm extends Component {
     this.setState({ name: event.target.value }, this.search.bind(this));
   }
 
+  loadNextPage(event) {
+    event.target.blur();
+    this.setState({ page: this.state.page + 1 }, () => {
+      this.makeSearch();
+    });
+  }
+
+  loadPreviousPage(event) {
+    event.target.blur();
+    this.setState({ page: this.state.page - 1 }, () => {
+      this.makeSearch();
+    });
+  }
+
   search() {
-    this.setState({ searchMade: false, searching: false }, () => {
+    this.setState({ searchMade: false, searching: false, games: [] }, () => {
       if (this.state.name.length > 1) {
         this.delaySearch();
       } else {
@@ -48,7 +72,7 @@ class GameSearchForm extends Component {
 
   makeSearch() {
     this.setState({ searching: true });
-    Steam.getGames(this.state.name).
+    Steam.getGames(this.state.name, this.state.page).
           then(this.onSteamGamesLoaded.bind(this)).
           catch(this.onSteamGamesLoadError.bind(this));
   }
@@ -97,6 +121,22 @@ class GameSearchForm extends Component {
                 </li>
               );
             })}
+            <li className={s.pagination}>
+              {this.state.showPrevPageLink ? (
+                <button type="button" className={s.prevPage}
+                  onClick={this.loadPreviousPage.bind(this)}
+                >
+                  <FontAwesome name="chevron-left" className={s.icon} />
+                </button>
+              ) : ''}
+              {this.state.showNextPageLink ? (
+                <button type="button" className={s.nextPage}
+                  onClick={this.loadNextPage.bind(this)}
+                >
+                  <FontAwesome name="chevron-right" className={s.icon} />
+                </button>
+              ) : ''}
+            </li>
           </ul>
         ) : (
           <div>

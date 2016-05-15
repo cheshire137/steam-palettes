@@ -125,7 +125,7 @@ module.exports =
   server.use(_express2['default']['static'](_path2['default'].join(__dirname, 'public')));
   
   server.all('*', function (req, res, next) {
-    var config = _configJson2['default'][("production")];
+    var config = _configJson2['default'][("development")];
     var origin = req.protocol + '://' + config.clientHost;
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Headers', 'X-Requested-With');
@@ -310,7 +310,7 @@ module.exports =
   });
   
   server.get('/api/games', function callee$0$0(req, res) {
-    var name, limit, offset, games;
+    var name, perPage, page, offset, allGames, totalCount, limit, games, totalPages;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -325,21 +325,22 @@ module.exports =
           return context$1$0.abrupt('return');
   
         case 4:
-          limit = parseInt(req.query.limit || 15, 10);
+          perPage = 6;
+          page = parseInt(req.query.page || 1, 10);
   
-          if (limit > 100) {
-            limit = 100;
+          if (page < 1) {
+            page = 1;
           }
-          offset = parseInt(req.query.offset || 0, 10);
+          offset = perPage * (page - 1);
+          allGames = _storesSteamApps2['default'].search(name);
+          totalCount = allGames.length;
+          limit = Math.min(offset + perPage, totalCount);
+          games = allGames.slice(offset, limit);
+          totalPages = Math.ceil(totalCount / perPage * 1.0);
   
-          if (offset < 0) {
-            offset = 0;
-          }
-          games = _storesSteamApps2['default'].search(name).slice(offset, limit);
+          res.json({ games: games, page: page, totalPages: totalPages, totalCount: totalCount });
   
-          res.json(games);
-  
-        case 10:
+        case 14:
         case 'end':
           return context$1$0.stop();
       }
@@ -1596,6 +1597,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./App.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./App.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 15 */
@@ -1606,7 +1622,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}*{box-sizing:border-box}a,a:active,a:link,a:visited{color:#fff;text-decoration:none;-webkit-transition:color ease-in-out .15s;transition:color ease-in-out .15s}a:focus,a:hover{color:#8b8086}h1,h2,h3,h4,h5,h6{color:#9e969b;font-weight:400}html{font-weight:400;font-size:1em;font-family:Arimo,Segoe UI,HelveticaNeue-Light,sans-serif;line-height:1.375}body{background-color:#222314;color:#8b8086}.App_container_3x2,body{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;min-height:100vh;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column}.App_main_11s{margin-left:auto;margin-right:auto;max-width:1000px;-webkit-box-flex:1;-webkit-flex:1 0 auto;-ms-flex:1 0 auto;flex:1 0 auto}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}audio,canvas,iframe,img,svg,video{vertical-align:middle}fieldset{border:0;margin:0;padding:0}textarea{resize:vertical}.App_browserupgrade_1t4{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}@media print{*,:after,:before{background:transparent!important;color:#000!important;box-shadow:none!important;text-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:\" (\" attr(href) \")\"}abbr[title]:after{content:\" (\" attr(title) \")\"}a[href^=\"#\"]:after,a[href^=\"javascript:\"]:after{content:\"\"}blockquote,pre{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}img,tr{page-break-inside:avoid}img{max-width:100%!important}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}}button,input[type=search],input[type=text]{background-color:#8b8086;color:#fff}input[type=search],input[type=text],select{box-sizing:border-box;display:block;width:100%;padding:6px;font-size:14px;line-height:1.42857143;background-image:none;border:1px solid #574e4f;border-radius:2px;box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}input[type=search]:disabled,input[type=text]:disabled,select:disabled{color:#ccc;background-color:#7c7177}input[type=search]:focus,input[type=text]:focus,select:focus{border-color:#f5efef;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px hsla(0,23%,95%,.6)}select{height:34px}input[type=search]::-webkit-search-cancel-button{-webkit-appearance:searchfield-cancel-button}button,input,select,textarea{font:inherit}button{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:700;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:baseline;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid #574e4f;border-radius:2px;-webkit-transition:background-color ease-in-out .15s;transition:background-color ease-in-out .15s}button:focus,button:hover{background-color:#7c7177}button:disabled,button:disabled:focus,button:disabled:hover{color:#ccc;background-color:#7c7177}", ""]);
+  exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio, canvas, progress, video {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden], template {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active, a:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb, strong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub, sup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode, kbd, pre, samp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton, input, optgroup, select, textarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton, select {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton, html input[type=\"button\"], input[type=\"reset\"], input[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled], html input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner, input::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"], input[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button, input[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button, input[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd, th {\n  padding: 0;\n}  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: #fff;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: #8B8086;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: #9E969B;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: 'Arimo','Segoe UI','HelveticaNeue-Light',sans-serif;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: #222314;\r\n  color: #8B8086;\r\n}\r\n\r\nbody, .App_container_3x2 {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  min-height: 100vh;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n      -ms-flex-direction: column;\r\n          flex-direction: column;\r\n}\r\n\r\n.App_main_11s {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: 1000px;\r\n  -webkit-box-flex: 1;\r\n  -webkit-flex: 1 0 auto;\r\n      -ms-flex: 1 0 auto;\r\n          flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio, canvas, iframe, img, svg, video {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.App_browserupgrade_1t4 {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *, *:before, *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    -webkit-box-shadow: none !important;\r\n            box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a, a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after, a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre, blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr, img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p, h2, h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2, h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: #8B8086;\r\n  color: #fff;\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], select {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s\r\n}\r\n\r\ninput[type=\"text\"]:disabled, input[type=\"search\"]:disabled, select:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\ninput[type=\"text\"]:focus, input[type=\"search\"]:focus, select:focus {\n  border-color: #F5EFEF;\n  outline: 0;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid #574E4F;\r\n  border-radius: 2px;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s\r\n}\r\n\r\nbutton:focus, button:hover {\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n\r\nbutton:disabled:focus, button:disabled:hover {\n  color: #ccc;\n  background-color: #7C7177;\n}\r\n", "", {"version":3,"sources":["/./node_modules/normalize.css/normalize.css","/./src/components/variables.scss","/./src/components/App/App.scss"],"names":[],"mappings":"AAAA,4EAA4E;;AAE5E;;;;GAIG;;AAEH;EACE,wBAAwB,CAAC,OAAO;EAChC,2BAA2B,CAAC,OAAO;EACnC,+BAA+B,CAAC,OAAO;CACxC;;AAED;;GAEG;;AAEH;EACE,UAAU;CACX;;AAED;gFACgF;;AAEhF;;;;;GAKG;;AAEH;EAaE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;EAIE,sBAAsB,CAAC,OAAO;EAC9B,yBAAyB,CAAC,OAAO;CAClC;;AAED;;;GAGG;;AAEH;EACE,cAAc;EACd,UAAU;CACX;;AAED;;;GAGG;;AAEH;EAEE,cAAc;CACf;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,8BAA8B;CAC/B;;AAED;;;GAGG;;AAEH;EAEE,WAAW;CACZ;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,0BAA0B;CAC3B;;AAED;;GAEG;;AAEH;EAEE,kBAAkB;CACnB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;;GAGG;;AAEH;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;EACjB,YAAY;CACb;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;GAEG;;AAEH;EAEE,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,yBAAyB;CAC1B;;AAED;EACE,YAAY;CACb;;AAED;EACE,gBAAgB;CACjB;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,UAAU;CACX;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;GAEG;;AAEH;EACE,gCAAwB;UAAxB,wBAAwB;EACxB,UAAU;CACX;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;GAEG;;AAEH;EAIE,kCAAkC;EAClC,eAAe;CAChB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;;;;GAKG;;AAEH;EAKE,eAAe,CAAC,OAAO;EACvB,cAAc,CAAC,OAAO;EACtB,UAAU,CAAC,OAAO;CACnB;;AAED;;GAEG;;AAEH;EACE,kBAAkB;CACnB;;AAED;;;;;GAKG;;AAEH;EAEE,qBAAqB;CACtB;;AAED;;;;;;GAMG;;AAEH;EAIE,2BAA2B,CAAC,OAAO;EACnC,gBAAgB,CAAC,OAAO;CACzB;;AAED;;GAEG;;AAEH;EAEE,gBAAgB;CACjB;;AAED;;GAEG;;AAEH;EAEE,UAAU;EACV,WAAW;CACZ;;AAED;;;GAGG;;AAEH;EACE,oBAAoB;CACrB;;AAED;;;;;;GAMG;;AAEH;EAEE,+BAAuB;UAAvB,uBAAuB,CAAC,OAAO;EAC/B,WAAW,CAAC,OAAO;CACpB;;AAED;;;;GAIG;;AAEH;EAEE,aAAa;CACd;;AAED;;;GAGG;;AAEH;EACE,8BAA8B,CAAC,OAAO;EACtC,gCAAwB;UAAxB,wBAAwB,CAAC,OAAO;CACjC;;AAED;;;;GAIG;;AAEH;EAEE,yBAAyB;CAC1B;;AAED;;GAEG;;AAEH;EACE,0BAA0B;EAC1B,cAAc;EACd,+BAA+B;CAChC;;AAED;;;GAGG;;AAEH;EACE,UAAU,CAAC,OAAO;EAClB,WAAW,CAAC,OAAO;CACpB;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;EACE,kBAAkB;CACnB;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,0BAA0B;EAC1B,kBAAkB;CACnB;;AAED;EAEE,WAAW;CACZ,ECpa+B,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACHjE;EACE,+BAA+B;EAE/B,uBAAuB;CACxB;;AAED;EACE,YAAmB;EACnB,sBAAsB;EACtB,2CAA2C;EAC3C,sCAAsC;EACtC,mCAAmC;CACpC;;AAED;EACE,eAAyB;CAC1B;;AAED;EACE,eAAqB;EACrB,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,eAAe,CAAC,YAAY;EAC5B,iEAA+B;EAC/B,mBAAmB,CAAC,WAAW;CAChC;;AAED;EACE,0BAA2B;EAC3B,eAAmB;CACpB;;AAED;EACE,qBAAc;EAAd,sBAAc;EAAd,qBAAc;EAAd,cAAc;EACd,kBAAkB;EAClB,6BAAuB;EAAvB,8BAAuB;EAAvB,+BAAuB;MAAvB,2BAAuB;UAAvB,uBAAuB;CACxB;;AAED;EACE,kBAAkB;EAClB,mBAAmB;EACnB,kBAA8B;EAC9B,oBAAe;EAAf,uBAAe;MAAf,mBAAe;UAAf,eAAe;CAChB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;EACE,eAAe;EACf,YAAY;EACZ,UAAU;EACV,2BAA2B;EAC3B,cAAc;EACd,WAAW;CACZ;;AAED;EAME,uBAAuB;CACxB;;AAED;EACE,UAAU;EACV,UAAU;EACV,WAAW;CACZ;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,YAAY;EACZ,iBAAiB;CAClB;;AAED;EACE;IAGE,mCAAmC;IACnC,uBAAuB,CAAC,+DAA+D;IACvF,oCAA4B;YAA5B,4BAA4B;IAC5B,6BAA6B;GAC9B;;EAED;IAEE,2BAA2B;GAC5B;;EAED;IACE,6BAA6B;GAC9B;;EAED;IACE,8BAA8B;GAC/B;;EAED;;;KAGG;;EAEH;IAEE,YAAY;GACb;;EAED;IAEE,uBAAuB;IACvB,yBAAyB;GAC1B;;EAED;;;KAGG;;EAEH;IACE,4BAA4B;GAC7B;;EAED;IAEE,yBAAyB;GAC1B;;EAED;IACE,2BAA2B;GAC5B;;EAED;IAGE,WAAW;IACX,UAAU;GACX;;EAED;IAEE,wBAAwB;GACzB;CACF;;AAED;EACE,0BAA4B;EAC5B,YAAyB;CAC1B;;AAED;EAGE,+BAA+B;EAC/B,uBAAuB;EACvB,eAAe;EACf,YAAY;EACZ,aAAa;EACb,gBAAgB;EAChB,wBAAwB;EACxB,uBAAuB;EACvB,0BAAsC;EACtC,mBAAoC;EACpC,qDAAqD;EACrD,6CAA6C;EAC7C,sFAAsF;EACtF,yEAAyE;EACzE,8EAAsE;EAAtE,sEAAsE;EAAtE,yGAAsE;CAavE;;AAXC;EACE,YAAY;EACZ,0BAA0B;CAC3B;;AAED;EACE,sBAAsB;EACtB,WAAW;EACX,kFAAkF;EAClF,0EAA0E;CAC3E;;AAGH;EACE,aAAa;CACd;;AAED;EACE,8CAA8C;CAC/C;;AAED;EACE,cAAc;CACf;;AAED;EACE,sBAAsB;EACtB,kBAAkB;EAClB,iBAAiB;EACjB,gBAAgB;EAChB,iBAAiB;EACjB,wBAAwB;EACxB,mBAAmB;EACnB,oBAAoB;EACpB,yBAAyB;EACzB,+BAA+B;EAC/B,2BAA2B;EAC3B,gBAAgB;EAChB,0BAA0B;EAC1B,uBAAuB;EACvB,sBAAsB;EACtB,kBAAkB;EAClB,uBAAuB;EACvB,0BAAsC;EACtC,mBAAoC;EACpC,sDAAsD;EACtD,iDAAiD;EACjD,6CAA8C;CAe/C;;AAbC;EACE,0BAA0B;CAC3B;;AAED;EACE,YAAY;EACZ,0BAA0B;CAM3B;;AAJC;EACE,YAAY;EACZ,0BAA0B;CAC3B","file":"App.scss","sourcesContent":["/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS and IE text size adjust after device orientation change,\n *    without disabling user zoom.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined for any HTML5 element in IE 8/9.\n * Correct `block` display not defined for `details` or `summary` in IE 10/11\n * and Firefox.\n * Correct `block` display not defined for `main` in IE 11.\n */\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block;\n}\n\n/**\n * 1. Correct `inline-block` display not defined in IE 8/9.\n * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block; /* 1 */\n  vertical-align: baseline; /* 2 */\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Address `[hidden]` styling not present in IE 8/9/10.\n * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.\n */\n\n[hidden],\ntemplate {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * Remove the gray background color from active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * Improve readability of focused elements when they are also in an\n * active/hover state.\n */\n\na:active,\na:hover {\n  outline: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Address styling not present in IE 8/9/10/11, Safari, and Chrome.\n */\n\nabbr[title] {\n  border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.\n */\n\nb,\nstrong {\n  font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari and Chrome.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari, and Chrome.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n  background: #ff0;\n  color: #000;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsup {\n  top: -0.5em;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9/10.\n */\n\nimg {\n  border: 0;\n}\n\n/**\n * Correct overflow not hidden in IE 9/10/11.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n  box-sizing: content-box;\n  height: 0;\n}\n\n/**\n * Contain overflow in all browsers.\n */\n\npre {\n  overflow: auto;\n}\n\n/**\n * Address odd `em`-unit font size rendering in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * Known limitation: by default, Chrome and Safari on OS X allow very limited\n * styling of `select`, unless a `border` property is set.\n */\n\n/**\n * 1. Correct color not being inherited.\n *    Known issue: affects color of disabled elements.\n * 2. Correct font properties not being inherited.\n * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit; /* 1 */\n  font: inherit; /* 2 */\n  margin: 0; /* 3 */\n}\n\n/**\n * Address `overflow` set to `hidden` in IE 8/9/10/11.\n */\n\nbutton {\n  overflow: visible;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.\n * Correct `select` style inheritance in Firefox.\n */\n\nbutton,\nselect {\n  text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton,\nhtml input[type=\"button\"], /* 1 */\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n  cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0;\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\ninput {\n  line-height: normal;\n}\n\n/**\n * It's recommended that you don't attempt to style these elements.\n * Firefox's implementation doesn't respect box-sizing, padding, or width.\n *\n * 1. Address box sizing set to `content-box` in IE 8/9/10.\n * 2. Remove excess padding in IE 8/9/10.\n */\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Fix the cursor style for Chrome's increment/decrement buttons. For certain\n * `font-size` values of the `input`, it causes the cursor style of the\n * decrement button to change from `default` to `text`.\n */\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.\n */\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  box-sizing: content-box; /* 2 */\n}\n\n/**\n * Remove inner padding and search cancel button in Safari and Chrome on OS X.\n * Safari (but not Chrome) clips the cancel button when the search input has\n * padding (and `textfield` appearance).\n */\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9/10/11.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n  border: 0; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Remove default vertical scrollbar in IE 8/9/10/11.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * Don't inherit the `font-weight` (applied by a rule above).\n * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/* Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\ntd,\nth {\n  padding: 0;\n}\n","$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../../../node_modules/normalize.css/normalize.css';\r\n@import '../variables.scss';\r\n\r\n* {\r\n  -webkit-box-sizing: border-box;\r\n  -moz-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n}\r\n\r\na, a:link, a:visited, a:active {\r\n  color: $link-color;\r\n  text-decoration: none;\r\n  -webkit-transition: color ease-in-out .15s;\r\n  -o-transition: color ease-in-out .15s;\r\n  transition: color ease-in-out .15s;\r\n}\r\n\r\na:hover, a:focus {\r\n  color: $hover-link-color;\r\n}\r\n\r\nh1, h2, h3, h4, h5, h6 {\r\n  color: $header-color;\r\n  font-weight: 400;\r\n}\r\n\r\nhtml {\r\n  font-weight: 400;\r\n  font-size: 1em; /* ~16px; */\r\n  font-family: $font-family-base;\r\n  line-height: 1.375; /* ~22px */\r\n}\r\n\r\nbody {\r\n  background-color: $body-bg;\r\n  color: $text-color;\r\n}\r\n\r\nbody, .container {\r\n  display: flex;\r\n  min-height: 100vh;\r\n  flex-direction: column;\r\n}\r\n\r\n.main {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  max-width: $max-content-width;\r\n  flex: 1 0 auto;\r\n}\r\n\r\n::-moz-selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\n::selection {\r\n  background: #b3d4fc;\r\n  text-shadow: none;\r\n}\r\n\r\nhr {\r\n  display: block;\r\n  height: 1px;\r\n  border: 0;\r\n  border-top: 1px solid #ccc;\r\n  margin: 1em 0;\r\n  padding: 0;\r\n}\r\n\r\naudio,\r\ncanvas,\r\niframe,\r\nimg,\r\nsvg,\r\nvideo {\r\n  vertical-align: middle;\r\n}\r\n\r\nfieldset {\r\n  border: 0;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\ntextarea {\r\n  resize: vertical;\r\n}\r\n\r\n.browserupgrade {\r\n  margin: 0.2em 0;\r\n  background: #ccc;\r\n  color: #000;\r\n  padding: 0.2em 0;\r\n}\r\n\r\n@media print {\r\n  *,\r\n  *:before,\r\n  *:after {\r\n    background: transparent !important;\r\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\r\n    box-shadow: none !important;\r\n    text-shadow: none !important;\r\n  }\r\n\r\n  a,\r\n  a:visited {\r\n    text-decoration: underline;\r\n  }\r\n\r\n  a[href]:after {\r\n    content: \" (\" attr(href) \")\";\r\n  }\r\n\r\n  abbr[title]:after {\r\n    content: \" (\" attr(title) \")\";\r\n  }\r\n\r\n  /*\r\n   * Don't show links that are fragment identifiers,\r\n   * or use the `javascript:` pseudo protocol\r\n   */\r\n\r\n  a[href^=\"#\"]:after,\r\n  a[href^=\"javascript:\"]:after {\r\n    content: \"\";\r\n  }\r\n\r\n  pre,\r\n  blockquote {\r\n    border: 1px solid #999;\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  /*\r\n   * Printing Tables:\r\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\r\n   */\r\n\r\n  thead {\r\n    display: table-header-group;\r\n  }\r\n\r\n  tr,\r\n  img {\r\n    page-break-inside: avoid;\r\n  }\r\n\r\n  img {\r\n    max-width: 100% !important;\r\n  }\r\n\r\n  p,\r\n  h2,\r\n  h3 {\r\n    orphans: 3;\r\n    widows: 3;\r\n  }\r\n\r\n  h2,\r\n  h3 {\r\n    page-break-after: avoid;\r\n  }\r\n}\r\n\r\ninput[type=\"text\"], input[type=\"search\"], button {\r\n  background-color: $input-bg;\r\n  color: $input-text-color;\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"search\"],\r\nselect {\r\n  -webkit-box-sizing: border-box;\r\n  box-sizing: border-box;\r\n  display: block;\r\n  width: 100%;\r\n  padding: 6px;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;\r\n  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:focus {\r\n    border-color: #F5EFEF;\r\n    outline: 0;\r\n    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(245,239,239,.6);\r\n  }\r\n}\r\n\r\nselect {\r\n  height: 34px;\r\n}\r\n\r\ninput[type=\"search\"]::-webkit-search-cancel-button {\r\n  -webkit-appearance: searchfield-cancel-button;\r\n}\r\n\r\nbutton, input, select, textarea {\r\n  font: inherit;\r\n}\r\n\r\nbutton {\r\n  display: inline-block;\r\n  padding: 6px 12px;\r\n  margin-bottom: 0;\r\n  font-size: 14px;\r\n  font-weight: 700;\r\n  line-height: 1.42857143;\r\n  text-align: center;\r\n  white-space: nowrap;\r\n  vertical-align: baseline;\r\n  -ms-touch-action: manipulation;\r\n  touch-action: manipulation;\r\n  cursor: pointer;\r\n  -webkit-user-select: none;\r\n  -moz-user-select: none;\r\n  -ms-user-select: none;\r\n  user-select: none;\r\n  background-image: none;\r\n  border: 1px solid $input-border-color;\r\n  border-radius: $input-border-radius;\r\n  -webkit-transition: background-color ease-in-out .15s;\r\n  -o-transition: background-color ease-in-out .15s;\r\n  transition: background-color ease-in-out .15s;\r\n\r\n  &:focus, &:hover {\r\n    background-color: #7C7177;\r\n  }\r\n\r\n  &:disabled {\r\n    color: #ccc;\r\n    background-color: #7C7177;\r\n\r\n    &:focus, &:hover {\r\n      color: #ccc;\r\n      background-color: #7C7177;\r\n    }\r\n  }\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -1929,6 +1945,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Footer.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 20 */
@@ -1939,7 +1970,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Footer_footer_2nh,.Footer_link_NoJ:active,.Footer_link_NoJ:link,.Footer_link_NoJ:visited,a.Footer_link_NoJ{color:#8b8086}.Footer_footer_2nh{display:block;margin-top:40px;text-align:center;font-size:12px;background-color:#0d0c0b}.Footer_innerContainer_3fW{max-width:1000px;margin:0 auto;padding:40px 0}a.Footer_link_NoJ{text-decoration:underline}a.Footer_link_NoJ:focus,a.Footer_link_NoJ:hover{text-decoration:none;color:#fff}.Footer_separator_3a2:before{content:\"\\A0\\B7\\A0\"}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Footer_footer_2nh, a.Footer_link_NoJ, .Footer_link_NoJ:link, .Footer_link_NoJ:visited, .Footer_link_NoJ:active {\n  color: #8B8086;\n}\n\n.Footer_footer_2nh {\n  display: block;\n  margin-top: 40px;\n  text-align: center;\n  font-size: 12px;\n  background-color: #0D0C0B;\n}\n\n.Footer_innerContainer_3fW {\n  max-width: 1000px;\n  margin: 0 auto;\n  padding: 40px 0;\n}\n\na.Footer_link_NoJ {\n  text-decoration: underline\n}\n\na.Footer_link_NoJ:hover, a.Footer_link_NoJ:focus {\n  text-decoration: none;\n  color: #fff;\n}\n\n.Footer_separator_3a2 {\n}\n\n.Footer_separator_3a2:before {\n  content: \"\\A0\\B7\\A0\";\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Footer/Footer.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EAEE,eAAmB;CACpB;;AAED;EACE,eAAe;EACf,iBAAiB;EACjB,mBAAmB;EACnB,gBAAgB;EAChB,0BAA0B;CAC3B;;AAED;EACE,kBAA8B;EAC9B,eAAe;EACf,gBAAgB;CACjB;;AAED;EACE,0BAA2B;CAM5B;;AAJC;EACE,sBAAsB;EACtB,YAAmB;CACpB;;AAGH;CAIC;;AAHC;EACE,qBAAqB;CACtB","file":"Footer.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.footer,\na.link, .link:link, .link:visited, .link:active {\n  color: $text-color;\n}\n\n.footer {\n  display: block;\n  margin-top: 40px;\n  text-align: center;\n  font-size: 12px;\n  background-color: #0D0C0B;\n}\n\n.innerContainer {\n  max-width: $max-content-width;\n  margin: 0 auto;\n  padding: 40px 0;\n}\n\na.link {\n  text-decoration: underline;\n\n  &:hover, &:focus {\n    text-decoration: none;\n    color: $link-color;\n  }\n}\n\n.separator {\n  &:before {\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2137,6 +2168,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./NotFoundPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./NotFoundPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 24 */
@@ -2147,7 +2193,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "*{margin:0;line-height:1.2}html{display:table;width:100%;height:100%;color:#888;text-align:center;font-family:sans-serif}body{display:table-cell;margin:2em auto;vertical-align:middle}h1{color:#555;font-weight:400;font-size:2em}p{margin:0 auto;width:280px}@media only screen and (max-width:280px){body,p{width:95%}h1{font-size:1.5em;margin:0 0 .3em}}", ""]);
+  exports.push([module.id, "/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n* {\r\n  margin: 0;\r\n  line-height: 1.2;\r\n}\r\n\r\nhtml {\r\n  display: table;\r\n  width: 100%;\r\n  height: 100%;\r\n  color: #888;\r\n  text-align: center;\r\n  font-family: sans-serif;\r\n}\r\n\r\nbody {\r\n  display: table-cell;\r\n  margin: 2em auto;\r\n  vertical-align: middle;\r\n}\r\n\r\nh1 {\r\n  color: #555;\r\n  font-weight: 400;\r\n  font-size: 2em;\r\n}\r\n\r\np {\r\n  margin: 0 auto;\r\n  width: 280px;\r\n}\r\n\r\n@media only screen and (max-width: 280px) {\r\n\r\n  body, p {\r\n    width: 95%;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 1.5em;\r\n    margin: 0 0 0.3em;\r\n  }\r\n\r\n}\r\n", "", {"version":3,"sources":["/./src/components/NotFoundPage/NotFoundPage.scss"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;EACV,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,mBAAmB;EACnB,wBAAwB;CACzB;;AAED;EACE,oBAAoB;EACpB,iBAAiB;EACjB,uBAAuB;CACxB;;AAED;EACE,YAAY;EACZ,iBAAiB;EACjB,eAAe;CAChB;;AAED;EACE,eAAe;EACf,aAAa;CACd;;AAED;;EAEE;IACE,WAAW;GACZ;;EAED;IACE,iBAAiB;IACjB,kBAAkB;GACnB;;CAEF","file":"NotFoundPage.scss","sourcesContent":["/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n* {\r\n  margin: 0;\r\n  line-height: 1.2;\r\n}\r\n\r\nhtml {\r\n  display: table;\r\n  width: 100%;\r\n  height: 100%;\r\n  color: #888;\r\n  text-align: center;\r\n  font-family: sans-serif;\r\n}\r\n\r\nbody {\r\n  display: table-cell;\r\n  margin: 2em auto;\r\n  vertical-align: middle;\r\n}\r\n\r\nh1 {\r\n  color: #555;\r\n  font-weight: 400;\r\n  font-size: 2em;\r\n}\r\n\r\np {\r\n  margin: 0 auto;\r\n  width: 280px;\r\n}\r\n\r\n@media only screen and (max-width: 280px) {\r\n\r\n  body, p {\r\n    width: 95%;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 1.5em;\r\n    margin: 0 0 0.3em;\r\n  }\r\n\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
 
@@ -2260,6 +2306,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ErrorPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ErrorPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 27 */
@@ -2270,7 +2331,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "*{margin:0;line-height:1.2}html{display:table;width:100%;height:100%;color:#888;text-align:center;font-family:sans-serif}body{display:table-cell;margin:2em auto;vertical-align:middle}h1{color:#555;font-weight:400;font-size:2em}p{margin:0 auto;width:280px}@media only screen and (max-width:280px){body,p{width:95%}h1{font-size:1.5em;margin:0 0 .3em}}", ""]);
+  exports.push([module.id, "/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n* {\r\n  margin: 0;\r\n  line-height: 1.2;\r\n}\r\n\r\nhtml {\r\n  display: table;\r\n  width: 100%;\r\n  height: 100%;\r\n  color: #888;\r\n  text-align: center;\r\n  font-family: sans-serif;\r\n}\r\n\r\nbody {\r\n  display: table-cell;\r\n  margin: 2em auto;\r\n  vertical-align: middle;\r\n}\r\n\r\nh1 {\r\n  color: #555;\r\n  font-weight: 400;\r\n  font-size: 2em;\r\n}\r\n\r\np {\r\n  margin: 0 auto;\r\n  width: 280px;\r\n}\r\n\r\n@media only screen and (max-width: 280px) {\r\n\r\n  body, p {\r\n    width: 95%;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 1.5em;\r\n    margin: 0 0 0.3em;\r\n\r\n  }\r\n\r\n}\r\n", "", {"version":3,"sources":["/./src/components/ErrorPage/ErrorPage.scss"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;EACV,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,mBAAmB;EACnB,wBAAwB;CACzB;;AAED;EACE,oBAAoB;EACpB,iBAAiB;EACjB,uBAAuB;CACxB;;AAED;EACE,YAAY;EACZ,iBAAiB;EACjB,eAAe;CAChB;;AAED;EACE,eAAe;EACf,aAAa;CACd;;AAED;;EAEE;IACE,WAAW;GACZ;;EAED;IACE,iBAAiB;IACjB,kBAAkB;;GAEnB;;CAEF","file":"ErrorPage.scss","sourcesContent":["/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n* {\r\n  margin: 0;\r\n  line-height: 1.2;\r\n}\r\n\r\nhtml {\r\n  display: table;\r\n  width: 100%;\r\n  height: 100%;\r\n  color: #888;\r\n  text-align: center;\r\n  font-family: sans-serif;\r\n}\r\n\r\nbody {\r\n  display: table-cell;\r\n  margin: 2em auto;\r\n  vertical-align: middle;\r\n}\r\n\r\nh1 {\r\n  color: #555;\r\n  font-weight: 400;\r\n  font-size: 2em;\r\n}\r\n\r\np {\r\n  margin: 0 auto;\r\n  width: 280px;\r\n}\r\n\r\n@media only screen and (max-width: 280px) {\r\n\r\n  body, p {\r\n    width: 95%;\r\n  }\r\n\r\n  h1 {\r\n    font-size: 1.5em;\r\n    margin: 0 0 0.3em;\r\n\r\n  }\r\n\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
 
@@ -2386,6 +2447,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./SearchPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 30 */
@@ -2396,7 +2472,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".SearchPage_intro_2or{text-align:center}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.SearchPage_container_17N {\n\n}\n\n.SearchPage_intro_2or {\n  text-align: center;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/SearchPage/SearchPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,mBAAmB;CACpB","file":"SearchPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.intro {\n  text-align: center;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2552,6 +2628,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Header.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 33 */
@@ -2562,7 +2653,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Header_header_3bM{padding-top:40px;margin-bottom:40px}.Header_title_YtT{margin:0 auto;max-width:1000px}.Header_brand_1-T{text-decoration:none}.Header_separator_1Qr:after,.Header_separator_1Qr:before{content:\"\\A0\"}.Header_icon_3H0{margin-right:.3em;font-size:1.75rem}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2963,6 +3054,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSearchForm.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 44 */
@@ -2973,7 +3079,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".PlayerSearchForm_label_ftR{display:inline-block;font-weight:700;font-size:18px;margin-bottom:5px;width:11rem;text-align:right}input[type=search].PlayerSearchForm_textField_1Tc{width:20em;display:inline-block;margin:0 1rem}.PlayerSearchForm_button_35M,input[type=search].PlayerSearchForm_textField_1Tc{font-size:18px}.PlayerSearchForm_form_2AJ{margin-top:20px}.PlayerSearchForm_message_dpS{margin:5px 0 20px 12rem;font-size:14px}.PlayerSearchForm_message_dpS.PlayerSearchForm_success_35L{color:#a5a781}.PlayerSearchForm_message_dpS.PlayerSearchForm_error_2af{color:#a78e81}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSearchForm_label_ftR {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n  width: 11rem;\n  text-align: right;\n}\n\ninput[type=\"search\"].PlayerSearchForm_textField_1Tc {\n  width: 20em;\n  display: inline-block;\n  margin: 0 1rem;\n}\n\ninput[type=\"search\"].PlayerSearchForm_textField_1Tc, .PlayerSearchForm_button_35M {\n  font-size: 18px;\n}\n\n.PlayerSearchForm_form_2AJ {\n  margin-top: 20px;\n}\n\n.PlayerSearchForm_message_dpS {\n  margin: 5px 0 20px 12rem;\n  font-size: 14px\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_success_35L {\n  color: #A5A781;\n}\n\n.PlayerSearchForm_message_dpS.PlayerSearchForm_error_2af {\n  color: #A78E81;\n}\n\n.PlayerSearchForm_steamInstructions_2Jw {\n\n}\n\n.PlayerSearchForm_instruction_21D {\n\n}\n\n.PlayerSearchForm_instructionImage_24o {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSearchForm/PlayerSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;EACnB,aAA2B;EAC3B,kBAAkB;CACnB;;AAED;EACE,YAAY;EACZ,sBAAsB;EACtB,eAAe;CAChB;;AAED;EAEE,gBAAgB;CACjB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,yBAAyB;EACzB,eAAgB;CASjB;;AAPC;EACE,eAA2B;CAC5B;;AAED;EACE,eAAyB;CAC1B;;AAGH;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"PlayerSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n  width: $search-label-width;\n  text-align: right;\n}\n\ninput[type=\"search\"].textField {\n  width: 20em;\n  display: inline-block;\n  margin: 0 1rem;\n}\n\ninput[type=\"search\"].textField,\n.button {\n  font-size: 18px;\n}\n\n.form {\n  margin-top: 20px;\n}\n\n.message {\n  margin: 5px 0 20px 12rem;\n  font-size: 14px;\n\n  &.success {\n    color: $success-text-color;\n  }\n\n  &.error {\n    color: $error-text-color;\n  }\n}\n\n.steamInstructions {\n\n}\n\n.instruction {\n\n}\n\n.instructionImage {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3060,19 +3166,24 @@ module.exports =
       }
     }, {
       key: 'getGames',
-      value: function getGames(name) {
-        var data;
+      value: function getGames(name, page) {
+        var query, data;
         return regeneratorRuntime.async(function getGames$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
-              context$2$0.next = 2;
-              return regeneratorRuntime.awrap(this.get('/api/games?name=' + encodeURIComponent(name) + '&format=json'));
+              query = '/api/games?name=' + encodeURIComponent(name) + '&format=json';
   
-            case 2:
+              if (typeof page === 'number') {
+                query += '&page=' + page;
+              }
+              context$2$0.next = 4;
+              return regeneratorRuntime.awrap(this.get(query));
+  
+            case 4:
               data = context$2$0.sent;
               return context$2$0.abrupt('return', data);
   
-            case 4:
+            case 6:
             case 'end':
               return context$2$0.stop();
           }
@@ -3335,7 +3446,7 @@ module.exports =
         return regeneratorRuntime.async(function makeRequest$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
-              config = _configJson2['default'][("production")];
+              config = _configJson2['default'][("development")];
               url = config.preferredScheme + '://' + config.serverHost + path;
               context$2$0.next = 4;
               return regeneratorRuntime.awrap((0, _coreFetch2['default'])(url, options || {}));
@@ -3574,15 +3685,25 @@ module.exports =
         name: undefined,
         games: [],
         searchMade: false,
-        searching: false
+        searching: false,
+        showNextPageLink: false,
+        showPrevPageLink: false,
+        page: 1
       };
       this.delaySearch = _underscoreNode2['default'].debounce(this.delaySearch, 500);
     }
   
     _createClass(GameSearchForm, [{
       key: 'onSteamGamesLoaded',
-      value: function onSteamGamesLoaded(games) {
-        this.setState({ games: games, searchMade: true, searching: false });
+      value: function onSteamGamesLoaded(data) {
+        this.setState({
+          games: data.games,
+          searchMade: true,
+          searching: false,
+          page: data.page,
+          showNextPageLink: data.totalPages > data.page,
+          showPrevPageLink: data.page > 1
+        });
       }
     }, {
       key: 'onSteamGamesLoadError',
@@ -3600,15 +3721,35 @@ module.exports =
         this.setState({ name: event.target.value }, this.search.bind(this));
       }
     }, {
-      key: 'search',
-      value: function search() {
+      key: 'loadNextPage',
+      value: function loadNextPage(event) {
         var _this = this;
   
-        this.setState({ searchMade: false, searching: false }, function () {
-          if (_this.state.name.length > 1) {
-            _this.delaySearch();
+        event.target.blur();
+        this.setState({ page: this.state.page + 1 }, function () {
+          _this.makeSearch();
+        });
+      }
+    }, {
+      key: 'loadPreviousPage',
+      value: function loadPreviousPage(event) {
+        var _this2 = this;
+  
+        event.target.blur();
+        this.setState({ page: this.state.page - 1 }, function () {
+          _this2.makeSearch();
+        });
+      }
+    }, {
+      key: 'search',
+      value: function search() {
+        var _this3 = this;
+  
+        this.setState({ searchMade: false, searching: false, games: [] }, function () {
+          if (_this3.state.name.length > 1) {
+            _this3.delaySearch();
           } else {
-            _this.setState({ games: [] });
+            _this3.setState({ games: [] });
           }
         });
       }
@@ -3616,7 +3757,7 @@ module.exports =
       key: 'makeSearch',
       value: function makeSearch() {
         this.setState({ searching: true });
-        _apiSteam2['default'].getGames(this.state.name).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
+        _apiSteam2['default'].getGames(this.state.name, this.state.page).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
       }
     }, {
       key: 'delaySearch',
@@ -3671,7 +3812,25 @@ module.exports =
                   game.name
                 )
               );
-            })
+            }),
+            _react2['default'].createElement(
+              'li',
+              { className: _GameSearchFormScss2['default'].pagination },
+              this.state.showPrevPageLink ? _react2['default'].createElement(
+                'button',
+                { type: 'button', className: _GameSearchFormScss2['default'].prevPage,
+                  onClick: this.loadPreviousPage.bind(this)
+                },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'chevron-left', className: _GameSearchFormScss2['default'].icon })
+              ) : '',
+              this.state.showNextPageLink ? _react2['default'].createElement(
+                'button',
+                { type: 'button', className: _GameSearchFormScss2['default'].nextPage,
+                  onClick: this.loadNextPage.bind(this)
+                },
+                _react2['default'].createElement(_reactFontawesome2['default'], { name: 'chevron-right', className: _GameSearchFormScss2['default'].icon })
+              ) : ''
+            )
           ) : _react2['default'].createElement(
             'div',
             null,
@@ -3709,6 +3868,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GameSearchForm.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 55 */
@@ -3719,7 +3893,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".GameSearchForm_label_bm1{display:inline-block;font-weight:700;font-size:18px;margin-bottom:5px;width:11rem;text-align:right}input[type=search].GameSearchForm_textField_gWE{width:26rem;display:inline-block;margin:0 1rem;font-size:18px}.GameSearchForm_message_2G3{color:#a78e81;margin:5px 0 20px 12rem;font-size:14px}.GameSearchForm_gamesList_1Dx{list-style:none;margin:-1px 0 0 12rem;padding-left:0;background-color:#574e4f;width:26rem;border:1px solid #574e4f;-webkit-border-bottom-right-radius:2px;-webkit-border-bottom-left-radius:2px;-moz-border-radius-bottomright:2px;-moz-border-radius-bottomleft:2px;border-bottom-right-radius:2px;border-bottom-left-radius:2px}.GameSearchForm_gameListItem_2Zi{text-align:left}.GameSearchForm_gameLink_1iG{display:block;padding:2px 6px}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.GameSearchForm_label_bm1 {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n  width: 11rem;\n  text-align: right;\n}\n\ninput[type=\"search\"].GameSearchForm_textField_gWE {\n  width: 26rem;\n  display: inline-block;\n  margin: 0 1rem;\n  font-size: 18px;\n}\n\n.GameSearchForm_form_c3w {\n}\n\n.GameSearchForm_message_2G3 {\n  color: #A78E81;\n  margin: 5px 0 20px 12rem;\n  font-size: 14px;\n}\n\n.GameSearchForm_gamesList_1Dx {\n  list-style: none;\n  margin: -1px 0 0 12rem;\n  padding-left: 0;\n  background-color: #574E4F;\n  width: 26rem;\n  border: 1px solid #574E4F;\n  -webkit-border-bottom-right-radius: 2px;\n  -webkit-border-bottom-left-radius: 2px;\n  -moz-border-radius-bottomright: 2px;\n  -moz-border-radius-bottomleft: 2px;\n  border-bottom-right-radius: 2px;\n  border-bottom-left-radius: 2px;\n}\n\n.GameSearchForm_gameListItem_2Zi {\n  text-align: left;\n}\n\n.GameSearchForm_gameLink_1iG {\n  display: block;\n  padding: 2px 6px;\n}\n\n.GameSearchForm_spinner_2l4 {\n\n}\n\n.GameSearchForm_pagination_Zgh {\n}\n\n.GameSearchForm_pagination_Zgh:after {\n  content: \"\";\n  clear: both;\n  display: table;\n}\n\n.GameSearchForm_prevPage_3e4 {\n  float: left;\n}\n\n.GameSearchForm_prevPage_3e4 .GameSearchForm_icon_3ac {\n}\n\n.GameSearchForm_nextPage_1Fx {\n  float: right;\n}\n\n.GameSearchForm_nextPage_1Fx .GameSearchForm_icon_3ac {\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/GameSearchForm/GameSearchForm.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACFjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;EACnB,aAA2B;EAC3B,kBAAkB;CACnB;;AAED;EACE,aAAqB;EACrB,sBAAsB;EACtB,eAAe;EACf,gBAAgB;CACjB;;AAED;CACC;;AAED;EACE,eAAyB;EACzB,yBAAyB;EACzB,gBAAgB;CACjB;;AAED;EACE,iBAAiB;EACjB,uBAAuB;EACvB,gBAAgB;EAChB,0BAA0B;EAC1B,aAAqB;EACrB,0BAAgC;EAChC,wCAAmD;EACnD,uCAAkD;EAClD,oCAA+C;EAC/C,mCAA8C;EAC9C,gCAA2C;EAC3C,+BAA0C;CAC3C;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;;CAEC;;AAED;CAMC;;AALC;EACE,YAAY;EACZ,YAAY;EACZ,eAAe;CAChB;;AAGH;EACE,YAAY;CAKb;;AAHC;CAEC;;AAGH;EACE,aAAa;CAKd;;AAHC;CAEC","file":"GameSearchForm.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n$search-width: 26rem;\n\n.label {\n  display: inline-block;\n  font-weight: 700;\n  font-size: 18px;\n  margin-bottom: 5px;\n  width: $search-label-width;\n  text-align: right;\n}\n\ninput[type=\"search\"].textField {\n  width: $search-width;\n  display: inline-block;\n  margin: 0 1rem;\n  font-size: 18px;\n}\n\n.form {\n}\n\n.message {\n  color: $error-text-color;\n  margin: 5px 0 20px 12rem;\n  font-size: 14px;\n}\n\n.gamesList {\n  list-style: none;\n  margin: -1px 0 0 12rem;\n  padding-left: 0;\n  background-color: #574E4F;\n  width: $search-width;\n  border: 1px solid $border-color;\n  -webkit-border-bottom-right-radius: $border-radius;\n  -webkit-border-bottom-left-radius: $border-radius;\n  -moz-border-radius-bottomright: $border-radius;\n  -moz-border-radius-bottomleft: $border-radius;\n  border-bottom-right-radius: $border-radius;\n  border-bottom-left-radius: $border-radius;\n}\n\n.gameListItem {\n  text-align: left;\n}\n\n.gameLink {\n  display: block;\n  padding: 2px 6px;\n}\n\n.spinner {\n\n}\n\n.pagination {\n  &:after {\n    content: \"\";\n    clear: both;\n    display: table;\n  }\n}\n\n.prevPage {\n  float: left;\n\n  .icon {\n\n  }\n}\n\n.nextPage {\n  float: right;\n\n  .icon {\n\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -3730,7 +3904,11 @@ module.exports =
   	"gamesList": "GameSearchForm_gamesList_1Dx",
   	"gameListItem": "GameSearchForm_gameListItem_2Zi",
   	"gameLink": "GameSearchForm_gameLink_1iG",
-  	"spinner": "GameSearchForm_spinner_2l4"
+  	"spinner": "GameSearchForm_spinner_2l4",
+  	"pagination": "GameSearchForm_pagination_Zgh",
+  	"prevPage": "GameSearchForm_prevPage_3e4",
+  	"icon": "GameSearchForm_icon_3ac",
+  	"nextPage": "GameSearchForm_nextPage_1Fx"
   };
 
 /***/ },
@@ -3896,6 +4074,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 59 */
@@ -3906,7 +4099,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".PlayerPage_row_wss{display:table;width:100%}.PlayerPage_left_13w,.PlayerPage_right_twR{display:table-cell;vertical-align:top}.PlayerPage_left_13w{min-width:500px}.PlayerPage_right_twR{min-width:250px;max-width:14rem}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerPage_container_3D2 {\n\n}\n\n.PlayerPage_row_wss {\n  display: table;\n  width: 100%;\n}\n\n.PlayerPage_left_13w, .PlayerPage_right_twR {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.PlayerPage_left_13w {\n  min-width: 500px;\n}\n\n.PlayerPage_right_twR {\n  min-width: 250px;\n  max-width: 14rem;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerPage/PlayerPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,iBAAiB;CAClB","file":"PlayerPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  min-width: 500px;\n}\n\n.right {\n  min-width: 250px;\n  max-width: 14rem;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4091,6 +4284,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSummary.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./PlayerSummary.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 62 */
@@ -4101,7 +4309,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".PlayerSummary_container_5SQ{margin-top:20px}.PlayerSummary_card_2HH{min-width:350px;border:1px solid #0d0c0b;padding:15px;border-radius:2px;display:table;max-width:100%;margin-left:auto;margin-right:auto;background-color:#574e4f}.PlayerSummary_avatarContainer_2bw,.PlayerSummary_main_3sg{display:table-cell;vertical-align:middle}.PlayerSummary_avatarContainer_2bw{width:64px;padding-right:15px}.PlayerSummary_avatar_2ei{width:64px;border:1px solid #0d0c0b;border-radius:2px}.PlayerSummary_name_1bM{color:#ccc3c8;margin:0}.PlayerSummary_screenName_1Sz{opacity:.75;font-size:14px}.PlayerSummary_screenName_1Sz:before{content:\"\\A0(\"}.PlayerSummary_screenName_1Sz:after{content:\")\"}.PlayerSummary_createdWrapper_go2,.PlayerSummary_logoffWrapper_3fO{font-size:13px;color:#ccc3c8}.PlayerSummary_created_36z:before,.PlayerSummary_logoff_1zP:before{content:\"\\A0\"}.PlayerSummary_createdWrapper_go2+.PlayerSummary_logoffWrapper_3fO:before{content:\"\\A0\\B7\\A0\"}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.PlayerSummary_container_5SQ {\n  margin-top: 20px;\n}\n\n.PlayerSummary_card_2HH {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: 2px;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.PlayerSummary_avatarContainer_2bw, .PlayerSummary_main_3sg {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.PlayerSummary_avatarContainer_2bw {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.PlayerSummary_main_3sg {\n}\n\n.PlayerSummary_avatar_2ei {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: 2px;\n}\n\n.PlayerSummary_name_1bM {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.PlayerSummary_screenName_1Sz {\n  opacity: 0.75;\n  font-size: 14px\n}\n\n.PlayerSummary_screenName_1Sz:before {\n  content: \"\\A0(\";\n}\n\n.PlayerSummary_screenName_1Sz:after {\n  content: \")\";\n}\n\n.PlayerSummary_createdWrapper_go2, .PlayerSummary_logoffWrapper_3fO {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.PlayerSummary_createdWrapper_go2 {\n}\n\n.PlayerSummary_created_36z, .PlayerSummary_logoff_1zP {\n}\n\n.PlayerSummary_created_36z:before, .PlayerSummary_logoff_1zP:before {\n  content: \"\\A0\";\n}\n\n.PlayerSummary_created_36z {\n\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO {\n}\n\n.PlayerSummary_createdWrapper_go2 + .PlayerSummary_logoffWrapper_3fO:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.PlayerSummary_logoff_1zP {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/PlayerSummary/PlayerSummary.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,iBAAiB;CAClB;;AAED;EACE,iBAAiB;EACjB,0BAA0B;EAC1B,cAAc;EACd,mBAA8B;EAC9B,eAAe;EACf,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB;EACnB,0BAA0B;CAC3B;;AAED;EAEE,oBAAoB;EACpB,uBAAuB;CACxB;;AAED;EACE,YAAY;EACZ,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,YAAY;EACZ,0BAA0B;EAC1B,mBAA8B;CAC/B;;AAED;EACE,eAAe;EACf,UAAU;CACX;;AAED;EACE,cAAc;EACd,eAAgB;CASjB;;AAPC;EACE,gBAAgB;CACjB;;AAED;EACE,aAAa;CACd;;AAGH;EACE,gBAAgB;EAChB,eAAe;CAChB;;AAED;CACC;;AAED;CAIC;;AAHC;EACE,eAAe;CAChB;;AAGH;;CAEC;;AAED;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAGH;;CAEC","file":"PlayerSummary.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-top: 20px;\n}\n\n.card {\n  min-width: 350px;\n  border: 1px solid #0D0C0B;\n  padding: 15px;\n  border-radius: $border-radius;\n  display: table;\n  max-width: 100%;\n  margin-left: auto;\n  margin-right: auto;\n  background-color: #574E4F;\n}\n\n.avatarContainer,\n.main {\n  display: table-cell;\n  vertical-align: middle;\n}\n\n.avatarContainer {\n  width: 64px;\n  padding-right: 15px;\n}\n\n.main {\n}\n\n.avatar {\n  width: 64px;\n  border: 1px solid #0D0C0B;\n  border-radius: $border-radius;\n}\n\n.name {\n  color: #CCC3C8;\n  margin: 0;\n}\n\n.screenName {\n  opacity: 0.75;\n  font-size: 14px;\n\n  &:before {\n    content: \"\\a0(\";\n  }\n\n  &:after {\n    content: \")\";\n  }\n}\n\n.createdWrapper, .logoffWrapper {\n  font-size: 13px;\n  color: #CCC3C8;\n}\n\n.createdWrapper {\n}\n\n.created, .logoff {\n  &:before {\n    content: \"\\a0\";\n  }\n}\n\n.created {\n\n}\n\n.createdWrapper + .logoffWrapper {\n  &:before {\n    content: \"\\a0\\b7\\a0\";\n  }\n}\n\n.logoff {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4262,6 +4470,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendsList.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 65 */
@@ -4272,7 +4495,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".FriendsList_friends_9Ov{padding-left:0;list-style-type:none}.FriendsList_header_2m2{font-weight:700;margin-bottom:10px;color:#9e969b}.FriendsList_error_3No{color:#a78e81}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendsList_friends_9Ov {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.FriendsList_header_2m2 {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n\n.FriendsList_message_3s4 {\n\n}\n\n.FriendsList_error_3No {\n  color: #A78E81;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendsList/FriendsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,gBAAgB;EAChB,sBAAsB;CACvB;;AAED;EACE,iBAAiB;EACjB,oBAAoB;EACpB,eAAqB;CACtB;;AAED;;CAEC;;AAED;EACE,eAAyB;CAC1B","file":"FriendsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.friends {\n  padding-left: 0;\n  list-style-type: none;\n}\n\n.header {\n  font-weight: 700;\n  margin-bottom: 10px;\n  color: $header-color;\n}\n\n.message {\n\n}\n\n.error {\n  color: $error-text-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4398,6 +4621,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./FriendListItem.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 68 */
@@ -4408,7 +4646,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".FriendListItem_friend_2Y7+.FriendListItem_friend_2Y7{margin-top:5px}.FriendListItem_avatar_3B5{display:inline-block;width:24px;margin-right:5px}.FriendListItem_link_3AZ{display:block}.FriendListItem_name_3KN{line-height:24px;display:inline-block}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.FriendListItem_friend_2Y7 + .FriendListItem_friend_2Y7 {\n  margin-top: 5px;\n}\n\n.FriendListItem_avatar_3B5 {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.FriendListItem_link_3AZ {\n  display: block;\n}\n\n.FriendListItem_name_3KN {\n  line-height: 24px;\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/FriendListItem/FriendListItem.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACH/D;EACE,gBAAgB;CACjB;;AAGH;EACE,sBAAsB;EACtB,YAAY;EACZ,kBAAkB;CACnB;;AAED;EACE,eAAe;CAChB;;AAED;EACE,kBAAkB;EAClB,sBAAsB;CACvB","file":"FriendListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.friend {\n  + .friend {\n    margin-top: 5px;\n  }\n}\n\n.avatar {\n  display: inline-block;\n  width: 24px;\n  margin-right: 5px;\n}\n\n.link {\n  display: block;\n}\n\n.name {\n  line-height: 24px;\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4539,6 +4777,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotsList.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotsList.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 71 */
@@ -4549,7 +4802,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".ScreenshotsList_screenshots_7e4{list-style:none;padding-left:0}.ScreenshotsList_intro_3mD{margin-bottom:10px;color:#9e969b}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  padding-left: 0;\n}\n\n.ScreenshotsList_intro_3mD {\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,oBAAoB;EACpB,eAAqB;CACtB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  padding-left: 0;\n}\n\n.intro {\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4687,6 +4940,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotListItem.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotListItem.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 74 */
@@ -4697,7 +4965,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotListItem_screenshot_3nm {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotListItem/ScreenshotListItem.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC","file":"ScreenshotListItem.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.screenshot {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4880,6 +5148,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./GamePage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 77 */
@@ -4890,7 +5173,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".GamePage_row_3Ic{display:table;width:100%}.GamePage_left_O-u,.GamePage_right_1e_{display:table-cell;vertical-align:top;width:50%}.GamePage_left_O-u{padding-right:40px}.GamePage_right_1e_{padding-left:40px}.GamePage_header_1D8{margin:0 0 10px}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.GamePage_container_2ut {\n\n}\n\n.GamePage_row_3Ic {\n  display: table;\n  width: 100%;\n}\n\n.GamePage_left_O-u, .GamePage_right_1e_ {\n  display: table-cell;\n  vertical-align: top;\n  width: 50%;\n}\n\n.GamePage_left_O-u {\n  padding-right: 40px;\n}\n\n.GamePage_right_1e_ {\n  padding-left: 40px;\n}\n\n.GamePage_message_SqM {\n\n}\n\n.GamePage_header_1D8 {\n  margin: 0 0 10px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/GamePage/GamePage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;EACpB,WAAW;CACZ;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;;CAEC;;AAED;EACE,iBAAiB;CAClB","file":"GamePage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n  width: 50%;\n}\n\n.left {\n  padding-right: 40px;\n}\n\n.right {\n  padding-left: 40px;\n}\n\n.message {\n\n}\n\n.header {\n  margin: 0 0 10px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -107499,6 +107782,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./ScreenshotPage.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 83 */
@@ -107509,7 +107807,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".ScreenshotPage_details_2bS{display:table;width:100%}.ScreenshotPage_left_2eX,.ScreenshotPage_right_21z{display:table-cell;vertical-align:top}.ScreenshotPage_left_2eX{text-align:center}.ScreenshotPage_screenshotLink_3rs{margin:0 0 20px}.ScreenshotPage_screenshot_1Ek{max-width:100%;display:block;border:1px solid #000}.ScreenshotPage_description_3-p{margin:0 0 20px}.ScreenshotPage_right_21z{padding-left:40px;max-width:600px}.ScreenshotPage_colorsMessage_2MN{margin-bottom:20px}.ScreenshotPage_metadata_1CM{margin:5px 0 0;white-space:nowrap;padding-left:0;list-style:none}.ScreenshotPage_metadata_1CM li{display:inline-block}.ScreenshotPage_metadata_1CM li+li:before{content:\"\\A0\\B7\\A0\"}.ScreenshotPage_authorLink_2ME,.ScreenshotPage_detailsUrl_3O_,.ScreenshotPage_fullSizeLink_26o{margin-top:20px;display:inline-block}.ScreenshotPage_detailsUrl_3O_:after,.ScreenshotPage_fullSizeLink_26o:after{color:#8b8086;content:\"\\B7\";margin-left:.75em;margin-right:.75em}@media (min-width:768px){.ScreenshotPage_right_21z{min-width:370px}}.ScreenshotPage_icon_3uB{margin-right:.5em;font-size:14px}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -107896,6 +108194,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Palette.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 87 */
@@ -107906,7 +108219,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Palette_container_1Ha{margin-bottom:20px;position:relative}.Palette_colors_jGR,.Palette_selectedColors_1qk{list-style:none;padding-left:0}.Palette_colors_jGR li,.Palette_selectedColors_1qk li{display:inline-block;line-height:1}.Palette_selectedColors_1qk{margin-bottom:20px}.Palette_title_2zJ{margin:0 0 5px;font-weight:700;text-align:center;letter-spacing:.05em}.Palette_linkIcon_2U5{margin-right:.5em;font-size:14px}.Palette_copyMessage_3Po{position:absolute;right:0}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColorsWrapper_22j {\n\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;CACC;;AAED;;CAEC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.listItem {\n}\n\n.selectedColorsWrapper {\n\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -108083,6 +108396,21 @@ module.exports =
       module.exports._getCss = function() { return content.toString(); };
       module.exports._insertCss = insertCss.bind(null, content);
     
+      var removeCss = function() {};
+  
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      if (false) {
+        module.hot.accept("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss", function() {
+          var newContent = require("!!./../../../node_modules/css-loader/index.js?sourceMap&modules&localIdentName=[name]_[local]_[hash:base64:3]!./../../../node_modules/postcss-loader/index.js!./Swatch.scss");
+          if (typeof newContent === 'string') {
+            newContent = [[module.id, content, '']];
+          }
+          removeCss = insertCss(newContent, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
 
 /***/ },
 /* 90 */
@@ -108093,7 +108421,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Swatch_swatch_3nj{display:inline-block;padding:2px 4px;border-radius:2px;width:20px;height:20px;text-align:center;vertical-align:top;margin:2px 5px;position:relative;border-width:1px;border-style:solid;box-shadow:1px 1px 3px 0 #000}.Swatch_swatch_3nj.Swatch_selected_kJg{border-color:hsla(0,0%,100%,.7)}.Swatch_swatch_3nj.Swatch_selected_kJg:after{content:\"x\";position:absolute;left:5px;top:-2px}.Swatch_swatch_3nj.Swatch_unselected_1Wl{border-color:hsla(0,0%,100%,.3)}.Swatch_swatch_3nj.Swatch_dark_1H7:after{color:#fff}.Swatch_swatch_3nj.Swatch_light_2i7:after{color:#000}.Swatch_container_2L5,.Swatch_disallowSelection_2br{display:inline-block}", ""]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  width: 20px;\n  height: 20px;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7)\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after {\n  content: \"x\";\n  position: absolute;\n  left: 5px;\n  top: -2px\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3)\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000\n}\n\n.Swatch_container_2L5, .Swatch_disallowSelection_2br {\n  display: inline-block;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,YAAoB;EACpB,aAAqB;EACrB,mBAAmB;EACnB,oBAAoB;EACpB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CAgChC;;AA9BC,qFAEC;;AAED;EACE,sCAAuC;CAQxC;;AANC;EACE,aAAa;EACb,mBAAmB;EACnB,UAAU;EACV,SAAU;CACX;;AAGH;EACE,sCAAuC;CACxC;;AAED,qCAIC;;AAHC;EACE,WAAY;CACb;;AAGH,sCAIC;;AAHC;EACE,WAAY;CACb;;AAIL;EACE,sBAAsB;CACvB","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  width: $swatch-size;\n  height: $swatch-size;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.link:hover, &.link:focus {\n\n  }\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"x\";\n      position: absolute;\n      left: 5px;\n      top: -2px;\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n\n.container, .disallowSelection {\n  display: inline-block;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
