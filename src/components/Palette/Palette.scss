@@ -16,17 +16,15 @@
 }
 
 .colors {
+  margin-top: 20px;
 }
 
 .listItem {
 }
 
-.selectedColorsWrapper {
-
-}
-
 .selectedColors {
-  margin-bottom: 20px;
+  display: inline-block;
+  margin: 0;
 }
 
 .title {
@@ -36,12 +34,43 @@
   letter-spacing: 0.05em;
 }
 
+.linkIcon, .icon {
+  font-size: 14px;
+}
+
 .linkIcon {
   margin-right: 0.5em;
-  font-size: 14px;
+}
+
+.icon {
 }
 
 .copyMessage {
   position: absolute;
   right: 0;
+}
+
+.shuffle, .clear {
+  vertical-align: top;
+  border: none;
+  background-color: $body-bg;
+  line-height: $large-swatch-size;
+
+  &:hover, &:focus {
+    background-color: $body-bg;
+    color: #8B8086;
+  }
+}
+
+.createPalette {
+  margin: 0 5px 10px 5px;
+  display: block;
+}
+
+.shuffle {
+
+}
+
+.clear {
+
 }

@@ -107955,9 +107955,10 @@ module.exports =
       _classCallCheck(this, _Palette);
   
       _get(Object.getPrototypeOf(_Palette.prototype), 'constructor', this).call(this, props, context);
+      var allColors = this.getAllColors(props.colors);
       this.state = {
-        selectedColors: [],
-        allColors: this.getAllColors(props.colors)
+        selectedColors: this.sample(allColors, 5),
+        allColors: allColors
       };
     }
   
@@ -108103,19 +108104,31 @@ module.exports =
       key: 'createRandomPalette',
       value: function createRandomPalette(event) {
         event.preventDefault();
-        var link = event.target;
-        if (link.nodeName !== 'A') {
-          link = link.closest('a');
+        var button = event.target;
+        if (button.nodeName !== 'BUTTON') {
+          button = button.closest('button');
         }
-        link.blur();
+        button.blur();
         var selectedColors = this.sample(this.state.allColors.slice(), 5);
         this.setState({ selectedColors: selectedColors });
+      }
+    }, {
+      key: 'clearSelected',
+      value: function clearSelected(event) {
+        event.preventDefault();
+        var button = event.target;
+        if (button.nodeName !== 'BUTTON') {
+          button = button.closest('button');
+        }
+        button.blur();
+        this.setState({ selectedColors: [] });
       }
     }, {
       key: 'render',
       value: function render() {
         var _this2 = this;
   
+        var haveSelectedColors = this.state.selectedColors.length > 0;
         return _react2['default'].createElement(
           'div',
           { className: _PaletteScss2['default'].container },
@@ -108124,45 +108137,52 @@ module.exports =
             { className: _PaletteScss2['default'].copyMessage },
             this.state.copyMessage
           ) : '',
-          this.state.selectedColors.length > 0 ? _react2['default'].createElement(
-            'div',
-            { className: _PaletteScss2['default'].selectedColorsWrapper },
-            _react2['default'].createElement(
-              'a',
-              { href: '#', onClick: this.createPalette.bind(this),
-                target: '_blank'
-              },
-              _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
-              'Create palette'
-            ),
-            _react2['default'].createElement(
-              'ul',
-              { className: _PaletteScss2['default'].selectedColors },
-              this.state.selectedColors.map(function (hex) {
-                var key = 'selected-' + hex;
-                return _react2['default'].createElement(
-                  'li',
-                  { key: key, className: _PaletteScss2['default'].listItem },
-                  _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
-                    allowSelection: false,
-                    onDeselected: _this2.onColorDeselected.bind(_this2),
-                    initiallySelected: true,
-                    onCopy: _this2.onCopy.bind(_this2),
-                    indicateSelected: false,
-                    large: true
-                  })
-                );
-              })
-            )
+          haveSelectedColors ? _react2['default'].createElement(
+            'a',
+            { href: '#', onClick: this.createPalette.bind(this),
+              target: '_blank',
+              className: _PaletteScss2['default'].createPalette
+            },
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'external-link', className: _PaletteScss2['default'].linkIcon }),
+            'Create palette'
+          ) : '',
+          haveSelectedColors ? _react2['default'].createElement(
+            'ul',
+            { className: _PaletteScss2['default'].selectedColors },
+            this.state.selectedColors.map(function (hex) {
+              var key = 'selected-' + hex;
+              return _react2['default'].createElement(
+                'li',
+                { key: key, className: _PaletteScss2['default'].listItem },
+                _react2['default'].createElement(_Swatch2['default'], { hexColor: hex,
+                  allowSelection: false,
+                  onDeselected: _this2.onColorDeselected.bind(_this2),
+                  initiallySelected: true,
+                  onCopy: _this2.onCopy.bind(_this2),
+                  indicateSelected: false,
+                  large: true
+                })
+              );
+            })
           ) : '',
           _react2['default'].createElement(
-            'a',
-            { href: '#', onClick: this.createRandomPalette.bind(this),
-              target: '_blank'
+            'button',
+            { onClick: this.createRandomPalette.bind(this),
+              title: 'Shuffle selected colors',
+              className: _PaletteScss2['default'].shuffle,
+              type: 'button'
             },
-            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'random', className: _PaletteScss2['default'].linkIcon }),
-            'Select random palette'
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'random', className: _PaletteScss2['default'].icon })
           ),
+          haveSelectedColors ? _react2['default'].createElement(
+            'button',
+            { onClick: this.clearSelected.bind(this),
+              title: 'Clear selected colors',
+              type: 'button',
+              className: _PaletteScss2['default'].clear
+            },
+            _react2['default'].createElement(_reactFontawesome2['default'], { name: 'times', className: _PaletteScss2['default'].icon })
+          ) : '',
           _react2['default'].createElement(
             'ul',
             { className: _PaletteScss2['default'].colors },
@@ -108236,7 +108256,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColorsWrapper_22j {\n\n}\n\n.Palette_selectedColors_1qk {\n  margin-bottom: 20px;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;CACC;;AAED;CACC;;AAED;;CAEC;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n}\n\n.listItem {\n}\n\n.selectedColorsWrapper {\n\n}\n\n.selectedColors {\n  margin-bottom: 20px;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n  margin-top: 20px;\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColors_1qk {\n  display: inline-block;\n  margin: 0;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5, .Palette_icon_2s6 {\n  font-size: 14px;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n}\n\n.Palette_icon_2s6 {\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n\n.Palette_shuffle_3Z1, .Palette_clear_126 {\n  vertical-align: top;\n  border: none;\n  background-color: #222314;\n  line-height: 35px\n}\n\n.Palette_shuffle_3Z1:hover, .Palette_shuffle_3Z1:focus, .Palette_clear_126:hover, .Palette_clear_126:focus {\n  background-color: #222314;\n  color: #8B8086;\n}\n\n.Palette_createPalette_3-9 {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.Palette_shuffle_3Z1 {\n\n}\n\n.Palette_clear_126 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,iBAAiB;CAClB;;AAED;CACC;;AAED;EACE,sBAAsB;EACtB,UAAU;CACX;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV;;AAED;EACE,oBAAoB;EACpB,aAAa;EACb,0BAA2B;EAC3B,iBAAgC;CAMjC;;AAJC;EACE,0BAA2B;EAC3B,eAAe;CAChB;;AAGH;EACE,uBAAuB;EACvB,eAAe;CAChB;;AAED;;CAEC;;AAED;;CAEC","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n  margin-top: 20px;\n}\n\n.listItem {\n}\n\n.selectedColors {\n  display: inline-block;\n  margin: 0;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon, .icon {\n  font-size: 14px;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n}\n\n.icon {\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n\n.shuffle, .clear {\n  vertical-align: top;\n  border: none;\n  background-color: $body-bg;\n  line-height: $large-swatch-size;\n\n  &:hover, &:focus {\n    background-color: $body-bg;\n    color: #8B8086;\n  }\n}\n\n.createPalette {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.shuffle {\n\n}\n\n.clear {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -108244,10 +108264,13 @@ module.exports =
   	"colors": "Palette_colors_jGR",
   	"selectedColors": "Palette_selectedColors_1qk",
   	"listItem": "Palette_listItem_3uQ",
-  	"selectedColorsWrapper": "Palette_selectedColorsWrapper_22j",
   	"title": "Palette_title_2zJ",
   	"linkIcon": "Palette_linkIcon_2U5",
-  	"copyMessage": "Palette_copyMessage_3Po"
+  	"icon": "Palette_icon_2s6",
+  	"copyMessage": "Palette_copyMessage_3Po",
+  	"shuffle": "Palette_shuffle_3Z1",
+  	"clear": "Palette_clear_126",
+  	"createPalette": "Palette_createPalette_3-9"
   };
 
 /***/ },
@@ -108437,7 +108460,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5, .Swatch_disallowSelection_2br {\n  display: inline-block;\n}\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_normal_VoJ {\n  width: 20px;\n  height: 20px;\n}\n\n.Swatch_swatch_3nj.Swatch_large_3bT {\n  width: 35px;\n  height: 35px;\n}\n\n.Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg {\n  border-color: rgba(255, 255, 255, 0.7);\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after {\n  content: \"\\B7\";\n  font-size: 36px;\n  position: absolute;\n  left: 4px;\n  top: -1px;\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_normal_VoJ {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_normal_VoJ:after {\n  line-height: 20px;\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_large_3bT {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_large_3bT:after {\n  line-height: 35px;\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff;\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;CACvB;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,mBAAmB;EACnB,oBAAoB;EACpB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CAuDhC;;AArDC;EACE,YAAoB;EACpB,aAAqB;CACtB;;AAED;EACE,YAA0B;EAC1B,aAA2B;CAC5B;;AAED,qFAEC;;AAED;EACE,uCAAuC;CAqBxC;;AAnBC;EACE,eAAe;EACf,gBAAgB;EAChB,mBAAmB;EACnB,UAAU;EACV,UAAU;CACX;;AAED,2DAIC;;AAHC;EACE,kBAA0B;CAC3B;;AAGH,0DAIC;;AAHC;EACE,kBAAgC;CACjC;;AAIL;EACE,uCAAuC;CACxC;;AAED,qCAIC;;AAHC;EACE,YAAY;CACb;;AAGH,sCAIC;;AAHC;EACE,YAAY;CACb","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container, .disallowSelection {\n  display: inline-block;\n}\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.normal {\n    width: $swatch-size;\n    height: $swatch-size;\n  }\n\n  &.large {\n    width: $large-swatch-size;\n    height: $large-swatch-size;\n  }\n\n  &.link:hover, &.link:focus {\n\n  }\n\n  &.selected {\n    border-color: rgba(255, 255, 255, 0.7);\n\n    &:after {\n      content: \"\\b7\";\n      font-size: 36px;\n      position: absolute;\n      left: 4px;\n      top: -1px;\n    }\n\n    &.normal {\n      &:after {\n        line-height: $swatch-size;\n      }\n    }\n\n    &.large {\n      &:after {\n        line-height: $large-swatch-size;\n      }\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Swatch_container_2L5, .Swatch_disallowSelection_2br {\n  display: inline-block;\n}\n\n.Swatch_swatch_3nj {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: 2px;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000\n}\n\n.Swatch_swatch_3nj.Swatch_normal_VoJ {\n  width: 20px;\n  height: 20px;\n}\n\n.Swatch_swatch_3nj.Swatch_large_3bT {\n  width: 35px;\n  height: 35px;\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg, .Swatch_swatch_3nj.Swatch_link_3Ji:hover, .Swatch_swatch_3nj.Swatch_link_3Ji:focus {\n  border-color: rgba(255, 255, 255, 0.7);\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg:after {\n  content: \"\\B7\";\n  font-size: 36px;\n  position: absolute;\n  left: 4px;\n  top: -1px;\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_normal_VoJ {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_normal_VoJ:after {\n  line-height: 20px;\n}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_large_3bT {}\n\n.Swatch_swatch_3nj.Swatch_selected_kJg.Swatch_large_3bT:after {\n  line-height: 35px;\n}\n\n.Swatch_swatch_3nj.Swatch_unselected_1Wl {\n  border-color: rgba(255, 255, 255, 0.3);\n}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7 {}\n\n.Swatch_swatch_3nj.Swatch_dark_1H7:after {\n  color: #fff;\n}\n\n.Swatch_swatch_3nj.Swatch_light_2i7 {}\n\n.Swatch_swatch_3nj.Swatch_light_2i7:after {\n  color: #000;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Swatch/Swatch.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,sBAAsB;CACvB;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,mBAA8B;EAC9B,mBAAmB;EACnB,oBAAoB;EACpB,gBAAgB;EAChB,mBAAmB;EACnB,kBAAkB;EAClB,oBAAoB;EACpB,uCAAuC;EACvC,8BAA+B;CAqDhC;;AAnDC;EACE,YAAoB;EACpB,aAAqB;CACtB;;AAED;EACE,YAA0B;EAC1B,aAA2B;CAC5B;;AAED;EACE,uCAAuC;CACxC;;AAED,yCAoBC;;AAnBC;EACE,eAAe;EACf,gBAAgB;EAChB,mBAAmB;EACnB,UAAU;EACV,UAAU;CACX;;AAED,2DAIC;;AAHC;EACE,kBAA0B;CAC3B;;AAGH,0DAIC;;AAHC;EACE,kBAAgC;CACjC;;AAIL;EACE,uCAAuC;CACxC;;AAED,qCAIC;;AAHC;EACE,YAAY;CACb;;AAGH,sCAIC;;AAHC;EACE,YAAY;CACb","file":"Swatch.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container, .disallowSelection {\n  display: inline-block;\n}\n\n.swatch {\n  display: inline-block;\n  padding: 2px 4px;\n  border-radius: $border-radius;\n  text-align: center;\n  vertical-align: top;\n  margin: 2px 5px;\n  position: relative;\n  border-width: 1px;\n  border-style: solid;\n  -webkit-box-shadow: 1px 1px 3px 0 #000;\n  box-shadow: 1px 1px 3px 0 #000;\n\n  &.normal {\n    width: $swatch-size;\n    height: $swatch-size;\n  }\n\n  &.large {\n    width: $large-swatch-size;\n    height: $large-swatch-size;\n  }\n\n  &.selected, &.link:hover, &.link:focus {\n    border-color: rgba(255, 255, 255, 0.7);\n  }\n\n  &.selected {\n    &:after {\n      content: \"\\b7\";\n      font-size: 36px;\n      position: absolute;\n      left: 4px;\n      top: -1px;\n    }\n\n    &.normal {\n      &:after {\n        line-height: $swatch-size;\n      }\n    }\n\n    &.large {\n      &:after {\n        line-height: $large-swatch-size;\n      }\n    }\n  }\n\n  &.unselected {\n    border-color: rgba(255, 255, 255, 0.3);\n  }\n\n  &.dark {\n    &:after {\n      color: #fff;\n    }\n  }\n\n  &.light {\n    &:after {\n      color: #000;\n    }\n  }\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -108446,8 +108469,8 @@ module.exports =
   	"swatch": "Swatch_swatch_3nj",
   	"normal": "Swatch_normal_VoJ",
   	"large": "Swatch_large_3bT",
-  	"link": "Swatch_link_3Ji",
   	"selected": "Swatch_selected_kJg",
+  	"link": "Swatch_link_3Ji",
   	"unselected": "Swatch_unselected_1Wl",
   	"dark": "Swatch_dark_1H7",
   	"light": "Swatch_light_2i7"

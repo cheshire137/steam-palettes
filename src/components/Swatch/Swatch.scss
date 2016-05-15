@@ -27,13 +27,11 @@
     height: $large-swatch-size;
   }
 
-  &.link:hover, &.link:focus {
-
+  &.selected, &.link:hover, &.link:focus {
+    border-color: rgba(255, 255, 255, 0.7);
   }
 
   &.selected {
-    border-color: rgba(255, 255, 255, 0.7);
-
     &:after {
       content: "\b7";
       font-size: 36px;

@@ -15,9 +15,10 @@ class Palette extends Component {
 
   constructor(props, context) {
     super(props, context);
+    const allColors = this.getAllColors(props.colors);
     this.state = {
-      selectedColors: [],
-      allColors: this.getAllColors(props.colors),
+      selectedColors: this.sample(allColors, 5),
+      allColors,
     };
   }
 
@@ -148,54 +149,76 @@ class Palette extends Component {
 
   createRandomPalette(event) {
     event.preventDefault();
-    let link = event.target;
-    if (link.nodeName !== 'A') {
-      link = link.closest('a');
+    let button = event.target;
+    if (button.nodeName !== 'BUTTON') {
+      button = button.closest('button');
     }
-    link.blur();
+    button.blur();
     const selectedColors = this.sample(this.state.allColors.slice(), 5);
     this.setState({ selectedColors });
   }
 
+  clearSelected(event) {
+    event.preventDefault();
+    let button = event.target;
+    if (button.nodeName !== 'BUTTON') {
+      button = button.closest('button');
+    }
+    button.blur();
+    this.setState({ selectedColors: [] });
+  }
+
   render() {
+    const haveSelectedColors = this.state.selectedColors.length > 0;
     return (
       <div className={s.container}>
         {typeof this.state.copyMessage === 'string' ? (
           <span className={s.copyMessage}>{this.state.copyMessage}</span>
         ) : ''}
-        {this.state.selectedColors.length > 0 ? (
-          <div className={s.selectedColorsWrapper}>
-            <a href="#" onClick={this.createPalette.bind(this)}
-              target="_blank"
-            >
-              <FontAwesome name="external-link" className={s.linkIcon} />
-              Create palette
-            </a>
-            <ul className={s.selectedColors}>
-              {this.state.selectedColors.map((hex) => {
-                const key = 'selected-' + hex;
-                return (
-                  <li key={key} className={s.listItem}>
-                    <Swatch hexColor={hex}
-                      allowSelection={false}
-                      onDeselected={this.onColorDeselected.bind(this)}
-                      initiallySelected
-                      onCopy={this.onCopy.bind(this)}
-                      indicateSelected={false}
-                      large
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+        {haveSelectedColors ? (
+          <a href="#" onClick={this.createPalette.bind(this)}
+            target="_blank"
+            className={s.createPalette}
+          >
+            <FontAwesome name="external-link" className={s.linkIcon} />
+            Create palette
+          </a>
         ) : ''}
-        <a href="#" onClick={this.createRandomPalette.bind(this)}
-          target="_blank"
+        {haveSelectedColors ? (
+          <ul className={s.selectedColors}>
+            {this.state.selectedColors.map((hex) => {
+              const key = 'selected-' + hex;
+              return (
+                <li key={key} className={s.listItem}>
+                  <Swatch hexColor={hex}
+                    allowSelection={false}
+                    onDeselected={this.onColorDeselected.bind(this)}
+                    initiallySelected
+                    onCopy={this.onCopy.bind(this)}
+                    indicateSelected={false}
+                    large
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        ) : ''}
+        <button onClick={this.createRandomPalette.bind(this)}
+          title="Shuffle selected colors"
+          className={s.shuffle}
+          type="button"
         >
-          <FontAwesome name="random" className={s.linkIcon} />
-          Select random palette
-        </a>
+          <FontAwesome name="random" className={s.icon} />
+        </button>
+        {haveSelectedColors ? (
+          <button onClick={this.clearSelected.bind(this)}
+            title="Clear selected colors"
+            type="button"
+            className={s.clear}
+          >
+            <FontAwesome name="times" className={s.icon} />
+          </button>
+        ) : ''}
         <ul className={s.colors}>
           {this.state.allColors.map((hex) => {
             const allowSelection = this.state.selectedColors.length < 5;
