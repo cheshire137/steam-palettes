@@ -21,6 +21,7 @@ import fetch from './core/fetch';
 import ScreenshotsScraper from './actions/screenshotsScraper';
 import ScreenshotScraper from './actions/screenshotScraper';
 import ImageAnalyzer from './actions/imageAnalyzer';
+import SteamApps from './stores/steamApps';
 
 const server = global.server = express();
 
@@ -113,6 +114,17 @@ server.get('/api/colors', async (req, res) => {
   }).fail((error) => {
     res.status(400).json({ error });
   });
+});
+
+server.get('/api/games', async (req, res) => {
+  const name = req.query.name;
+  if (typeof name !== 'string' || name.length < 1) {
+    res.status(400).
+        json({ error: 'Must provide Steam game name query in name param' });
+    return;
+  }
+  const games = SteamApps.search(name);
+  res.json(games);
 });
 
 //

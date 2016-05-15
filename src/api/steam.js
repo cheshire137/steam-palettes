@@ -8,6 +8,13 @@ class Steam extends Api {
     return data;
   }
 
+  static async getGames(name) {
+    const data = await this.get('/api/games?name=' +
+                                encodeURIComponent(name) +
+                                '&format=json');
+    return data;
+  }
+
   static async getScreenshot(screenshotID) {
     const screenshot =
         await this.get('/api/screenshot?id=' + screenshotID + '&format=json');

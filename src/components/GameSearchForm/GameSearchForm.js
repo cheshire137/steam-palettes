@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import s from './GameSearchForm.scss';
 import withStyles from '../../decorators/withStyles';
-import SteamApps from '../../stores/steamApps';
 import Link from '../Link';
+import Steam from '../../api/steam';
 
 @withStyles(s)
 class GameSearchForm extends Component {
@@ -15,18 +15,29 @@ class GameSearchForm extends Component {
     };
   }
 
+  onSteamGamesLoaded(games) {
+    this.setState({ games, searchMade: true });
+  }
+
+  onSteamGamesLoadError(response) {
+    console.error('failed to load Steam games', response);
+    this.setState({
+      message: 'There was an error searching for Steam games. :(',
+      searchMade: true,
+    });
+  }
+
   onNameChange(event) {
     this.setState({ name: event.target.value }, this.search.bind(this));
   }
 
   search() {
-    let games = [];
-    let searchMade = false;
+    this.setState({ searchMade: false });
     if (this.state.name.length > 3) {
-      games = SteamApps.search(this.state.name);
-      searchMade = true;
+      Steam.getGames(this.state.name).
+            then(this.onSteamGamesLoaded.bind(this)).
+            catch(this.onSteamGamesLoadError.bind(this));
     }
-    this.setState({ games, searchMade });
   }
 
   handleSubmit(event) {
@@ -46,6 +57,11 @@ class GameSearchForm extends Component {
           value={this.state.name}
           disabled={this.state.disabled}
         />
+        {typeof this.state.message === 'string' ? (
+          <p className={s.message}>
+            {this.state.message}
+          </p>
+        ) : ''}
         {this.state.games.length > 0 ? (
           <ul className={s.gamesList}>
             {this.state.games.map((game) => {

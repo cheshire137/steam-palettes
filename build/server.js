@@ -113,6 +113,10 @@ module.exports =
   
   var _actionsImageAnalyzer2 = _interopRequireDefault(_actionsImageAnalyzer);
   
+  var _storesSteamApps = __webpack_require__(100);
+  
+  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
+  
   var server = global.server = (0, _express2['default'])();
   
   //
@@ -291,6 +295,33 @@ module.exports =
           }).fail(function (error) {
             res.status(400).json({ error: error });
           });
+  
+        case 6:
+        case 'end':
+          return context$1$0.stop();
+      }
+    }, null, _this);
+  });
+  
+  server.get('/api/games', function callee$0$0(req, res) {
+    var name, games;
+    return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
+      while (1) switch (context$1$0.prev = context$1$0.next) {
+        case 0:
+          name = req.query.name;
+  
+          if (!(typeof name !== 'string' || name.length < 1)) {
+            context$1$0.next = 4;
+            break;
+          }
+  
+          res.status(400).json({ error: 'Must provide Steam game name query in name param' });
+          return context$1$0.abrupt('return');
+  
+        case 4:
+          games = _storesSteamApps2['default'].search(name);
+  
+          res.json(games);
   
         case 6:
         case 'end':
@@ -2314,6 +2345,26 @@ module.exports =
             case 0:
               context$2$0.next = 2;
               return regeneratorRuntime.awrap(this.get('/api/screenshots?user=' + encodeURIComponent(username) + '&format=json'));
+  
+            case 2:
+              data = context$2$0.sent;
+              return context$2$0.abrupt('return', data);
+  
+            case 4:
+            case 'end':
+              return context$2$0.stop();
+          }
+        }, null, this);
+      }
+    }, {
+      key: 'getGames',
+      value: function getGames(name) {
+        var data;
+        return regeneratorRuntime.async(function getGames$(context$2$0) {
+          while (1) switch (context$2$0.prev = context$2$0.next) {
+            case 0:
+              context$2$0.next = 2;
+              return regeneratorRuntime.awrap(this.get('/api/games?name=' + encodeURIComponent(name) + '&format=json'));
   
             case 2:
               data = context$2$0.sent;
@@ -6175,13 +6226,13 @@ module.exports =
   
   var _decoratorsWithStyles2 = _interopRequireDefault(_decoratorsWithStyles);
   
-  var _storesSteamApps = __webpack_require__(100);
-  
-  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
-  
   var _Link = __webpack_require__(47);
   
   var _Link2 = _interopRequireDefault(_Link);
+  
+  var _apiSteam = __webpack_require__(31);
+  
+  var _apiSteam2 = _interopRequireDefault(_apiSteam);
   
   var GameSearchForm = (function (_Component) {
     _inherits(GameSearchForm, _Component);
@@ -6198,6 +6249,20 @@ module.exports =
     }
   
     _createClass(GameSearchForm, [{
+      key: 'onSteamGamesLoaded',
+      value: function onSteamGamesLoaded(games) {
+        this.setState({ games: games, searchMade: true });
+      }
+    }, {
+      key: 'onSteamGamesLoadError',
+      value: function onSteamGamesLoadError(response) {
+        console.error('failed to load Steam games', response);
+        this.setState({
+          message: 'There was an error searching for Steam games. :(',
+          searchMade: true
+        });
+      }
+    }, {
       key: 'onNameChange',
       value: function onNameChange(event) {
         this.setState({ name: event.target.value }, this.search.bind(this));
@@ -6205,13 +6270,10 @@ module.exports =
     }, {
       key: 'search',
       value: function search() {
-        var games = [];
-        var searchMade = false;
+        this.setState({ searchMade: false });
         if (this.state.name.length > 3) {
-          games = _storesSteamApps2['default'].search(this.state.name);
-          searchMade = true;
+          _apiSteam2['default'].getGames(this.state.name).then(this.onSteamGamesLoaded.bind(this))['catch'](this.onSteamGamesLoadError.bind(this));
         }
-        this.setState({ games: games, searchMade: searchMade });
       }
     }, {
       key: 'handleSubmit',
@@ -6238,6 +6300,11 @@ module.exports =
             value: this.state.name,
             disabled: this.state.disabled
           }),
+          typeof this.state.message === 'string' ? _react2['default'].createElement(
+            'p',
+            { className: _GameSearchFormScss2['default'].message },
+            this.state.message
+          ) : '',
           this.state.games.length > 0 ? _react2['default'].createElement(
             'ul',
             { className: _GameSearchFormScss2['default'].gamesList },
