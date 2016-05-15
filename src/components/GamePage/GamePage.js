@@ -19,7 +19,11 @@ class GamePage extends Component {
   constructor(props, context) {
     super(props, context);
     const title = SteamApps.getName(props.gameID);
-    this.state = { screenshots: undefined, title };
+    this.state = {
+      popularScreenshots: undefined,
+      recentScreenshots: undefined,
+      title,
+    };
   }
 
   componentWillMount() {
@@ -27,13 +31,20 @@ class GamePage extends Component {
   }
 
   componentDidMount() {
-    Steam.getScreenshots(this.props.gameID).
-          then(this.onScreenshotsLoaded.bind(this)).
+    Steam.getScreenshots(this.props.gameID, true).
+          then(this.onPopularScreenshotsLoaded.bind(this)).
+          catch(this.onScreenshotsLoadError.bind(this));
+    Steam.getScreenshots(this.props.gameID, false).
+          then(this.onRecentScreenshotsLoaded.bind(this)).
           catch(this.onScreenshotsLoadError.bind(this));
   }
 
-  onScreenshotsLoaded(screenshots) {
-    this.setState({ screenshots });
+  onPopularScreenshotsLoaded(popularScreenshots) {
+    this.setState({ popularScreenshots });
+  }
+
+  onRecentScreenshotsLoaded(recentScreenshots) {
+    this.setState({ recentScreenshots });
   }
 
   onScreenshotsLoadError(response) {
@@ -41,19 +52,39 @@ class GamePage extends Component {
   }
 
   render() {
-    const screenshotsLoaded = typeof this.state.screenshots === 'object';
+    const recentScreenshotsLoaded =
+        typeof this.state.recentScreenshots === 'object';
+    const popularScreenshotsLoaded =
+        typeof this.state.popularScreenshots === 'object';
     return (
       <div className={s.container}>
         <Header title={this.state.title} titleIcon="steam" />
-        {screenshotsLoaded ? (
-          <ScreenshotsList screenshots={this.state.screenshots}
-            gameID={this.props.gameID}
-          />
-        ) : (
-          <p className={s.message}>
-            Loading screenshots...
-          </p>
-        )}
+        <div className={s.row}>
+          <div className={s.left}>
+            <h2 className={s.header}>Recent Screenshots</h2>
+            {recentScreenshotsLoaded ? (
+              <ScreenshotsList screenshots={this.state.recentScreenshots}
+                gameID={this.props.gameID}
+              />
+            ) : (
+              <p className={s.message}>
+                Loading screenshots...
+              </p>
+            )}
+          </div>
+          <div className={s.right}>
+            <h2 className={s.header}>Popular Screenshots</h2>
+            {popularScreenshotsLoaded ? (
+              <ScreenshotsList screenshots={this.state.popularScreenshots}
+                gameID={this.props.gameID}
+              />
+            ) : (
+              <p className={s.message}>
+                Loading screenshots...
+              </p>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

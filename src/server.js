@@ -97,8 +97,9 @@ server.get('/api/screenshots', async (req, res) => {
     res.status(400).json({ error });
     return;
   }
+  const popular = typeof req.query.popular !== 'undefined';
   const scraper = new ScreenshotsScraper({ username, appid });
-  const html = await scraper.getPage();
+  const html = await scraper.getPage(popular);
   scraper.getScreenshots(html).then((screenshots) => {
     res.json(screenshots);
   }).fail((error) => {

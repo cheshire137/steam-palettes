@@ -8,18 +8,19 @@ class ScreenshotsScraper {
     this.appid = opts.appid;
   }
 
-  getUrl() {
+  getUrl(popular) {
     if (typeof this.username === 'string') {
       return 'http://steamcommunity.com/id/' + this.username +
              '/screenshots/?appid=0&sort=newestfirst&' +
              'browsefilter=myfiles&view=grid';
     }
+    const filter = popular ? 'trendday' : 'mostrecent';
     return 'http://steamcommunity.com/app/' + this.appid +
-           '/screenshots/?sort=newestfirst&p=1&browsefilter=mostrecent';
+           '/screenshots/?sort=newestfirst&p=1&browsefilter=' + filter;
   }
 
-  async getPage() {
-    const response = await fetch(this.getUrl());
+  async getPage(popular) {
+    const response = await fetch(this.getUrl(popular));
     const data = await response.text();
     return data;
   }

@@ -38,7 +38,11 @@ class ScreenshotListItem extends Component {
         <a href={url} onClick={Link.handleClick}>
           {typeof this.props.title === 'string' ? (
             <span className={s.title}>
-              &ldquo;{this.props.title}&rdquo;
+              {this.props.title.indexOf('Screenshot by ') === 0 ? (
+                <span>{this.props.title}</span>
+              ) : (
+                <span>&ldquo;{this.props.title}&rdquo;</span>
+              )}
             </span>
           ) : (
             <span>

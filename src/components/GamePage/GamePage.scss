@@ -1,2 +1,32 @@
 @import '../variables.scss';
 
+.container {
+
+}
+
+.row {
+  display: table;
+  width: 100%;
+}
+
+.left, .right {
+  display: table-cell;
+  vertical-align: top;
+  width: 50%;
+}
+
+.left {
+  padding-right: 40px;
+}
+
+.right {
+  padding-left: 40px;
+}
+
+.message {
+
+}
+
+.header {
+  margin: 0 0 10px;
+}

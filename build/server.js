@@ -237,7 +237,7 @@ module.exports =
   });
   
   server.get('/api/screenshots', function callee$0$0(req, res) {
-    var username, appid, haveUsername, haveAppid, error, scraper, html;
+    var username, appid, haveUsername, haveAppid, error, popular, scraper, html;
     return regeneratorRuntime.async(function callee$0$0$(context$1$0) {
       while (1) switch (context$1$0.prev = context$1$0.next) {
         case 0:
@@ -257,11 +257,12 @@ module.exports =
           return context$1$0.abrupt('return');
   
         case 8:
+          popular = typeof req.query.popular !== 'undefined';
           scraper = new _actionsScreenshotsScraper2['default']({ username: username, appid: appid });
-          context$1$0.next = 11;
-          return regeneratorRuntime.awrap(scraper.getPage());
+          context$1$0.next = 12;
+          return regeneratorRuntime.awrap(scraper.getPage(popular));
   
-        case 11:
+        case 12:
           html = context$1$0.sent;
   
           scraper.getScreenshots(html).then(function (screenshots) {
@@ -270,7 +271,7 @@ module.exports =
             res.status(400).json({ error: error });
           });
   
-        case 13:
+        case 14:
         case 'end':
           return context$1$0.stop();
       }
@@ -3134,7 +3135,7 @@ module.exports =
   
     _createClass(Steam, null, [{
       key: 'getScreenshots',
-      value: function getScreenshots(key) {
+      value: function getScreenshots(key, popular) {
         var query, data;
         return regeneratorRuntime.async(function getScreenshots$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
@@ -3146,14 +3147,17 @@ module.exports =
               } else {
                 query += 'appid=' + key;
               }
-              context$2$0.next = 4;
+              if (popular) {
+                query += '&popular=1';
+              }
+              context$2$0.next = 5;
               return regeneratorRuntime.awrap(this.get(query + '&format=json'));
   
-            case 4:
+            case 5:
               data = context$2$0.sent;
               return context$2$0.abrupt('return', data);
   
-            case 6:
+            case 7:
             case 'end':
               return context$2$0.stop();
           }
@@ -4723,7 +4727,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  margin-left: 0;\n}\n\n.ScreenshotsList_intro_3mD {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,iBAAiB;EACjB,eAAe;CAChB;;AAED;EACE,oBAAoB;EACpB,iBAAiB;EACjB,eAAqB;CACtB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  margin-left: 0;\n}\n\n.intro {\n  margin-bottom: 10px;\n  font-weight: 700;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotsList_screenshots_7e4 {\n  list-style: none;\n  padding-left: 0;\n}\n\n.ScreenshotsList_intro_3mD {\n  margin-bottom: 10px;\n  color: #9E969B;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotsList/ScreenshotsList.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,iBAAiB;EACjB,gBAAgB;CACjB;;AAED;EACE,oBAAoB;EACpB,eAAqB;CACtB","file":"ScreenshotsList.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.screenshots {\n  list-style: none;\n  padding-left: 0;\n}\n\n.intro {\n  margin-bottom: 10px;\n  color: $header-color;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -4815,9 +4819,17 @@ module.exports =
             typeof this.props.title === 'string' ? _react2['default'].createElement(
               'span',
               { className: _ScreenshotListItemScss2['default'].title },
-              '“',
-              this.props.title,
-              '”'
+              this.props.title.indexOf('Screenshot by ') === 0 ? _react2['default'].createElement(
+                'span',
+                null,
+                this.props.title
+              ) : _react2['default'].createElement(
+                'span',
+                null,
+                '“',
+                this.props.title,
+                '”'
+              )
             ) : _react2['default'].createElement(
               'span',
               null,
@@ -4955,7 +4967,11 @@ module.exports =
   
       _get(Object.getPrototypeOf(_GamePage.prototype), 'constructor', this).call(this, props, context);
       var title = _storesSteamApps2['default'].getName(props.gameID);
-      this.state = { screenshots: undefined, title: title };
+      this.state = {
+        popularScreenshots: undefined,
+        recentScreenshots: undefined,
+        title: title
+      };
     }
   
     _createClass(GamePage, [{
@@ -4966,12 +4982,18 @@ module.exports =
     }, {
       key: 'componentDidMount',
       value: function componentDidMount() {
-        _apiSteam2['default'].getScreenshots(this.props.gameID).then(this.onScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshots(this.props.gameID, true).then(this.onPopularScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
+        _apiSteam2['default'].getScreenshots(this.props.gameID, false).then(this.onRecentScreenshotsLoaded.bind(this))['catch'](this.onScreenshotsLoadError.bind(this));
       }
     }, {
-      key: 'onScreenshotsLoaded',
-      value: function onScreenshotsLoaded(screenshots) {
-        this.setState({ screenshots: screenshots });
+      key: 'onPopularScreenshotsLoaded',
+      value: function onPopularScreenshotsLoaded(popularScreenshots) {
+        this.setState({ popularScreenshots: popularScreenshots });
+      }
+    }, {
+      key: 'onRecentScreenshotsLoaded',
+      value: function onRecentScreenshotsLoaded(recentScreenshots) {
+        this.setState({ recentScreenshots: recentScreenshots });
       }
     }, {
       key: 'onScreenshotsLoadError',
@@ -4981,17 +5003,47 @@ module.exports =
     }, {
       key: 'render',
       value: function render() {
-        var screenshotsLoaded = typeof this.state.screenshots === 'object';
+        var recentScreenshotsLoaded = typeof this.state.recentScreenshots === 'object';
+        var popularScreenshotsLoaded = typeof this.state.popularScreenshots === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _GamePageScss2['default'].container },
           _react2['default'].createElement(_Header2['default'], { title: this.state.title, titleIcon: 'steam' }),
-          screenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.screenshots,
-            gameID: this.props.gameID
-          }) : _react2['default'].createElement(
-            'p',
-            { className: _GamePageScss2['default'].message },
-            'Loading screenshots...'
+          _react2['default'].createElement(
+            'div',
+            { className: _GamePageScss2['default'].row },
+            _react2['default'].createElement(
+              'div',
+              { className: _GamePageScss2['default'].left },
+              _react2['default'].createElement(
+                'h2',
+                { className: _GamePageScss2['default'].header },
+                'Recent Screenshots'
+              ),
+              recentScreenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.recentScreenshots,
+                gameID: this.props.gameID
+              }) : _react2['default'].createElement(
+                'p',
+                { className: _GamePageScss2['default'].message },
+                'Loading screenshots...'
+              )
+            ),
+            _react2['default'].createElement(
+              'div',
+              { className: _GamePageScss2['default'].right },
+              _react2['default'].createElement(
+                'h2',
+                { className: _GamePageScss2['default'].header },
+                'Popular Screenshots'
+              ),
+              popularScreenshotsLoaded ? _react2['default'].createElement(_ScreenshotsListScreenshotsList2['default'], { screenshots: this.state.popularScreenshots,
+                gameID: this.props.gameID
+              }) : _react2['default'].createElement(
+                'p',
+                { className: _GamePageScss2['default'].message },
+                'Loading screenshots...'
+              )
+            )
           )
         );
       }
@@ -5046,10 +5098,17 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n", "", {"version":3,"sources":["/./src/components/variables.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC","file":"GamePage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.GamePage_container_2ut {\n\n}\n\n.GamePage_row_3Ic {\n  display: table;\n  width: 100%;\n}\n\n.GamePage_left_O-u, .GamePage_right_1e_ {\n  display: table-cell;\n  vertical-align: top;\n  width: 50%;\n}\n\n.GamePage_left_O-u {\n  padding-right: 40px;\n}\n\n.GamePage_right_1e_ {\n  padding-left: 40px;\n}\n\n.GamePage_message_SqM {\n\n}\n\n.GamePage_header_1D8 {\n  margin: 0 0 10px;\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/GamePage/GamePage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;EACpB,WAAW;CACZ;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;;CAEC;;AAED;EACE,iBAAiB;CAClB","file":"GamePage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n  width: 50%;\n}\n\n.left {\n  padding-right: 40px;\n}\n\n.right {\n  padding-left: 40px;\n}\n\n.message {\n\n}\n\n.header {\n  margin: 0 0 10px;\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
-
+  exports.locals = {
+  	"container": "GamePage_container_2ut",
+  	"row": "GamePage_row_3Ic",
+  	"left": "GamePage_left_O-u",
+  	"right": "GamePage_right_1e_",
+  	"message": "GamePage_message_SqM",
+  	"header": "GamePage_header_1D8"
+  };
 
 /***/ },
 /* 77 */
@@ -108408,21 +108467,22 @@ module.exports =
   
     _createClass(ScreenshotsScraper, [{
       key: 'getUrl',
-      value: function getUrl() {
+      value: function getUrl(popular) {
         if (typeof this.username === 'string') {
           return 'http://steamcommunity.com/id/' + this.username + '/screenshots/?appid=0&sort=newestfirst&' + 'browsefilter=myfiles&view=grid';
         }
-        return 'http://steamcommunity.com/app/' + this.appid + '/screenshots/?sort=newestfirst&p=1&browsefilter=mostrecent';
+        var filter = popular ? 'trendday' : 'mostrecent';
+        return 'http://steamcommunity.com/app/' + this.appid + '/screenshots/?sort=newestfirst&p=1&browsefilter=' + filter;
       }
     }, {
       key: 'getPage',
-      value: function getPage() {
+      value: function getPage(popular) {
         var response, data;
         return regeneratorRuntime.async(function getPage$(context$2$0) {
           while (1) switch (context$2$0.prev = context$2$0.next) {
             case 0:
               context$2$0.next = 2;
-              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(this.getUrl()));
+              return regeneratorRuntime.awrap((0, _coreFetch2['default'])(this.getUrl(popular)));
   
             case 2:
               response = context$2$0.sent;
