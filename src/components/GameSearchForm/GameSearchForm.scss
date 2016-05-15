@@ -5,29 +5,37 @@
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 5px;
+  width: $search-label-width;
+  text-align: right;
 }
 
-input[type="text"].textField {
+input[type="search"].textField {
   width: 20em;
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 1rem;
   font-size: 18px;
 }
 
 .form {
-  margin: 0 auto;
-  text-align: center;
+  margin-top: 20px;
 }
 
 .message {
   color: $error-text-color;
+  margin: 5px 0 20px 12rem;
+  font-size: 14px;
 }
 
 .gamesList {
   list-style: none;
-  padding-left: 0;
+  padding-left: 12rem;
+  max-width: 41rem;
 }
 
 .gameListItem {
   text-align: left;
+}
+
+.spinner {
+
 }

@@ -123,7 +123,16 @@ server.get('/api/games', async (req, res) => {
         json({ error: 'Must provide Steam game name query in name param' });
     return;
   }
-  res.json(SteamApps.search(name));
+  let limit = parseInt(req.query.limit || 15, 10);
+  if (limit > 100) {
+    limit = 100;
+  }
+  let offset = parseInt(req.query.offset || 0, 10);
+  if (offset < 0) {
+    offset = 0;
+  }
+  const games = SteamApps.search(name).slice(offset, limit);
+  res.json(games);
 });
 
 //

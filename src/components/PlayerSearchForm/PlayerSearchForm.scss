@@ -5,25 +5,28 @@
   font-weight: 700;
   font-size: 18px;
   margin-bottom: 5px;
+  width: $search-label-width;
+  text-align: right;
 }
 
-input[type="text"].textField {
+input[type="search"].textField {
   width: 20em;
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 1rem;
 }
 
-input[type="text"].textField,
+input[type="search"].textField,
 .button {
   font-size: 18px;
 }
 
 .form {
-  margin: 0 auto;
-  text-align: center;
 }
 
 .message {
+  margin: 5px 0 20px 12rem;
+  font-size: 14px;
+
   &.success {
     color: $success-text-color;
   }

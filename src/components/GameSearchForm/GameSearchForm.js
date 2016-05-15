@@ -3,6 +3,7 @@ import s from './GameSearchForm.scss';
 import withStyles from '../../decorators/withStyles';
 import Link from '../Link';
 import Steam from '../../api/steam';
+import FontAwesome from 'react-fontawesome';
 
 @withStyles(s)
 class GameSearchForm extends Component {
@@ -12,11 +13,12 @@ class GameSearchForm extends Component {
       name: undefined,
       games: [],
       searchMade: false,
+      searching: false,
     };
   }
 
   onSteamGamesLoaded(games) {
-    this.setState({ games, searchMade: true });
+    this.setState({ games, searchMade: true, searching: false });
   }
 
   onSteamGamesLoadError(response) {
@@ -24,6 +26,7 @@ class GameSearchForm extends Component {
     this.setState({
       message: 'There was an error searching for Steam games. :(',
       searchMade: true,
+      searching: false,
     });
   }
 
@@ -32,16 +35,25 @@ class GameSearchForm extends Component {
   }
 
   search() {
-    this.setState({ searchMade: false });
-    if (this.state.name.length > 3) {
-      Steam.getGames(this.state.name).
-            then(this.onSteamGamesLoaded.bind(this)).
-            catch(this.onSteamGamesLoadError.bind(this));
-    }
+    this.setState({ searchMade: false, searching: false }, () => {
+      if (this.state.name.length > 1) {
+        this.makeSearch();
+      } else {
+        this.setState({ games: [] });
+      }
+    });
+  }
+
+  makeSearch() {
+    this.setState({ searching: true });
+    Steam.getGames(this.state.name).
+          then(this.onSteamGamesLoaded.bind(this)).
+          catch(this.onSteamGamesLoadError.bind(this));
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    this.makeSearch();
   }
 
   render() {
@@ -50,13 +62,16 @@ class GameSearchForm extends Component {
         <label className={s.label}
           htmlFor="game-name"
         >Steam game:</label>
-        <input type="text" autoFocus="autofocus" className={s.textField}
+        <input type="search" autoFocus="autofocus" className={s.textField}
           id="game-name"
           placeholder="e.g., Skyrim"
           onChange={this.onNameChange.bind(this)}
           value={this.state.name}
           disabled={this.state.disabled}
         />
+        {this.state.searching ? (
+          <FontAwesome name="spinner" spin className={s.spinner} />
+        ) : ''}
         {typeof this.state.message === 'string' ? (
           <p className={s.message}>
             {this.state.message}

@@ -68,7 +68,7 @@ class PlayerSearchForm extends Component {
         <label className={s.label}
           htmlFor="user-name"
         >Steam user name:</label>
-        <input type="text" autoFocus="autofocus" className={s.textField}
+        <input type="search" autoFocus="autofocus" className={s.textField}
           id="user-name"
           placeholder="e.g., cheshire137"
           onChange={this.onNameChange.bind(this)}
