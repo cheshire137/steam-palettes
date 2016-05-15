@@ -4,11 +4,13 @@ import withStyles from '../../decorators/withStyles';
 import Swatch from '../Swatch';
 import tinycolor from 'tinycolor2';
 import FontAwesome from 'react-fontawesome';
+import reactTimeout from 'react-timeout';
 
 @withStyles(s)
 class Palette extends Component {
   static propTypes = {
     colors: PropTypes.array.isRequired,
+    setTimeout: PropTypes.func,
   };
 
   constructor(props, context) {
@@ -34,7 +36,11 @@ class Palette extends Component {
   }
 
   onCopy(copyMessage) {
-    this.setState({ copyMessage });
+    this.setState({ copyMessage }, () => {
+      this.props.setTimeout(() => {
+        this.setState({ copyMessage: undefined });
+      }, 2000);
+    });
   }
 
   getAllColors() {
@@ -199,4 +205,4 @@ class Palette extends Component {
 
 }
 
-export default Palette;
+export default reactTimeout(Palette);

@@ -38,12 +38,14 @@ class Swatch extends Component {
 
   toggleSelected(event) {
     event.preventDefault();
+    this.onCopy();
     this.setState({ selected: !this.state.selected },
                   this.propagateSelected.bind(this));
   }
 
   deselect(event) {
     event.preventDefault();
+    this.onCopy();
     this.setState({ selected: false }, this.propagateSelected.bind(this));
   }
 
@@ -55,28 +57,24 @@ class Swatch extends Component {
     return (
       <span className={s.container}>
         {this.props.allowSelection ? (
-          <ReactZeroClipboard text={this.props.hexColor}
-            onCopy={this.onCopy.bind(this)}
-          >
-            <a href="#"
+          <ReactZeroClipboard text={this.props.hexColor}>
+            <button type="button"
               className={cx(s.swatch, s.link, selectedClass, darknessClass)}
               style={swatchStyle}
               title={this.props.hexColor}
               onClick={this.toggleSelected.bind(this)}
-            ></a>
+            ></button>
           </ReactZeroClipboard>
         ) : (
           <span className={s.disallowSelection}>
             {this.state.selected ? (
-              <ReactZeroClipboard text={this.props.hexColor}
-                onCopy={this.onCopy.bind(this)}
-              >
-                <a href="#"
+              <ReactZeroClipboard text={this.props.hexColor}>
+                <button type="button"
                   className={cx(s.swatch, s.link, selectedClass, darknessClass)}
                   style={swatchStyle}
                   title={this.props.hexColor}
                   onClick={this.deselect.bind(this)}
-                ></a>
+                ></button>
               </ReactZeroClipboard>
             ) : (
               <span

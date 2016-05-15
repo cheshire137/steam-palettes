@@ -7,6 +7,7 @@
   width: $swatch-size;
   height: $swatch-size;
   text-align: center;
+  vertical-align: top;
   margin: 2px 5px;
   position: relative;
   border-width: 1px;
@@ -25,7 +26,7 @@
       content: "x";
       position: absolute;
       left: 5px;
-      top: 1px;
+      top: -2px;
     }
   }
 
@@ -46,5 +47,6 @@
   }
 }
 
-.container {
+.container, .disallowSelection {
+  display: inline-block;
 }
