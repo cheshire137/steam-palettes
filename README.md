@@ -18,6 +18,10 @@ Get a [Steam Web API key](http://steamcommunity.com/dev/apikey) and add it to sr
 
 Visit [localhost:3000](http://localhost:3000/) to view the app. The server runs on port 5000.
 
+### How to Update the List of Steam Apps
+
+    npm run-script update-steam-apps
+
 ## How to Deploy to Heroku
 
 1. Fork this repo and modify src/config.json to suit your app.
