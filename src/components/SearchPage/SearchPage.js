@@ -27,9 +27,9 @@ class SearchPage extends Component {
     return (
       <div className={s.container}>
         <Header />
-        <p className={s.intro}>Find screenshots by Steam user or game:</p>
-        <PlayerSearchForm />
+        <p className={s.intro}>Find screenshots by Steam game or user:</p>
         <GameSearchForm />
+        <PlayerSearchForm />
       </div>
     );
   }
