@@ -12,6 +12,7 @@ class ScreenshotListItem extends Component {
     steamID: PropTypes.string,
     username: PropTypes.string,
     gameID: PropTypes.number,
+    nextScreenshot: PropTypes.object,
   };
 
   constructor(props, context) {
@@ -26,6 +27,9 @@ class ScreenshotListItem extends Component {
              '/' + this.props.id;
     } else {
       url = '/game/' + this.props.gameID + '/' + this.props.id;
+    }
+    if (typeof this.props.nextScreenshot === 'object') {
+      url += '?next=' + this.props.nextScreenshot.id;
     }
     return (
       <li className={s.screenshot}>

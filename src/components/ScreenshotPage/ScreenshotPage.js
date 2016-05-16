@@ -18,6 +18,7 @@ class ScreenshotPage extends Component {
     username: PropTypes.string,
     screenshotID: PropTypes.string.isRequired,
     gameID: PropTypes.number,
+    nextScreenshotID: PropTypes.string,
   };
 
   static contextTypes = {
@@ -93,6 +94,23 @@ class ScreenshotPage extends Component {
           catch(this.onRandomScreenshotLoadError.bind(this));
   }
 
+  loadNextScreenshot(event) {
+    const button = event.target;
+    button.blur();
+    let url = '';
+    if (typeof this.props.username === 'string') {
+      url = '/player/' + this.props.username + '/' + this.props.steamID +
+            '/' + this.props.nextScreenshotID;
+    } else if (typeof this.props.gameID !== 'undefined') {
+      url = '/game/' + this.props.gameID + '/' + this.props.nextScreenshotID;
+    } else {
+      url = '/screenshot/' + this.props.nextScreenshotID;
+    }
+    Location.push({
+      ...(parsePath(url)),
+    });
+  }
+
   render() {
     const alt = 'Screenshot ' + this.props.screenshotID;
     const isScreenshotLoaded = typeof this.state.screenshot === 'object';
@@ -130,13 +148,22 @@ class ScreenshotPage extends Component {
             />
           </div>
           <div className={s.right}>
-            <button type="button"
-              className={s.screenshotNavButton}
-              onClick={this.loadRandomScreenshot.bind(this)}
-              disabled={this.state.loadingRandomScreenshot}
-            >
-              Random screenshot &rarr;
-            </button>
+            {typeof this.props.nextScreenshotID === 'undefined' ? (
+              <button type="button"
+                className={s.screenshotNavButton}
+                onClick={this.loadRandomScreenshot.bind(this)}
+                disabled={this.state.loadingRandomScreenshot}
+              >
+                Random screenshot &rarr;
+              </button>
+            ) : (
+              <button type="button"
+                className={s.screenshotNavButton}
+                onClick={this.loadNextScreenshot.bind(this)}
+              >
+                Next screenshot &rarr;
+              </button>
+            )}
             {this.state.loadingRandomScreenshot ? (
               <FontAwesome name="spinner" spin className={s.spinner} />
             ) : ''}

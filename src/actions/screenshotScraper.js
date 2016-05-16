@@ -73,7 +73,7 @@ class ScreenshotScraper {
         const breadcrumbLinks = breadcrumbs.querySelectorAll('a');
         for (let i = 0; i < breadcrumbLinks.length; i++) {
           const breadcrumb = breadcrumbLinks[i];
-          if (breadcrumb.innerHTML === screenshot.gameName) {
+          if (breadcrumb.innerHTML.trim() === screenshot.gameName) {
             const url = breadcrumb.href;
             const key = '/app/';
             const index = url.indexOf(key) + key.length;
