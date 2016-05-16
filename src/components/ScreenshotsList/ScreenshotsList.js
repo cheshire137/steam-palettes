@@ -28,20 +28,20 @@ class ScreenshotsList extends Component {
       }
       message += ' does not have any screenshots.';
     }
-    const nextScreenshots = this.props.screenshots.slice(1);
     return (
       <ul className={s.screenshots}>
         <li>
           <h3 className={s.intro}>{message}</h3>
         </li>
         {this.props.screenshots.map((screenshot, i) => {
-          const nextScreenshot = nextScreenshots[i];
+          const nextScreenshotIDs =
+              this.props.screenshots.slice(i + 1).map((s) => s.id).join(',');
           return (
             <ScreenshotListItem key={screenshot.url} {...screenshot}
               steamID={this.props.steamID}
               username={this.props.username}
               gameID={this.props.gameID}
-              nextScreenshot={nextScreenshot}
+              nextScreenshotIDs={nextScreenshotIDs}
             />
           );
         })}

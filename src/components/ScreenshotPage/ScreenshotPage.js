@@ -18,7 +18,7 @@ class ScreenshotPage extends Component {
     username: PropTypes.string,
     screenshotID: PropTypes.string.isRequired,
     gameID: PropTypes.number,
-    nextScreenshotID: PropTypes.string,
+    nextScreenshotIDs: PropTypes.string,
   };
 
   static contextTypes = {
@@ -98,13 +98,18 @@ class ScreenshotPage extends Component {
     const button = event.target;
     button.blur();
     let url = '';
+    const ids = this.props.nextScreenshotIDs.split(',');
+    const id = ids[0];
     if (typeof this.props.username === 'string') {
       url = '/player/' + this.props.username + '/' + this.props.steamID +
-            '/' + this.props.nextScreenshotID;
+            '/' + id;
     } else if (typeof this.props.gameID !== 'undefined') {
-      url = '/game/' + this.props.gameID + '/' + this.props.nextScreenshotID;
+      url = '/game/' + this.props.gameID + '/' + id;
     } else {
-      url = '/screenshot/' + this.props.nextScreenshotID;
+      url = '/screenshot/' + id;
+    }
+    if (ids.length > 1) {
+      url += '?next=' + ids.slice(1).join(',');
     }
     Location.push({
       ...(parsePath(url)),
@@ -148,7 +153,7 @@ class ScreenshotPage extends Component {
             />
           </div>
           <div className={s.right}>
-            {typeof this.props.nextScreenshotID === 'undefined' ? (
+            {typeof this.props.nextScreenshotIDs === 'undefined' ? (
               <button type="button"
                 className={s.screenshotNavButton}
                 onClick={this.loadRandomScreenshot.bind(this)}

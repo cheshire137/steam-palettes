@@ -546,15 +546,15 @@ module.exports =
     });
   
     on('/screenshot/:screenshotID', function callee$1$0(req) {
-      var screenshotID, nextID, key;
+      var screenshotID, nextScreenshotIDs, key;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
             screenshotID = req.params.screenshotID;
-            nextID = req.query.next;
-            key = screenshotID + '-' + nextID;
+            nextScreenshotIDs = req.query.next;
+            key = screenshotID + '-' + nextScreenshotIDs;
             return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { screenshotID: screenshotID, key: key,
-              nextScreenshotID: nextID
+              nextScreenshotIDs: nextScreenshotIDs
             }));
   
           case 4:
@@ -565,18 +565,18 @@ module.exports =
     });
   
     on('/player/:username/:steamID/:screenshotID', function callee$1$0(req) {
-      var username, steamID, screenshotID, nextID, key;
+      var username, steamID, screenshotID, nextScreenshotIDs, key;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
             username = req.params.username;
             steamID = req.params.steamID;
             screenshotID = req.params.screenshotID;
-            nextID = req.query.next;
-            key = username + '-' + steamID + '-' + screenshotID + '-' + nextID;
+            nextScreenshotIDs = req.query.next;
+            key = username + '-' + steamID + '-' + screenshotID + '-' + nextScreenshotIDs;
             return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { username: username, steamID: steamID,
               screenshotID: screenshotID, key: key,
-              nextScreenshotID: nextID
+              nextScreenshotIDs: nextScreenshotIDs
             }));
   
           case 6:
@@ -587,17 +587,17 @@ module.exports =
     });
   
     on('/game/:appid/:screenshotID', function callee$1$0(req) {
-      var appid, screenshotID, nextID, key;
+      var appid, screenshotID, nextScreenshotIDs, key;
       return regeneratorRuntime.async(function callee$1$0$(context$2$0) {
         while (1) switch (context$2$0.prev = context$2$0.next) {
           case 0:
             appid = parseInt(req.params.appid, 10);
             screenshotID = req.params.screenshotID;
-            nextID = req.query.next;
-            key = appid + '-' + screenshotID + '-' + nextID;
+            nextScreenshotIDs = req.query.next;
+            key = appid + '-' + screenshotID + '-' + nextScreenshotIDs;
             return context$2$0.abrupt('return', _react2['default'].createElement(_componentsScreenshotPage2['default'], { gameID: appid,
               screenshotID: screenshotID, key: key,
-              nextScreenshotID: nextID
+              nextScreenshotIDs: nextScreenshotIDs
             }));
   
           case 5:
@@ -4866,7 +4866,6 @@ module.exports =
           }
           message += ' does not have any screenshots.';
         }
-        var nextScreenshots = this.props.screenshots.slice(1);
         return _react2['default'].createElement(
           'ul',
           { className: _ScreenshotsListScss2['default'].screenshots },
@@ -4880,12 +4879,14 @@ module.exports =
             )
           ),
           this.props.screenshots.map(function (screenshot, i) {
-            var nextScreenshot = nextScreenshots[i];
+            var nextScreenshotIDs = _this.props.screenshots.slice(i + 1).map(function (s) {
+              return s.id;
+            }).join(',');
             return _react2['default'].createElement(_ScreenshotListItemScreenshotListItem2['default'], _extends({ key: screenshot.url }, screenshot, {
               steamID: _this.props.steamID,
               username: _this.props.username,
               gameID: _this.props.gameID,
-              nextScreenshot: nextScreenshot
+              nextScreenshotIDs: nextScreenshotIDs
             }));
           })
         );
@@ -4997,7 +4998,7 @@ module.exports =
         steamID: _react.PropTypes.string,
         username: _react.PropTypes.string,
         gameID: _react.PropTypes.number,
-        nextScreenshot: _react.PropTypes.object
+        nextScreenshotIDs: _react.PropTypes.string
       },
       enumerable: true
     }]);
@@ -5018,8 +5019,8 @@ module.exports =
         } else {
           url = '/game/' + this.props.gameID + '/' + this.props.id;
         }
-        if (typeof this.props.nextScreenshot === 'object') {
-          url += '?next=' + this.props.nextScreenshot.id;
+        if (typeof this.props.nextScreenshotIDs === 'string' && this.props.nextScreenshotIDs.length > 0) {
+          url += '?next=' + this.props.nextScreenshotIDs;
         }
         return _react2['default'].createElement(
           'li',
@@ -107764,7 +107765,7 @@ module.exports =
         username: _react.PropTypes.string,
         screenshotID: _react.PropTypes.string.isRequired,
         gameID: _react.PropTypes.number,
-        nextScreenshotID: _react.PropTypes.string
+        nextScreenshotIDs: _react.PropTypes.string
       },
       enumerable: true
     }, {
@@ -107856,12 +107857,17 @@ module.exports =
         var button = event.target;
         button.blur();
         var url = '';
+        var ids = this.props.nextScreenshotIDs.split(',');
+        var id = ids[0];
         if (typeof this.props.username === 'string') {
-          url = '/player/' + this.props.username + '/' + this.props.steamID + '/' + this.props.nextScreenshotID;
+          url = '/player/' + this.props.username + '/' + this.props.steamID + '/' + id;
         } else if (typeof this.props.gameID !== 'undefined') {
-          url = '/game/' + this.props.gameID + '/' + this.props.nextScreenshotID;
+          url = '/game/' + this.props.gameID + '/' + id;
         } else {
-          url = '/screenshot/' + this.props.nextScreenshotID;
+          url = '/screenshot/' + id;
+        }
+        if (ids.length > 1) {
+          url += '?next=' + ids.slice(1).join(',');
         }
         _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(url)));
       }
@@ -107910,7 +107916,7 @@ module.exports =
             _react2['default'].createElement(
               'div',
               { className: _ScreenshotPageScss2['default'].right },
-              typeof this.props.nextScreenshotID === 'undefined' ? _react2['default'].createElement(
+              typeof this.props.nextScreenshotIDs === 'undefined' ? _react2['default'].createElement(
                 'button',
                 { type: 'button',
                   className: _ScreenshotPageScss2['default'].screenshotNavButton,

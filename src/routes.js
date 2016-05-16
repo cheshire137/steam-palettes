@@ -16,11 +16,11 @@ const router = new Router(on => {
 
   on('/screenshot/:screenshotID', async (req) => {
     const screenshotID = req.params.screenshotID;
-    const nextID = req.query.next;
-    const key = screenshotID + '-' + nextID;
+    const nextScreenshotIDs = req.query.next;
+    const key = screenshotID + '-' + nextScreenshotIDs;
     return (
       <ScreenshotPage screenshotID={screenshotID} key={key}
-        nextScreenshotID={nextID}
+        nextScreenshotIDs={nextScreenshotIDs}
       />
     );
   });
@@ -29,12 +29,13 @@ const router = new Router(on => {
     const username = req.params.username;
     const steamID = req.params.steamID;
     const screenshotID = req.params.screenshotID;
-    const nextID = req.query.next;
-    const key = username + '-' + steamID + '-' + screenshotID + '-' + nextID;
+    const nextScreenshotIDs = req.query.next;
+    const key = username + '-' + steamID + '-' + screenshotID + '-' +
+                nextScreenshotIDs;
     return (
       <ScreenshotPage username={username} steamID={steamID}
         screenshotID={screenshotID} key={key}
-        nextScreenshotID={nextID}
+        nextScreenshotIDs={nextScreenshotIDs}
       />
     );
   });
@@ -42,12 +43,12 @@ const router = new Router(on => {
   on('/game/:appid/:screenshotID', async (req) => {
     const appid = parseInt(req.params.appid, 10);
     const screenshotID = req.params.screenshotID;
-    const nextID = req.query.next;
-    const key = appid + '-' + screenshotID + '-' + nextID;
+    const nextScreenshotIDs = req.query.next;
+    const key = appid + '-' + screenshotID + '-' + nextScreenshotIDs;
     return (
       <ScreenshotPage gameID={appid}
         screenshotID={screenshotID} key={key}
-        nextScreenshotID={nextID}
+        nextScreenshotIDs={nextScreenshotIDs}
       />
     );
   });
