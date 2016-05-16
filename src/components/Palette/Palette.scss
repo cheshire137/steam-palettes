@@ -60,6 +60,14 @@
     background-color: $body-bg;
     color: #8B8086;
   }
+
+  &:disabled {
+    background-color: $body-bg;
+
+    &:hover, &:focus {
+      background-color: $body-bg;
+    }
+  }
 }
 
 .createPalette {

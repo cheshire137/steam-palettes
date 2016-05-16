@@ -8,6 +8,8 @@ import Colors from '../../api/colors';
 import Palette from '../Palette';
 import FontAwesome from 'react-fontawesome';
 import SteamApps from '../../stores/steamApps';
+import parsePath from 'history/lib/parsePath';
+import Location from '../../core/Location';
 
 @withStyles(s)
 class ScreenshotPage extends Component {
@@ -28,6 +30,7 @@ class ScreenshotPage extends Component {
       screenshot: undefined,
       title: 'Screenshot ' + props.screenshotID,
       colors: undefined,
+      loadingRandomScreenshot: false,
     };
   }
 
@@ -62,11 +65,32 @@ class ScreenshotPage extends Component {
     console.error('failed to load colors from image', response);
   }
 
+  onRandomScreenshotLoaded(screenshot) {
+    const path = '/screenshot/' + screenshot.id;
+    Location.push({
+      ...(parsePath(path)),
+    });
+  }
+
+  onRandomScreenshotLoadError(error) {
+    console.error('failed to load random screenshot', error);
+    this.setState({ loadingRandomScreenshot: false });
+  }
+
   updateTitle() {
     const description = this.state.screenshot.description;
     if (typeof description === 'string' && description.length > 0) {
       this.setState({ title: description });
     }
+  }
+
+  loadRandomScreenshot(event) {
+    const button = event.target;
+    button.blur();
+    this.setState({ loadingRandomScreenshot: true });
+    Steam.getRandomScreenshot().
+          then(this.onRandomScreenshotLoaded.bind(this)).
+          catch(this.onRandomScreenshotLoadError.bind(this));
   }
 
   render() {
@@ -87,14 +111,37 @@ class ScreenshotPage extends Component {
       backUrl = '/game/' + this.props.gameID;
       backIcon = 'steam';
       backTitle = SteamApps.getName(this.props.gameID);
+    } else if (isScreenshotLoaded) {
+      if (typeof this.state.screenshot.appid === 'number' &&
+          typeof this.state.screenshot.gameName === 'string') {
+        backUrl = '/game/' + this.state.screenshot.appid;
+        backIcon = 'steam';
+        backTitle = this.state.screenshot.gameName;
+      }
     }
     const areColorsLoaded = typeof this.state.colors === 'object';
     return (
       <div className={s.container}>
-        <Header title={this.state.title} previousUrl={backUrl}
-          previousTitle={backTitle}
-          previousIcon={backIcon}
-        />
+        <div className={s.row}>
+          <div className={s.left}>
+            <Header title={this.state.title} previousUrl={backUrl}
+              previousTitle={backTitle}
+              previousIcon={backIcon}
+            />
+          </div>
+          <div className={s.right}>
+            <button type="button"
+              className={s.screenshotNavButton}
+              onClick={this.loadRandomScreenshot.bind(this)}
+              disabled={this.state.loadingRandomScreenshot}
+            >
+              Random screenshot &rarr;
+            </button>
+            {this.state.loadingRandomScreenshot ? (
+              <FontAwesome name="spinner" spin className={s.spinner} />
+            ) : ''}
+          </div>
+        </div>
         {isScreenshotLoaded ? (
           <div className={s.details}>
             <div className={s.left}>

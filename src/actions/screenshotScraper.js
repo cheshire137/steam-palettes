@@ -1,6 +1,7 @@
 import fetch from '../core/fetch';
 import jsdom from 'jsdom';
 import Promise from 'bluebird';
+import SteamApps from '../stores/steamApps';
 
 class ScreenshotScraper {
   constructor(id) {
@@ -63,6 +64,24 @@ class ScreenshotScraper {
     const fileSize = this.getFileSize(metadata);
     if (fileSize) {
       screenshot.fileSize = fileSize;
+    }
+    const game = window.document.querySelector('.apphub_AppName');
+    if (game) {
+      screenshot.gameName = game.innerHTML.trim();
+      const breadcrumbs = window.document.querySelector('.breadcrumbs');
+      if (breadcrumbs) {
+        const breadcrumbLinks = breadcrumbs.querySelectorAll('a');
+        for (let i = 0; i < breadcrumbLinks.length; i++) {
+          const breadcrumb = breadcrumbLinks[i];
+          if (breadcrumb.innerHTML === screenshot.gameName) {
+            const url = breadcrumb.href;
+            const key = '/app/';
+            const index = url.indexOf(key) + key.length;
+            screenshot.appid = parseInt(url.slice(index), 10);
+            break;
+          }
+        }
+      }
     }
     resolve(screenshot);
   }

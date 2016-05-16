@@ -7,15 +7,20 @@
 .details {
   display: table;
   width: 100%;
-}
 
-.left, .right {
-  display: table-cell;
-  vertical-align: top;
-}
+  .left, .right {
+    display: table-cell;
+    vertical-align: top;
+  }
 
-.left {
-  text-align: center;
+  .left {
+    text-align: center;
+  }
+
+  .right {
+    padding-left: 40px;
+    max-width: 600px;
+  }
 }
 
 .screenshotLink {
@@ -30,11 +35,6 @@
 
 .description {
   margin: 0 0 20px;
-}
-
-.right {
-  padding-left: 40px;
-  max-width: 600px;
 }
 
 .colorsMessage {
@@ -80,7 +80,7 @@
 }
 
 @media (min-width: 768px) {
-  .right {
+  .details .right {
     min-width: 370px;
   }
 }
@@ -99,5 +99,48 @@
 }
 
 .fullSizeIcon {
+
+}
+
+.row {
+  display: table;
+  width: 100%;
+
+  .left, .right {
+    display: table-cell;
+    vertical-align: top;
+  }
+
+  .left {
+    width: 75%;
+  }
+
+  .right {
+    text-align: right;
+    padding-top: 40px;
+    width: 25%;
+  }
+}
+
+.screenshotNavButton {
+  background-color: $body-bg;
+  border: none;
+  line-height: 2.5rem;
+
+  &:hover, &:focus {
+    background-color: $body-bg;
+    color: #8B8086;
+  }
+
+  &:disabled {
+    background-color: $body-bg;
+
+    &:hover, &:focus {
+      background-color: $body-bg;
+    }
+  }
+}
+
+.spinner {
 
 }

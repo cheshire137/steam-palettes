@@ -2744,7 +2744,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;CAC/B;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\r\n\r\n.Header_header_3bM {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.Header_title_YtT {\r\n  margin: 0 auto;\r\n  max-width: 1000px;\r\n  line-height: 2.5rem;\r\n}\r\n\r\n.Header_brand_1-T {\r\n  text-decoration: none;\r\n}\r\n\r\n.Header_separator_1Qr {\r\n}\r\n\r\n.Header_separator_1Qr:before, .Header_separator_1Qr:after {\r\n  content: \"\\A0\";\r\n}\r\n\r\n.Header_icon_3H0 {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Header/Header.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,kBAAkB;EAClB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAA8B;EAC9B,oBAAoB;CACrB;;AAED;EACE,sBAAsB;CACvB;;AAED;CAKC;;AAJC;EAEE,eAAe;CAChB;;AAGH;EACE,oBAAoB;EACpB,mBAAmB;CACpB","file":"Header.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\r\n\r\n.header {\r\n  padding-top: 40px;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.title {\r\n  margin: 0 auto;\r\n  max-width: $max-content-width;\r\n  line-height: 2.5rem;\r\n}\r\n\r\n.brand {\r\n  text-decoration: none;\r\n}\r\n\r\n.separator {\r\n  &:before,\r\n  &:after {\r\n    content: \"\\a0\";\r\n  }\r\n}\r\n\r\n.icon {\r\n  margin-right: 0.3em;\r\n  font-size: 1.75rem;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -5435,6 +5435,17 @@ module.exports =
       value: function getName(appId) {
         this._init();
         return this._appsByID[appId].name;
+      }
+    }, {
+      key: 'getID',
+      value: function getID(name) {
+        this._init();
+        for (var i = 0; i < this.apps.length; i++) {
+          var app = this.apps[i];
+          if (app.name === name) {
+            return app.appid;
+          }
+        }
       }
     }, {
       key: '_idSorter',
@@ -107668,6 +107679,8 @@ module.exports =
     value: true
   });
   
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+  
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
   
   var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
@@ -107718,6 +107731,14 @@ module.exports =
   
   var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
   
+  var _historyLibParsePath = __webpack_require__(35);
+  
+  var _historyLibParsePath2 = _interopRequireDefault(_historyLibParsePath);
+  
+  var _coreLocation = __webpack_require__(36);
+  
+  var _coreLocation2 = _interopRequireDefault(_coreLocation);
+  
   var ScreenshotPage = (function (_Component) {
     _inherits(ScreenshotPage, _Component);
   
@@ -107745,7 +107766,8 @@ module.exports =
       this.state = {
         screenshot: undefined,
         title: 'Screenshot ' + props.screenshotID,
-        colors: undefined
+        colors: undefined,
+        loadingRandomScreenshot: false
       };
     }
   
@@ -107785,12 +107807,32 @@ module.exports =
         console.error('failed to load colors from image', response);
       }
     }, {
+      key: 'onRandomScreenshotLoaded',
+      value: function onRandomScreenshotLoaded(screenshot) {
+        var path = '/screenshot/' + screenshot.id;
+        _coreLocation2['default'].push(_extends({}, (0, _historyLibParsePath2['default'])(path)));
+      }
+    }, {
+      key: 'onRandomScreenshotLoadError',
+      value: function onRandomScreenshotLoadError(error) {
+        console.error('failed to load random screenshot', error);
+        this.setState({ loadingRandomScreenshot: false });
+      }
+    }, {
       key: 'updateTitle',
       value: function updateTitle() {
         var description = this.state.screenshot.description;
         if (typeof description === 'string' && description.length > 0) {
           this.setState({ title: description });
         }
+      }
+    }, {
+      key: 'loadRandomScreenshot',
+      value: function loadRandomScreenshot(event) {
+        var button = event.target;
+        button.blur();
+        this.setState({ loadingRandomScreenshot: true });
+        _apiSteam2['default'].getRandomScreenshot().then(this.onRandomScreenshotLoaded.bind(this))['catch'](this.onRandomScreenshotLoadError.bind(this));
       }
     }, {
       key: 'render',
@@ -107812,15 +107854,43 @@ module.exports =
           backUrl = '/game/' + this.props.gameID;
           backIcon = 'steam';
           backTitle = _storesSteamApps2['default'].getName(this.props.gameID);
+        } else if (isScreenshotLoaded) {
+          if (typeof this.state.screenshot.appid === 'number' && typeof this.state.screenshot.gameName === 'string') {
+            backUrl = '/game/' + this.state.screenshot.appid;
+            backIcon = 'steam';
+            backTitle = this.state.screenshot.gameName;
+          }
         }
         var areColorsLoaded = typeof this.state.colors === 'object';
         return _react2['default'].createElement(
           'div',
           { className: _ScreenshotPageScss2['default'].container },
-          _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
-            previousTitle: backTitle,
-            previousIcon: backIcon
-          }),
+          _react2['default'].createElement(
+            'div',
+            { className: _ScreenshotPageScss2['default'].row },
+            _react2['default'].createElement(
+              'div',
+              { className: _ScreenshotPageScss2['default'].left },
+              _react2['default'].createElement(_Header2['default'], { title: this.state.title, previousUrl: backUrl,
+                previousTitle: backTitle,
+                previousIcon: backIcon
+              })
+            ),
+            _react2['default'].createElement(
+              'div',
+              { className: _ScreenshotPageScss2['default'].right },
+              _react2['default'].createElement(
+                'button',
+                { type: 'button',
+                  className: _ScreenshotPageScss2['default'].screenshotNavButton,
+                  onClick: this.loadRandomScreenshot.bind(this),
+                  disabled: this.state.loadingRandomScreenshot
+                },
+                'Random screenshot →'
+              ),
+              this.state.loadingRandomScreenshot ? _react2['default'].createElement(_reactFontawesome2['default'], { name: 'spinner', spin: true, className: _ScreenshotPageScss2['default'].spinner }) : ''
+            )
+          ),
           isScreenshotLoaded ? _react2['default'].createElement(
             'div',
             { className: _ScreenshotPageScss2['default'].details },
@@ -107966,7 +108036,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_left_2eX, .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CACb;;AAED;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n}\n\n.left, .right {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.left {\n  text-align: center;\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.right {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.ScreenshotPage_container_1ix {\n\n}\n\n.ScreenshotPage_details_2bS {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_details_2bS .ScreenshotPage_left_2eX, .ScreenshotPage_details_2bS .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_details_2bS .ScreenshotPage_left_2eX {\n  text-align: center;\n}\n\n.ScreenshotPage_details_2bS .ScreenshotPage_right_21z {\n  padding-left: 40px;\n  max-width: 600px;\n}\n\n.ScreenshotPage_screenshotLink_3rs {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_screenshot_1Ek {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.ScreenshotPage_description_3-p {\n  margin: 0 0 20px;\n}\n\n.ScreenshotPage_colorsMessage_2MN {\n  margin-bottom: 20px;\n}\n\n.ScreenshotPage_metadata_1CM {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n}\n\n.ScreenshotPage_metadata_1CM li {\n  display: inline-block;\n}\n\n.ScreenshotPage_metadata_1CM li + li {\n\n}\n\n.ScreenshotPage_metadata_1CM li + li:before {\n  content: \"\\A0\\B7\\A0\";\n}\n\n.ScreenshotPage_authorLink_2ME, .ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.ScreenshotPage_fullSizeLink_26o, .ScreenshotPage_detailsUrl_3O_ {\n}\n\n.ScreenshotPage_fullSizeLink_26o:after, .ScreenshotPage_detailsUrl_3O_:after {\n  color: #8B8086;\n  content: \"\\B7\";\n  margin-left: 0.75em;\n  margin-right: 0.75em;\n}\n\n.ScreenshotPage_authorLink_2ME {\n}\n\n.ScreenshotPage_message_1kw {\n\n}\n\n@media (min-width: 768px) {\n  .ScreenshotPage_details_2bS .ScreenshotPage_right_21z {\n    min-width: 370px;\n  }\n}\n\n.ScreenshotPage_icon_3uB {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.ScreenshotPage_profileIcon_5Dv {\n\n}\n\n.ScreenshotPage_detailsIcon_Bml {\n\n}\n\n.ScreenshotPage_fullSizeIcon_2Di {\n\n}\n\n.ScreenshotPage_row_3bL {\n  display: table;\n  width: 100%;\n}\n\n.ScreenshotPage_row_3bL .ScreenshotPage_left_2eX, .ScreenshotPage_row_3bL .ScreenshotPage_right_21z {\n  display: table-cell;\n  vertical-align: top;\n}\n\n.ScreenshotPage_row_3bL .ScreenshotPage_left_2eX {\n  width: 75%;\n}\n\n.ScreenshotPage_row_3bL .ScreenshotPage_right_21z {\n  text-align: right;\n  padding-top: 40px;\n  width: 25%;\n}\n\n.ScreenshotPage_screenshotNavButton_1ie {\n  background-color: #222314;\n  border: none;\n  line-height: 2.5rem\n}\n\n.ScreenshotPage_screenshotNavButton_1ie:hover, .ScreenshotPage_screenshotNavButton_1ie:focus {\n  background-color: #222314;\n  color: #8B8086;\n}\n\n.ScreenshotPage_screenshotNavButton_1ie:disabled {\n  background-color: #222314;\n}\n\n.ScreenshotPage_screenshotNavButton_1ie:disabled:hover, .ScreenshotPage_screenshotNavButton_1ie:disabled:focus {\n  background-color: #222314;\n}\n\n.ScreenshotPage_spinner_1Pe {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/ScreenshotPage/ScreenshotPage.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CAeb;;AAbC;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,mBAAmB;CACpB;;AAED;EACE,mBAAmB;EACnB,iBAAiB;CAClB;;AAGH;EACE,iBAAiB;CAClB;;AAED;EACE,gBAAgB;EAChB,eAAe;EACf,uBAAuB;CACxB;;AAED;EACE,iBAAiB;CAClB;;AAED;EACE,oBAAoB;CACrB;;AAED;EACE,gBAAgB;EAChB,oBAAoB;EACpB,gBAAgB;EAChB,iBAAiB;CAWlB;;AATC;EACE,sBAAsB;CAOvB;;AALC;;CAIC;;AAHC;EACE,qBAAqB;CACtB;;AAKP;EACE,iBAAiB;EACjB,sBAAsB;CACvB;;AAED;CAOC;;AANC;EACE,eAAmB;EACnB,eAAe;EACf,oBAAoB;EACpB,qBAAqB;CACtB;;AAGH;CACC;;AAED;;CAEC;;AAED;EACE;IACE,iBAAiB;GAClB;CACF;;AAED;EACE,oBAAoB;EACpB,gBAAgB;CACjB;;AAED;;CAEC;;AAED;;CAEC;;AAED;;CAEC;;AAED;EACE,eAAe;EACf,YAAY;CAgBb;;AAdC;EACE,oBAAoB;EACpB,oBAAoB;CACrB;;AAED;EACE,WAAW;CACZ;;AAED;EACE,kBAAkB;EAClB,kBAAkB;EAClB,WAAW;CACZ;;AAGH;EACE,0BAA2B;EAC3B,aAAa;EACb,mBAAoB;CAcrB;;AAZC;EACE,0BAA2B;EAC3B,eAAe;CAChB;;AAED;EACE,0BAA2B;CAK5B;;AAHC;EACE,0BAA2B;CAC5B;;AAIL;;CAEC","file":"ScreenshotPage.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n\n}\n\n.details {\n  display: table;\n  width: 100%;\n\n  .left, .right {\n    display: table-cell;\n    vertical-align: top;\n  }\n\n  .left {\n    text-align: center;\n  }\n\n  .right {\n    padding-left: 40px;\n    max-width: 600px;\n  }\n}\n\n.screenshotLink {\n  margin: 0 0 20px;\n}\n\n.screenshot {\n  max-width: 100%;\n  display: block;\n  border: 1px solid #000;\n}\n\n.description {\n  margin: 0 0 20px;\n}\n\n.colorsMessage {\n  margin-bottom: 20px;\n}\n\n.metadata {\n  margin: 5px 0 0;\n  white-space: nowrap;\n  padding-left: 0;\n  list-style: none;\n\n  li {\n    display: inline-block;\n\n    + li {\n      &:before {\n        content: \"\\a0\\b7\\a0\";\n      }\n    }\n  }\n}\n\n.authorLink, .fullSizeLink, .detailsUrl {\n  margin-top: 20px;\n  display: inline-block;\n}\n\n.fullSizeLink, .detailsUrl {\n  &:after {\n    color: $text-color;\n    content: \"\\b7\";\n    margin-left: 0.75em;\n    margin-right: 0.75em;\n  }\n}\n\n.authorLink {\n}\n\n.message {\n\n}\n\n@media (min-width: 768px) {\n  .details .right {\n    min-width: 370px;\n  }\n}\n\n.icon {\n  margin-right: 0.5em;\n  font-size: 14px;\n}\n\n.profileIcon {\n\n}\n\n.detailsIcon {\n\n}\n\n.fullSizeIcon {\n\n}\n\n.row {\n  display: table;\n  width: 100%;\n\n  .left, .right {\n    display: table-cell;\n    vertical-align: top;\n  }\n\n  .left {\n    width: 75%;\n  }\n\n  .right {\n    text-align: right;\n    padding-top: 40px;\n    width: 25%;\n  }\n}\n\n.screenshotNavButton {\n  background-color: $body-bg;\n  border: none;\n  line-height: 2.5rem;\n\n  &:hover, &:focus {\n    background-color: $body-bg;\n    color: #8B8086;\n  }\n\n  &:disabled {\n    background-color: $body-bg;\n\n    &:hover, &:focus {\n      background-color: $body-bg;\n    }\n  }\n}\n\n.spinner {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -107986,7 +108056,10 @@ module.exports =
   	"icon": "ScreenshotPage_icon_3uB",
   	"profileIcon": "ScreenshotPage_profileIcon_5Dv",
   	"detailsIcon": "ScreenshotPage_detailsIcon_Bml",
-  	"fullSizeIcon": "ScreenshotPage_fullSizeIcon_2Di"
+  	"fullSizeIcon": "ScreenshotPage_fullSizeIcon_2Di",
+  	"row": "ScreenshotPage_row_3bL",
+  	"screenshotNavButton": "ScreenshotPage_screenshotNavButton_1ie",
+  	"spinner": "ScreenshotPage_spinner_1Pe"
   };
 
 /***/ },
@@ -108415,7 +108488,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n  margin-top: 20px;\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColors_1qk {\n  display: inline-block;\n  margin: 0;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5, .Palette_icon_2s6 {\n  font-size: 14px;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n}\n\n.Palette_icon_2s6 {\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n\n.Palette_shuffle_3Z1, .Palette_clear_126 {\n  vertical-align: top;\n  border: none;\n  background-color: #222314;\n  line-height: 35px\n}\n\n.Palette_shuffle_3Z1:hover, .Palette_shuffle_3Z1:focus, .Palette_clear_126:hover, .Palette_clear_126:focus {\n  background-color: #222314;\n  color: #8B8086;\n}\n\n.Palette_createPalette_3-9 {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.Palette_shuffle_3Z1 {\n\n}\n\n.Palette_clear_126 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,iBAAiB;CAClB;;AAED;CACC;;AAED;EACE,sBAAsB;EACtB,UAAU;CACX;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV;;AAED;EACE,oBAAoB;EACpB,aAAa;EACb,0BAA2B;EAC3B,iBAAgC;CAMjC;;AAJC;EACE,0BAA2B;EAC3B,eAAe;CAChB;;AAGH;EACE,uBAAuB;EACvB,eAAe;CAChB;;AAED;;CAEC;;AAED;;CAEC","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n  margin-top: 20px;\n}\n\n.listItem {\n}\n\n.selectedColors {\n  display: inline-block;\n  margin: 0;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon, .icon {\n  font-size: 14px;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n}\n\n.icon {\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n\n.shuffle, .clear {\n  vertical-align: top;\n  border: none;\n  background-color: $body-bg;\n  line-height: $large-swatch-size;\n\n  &:hover, &:focus {\n    background-color: $body-bg;\n    color: #8B8086;\n  }\n}\n\n.createPalette {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.shuffle {\n\n}\n\n.clear {\n\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n\n.Palette_container_1Ha {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.Palette_colors_jGR, .Palette_selectedColors_1qk {\n  list-style: none;\n  padding-left: 0;\n}\n\n.Palette_colors_jGR li, .Palette_selectedColors_1qk li {\n  display: inline-block;\n  line-height: 1;\n}\n\n.Palette_colors_jGR {\n  margin-top: 20px;\n}\n\n.Palette_listItem_3uQ {\n}\n\n.Palette_selectedColors_1qk {\n  display: inline-block;\n  margin: 0;\n}\n\n.Palette_title_2zJ {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.Palette_linkIcon_2U5, .Palette_icon_2s6 {\n  font-size: 14px;\n}\n\n.Palette_linkIcon_2U5 {\n  margin-right: 0.5em;\n}\n\n.Palette_icon_2s6 {\n}\n\n.Palette_copyMessage_3Po {\n  position: absolute;\n  right: 0;\n}\n\n.Palette_shuffle_3Z1, .Palette_clear_126 {\n  vertical-align: top;\n  border: none;\n  background-color: #222314;\n  line-height: 35px\n}\n\n.Palette_shuffle_3Z1:hover, .Palette_shuffle_3Z1:focus, .Palette_clear_126:hover, .Palette_clear_126:focus {\n  background-color: #222314;\n  color: #8B8086;\n}\n\n.Palette_shuffle_3Z1:disabled, .Palette_clear_126:disabled {\n  background-color: #222314;\n}\n\n.Palette_shuffle_3Z1:disabled:hover, .Palette_shuffle_3Z1:disabled:focus, .Palette_clear_126:disabled:hover, .Palette_clear_126:disabled:focus {\n  background-color: #222314;\n}\n\n.Palette_createPalette_3-9 {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.Palette_shuffle_3Z1 {\n\n}\n\n.Palette_clear_126 {\n\n}\n", "", {"version":3,"sources":["/./src/components/variables.scss","/./src/components/Palette/Palette.scss"],"names":[],"mappings":"AAGgC,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;;ACJjE;EACE,oBAAoB;EACpB,mBAAmB;CACpB;;AAED;EACE,iBAAiB;EACjB,gBAAgB;CAMjB;;AAJC;EACE,sBAAsB;EACtB,eAAe;CAChB;;AAGH;EACE,iBAAiB;CAClB;;AAED;CACC;;AAED;EACE,sBAAsB;EACtB,UAAU;CACX;;AAED;EACE,gBAAgB;EAChB,iBAAiB;EACjB,mBAAmB;EACnB,uBAAuB;CACxB;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,oBAAoB;CACrB;;AAED;CACC;;AAED;EACE,mBAAmB;EACnB,SAAS;CACV;;AAED;EACE,oBAAoB;EACpB,aAAa;EACb,0BAA2B;EAC3B,iBAAgC;CAcjC;;AAZC;EACE,0BAA2B;EAC3B,eAAe;CAChB;;AAED;EACE,0BAA2B;CAK5B;;AAHC;EACE,0BAA2B;CAC5B;;AAIL;EACE,uBAAuB;EACvB,eAAe;CAChB;;AAED;;CAEC;;AAED;;CAEC","file":"Palette.scss","sourcesContent":["$font-family-base:      'Arimo', 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\r\n$monospace-font:        'Ocr A Extended', 'Courier New', monospace;\r\n$max-content-width:     1000px;\r\n$screen-xs-min:         480px;  /* Extra small screen / phone */\r\n$screen-sm-min:         768px;  /* Small screen / tablet */\r\n$screen-md-min:         992px;  /* Medium screen / desktop */\r\n$screen-lg-min:         1200px; /* Large screen / wide desktop */\r\n$animation-swift-out:   .45s cubic-bezier(0.3, 1, 0.4, 1) 0s;\r\n\r\n$body-bg: #222314;\r\n$text-color: #8B8086;\r\n$link-color: #fff;\r\n$hover-link-color: #8B8086;\r\n$header-color: #9E969B;\r\n$input-bg: #8B8086;\r\n$input-text-color: #fff;\r\n$border-color: #574E4F;\r\n$border-radius: 2px;\r\n$input-border-color: $border-color;\r\n$input-border-radius: $border-radius;\r\n$success-text-color: #A5A781;\r\n$error-text-color: #A78E81;\r\n$swatch-size: 20px;\r\n$large-swatch-size: 35px;\r\n$search-label-width: 11rem;\r\n","@import '../variables.scss';\n\n.container {\n  margin-bottom: 20px;\n  position: relative;\n}\n\n.colors, .selectedColors {\n  list-style: none;\n  padding-left: 0;\n\n  li {\n    display: inline-block;\n    line-height: 1;\n  }\n}\n\n.colors {\n  margin-top: 20px;\n}\n\n.listItem {\n}\n\n.selectedColors {\n  display: inline-block;\n  margin: 0;\n}\n\n.title {\n  margin: 0 0 5px;\n  font-weight: 700;\n  text-align: center;\n  letter-spacing: 0.05em;\n}\n\n.linkIcon, .icon {\n  font-size: 14px;\n}\n\n.linkIcon {\n  margin-right: 0.5em;\n}\n\n.icon {\n}\n\n.copyMessage {\n  position: absolute;\n  right: 0;\n}\n\n.shuffle, .clear {\n  vertical-align: top;\n  border: none;\n  background-color: $body-bg;\n  line-height: $large-swatch-size;\n\n  &:hover, &:focus {\n    background-color: $body-bg;\n    color: #8B8086;\n  }\n\n  &:disabled {\n    background-color: $body-bg;\n\n    &:hover, &:focus {\n      background-color: $body-bg;\n    }\n  }\n}\n\n.createPalette {\n  margin: 0 5px 10px 5px;\n  display: block;\n}\n\n.shuffle {\n\n}\n\n.clear {\n\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -108965,6 +109038,10 @@ module.exports =
   
   var _bluebird2 = _interopRequireDefault(_bluebird);
   
+  var _storesSteamApps = __webpack_require__(78);
+  
+  var _storesSteamApps2 = _interopRequireDefault(_storesSteamApps);
+  
   var ScreenshotScraper = (function () {
     function ScreenshotScraper(id) {
       _classCallCheck(this, ScreenshotScraper);
@@ -109050,6 +109127,24 @@ module.exports =
         var fileSize = this.getFileSize(metadata);
         if (fileSize) {
           screenshot.fileSize = fileSize;
+        }
+        var game = window.document.querySelector('.apphub_AppName');
+        if (game) {
+          screenshot.gameName = game.innerHTML.trim();
+          var breadcrumbs = window.document.querySelector('.breadcrumbs');
+          if (breadcrumbs) {
+            var breadcrumbLinks = breadcrumbs.querySelectorAll('a');
+            for (var i = 0; i < breadcrumbLinks.length; i++) {
+              var breadcrumb = breadcrumbLinks[i];
+              if (breadcrumb.innerHTML === screenshot.gameName) {
+                var url = breadcrumb.href;
+                var key = '/app/';
+                var index = url.indexOf(key) + key.length;
+                screenshot.appid = parseInt(url.slice(index), 10);
+                break;
+              }
+            }
+          }
         }
         resolve(screenshot);
       }

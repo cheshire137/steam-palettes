@@ -90,6 +90,16 @@ class SteamApps {
     return this._appsByID[appId].name;
   }
 
+  static getID(name) {
+    this._init();
+    for (let i = 0; i < this.apps.length; i++) {
+      const app = this.apps[i];
+      if (app.name === name) {
+        return app.appid;
+      }
+    }
+  }
+
   static _idSorter(a, b) {
     const indexA = this._sortedIds.indexOf(String(a));
     const indexB = this._sortedIds.indexOf(String(b));
